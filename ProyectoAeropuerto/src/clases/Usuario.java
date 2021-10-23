@@ -1,21 +1,19 @@
 package clases;
 
-
-
 public class Usuario {
 
-	private String correo;
+	private String usuario;
 	private String contrasenya;
 
-	public Usuario(String correo, String contrasenya) {
+	public Usuario(String usuario, String contrasenya) {
 		super();
-		this.correo = correo;
+		this.usuario = usuario;
 		this.contrasenya = contrasenya;
 	}
-	
+
 	public Usuario() {
 		super();
-		this.correo = "";
+		this.usuario = "";
 		this.contrasenya = "";
 	}
 
@@ -27,19 +25,17 @@ public class Usuario {
 		this.contrasenya = contrasenya;
 	}
 
-	public String getCorreo() {
-		return correo;
+	public String getUsuario() {
+		return usuario;
 	}
 
-	public void setCorreo(String correo) {
-		this.correo = correo;
+	public void setUsuario(String correo) {
+		this.usuario = correo;
 	}
 
 	@Override
 	public String toString() {
-		return "Usuario [correo=" + correo + ", contrasenya=" + contrasenya + "]";
+		return "Usuario [correo=" + usuario + ", contrasenya=" + contrasenya + "]";
 	}
-
-
 
 }

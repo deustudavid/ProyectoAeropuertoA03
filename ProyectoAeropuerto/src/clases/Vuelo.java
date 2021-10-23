@@ -1,10 +1,11 @@
 package clases;
+
 public class Vuelo {
 	int codigo;
 	String origen;
 	String destino;
 	Riesgo riesgo;
-	
+
 	public Vuelo(int codigo, String origen, String destino, Riesgo riesgo) {
 		super();
 		this.codigo = codigo;
@@ -12,7 +13,7 @@ public class Vuelo {
 		this.destino = destino;
 		this.riesgo = riesgo;
 	}
-	
+
 	public Vuelo() {
 		super();
 		this.codigo = 0;
@@ -57,10 +58,5 @@ public class Vuelo {
 	public String toString() {
 		return "Vuelo [codigo=" + codigo + ", origen=" + origen + ", destino=" + destino + ", riesgo=" + riesgo + "]";
 	}
-	
-	
-	
-	
-	
 
 }
