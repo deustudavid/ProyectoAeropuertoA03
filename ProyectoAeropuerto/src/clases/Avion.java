@@ -1,3 +1,4 @@
+package clases;
 
 public class Avion {
 	String modelo;

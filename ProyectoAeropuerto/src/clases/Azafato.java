@@ -1,4 +1,4 @@
-
+package clases;
 public class Azafato extends Persona {
 	int anyosExperiencia;
 	String funcion;

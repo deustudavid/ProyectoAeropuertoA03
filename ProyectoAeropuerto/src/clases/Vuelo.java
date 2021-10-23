@@ -1,4 +1,4 @@
-
+package clases;
 public class Vuelo {
 	int codigo;
 	String origen;

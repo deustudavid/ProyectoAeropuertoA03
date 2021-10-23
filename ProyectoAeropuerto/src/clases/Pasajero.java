@@ -1,4 +1,4 @@
-
+package clases;
 public class Pasajero extends Persona {
 	Equipaje equipaje;
 
