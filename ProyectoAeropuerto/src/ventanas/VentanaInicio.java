@@ -4,14 +4,19 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import bd.BD;
+
 import java.awt.Color;
 import java.awt.GridLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.SwingConstants;
@@ -27,7 +32,7 @@ public class VentanaInicio extends JFrame {
 
 	private JFrame ventanaActual;
 
-	private JTextField textUsuario;
+	private JTextField textNombre;
 
 	private JPasswordField textContrasenia;
 
@@ -70,10 +75,7 @@ public class VentanaInicio extends JFrame {
 
 		btnRegistrarAdministrador = new JButton("REGISTRAR ADMINISTRADOR");
 		panelSur.add(btnRegistrarAdministrador);
-		btnRegistrarAdministrador.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
+
 
 		btnRegistrarAzafato = new JButton("REGISTRAR AZAFATO");
 		panelSur.add(btnRegistrarAzafato);
@@ -90,9 +92,9 @@ public class VentanaInicio extends JFrame {
 		lblUsuario.setBackground(Color.DARK_GRAY);
 		panelCentral.add(lblUsuario);
 
-		textUsuario = new JTextField();
-		textUsuario.setColumns(10);
-		panelCentral.add(textUsuario);
+		textNombre = new JTextField();
+		textNombre.setColumns(10);
+		panelCentral.add(textNombre);
 
 		lblContrasenia = new JLabel(" Introduce la contrasenia:");
 		lblContrasenia.setBackground(Color.DARK_GRAY);
@@ -102,12 +104,72 @@ public class VentanaInicio extends JFrame {
 		textContrasenia.setText("");
 		textContrasenia.setColumns(10);
 		panelCentral.add(textContrasenia);
+		
+		/* EVENTOS */
+		
 		btnIniciarSesionAdministrador.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
 			}
 		});
+		
+		btnRegistrarAdministrador.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String n = textNombre.getText();
+				
+				char [] ac = textContrasenia.getPassword();
+				String c = String.valueOf(ac);
+				//String c = textContrasenia.getText();
+				Connection con = BD.initBD("newton.db");
+				int resul = BD.obtenerUsuario(con, n, c);
+				if(resul != 0) {
+					JOptionPane.showMessageDialog(null, "ERROR! Ese nombre de administrador ya existe");
+				}else {
+					BD.insertarUsuario(con, n, c);
+					JOptionPane.showMessageDialog(null, "Administrador registrado correctamente");
+				}
+				BD.closeBD(con);
+				textNombre.setText("");
+				textContrasenia.setText("");
+			}
+		});
+		
+		btnIniciarSesionAzafato.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new VentanaCrearPasajero();//es para probar
+				ventanaActual.setVisible(false);
+			
+				
+			}
+			
+		});
+		
+		btnRegistrarAzafato.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String n = textNombre.getText();
+				char [] ac = textContrasenia.getPassword();
+				String c = String.valueOf(ac);
+				//String c = textContrasenia.getText();
+				Connection con = BD.initBD("newton.db");
+				int resul = BD.obtenerUsuario(con, n, c);
+				if(resul != 0) {
+					JOptionPane.showMessageDialog(null, "ERROR! Ese nombre de azafato ya existe");
+				}else {
+					BD.insertarUsuario(con, n, c);
+					JOptionPane.showMessageDialog(null, "Azafato registrado correctamente");
+				}
+				BD.closeBD(con);
+				textNombre.setText("");
+				textContrasenia.setText("");
+				
+			}
+		});
+		
+				
+			
+			
+		
 		setVisible(true);
+	
 	}
-
 }

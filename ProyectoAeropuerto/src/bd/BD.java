@@ -91,7 +91,7 @@ public class BD {
 	 * @param con Conexión con la BBDD
 	 */
 	public static void crearTablas(Connection con) {
-		String sentencia1 = "CREATE TABLE IF NOT EXISTS Usuario (correo String, contrasenya String)";
+		String sentencia1 = "CREATE TABLE IF NOT EXISTS Usuario (nombre String, contrasenya String)";
 
 		Statement st = null;
 		try {
@@ -116,12 +116,12 @@ public class BD {
 	/**
 	 * Método que inserta los datos de un Usuario (si no está repetido) en la BBDD 
 	 * @param con Conexión con la BBDD
-	 * @param correo Correo del usuario
+	 * @param nombre Nombre del usuario
 	 * @param contra Contraseña del usuario
 	 */
-	public static void insertarUsuario(Connection con, String correo, String contra) {
+	public static void insertarUsuario(Connection con, String nombre, String contra) {
 		
-		String sentencia = "INSERT INTO Usuario VALUES('"+correo+"','"+contra+"')";
+		String sentencia = "INSERT INTO Usuario VALUES('"+nombre+"','"+contra+"')";
 		Statement st = null;
 		
 		try {
