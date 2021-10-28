@@ -1,4 +1,4 @@
-package ventanas;
+package main;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -9,6 +9,12 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import ventanas.VentanaInicioSesionAdm;
+import ventanas.VentanaInicioSesionAzafato;
+import ventanas.VentanaRegistrarAdm;
+import ventanas.VentanaRegistrarAzafato;
+
 import java.awt.Color;
 import java.awt.GridLayout;
 import javax.swing.JLabel;
