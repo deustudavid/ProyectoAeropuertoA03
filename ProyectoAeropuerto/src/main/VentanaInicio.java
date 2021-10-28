@@ -14,6 +14,7 @@ import ventanas.VentanaInicioSesionAdm;
 import ventanas.VentanaInicioSesionAzafato;
 import ventanas.VentanaRegistrarAdm;
 import ventanas.VentanaRegistrarAzafato;
+import ventanasNuevas.VentanaPadre;
 
 import java.awt.Color;
 import java.awt.GridLayout;
@@ -126,6 +127,7 @@ public class VentanaInicio extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				new VentanaInicioSesionAdm();
 				ventanaActual.dispose();
+				new VentanaPadre();
 			}
 		});
 
@@ -134,6 +136,7 @@ public class VentanaInicio extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				new VentanaInicioSesionAzafato();
 				ventanaActual.dispose();
+				new VentanaPadre();
 
 			}
 
