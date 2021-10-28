@@ -1,4 +1,4 @@
-package ventanasNuevas;
+package ventanas;
 
 
 
@@ -9,16 +9,11 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Pattern;
+
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
@@ -31,6 +26,7 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.GroupLayout;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.event.ActionListener;
+import javax.swing.JTextField;
 
 
 
@@ -46,7 +42,7 @@ public class CreadorPasajeros extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lblTelefono;
     private javax.swing.JLabel lblDireccion;
     private javax.swing.JLabel lblTituloVentana;
-    private javax.swing.JLabel lblFecha;
+    private javax.swing.JLabel lblEdad;
     private javax.swing.JLabel lblGenero;
     private javax.swing.JPanel panelIzquierda;
     private javax.swing.JPanel panelCentral;
@@ -54,12 +50,12 @@ public class CreadorPasajeros extends javax.swing.JInternalFrame {
     private javax.swing.JRadioButton radioHombre;
     private javax.swing.JRadioButton radioMujer;
     private javax.swing.JTextArea txtDireccion;
-    private JDateChooser txtFecha;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtApellido;
     private javax.swing.JTextField txtDni;
     private javax.swing.JTextField txtTelefono;
     private javax.swing.JLabel txtFoto;
+    private JTextField txtEdad;
     
 
    
@@ -83,15 +79,16 @@ public class CreadorPasajeros extends javax.swing.JInternalFrame {
         txtDireccion = new javax.swing.JTextArea();
         lblTituloVentana = new javax.swing.JLabel();
         panelCentral = new javax.swing.JPanel();
-        lblFecha = new javax.swing.JLabel();
+        lblEdad = new javax.swing.JLabel();
         lblGenero = new javax.swing.JLabel();
-        txtFecha = new JDateChooser();
         radioHombre = new javax.swing.JRadioButton();
         radioMujer = new javax.swing.JRadioButton();
         txtFoto = new javax.swing.JLabel();
         btnBuscarFoto = new javax.swing.JButton();
         btnGuardar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
+        
+        
         btnCancelar.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		dispose();
@@ -121,17 +118,8 @@ public class CreadorPasajeros extends javax.swing.JInternalFrame {
         lblDireccion.setForeground(new java.awt.Color(255, 255, 255));
         lblDireccion.setText("Direccion");
 
-        txtApellido.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                
-            }
-        });
 
-        txtTelefono.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-               
-            }
-        });
+     
 
         txtDireccion.setColumns(20);
         txtDireccion.setRows(5);
@@ -198,9 +186,9 @@ public class CreadorPasajeros extends javax.swing.JInternalFrame {
 
         panelCentral.setBackground(new java.awt.Color(51, 0, 255));
 
-        lblFecha.setFont(new java.awt.Font("Tahoma", 1, 11));   
-        lblFecha.setForeground(new java.awt.Color(255, 255, 255));
-        lblFecha.setText("Fecha ncto.");
+        lblEdad.setFont(new java.awt.Font("Tahoma", 1, 11));   
+        lblEdad.setForeground(new java.awt.Color(255, 255, 255));
+        lblEdad.setText("Edad");
 
         lblGenero.setFont(new java.awt.Font("Tahoma", 1, 11));   
         lblGenero.setForeground(new java.awt.Color(255, 255, 255));
@@ -209,17 +197,19 @@ public class CreadorPasajeros extends javax.swing.JInternalFrame {
         radioHombre.setText("Hombre");
 
         radioMujer.setText("Mujer");
+        
+        txtEdad = new JTextField();
 
         javax.swing.GroupLayout gl_panelCentral = new javax.swing.GroupLayout(panelCentral);
         gl_panelCentral.setHorizontalGroup(
         	gl_panelCentral.createParallelGroup(Alignment.LEADING)
         		.addGroup(gl_panelCentral.createSequentialGroup()
         			.addGap(22)
-        			.addGroup(gl_panelCentral.createParallelGroup(Alignment.LEADING)
+        			.addGroup(gl_panelCentral.createParallelGroup(Alignment.LEADING, false)
         				.addGroup(gl_panelCentral.createSequentialGroup()
-        					.addComponent(lblFecha)
-        					.addGap(18)
-        					.addComponent(txtFecha, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE))
+        					.addComponent(lblEdad)
+        					.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        					.addComponent(txtEdad, GroupLayout.PREFERRED_SIZE, 165, GroupLayout.PREFERRED_SIZE))
         				.addGroup(gl_panelCentral.createSequentialGroup()
         					.addComponent(lblGenero)
         					.addGap(46)
@@ -231,10 +221,10 @@ public class CreadorPasajeros extends javax.swing.JInternalFrame {
         gl_panelCentral.setVerticalGroup(
         	gl_panelCentral.createParallelGroup(Alignment.LEADING)
         		.addGroup(gl_panelCentral.createSequentialGroup()
-        			.addGap(29)
-        			.addGroup(gl_panelCentral.createParallelGroup(Alignment.TRAILING)
-        				.addComponent(lblFecha)
-        		 		.addComponent(txtFecha, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+        			.addGap(35)
+        			.addGroup(gl_panelCentral.createParallelGroup(Alignment.BASELINE)
+        				.addComponent(lblEdad)
+        				.addComponent(txtEdad, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
         			.addGap(18)
         			.addGroup(gl_panelCentral.createParallelGroup(Alignment.BASELINE)
         				.addComponent(lblGenero)
@@ -287,6 +277,20 @@ public class CreadorPasajeros extends javax.swing.JInternalFrame {
         btnGuardar.setText("Guardar");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
+    			String erdni = "[0-9]{8}[A-Z]";
+				String d = txtDni.getText();
+				boolean correctoDni = Pattern.matches(erdni, d);
+				if(correctoDni) {
+					//falta meter el dato de cada textfield en una variable y crear un nuevo Pasajero 
+					// con todos los datos
+					String n = txtNombre.getText();
+					/* .....*/
+		
+					JOptionPane.showMessageDialog(null, "Pasajero registrada correctamente", "REGISTRO CORRECTO", JOptionPane.INFORMATION_MESSAGE);
+					
+				}else {
+					JOptionPane.showMessageDialog(null, "El dni no es correcto", "¡¡ERROR!!", JOptionPane.ERROR_MESSAGE);
+				}
           
             }
         });
@@ -350,35 +354,4 @@ public class CreadorPasajeros extends javax.swing.JInternalFrame {
 
         pack();
     } 
-      
-   
-       
-       
-       
-         
-       
-       
-       
-        
-        
-        
-        
-        
-   
-        
-         
-         
-        
-        
-        
-        
-        
-        
-        
-    
-
-
-
-    
-    
 }

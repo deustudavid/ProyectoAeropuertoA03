@@ -1,4 +1,4 @@
-package ventanasNuevas;
+package ventanas;
 
 
 
@@ -8,26 +8,17 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.sql.Blob;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.GroupLayout;
+import javax.swing.JTextField;
+import javax.swing.LayoutStyle.ComponentPlacement;
 
 
 
@@ -44,7 +35,7 @@ public class BuscarPasajero extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lblTelefono;
     private javax.swing.JLabel lblDireccion;
     private javax.swing.JLabel lblDNIPasajero;
-    private javax.swing.JLabel lblFecha;
+    private javax.swing.JLabel lblEdad;
     private javax.swing.JLabel lblGenero;
     private javax.swing.JPanel panelIzquierda;
     private javax.swing.JPanel panelCentral;
@@ -53,12 +44,12 @@ public class BuscarPasajero extends javax.swing.JInternalFrame {
     private javax.swing.JRadioButton radioMujer;
     private javax.swing.JTextArea txtDireccion;
     private javax.swing.JTextField txtDNI;
-    private com.toedter.calendar.JDateChooser txtFecha;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtApellido;
     private javax.swing.JTextField txtDni;
     private javax.swing.JTextField txtTelefono;
     private javax.swing.JLabel txtFoto;
+    private JTextField txtEdad;
 
 
     public BuscarPasajero() {
@@ -79,9 +70,8 @@ public class BuscarPasajero extends javax.swing.JInternalFrame {
         txtDireccion = new javax.swing.JTextArea();
         lblDNIPasajero = new javax.swing.JLabel();
         panelCentral = new javax.swing.JPanel();
-        lblFecha = new javax.swing.JLabel();
+        lblEdad = new javax.swing.JLabel();
         lblGenero = new javax.swing.JLabel();
-        txtFecha = new com.toedter.calendar.JDateChooser();
         radioHombre = new javax.swing.JRadioButton();
         radioMujer = new javax.swing.JRadioButton();
         txtFoto = new javax.swing.JLabel();
@@ -113,17 +103,9 @@ public class BuscarPasajero extends javax.swing.JInternalFrame {
         lblDireccion.setForeground(new java.awt.Color(255, 255, 255));
         lblDireccion.setText("Direccion");
 
-        txtApellido.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtlastnameActionPerformed(evt);
-            }
-        });
+     
 
-        txtTelefono.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtpassportActionPerformed(evt);
-            }
-        });
+       
 
         txtDireccion.setColumns(20);
         txtDireccion.setRows(5);
@@ -185,33 +167,35 @@ public class BuscarPasajero extends javax.swing.JInternalFrame {
                 .addGap(34, 34, 34))
         );
 
-        lblDNIPasajero.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblDNIPasajero.setFont(new java.awt.Font("Tahoma", 1, 18)); 
         lblDNIPasajero.setText("DNI del pasajero: ");
 
         panelCentral.setBackground(new java.awt.Color(51, 0, 255));
 
-        lblFecha.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        lblFecha.setForeground(new java.awt.Color(255, 255, 255));
-        lblFecha.setText("Fecha ncto.");
+        lblEdad.setFont(new java.awt.Font("Tahoma", 1, 11)); 
+        lblEdad.setForeground(new java.awt.Color(255, 255, 255));
+        lblEdad.setText("Edad");
 
-        lblGenero.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lblGenero.setFont(new java.awt.Font("Tahoma", 1, 11)); 
         lblGenero.setForeground(new java.awt.Color(255, 255, 255));
         lblGenero.setText("Genero");
 
         radioHombre.setText("Hombre");
 
         radioMujer.setText("Mujer");
+        
+        txtEdad = new JTextField();
 
         javax.swing.GroupLayout gl_panelCentral = new javax.swing.GroupLayout(panelCentral);
         gl_panelCentral.setHorizontalGroup(
         	gl_panelCentral.createParallelGroup(Alignment.LEADING)
         		.addGroup(gl_panelCentral.createSequentialGroup()
         			.addGap(22)
-        			.addGroup(gl_panelCentral.createParallelGroup(Alignment.LEADING)
+        			.addGroup(gl_panelCentral.createParallelGroup(Alignment.LEADING, false)
         				.addGroup(gl_panelCentral.createSequentialGroup()
-        					.addComponent(lblFecha)
-        					.addGap(18)
-        					.addComponent(txtFecha, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE))
+        					.addComponent(lblEdad)
+        					.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        					.addComponent(txtEdad, GroupLayout.PREFERRED_SIZE, 165, GroupLayout.PREFERRED_SIZE))
         				.addGroup(gl_panelCentral.createSequentialGroup()
         					.addComponent(lblGenero)
         					.addGap(46)
@@ -223,10 +207,10 @@ public class BuscarPasajero extends javax.swing.JInternalFrame {
         gl_panelCentral.setVerticalGroup(
         	gl_panelCentral.createParallelGroup(Alignment.LEADING)
         		.addGroup(gl_panelCentral.createSequentialGroup()
-        			.addGap(29)
-        			.addGroup(gl_panelCentral.createParallelGroup(Alignment.TRAILING)
-        				.addComponent(lblFecha)
-        				.addComponent(txtFecha, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+        			.addGap(35)
+        			.addGroup(gl_panelCentral.createParallelGroup(Alignment.BASELINE)
+        				.addComponent(lblEdad)
+        				.addComponent(txtEdad, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
         			.addGap(18)
         			.addGroup(gl_panelCentral.createParallelGroup(Alignment.BASELINE)
         				.addComponent(lblGenero)
@@ -241,16 +225,42 @@ public class BuscarPasajero extends javax.swing.JInternalFrame {
         btnBuscarFoto.setText("Seleccionar foto");
         btnBuscarFoto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
+            	
+                try {
+                    JFileChooser picchooser = new JFileChooser();
+                   picchooser.showOpenDialog(null);
+                   File pic = picchooser.getSelectedFile();       
+                   FileNameExtensionFilter filter = new FileNameExtensionFilter("*.images","png","jpg");
+                   picchooser.addChoosableFileFilter(filter);     
+                  String path= pic.getAbsolutePath();
+                   BufferedImage img;                    
+                   img = ImageIO.read(picchooser.getSelectedFile());
+                   ImageIcon imageIcon = new ImageIcon(new
+                   ImageIcon(img).getImage().getScaledInstance(250, 250, Image.SCALE_DEFAULT));
+                          txtFoto.setIcon(imageIcon); 
+                          
+                          
+                         File image = new File(path);
+                        FileInputStream fis = new FileInputStream(image);
+                        ByteArrayOutputStream baos= new ByteArrayOutputStream();
+                        byte[] buff = new byte[1024];
+                        for(int readNum; (readNum=fis.read(buff)) !=-1 ; )
+                        {
+                            baos.write(buff,0,readNum);
+                        }
+                        byte[] userimage=baos.toByteArray();
+                          
+                          
+                          
+                    } catch (IOException ex) {
+                        Logger.getLogger(CreadorPasajeros.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                
             }
         });
 
         btnActualizar.setText("Actualizar");
-        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-             
-            }
-        });
+    
 
         btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -262,177 +272,70 @@ public class BuscarPasajero extends javax.swing.JInternalFrame {
         });
 
         btnBuscar.setText("Buscar");
-        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                
-            }
-        });
+   
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addComponent(lblDNIPasajero)
-                        .addGap(29, 29, 29)
-                        .addComponent(txtDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(panelIzquierda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(panelCentral, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(337, 337, 337)
-                                .addComponent(btnBuscarFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(39, 39, 39)
-                        .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(24, Short.MAX_VALUE))
+        	layout.createParallelGroup(Alignment.LEADING)
+        		.addGroup(layout.createSequentialGroup()
+        			.addContainerGap()
+        			.addGroup(layout.createParallelGroup(Alignment.TRAILING)
+        				.addGroup(layout.createSequentialGroup()
+        					.addComponent(lblDNIPasajero)
+        					.addGap(29)
+        					.addComponent(txtDNI, GroupLayout.PREFERRED_SIZE, 147, GroupLayout.PREFERRED_SIZE))
+        				.addComponent(panelIzquierda, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+        			.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        				.addGroup(layout.createSequentialGroup()
+        					.addGap(39)
+        					.addComponent(btnActualizar, GroupLayout.PREFERRED_SIZE, 105, GroupLayout.PREFERRED_SIZE)
+        					.addGap(18)
+        					.addComponent(btnCancelar, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE))
+        				.addGroup(layout.createSequentialGroup()
+        					.addGap(30)
+        					.addComponent(btnBuscar, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE))
+        				.addGroup(layout.createSequentialGroup()
+        					.addGap(18)
+        					.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        						.addGroup(layout.createSequentialGroup()
+        							.addGap(337)
+        							.addComponent(btnBuscarFoto, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE))
+        						.addGroup(layout.createSequentialGroup()
+        							.addComponent(panelCentral, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        							.addGap(18)
+        							.addComponent(txtFoto, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)))))
+        			.addContainerGap(22, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(17, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblDNIPasajero)
-                    .addComponent(txtDNI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBuscar))
-                .addGap(38, 38, 38)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(panelIzquierda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtFoto, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
-                            .addComponent(panelCentral, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
-                        .addComponent(btnBuscarFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(49, 49, 49))
+        	layout.createParallelGroup(Alignment.TRAILING)
+        		.addGroup(layout.createSequentialGroup()
+        			.addContainerGap(21, Short.MAX_VALUE)
+        			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+        				.addComponent(lblDNIPasajero)
+        				.addComponent(txtDNI, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        				.addComponent(btnBuscar))
+        			.addGap(38)
+        			.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        				.addComponent(panelIzquierda, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        				.addGroup(layout.createSequentialGroup()
+        					.addGap(25)
+        					.addGroup(layout.createParallelGroup(Alignment.LEADING, false)
+        						.addComponent(txtFoto, GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+        						.addComponent(panelCentral, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        					.addGap(18)
+        					.addComponent(btnBuscarFoto, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
+        					.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        					.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+        						.addComponent(btnActualizar, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
+        						.addComponent(btnCancelar, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE))))
+        			.addGap(49))
         );
+        getContentPane().setLayout(layout);
 
         pack();
-    }// </editor-fold>//GEN-END:initComponents
-
+        
+    }
     
-    
-    
-    
+  
  
-    
-   
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    private void txtlastnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtlastnameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtlastnameActionPerformed
-
-    private void txtpassportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtpassportActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtpassportActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        
-    
-      
-        try {
-        JFileChooser picchooser = new JFileChooser();
-       picchooser.showOpenDialog(null);
-       File pic = picchooser.getSelectedFile();       
-       FileNameExtensionFilter filter = new FileNameExtensionFilter("*.images","png","jpg");
-       picchooser.addChoosableFileFilter(filter);     
-      String path= pic.getAbsolutePath();
-       BufferedImage img;                    
-       img = ImageIO.read(picchooser.getSelectedFile());
-       ImageIcon imageIcon = new ImageIcon(new
-       ImageIcon(img).getImage().getScaledInstance(250, 250, Image.SCALE_DEFAULT));
-              txtFoto.setIcon(imageIcon); 
-              
-              
-             File image = new File(path);
-            FileInputStream fis = new FileInputStream(image);
-            ByteArrayOutputStream baos= new ByteArrayOutputStream();
-            byte[] buff = new byte[1024];
-            for(int readNum; (readNum=fis.read(buff)) !=-1 ; )
-            {
-                baos.write(buff,0,readNum);
-            }
-            byte[] userimage=baos.toByteArray();
-              
-              
-              
-        } catch (IOException ex) {
-            Logger.getLogger(CreadorPasajeros.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-       
-       
-       
-       
-       
-       
-       
-        
-        
-        
-        
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        
-         String id = txtDNI.getText();
-         String firstname = txtNombre.getText();
-         String lastname = txtApellido.getText();
-         String nic = txtDni.getText(); 
-        String passport = txtTelefono.getText();
-         String address = txtDireccion.getText();
-        
-        DateFormat da = new SimpleDateFormat("yyyy-MM-dd");
-        String date = da.format(txtFecha.getDate());
-        String Gender;
-        
-        if(radioHombre.isSelected())
-        {
-            Gender = "Male";
-        }
-        else
-        {
-            Gender = "FeMale";
-        }
-     
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    
-
-   
-
-
-
 }

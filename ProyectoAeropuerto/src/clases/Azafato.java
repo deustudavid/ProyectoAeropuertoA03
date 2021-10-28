@@ -3,8 +3,8 @@ public class Azafato extends Persona {
 	int anyosExperiencia;
 	String funcion;
 	
-	public Azafato(String dni, String nombre, int edad, int anyosExperiencia, String funcion) {
-		super(dni, nombre, edad);
+	public Azafato(String dni, String nombre, String apellido, int edad, int anyosExperiencia, String funcion) {
+		super(dni, nombre, apellido, edad);
 		this.anyosExperiencia = anyosExperiencia;
 		this.funcion = funcion;
 	}
@@ -34,8 +34,11 @@ public class Azafato extends Persona {
 	@Override
 	public String toString() {
 		return "Azafato [anyosExperiencia=" + anyosExperiencia + ", funcion=" + funcion + ", getDni()=" + getDni()
-				+ ", getNombre()=" + getNombre() + ", getEdad()=" + getEdad() + "]";
+				+ ", getNombre()=" + getNombre() + ", getApellido()=" + getApellido() + ", getEdad()=" + getEdad()
+				+ "]";
 	}
+
+	
 	
 	
 	

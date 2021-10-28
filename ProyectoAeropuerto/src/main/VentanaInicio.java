@@ -10,11 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import ventanas.VentanaInicioSesionAdm;
-import ventanas.VentanaInicioSesionAzafato;
-import ventanas.VentanaRegistrarAdm;
-import ventanas.VentanaRegistrarAzafato;
-import ventanasNuevas.VentanaPadre;
+import ventanas.VentanaPadre;
 
 import java.awt.Color;
 import java.awt.GridLayout;
@@ -125,7 +121,7 @@ public class VentanaInicio extends JFrame {
 		btnIniciarSesionAdministrador.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new VentanaInicioSesionAdm();
+				
 				ventanaActual.dispose();
 				new VentanaPadre();
 			}
@@ -134,7 +130,7 @@ public class VentanaInicio extends JFrame {
 		btnIniciarSesionAzafato.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new VentanaInicioSesionAzafato();
+				
 				ventanaActual.dispose();
 				new VentanaPadre();
 
@@ -145,7 +141,7 @@ public class VentanaInicio extends JFrame {
 		btnRegistrarAdministrador.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new VentanaRegistrarAdm();
+				
 				ventanaActual.dispose();
 
 			}
@@ -155,7 +151,7 @@ public class VentanaInicio extends JFrame {
 		btnRegistrarAzafato.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new VentanaRegistrarAzafato();
+			
 				ventanaActual.dispose();
 
 			}

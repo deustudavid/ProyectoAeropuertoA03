@@ -1,10 +1,11 @@
-package ventanasNuevas;
+package ventanas;
 
 
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.GroupLayout;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.Font;
+import javax.swing.JComboBox;
 
 
 public class CreadorVuelos extends javax.swing.JInternalFrame {
@@ -21,10 +22,8 @@ public class CreadorVuelos extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lblHoraLlegada;
     private javax.swing.JLabel lblPrecio;
     private javax.swing.JPanel panelCreacionVuelo;
-    private javax.swing.JTextField txtHoraLlegada;
     private com.toedter.calendar.JDateChooser txtFecha;
     private javax.swing.JComboBox<String> txtDestino;
-    private javax.swing.JTextField txtHoraSalida;
     private javax.swing.JTextField txtPrecio;
     private javax.swing.JTextField txtIDVuelo;
     private javax.swing.JComboBox<String> txtOrigen;
@@ -41,8 +40,6 @@ public class CreadorVuelos extends javax.swing.JInternalFrame {
         lblFecha = new javax.swing.JLabel();
         txtFecha = new com.toedter.calendar.JDateChooser();
         lblHoraSalida = new javax.swing.JLabel();
-        txtHoraSalida = new javax.swing.JTextField();
-        txtHoraLlegada = new javax.swing.JTextField();
         lblHoraLlegada = new javax.swing.JLabel();
         lblPrecio = new javax.swing.JLabel();
         txtPrecio = new javax.swing.JTextField();
@@ -76,17 +73,13 @@ public class CreadorVuelos extends javax.swing.JInternalFrame {
         lblHoraSalida.setText("Hora Salida");
 
         lblHoraLlegada.setForeground(new java.awt.Color(255, 255, 255));
-        lblHoraLlegada.setText("HoraLlegada");
+        lblHoraLlegada.setText("Hora Llegada");
 
         lblPrecio.setForeground(new java.awt.Color(255, 255, 255));
         lblPrecio.setText("Precio");
 
         btnGuardar.setText("Guardar");
-        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                
-            }
-        });
+      
 
         btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -99,7 +92,13 @@ public class CreadorVuelos extends javax.swing.JInternalFrame {
         txtOrigen.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Italia\t", "Srilanka", "UK", "Usa", "Canada", "China" }));
 
         txtDestino.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Italia\t", "Srilanka", "UK", "Usa", "Canada", "China" }));
-
+        
+        JComboBox<String> opcionesHoraSalida = new JComboBox<String>();
+        opcionesHoraSalida.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "6:00\t", "6:30", "7:00", "7:30", "8:00", "8:30", "9:00", "9:30", "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00" }));
+       
+        JComboBox<String> opcionesHoraLlegada = new JComboBox<String>();
+        opcionesHoraLlegada.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "15:00\t", "15:30", "16:00", "16:30", "17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00", "20:30", "21:00", "21:30", "22:00", "22:30", "23:00" }));
+        
         javax.swing.GroupLayout gl_panelCreacionVuelo = new javax.swing.GroupLayout(panelCreacionVuelo);
         gl_panelCreacionVuelo.setHorizontalGroup(
         	gl_panelCreacionVuelo.createParallelGroup(Alignment.TRAILING)
@@ -128,15 +127,15 @@ public class CreadorVuelos extends javax.swing.JInternalFrame {
         						.addComponent(lblHoraSalida)
         						.addComponent(lblHoraLlegada))
         					.addGap(62)
-        					.addGroup(gl_panelCreacionVuelo.createParallelGroup(Alignment.LEADING, false)
-        						.addComponent(txtFecha, GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
-        						.addComponent(txtHoraSalida)
-        						.addComponent(txtHoraLlegada)))
+        					.addGroup(gl_panelCreacionVuelo.createParallelGroup(Alignment.LEADING)
+        						.addComponent(opcionesHoraLlegada, GroupLayout.PREFERRED_SIZE, 136, GroupLayout.PREFERRED_SIZE)
+        						.addComponent(opcionesHoraSalida, GroupLayout.PREFERRED_SIZE, 136, GroupLayout.PREFERRED_SIZE)
+        						.addComponent(txtFecha, GroupLayout.PREFERRED_SIZE, 174, GroupLayout.PREFERRED_SIZE)))
         				.addGroup(gl_panelCreacionVuelo.createSequentialGroup()
         					.addComponent(lblPrecio)
         					.addGap(52)
         					.addComponent(txtPrecio, GroupLayout.PREFERRED_SIZE, 172, GroupLayout.PREFERRED_SIZE)))
-        			.addContainerGap(95, Short.MAX_VALUE))
+        			.addContainerGap(103, Short.MAX_VALUE))
         		.addGroup(gl_panelCreacionVuelo.createSequentialGroup()
         			.addContainerGap(455, Short.MAX_VALUE)
         			.addComponent(btnGuardar, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
@@ -153,18 +152,22 @@ public class CreadorVuelos extends javax.swing.JInternalFrame {
         					.addComponent(lblTituloVentana)
         					.addComponent(lblFecha))
         				.addComponent(txtFecha, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-        			.addGap(18)
-        			.addGroup(gl_panelCreacionVuelo.createParallelGroup(Alignment.BASELINE)
-        				.addComponent(lbI_IDVuelo)
-        				.addComponent(txtIDVuelo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-        				.addComponent(lblHoraSalida)
-        				.addComponent(txtHoraSalida, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-        			.addGap(28)
-        			.addGroup(gl_panelCreacionVuelo.createParallelGroup(Alignment.BASELINE)
-        				.addComponent(lblOrigen)
-        				.addComponent(txtHoraLlegada, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-        				.addComponent(lblHoraLlegada)
-        				.addComponent(txtOrigen, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+        			.addGroup(gl_panelCreacionVuelo.createParallelGroup(Alignment.LEADING)
+        				.addGroup(gl_panelCreacionVuelo.createSequentialGroup()
+        					.addGap(18)
+        					.addGroup(gl_panelCreacionVuelo.createParallelGroup(Alignment.BASELINE)
+        						.addComponent(lbI_IDVuelo)
+        						.addComponent(txtIDVuelo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        						.addComponent(lblHoraSalida))
+        					.addGap(28)
+        					.addGroup(gl_panelCreacionVuelo.createParallelGroup(Alignment.BASELINE)
+        						.addComponent(lblOrigen)
+        						.addComponent(lblHoraLlegada)
+        						.addComponent(txtOrigen, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        						.addComponent(opcionesHoraLlegada, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)))
+        				.addGroup(gl_panelCreacionVuelo.createSequentialGroup()
+        					.addGap(18)
+        					.addComponent(opcionesHoraSalida, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)))
         			.addGroup(gl_panelCreacionVuelo.createParallelGroup(Alignment.LEADING)
         				.addGroup(gl_panelCreacionVuelo.createSequentialGroup()
         					.addGap(24)
@@ -203,24 +206,4 @@ public class CreadorVuelos extends javax.swing.JInternalFrame {
 
         pack();
     }
-
-    
-    
-    
-   
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-   
-
- 
 }

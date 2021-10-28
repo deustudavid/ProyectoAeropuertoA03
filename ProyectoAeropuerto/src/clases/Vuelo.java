@@ -1,62 +1,122 @@
 package clases;
 
+import java.util.Date;
+
 public class Vuelo {
-	int codigo;
+	String ID;
 	String origen;
 	String destino;
-	Riesgo riesgo;
-
-	public Vuelo(int codigo, String origen, String destino, Riesgo riesgo) {
+	Date fecha;
+	String horaSalida;
+	String horaLlegada;
+	double precio;
+	
+	public Vuelo(String ID, String origen, String destino, Date fecha, String horaSalida, String horaLlegada,
+			double precio) {
 		super();
-		this.codigo = codigo;
+		this.ID = ID;
 		this.origen = origen;
 		this.destino = destino;
-		this.riesgo = riesgo;
+		this.fecha = fecha;
+		this.horaSalida = horaSalida;
+		this.horaLlegada = horaLlegada;
+		this.precio = precio;
 	}
-
+	
+	
 	public Vuelo() {
 		super();
-		this.codigo = 0;
+		this.ID = "";
 		this.origen = "";
 		this.destino = "";
-		this.riesgo = null;
+		this.fecha = null;
+		this.horaSalida = "";
+		this.horaLlegada = "";
+		this.precio = 0.0;
 	}
 
-	public int getCodigo() {
-		return codigo;
+
+	public String getID() {
+		return ID;
 	}
 
-	public void setCodigo(int codigo) {
-		this.codigo = codigo;
+
+	public void setID(String iD) {
+		ID = iD;
 	}
+
 
 	public String getOrigen() {
 		return origen;
 	}
 
+
 	public void setOrigen(String origen) {
 		this.origen = origen;
 	}
+
 
 	public String getDestino() {
 		return destino;
 	}
 
+
 	public void setDestino(String destino) {
 		this.destino = destino;
 	}
 
-	public Riesgo getRiesgo() {
-		return riesgo;
+
+	public Date getFecha() {
+		return fecha;
 	}
 
-	public void setRiesgo(Riesgo riesgo) {
-		this.riesgo = riesgo;
+
+	public void setFecha(Date fecha) {
+		this.fecha = fecha;
 	}
+
+
+	public String getHoraSalida() {
+		return horaSalida;
+	}
+
+
+	public void setHoraSalida(String horaSalida) {
+		this.horaSalida = horaSalida;
+	}
+
+
+	public String getHoraLlegada() {
+		return horaLlegada;
+	}
+
+
+	public void setHoraLlegada(String horaLlegada) {
+		this.horaLlegada = horaLlegada;
+	}
+
+
+	public double getPrecio() {
+		return precio;
+	}
+
+
+	public void setPrecio(double precio) {
+		this.precio = precio;
+	}
+
 
 	@Override
 	public String toString() {
-		return "Vuelo [codigo=" + codigo + ", origen=" + origen + ", destino=" + destino + ", riesgo=" + riesgo + "]";
+		return "Vuelo [ID=" + ID + ", origen=" + origen + ", destino=" + destino + ", fecha=" + fecha + ", horaSalida="
+				+ horaSalida + ", horaLlegada=" + horaLlegada + ", precio=" + precio + "]";
 	}
+	
+	
+	
+
+
+
+	
 
 }

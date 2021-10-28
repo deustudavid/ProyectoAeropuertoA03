@@ -3,8 +3,8 @@ package clases;
 public class Administrador extends Persona {
 	String cargo;
 
-	public Administrador(String dni, String nombre, int edad, String cargo) {
-		super(dni, nombre, edad);
+	public Administrador(String dni, String nombre, String apellido, int edad, String cargo) {
+		super(dni, nombre, apellido, edad);
 		this.cargo = cargo;
 	}
 

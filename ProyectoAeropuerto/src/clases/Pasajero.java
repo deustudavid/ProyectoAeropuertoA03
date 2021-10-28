@@ -1,30 +1,49 @@
 package clases;
 public class Pasajero extends Persona {
-	Equipaje equipaje;
-
-	public Pasajero(String dni, String nombre, int edad, Equipaje equipaje) {
-		super(dni, nombre, edad);
-		this.equipaje = equipaje;
-	}
 	
+	int telefono;
+	String direccion;
+	
+	
+	
+	public Pasajero(String dni, String nombre, String apellido, int edad, int telefono, String direccion) {
+		super(dni, nombre, apellido, edad);
+		
+		this.telefono=telefono;
+		this.direccion=direccion;
+	}
+
 	public Pasajero() {
 		super();
-		this.equipaje = null;
+		this.telefono=0;
+		this.direccion="";
 	}
 
-	public Equipaje getEquipaje() {
-		return equipaje;
+	public int getTelefono() {
+		return telefono;
 	}
 
-	public void setEquipaje(Equipaje equipaje) {
-		this.equipaje = equipaje;
+	public void setTelefono(int telefono) {
+		this.telefono = telefono;
+	}
+
+	public String getDireccion() {
+		return direccion;
+	}
+
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
 	}
 
 	@Override
 	public String toString() {
-		return "Pasajero [equipaje=" + equipaje + ", getDni()=" + getDni() + ", getNombre()=" + getNombre()
-				+ ", getEdad()=" + getEdad() + "]";
+		return "Pasajero [telefono=" + telefono + ", direccion=" + direccion + ", getDni()=" + getDni()
+				+ ", getNombre()=" + getNombre() + ", getApellido()=" + getApellido() + ", getEdad()=" + getEdad()
+				+ "]";
 	}
+
+	
+	
 	
 	
 

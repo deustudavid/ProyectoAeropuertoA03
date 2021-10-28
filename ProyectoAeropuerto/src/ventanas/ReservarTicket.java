@@ -1,23 +1,7 @@
-package ventanasNuevas;
+package ventanas;
 
-import java.awt.Image;
-import java.sql.Blob;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Vector;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
+
+
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.GroupLayout;
 import javax.swing.LayoutStyle.ComponentPlacement;
@@ -102,6 +86,7 @@ public class ReservarTicket extends javax.swing.JInternalFrame {
         txtdate = new com.toedter.calendar.JDateChooser();
         btnReservar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
+        
         btnCancelar.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		
