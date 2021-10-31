@@ -30,7 +30,7 @@ public class VentanaInicio extends JFrame {
 	private JLabel lblUsuario;
 	private JLabel lblContrasenia;
 	private JLabel labelCerrar;
-
+	private JLabel labelregistrarAdministrador;
 	private JFrame ventanaActual;
 
 	private JTextField textUsuario;
@@ -162,6 +162,41 @@ public class VentanaInicio extends JFrame {
 			}
 
 		});
+		btnRegistrarAdministrador.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ventanaActual.getContentPane().add(labelregistrarAdministrador);
+				ventanaActual.getContentPane().add(progressBarRegistarAdmin);
+
+				Thread hiloCrearAdmin = new Thread(new Runnable() {
+
+					@Override
+					public void run() {
+						labelregistrarAdministrador.setVisible(true);
+						progressBarRegistarAdmin.setVisible(true);
+
+						for (int i = 0; i <= 100; i++) {
+							progressBarRegistarAdmin.setValue(i);
+							try {
+								Thread.sleep(7);
+							} catch (InterruptedException el) {
+								el.printStackTrace();
+							}
+						}
+
+						labelregistrarAdministrador.setVisible(false);
+						progressBarRegistarAdmin.setVisible(false);
+						
+
+					}
+				});
+
+				hiloCrearAdmin.start();
+			}
+
+		});
+
+		
 
 		btnCerrar.addActionListener(new ActionListener() {
 			@Override
