@@ -36,8 +36,8 @@ public class VentanaInicio extends JFrame {
 
 	private JPasswordField textContrasenia;
 
-	private JProgressBar progressBar;
-
+	private JProgressBar progressBarCerrar;
+	private JProgressBar progressBarRegistarAdmin;
 	private JButton btnIniciarSesionAdministrador;
 	private JButton btnRegistrarAdministrador;
 	private JButton btnRegistrarAzafato;
@@ -111,9 +111,12 @@ public class VentanaInicio extends JFrame {
 		textContrasenia.setColumns(10);
 		panelCentral.add(textContrasenia);
 
-		progressBar = new JProgressBar(0, 100);
-		progressBar.setBounds(415, 360, 146, 14);
-		progressBar.setVisible(false);
+		progressBarCerrar = new JProgressBar(0, 100);
+		progressBarCerrar.setBounds(415, 360, 146, 14);
+		progressBarCerrar.setVisible(false);
+		progressBarRegistarAdmin = new JProgressBar(0, 100);
+		progressBarRegistarAdmin.setBounds(415, 360, 146, 14);
+		progressBarRegistarAdmin.setVisible(false);
 
 		btnCerrar = new JButton("Cerrar");
 		panelSur.add(btnCerrar);
@@ -162,17 +165,17 @@ public class VentanaInicio extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				ventanaActual.getContentPane().add(labelCerrar);
-				ventanaActual.getContentPane().add(progressBar);
+				ventanaActual.getContentPane().add(progressBarCerrar);
 
-				Thread hilo = new Thread(new Runnable() {
+				Thread hiloCerrar = new Thread(new Runnable() {
 
 					@Override
 					public void run() {
 						labelCerrar.setVisible(true);
-						progressBar.setVisible(true);
+						progressBarCerrar.setVisible(true);
 
 						for (int i = 0; i <= 100; i++) {
-							progressBar.setValue(i);
+							progressBarCerrar.setValue(i);
 							try {
 								Thread.sleep(7);
 							} catch (InterruptedException el) {
@@ -181,13 +184,13 @@ public class VentanaInicio extends JFrame {
 						}
 
 						labelCerrar.setVisible(false);
-						progressBar.setVisible(false);
+						progressBarCerrar.setVisible(false);
 						ventanaActual.dispose();
 
 					}
 				});
 
-				hilo.start();
+				hiloCerrar.start();
 			}
 
 		});
