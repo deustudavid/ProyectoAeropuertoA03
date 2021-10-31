@@ -15,6 +15,7 @@ import ventanas.VentanaPadre;
 import java.awt.Color;
 import java.awt.GridLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JProgressBar;
@@ -38,6 +39,7 @@ public class VentanaInicio extends JFrame {
 
 	private JProgressBar progressBarCerrar;
 	private JProgressBar progressBarRegistarAdmin;
+
 	private JButton btnIniciarSesionAdministrador;
 	private JButton btnRegistrarAdministrador;
 	private JButton btnRegistrarAzafato;
@@ -124,7 +126,7 @@ public class VentanaInicio extends JFrame {
 		btnIniciarSesionAdministrador.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+
 				ventanaActual.dispose();
 				new VentanaPadre();
 			}
@@ -133,7 +135,7 @@ public class VentanaInicio extends JFrame {
 		btnIniciarSesionAzafato.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+
 				ventanaActual.dispose();
 				new VentanaPadre();
 
@@ -144,7 +146,7 @@ public class VentanaInicio extends JFrame {
 		btnRegistrarAdministrador.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+
 				ventanaActual.dispose();
 
 			}
@@ -154,7 +156,7 @@ public class VentanaInicio extends JFrame {
 		btnRegistrarAzafato.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-			
+
 				ventanaActual.dispose();
 
 			}
@@ -186,6 +188,7 @@ public class VentanaInicio extends JFrame {
 						labelCerrar.setVisible(false);
 						progressBarCerrar.setVisible(false);
 						ventanaActual.dispose();
+						JOptionPane.showMessageDialog(null, "Se ha cerrado correctamente");
 
 					}
 				});
