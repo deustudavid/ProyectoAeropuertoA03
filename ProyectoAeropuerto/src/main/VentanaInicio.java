@@ -4,12 +4,14 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import bd.BD;
 import ventanas.VentanaPadre;
 
 import java.awt.Color;
@@ -60,6 +62,10 @@ public class VentanaInicio extends JFrame {
 	}
 
 	public VentanaInicio() {
+		
+		Connection con=BD.initBD("Usuario.db");
+		BD.crearTablas(con);
+		BD.closeBD(con);
 
 		setTitle("VENTANA INICIO");
 		ventanaActual = this;
@@ -127,17 +133,75 @@ public class VentanaInicio extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				ventanaActual.dispose();
-				new VentanaPadre();
+				if (!textUsuario.getText().equals("") && !textContrasenia.getText().equals("")) {
+					
+					String n= textUsuario.getText();
+					String c= textContrasenia.getText();
+					Connection con=BD.initBD("Usuario.db");
+					
+					switch (BD.obtenerAdministrador(con,n,c)) {
+						case 0:
+							JOptionPane.showMessageDialog(null, "Ese usuario no está registrado", "Error", JOptionPane.ERROR_MESSAGE);
+							break;
+						case 1:
+							JOptionPane.showMessageDialog(null, "Contraseña incorrecta", "Error", JOptionPane.ERROR_MESSAGE);
+							break;
+						case 2:
+							JOptionPane.showMessageDialog(null, "Datos correctos", "Correcto", JOptionPane.INFORMATION_MESSAGE);
+							ventanaActual.dispose();
+							new VentanaPadre();
+		
+							break;
+						default:
+							break;
+			
+				}
+					BD.closeBD(con);
+					textUsuario.setText("");
+					textContrasenia.setText("");
+					
+					}
+					else {
+						 JOptionPane.showMessageDialog(null, "Hay campos vacios", "Error", JOptionPane.ERROR_MESSAGE);
+					}
 			}
 		});
 
 		btnIniciarSesionAzafato.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
-				ventanaActual.dispose();
-				new VentanaPadre();
+				
+				if (!textUsuario.getText().equals("") && !textContrasenia.getText().equals("")) {
+				
+				String n= textUsuario.getText();
+				String c= textContrasenia.getText();
+				Connection con=BD.initBD("Usuario.db");
+				
+				switch (BD.obtenerAzafato(con,n,c)) {
+					case 0:
+						JOptionPane.showMessageDialog(null, "Ese usuario no está registrado", "Error", JOptionPane.ERROR_MESSAGE);
+						break;
+					case 1:
+						JOptionPane.showMessageDialog(null, "Contraseña incorrecta", "Error", JOptionPane.ERROR_MESSAGE);
+						break;
+					case 2:
+						JOptionPane.showMessageDialog(null, "Datos correctos", "Correcto", JOptionPane.INFORMATION_MESSAGE);
+						ventanaActual.dispose();
+						new VentanaPadre();
+	
+						break;
+					default:
+						break;
+		
+			}
+				BD.closeBD(con);
+				textUsuario.setText("");
+				textContrasenia.setText("");
+				
+				}
+				else {
+					 JOptionPane.showMessageDialog(null, "Hay campos vacios", "Error", JOptionPane.ERROR_MESSAGE);
+				}
 
 			}
 
@@ -147,7 +211,30 @@ public class VentanaInicio extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				ventanaActual.dispose();
+				if (!textUsuario.getText().equals("") && !textContrasenia.getText().equals("")) {
+					
+					String n= textUsuario.getText();
+					String c= textContrasenia.getText();
+					Connection con=BD.initBD("Usuario.db");
+					
+					int resul= BD.obtenerAdministrador(con, n, c);
+					if (resul != 0) {
+						JOptionPane.showMessageDialog(null, "Ese nombre de usuario ya existe", "Error", JOptionPane.ERROR_MESSAGE);
+					} else {
+						
+						BD.insertarAdministrador(con, n, c);
+						
+						JOptionPane.showMessageDialog(null, "Te has registrado correctamente" , "Correcto", JOptionPane.INFORMATION_MESSAGE );
+					}
+					BD.closeBD(con);
+					textUsuario.setText("");
+					textContrasenia.setText("");
+					
+				}
+				else {
+					 JOptionPane.showMessageDialog(null, "Hay campos vacios", "Error", JOptionPane.ERROR_MESSAGE);
+				}
+
 
 			}
 
@@ -156,12 +243,37 @@ public class VentanaInicio extends JFrame {
 		btnRegistrarAzafato.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				
+				if (!textUsuario.getText().equals("") && !textContrasenia.getText().equals("")) {
+					
+					String n= textUsuario.getText();
+					String c= textContrasenia.getText();
+					Connection con=BD.initBD("Usuario.db");
+					
+					int resul= BD.obtenerAzafato(con, n, c);
+					if (resul != 0) {
+						JOptionPane.showMessageDialog(null, "Ese nombre de usuario ya existe", "Error", JOptionPane.ERROR_MESSAGE);
+					} else {
+						
+						BD.insertarAzafato(con, n, c);
+						
+						JOptionPane.showMessageDialog(null, "Te has registrado correctamente" , "Correcto", JOptionPane.INFORMATION_MESSAGE );
+					}
+					BD.closeBD(con);
+					textUsuario.setText("");
+					textContrasenia.setText("");
+					
+				}
+				else {
+					 JOptionPane.showMessageDialog(null, "Hay campos vacios", "Error", JOptionPane.ERROR_MESSAGE);
+				}
 
-				ventanaActual.dispose();
+			
 
 			}
 
 		});
+		/* HILO A ARREGLAR
 		btnRegistrarAdministrador.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -186,6 +298,7 @@ public class VentanaInicio extends JFrame {
 
 						labelregistrarAdministrador.setVisible(false);
 						progressBarRegistarAdmin.setVisible(false);
+					
 						
 
 					}
@@ -195,7 +308,7 @@ public class VentanaInicio extends JFrame {
 			}
 
 		});
-
+	*/
 		
 
 		btnCerrar.addActionListener(new ActionListener() {

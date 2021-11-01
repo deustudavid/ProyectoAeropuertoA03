@@ -199,7 +199,7 @@ public class BD {
 	 * Método que inserta los datos de un Administrador (si no está repetido) en la BBDD 
 	 * @param con Conexión con la BBDD
 	 * @param usuario Nombre de usuario del administrador
-	 * @param contra Contraseña del administradores
+	 * @param contra Contraseña del administrador
 	 */
 	public static void insertarAdministrador(Connection con, String usuario, String contra) {
 	
