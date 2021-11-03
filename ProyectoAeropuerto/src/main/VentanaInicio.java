@@ -4,7 +4,18 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.sql.Connection;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.util.logging.FileHandler;
+import java.util.logging.Handler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -12,10 +23,13 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import bd.BD;
+import bd.DBException;
 import ventanas.VentanaPadre;
 
 import java.awt.Color;
 import java.awt.GridLayout;
+import java.awt.HeadlessException;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -47,15 +61,55 @@ public class VentanaInicio extends JFrame {
 	private JButton btnRegistrarAzafato;
 	private JButton btnIniciarSesionAzafato;
 	private JButton btnCerrar;
+	
+	/* LOGGER */
+	
+	public static Logger logger = initLogger();
+	private static long MAX_SIZE_FICHERO_LOG = 5 * 1024;  // 5 Kb es el tamaño maximo del fichero log para reiniciarlo
+	private static final String NOMBRE_FICHERO_LOG = "logBaseDatos";
+	private static final String EXT_FICHERO_LOG = ".log"; // extension del fichero log
+	
+	private static Logger initLogger() {
+		if (logger==null) {  // Logger por defecto local:
+			// Reinicio de fichero de logger si ya muy grande
+			File fLoggerAnt = new File( NOMBRE_FICHERO_LOG + EXT_FICHERO_LOG );
+			
+			if (fLoggerAnt.exists() && fLoggerAnt.length() > MAX_SIZE_FICHERO_LOG ) {
+				
+				long milisegundos= fLoggerAnt.lastModified();
+				Date fecha = new Date(milisegundos);
+				String newFicLog = NOMBRE_FICHERO_LOG + "-" + fecha + EXT_FICHERO_LOG;
+				try {
+					Files.move( fLoggerAnt.toPath(), Paths.get(newFicLog) );  // Renombra el fichero para empezar de nuevo
+				} catch (Exception e) {}
+			}
+			// Creacion de logger asociado a fichero de logger
+			logger = Logger.getLogger( VentanaInicio.class.getName() );  // Nombre del logger - el de la clase
+			logger.setLevel( Level.ALL );  // Loguea todos los niveles
+			try {
+				logger.addHandler( new FileHandler( NOMBRE_FICHERO_LOG + EXT_FICHERO_LOG, true ) );  // Y saca el log a fichero .log (añadiendo al log previo)
+			} catch (Exception e) {
+				JOptionPane.showMessageDialog( null, "Error, no se puede crear fichero de log.", 
+						"Error al crear fichero", JOptionPane.ERROR_MESSAGE );
+			}
+		}
+		return logger;
+	}
 
+	
+	
+	/* MAIN */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					logger.log( Level.INFO, "Se ejecuta la ventana de inicio" );
+					
 					VentanaInicio vi = new VentanaInicio();
 
 				} catch (Exception e) {
 					e.printStackTrace();
+					VentanaInicio.logger.log( Level.INFO, "Error al crear la ventana de inicio", e );
 				}
 			}
 		});
@@ -63,9 +117,26 @@ public class VentanaInicio extends JFrame {
 
 	public VentanaInicio() {
 		
-		Connection con=BD.initBD("Usuario.db");
-		BD.crearTablas(con);
-		BD.closeBD(con);
+		Connection con =null;
+		try {
+			con = BD.initBD("Usuario.db");
+			
+		} catch (DBException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		try {
+			BD.crearTablas(con);
+		} catch (DBException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		try {
+			BD.closeBD(con);
+		} catch (DBException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 
 		setTitle("VENTANA INICIO");
 		ventanaActual = this;
@@ -137,26 +208,47 @@ public class VentanaInicio extends JFrame {
 					
 					String n= textUsuario.getText();
 					String c= textContrasenia.getText();
-					Connection con=BD.initBD("Usuario.db");
+					Connection con = null;
+					try {
+						con = BD.initBD("Usuario.db");
+						VentanaInicio.logger.log(Level.INFO, "Conexion con la base de datos abierta");
+					} catch (DBException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 					
-					switch (BD.obtenerAdministrador(con,n,c)) {
-						case 0:
-							JOptionPane.showMessageDialog(null, "Ese usuario no está registrado", "Error", JOptionPane.ERROR_MESSAGE);
-							break;
-						case 1:
-							JOptionPane.showMessageDialog(null, "Contraseña incorrecta", "Error", JOptionPane.ERROR_MESSAGE);
-							break;
-						case 2:
-							JOptionPane.showMessageDialog(null, "Datos correctos", "Correcto", JOptionPane.INFORMATION_MESSAGE);
-							ventanaActual.dispose();
-							new VentanaPadre();
-		
-							break;
-						default:
-							break;
-			
-				}
-					BD.closeBD(con);
+					try {
+						switch (BD.obtenerAdministrador(con,n,c)) {
+							case 0:
+								JOptionPane.showMessageDialog(null, "Ese administrador no está registrado", "Error", JOptionPane.ERROR_MESSAGE);
+								break;
+							case 1:
+								JOptionPane.showMessageDialog(null, "Contraseña incorrecta", "Error", JOptionPane.ERROR_MESSAGE);
+								break;
+							case 2:
+								JOptionPane.showMessageDialog(null, "Datos correctos", "Correcto", JOptionPane.INFORMATION_MESSAGE);
+								ventanaActual.dispose();
+								new VentanaPadre();
+
+								break;
+							default:
+								break;
+
+}
+					} catch (HeadlessException e2) {
+						// TODO Auto-generated catch block
+						e2.printStackTrace();
+					} catch (DBException e2) {
+						// TODO Auto-generated catch block
+						e2.printStackTrace();
+					}
+					try {
+						BD.closeBD(con);
+						VentanaInicio.logger.log(Level.INFO, "Conexion con la base de datos cerrada");
+					} catch (DBException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 					textUsuario.setText("");
 					textContrasenia.setText("");
 					
@@ -175,26 +267,47 @@ public class VentanaInicio extends JFrame {
 				
 				String n= textUsuario.getText();
 				String c= textContrasenia.getText();
-				Connection con=BD.initBD("Usuario.db");
+				Connection con = null;
+				try {
+					con = BD.initBD("Usuario.db");
+					VentanaInicio.logger.log(Level.INFO, "Conexion con la base de datos abierta");
+				} catch (DBException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				
-				switch (BD.obtenerAzafato(con,n,c)) {
-					case 0:
-						JOptionPane.showMessageDialog(null, "Ese usuario no está registrado", "Error", JOptionPane.ERROR_MESSAGE);
-						break;
-					case 1:
-						JOptionPane.showMessageDialog(null, "Contraseña incorrecta", "Error", JOptionPane.ERROR_MESSAGE);
-						break;
-					case 2:
-						JOptionPane.showMessageDialog(null, "Datos correctos", "Correcto", JOptionPane.INFORMATION_MESSAGE);
-						ventanaActual.dispose();
-						new VentanaPadre();
-	
-						break;
-					default:
-						break;
-		
-			}
-				BD.closeBD(con);
+				try {
+					switch (BD.obtenerAzafato(con,n,c)) {
+						case 0:
+							JOptionPane.showMessageDialog(null, "Ese azafato no está registrado", "Error", JOptionPane.ERROR_MESSAGE);
+							break;
+						case 1:
+							JOptionPane.showMessageDialog(null, "Contraseña incorrecta", "Error", JOptionPane.ERROR_MESSAGE);
+							break;
+						case 2:
+							JOptionPane.showMessageDialog(null, "Datos correctos", "Correcto", JOptionPane.INFORMATION_MESSAGE);
+							ventanaActual.dispose();
+							new VentanaPadre();
+
+							break;
+						default:
+							break;
+
+}
+				} catch (HeadlessException e2) {
+					// TODO Auto-generated catch block
+					e2.printStackTrace();
+				} catch (DBException e2) {
+					// TODO Auto-generated catch block
+					e2.printStackTrace();
+				}
+				try {
+					BD.closeBD(con);
+					VentanaInicio.logger.log(Level.INFO, "Conexion con la base de datos cerrada");
+				} catch (DBException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				textUsuario.setText("");
 				textContrasenia.setText("");
 				
@@ -215,18 +328,42 @@ public class VentanaInicio extends JFrame {
 					
 					String n= textUsuario.getText();
 					String c= textContrasenia.getText();
-					Connection con=BD.initBD("Usuario.db");
+					Connection con = null;
+					try {
+						con = BD.initBD("Usuario.db");
+						VentanaInicio.logger.log(Level.INFO, "Conexion con la base de datos abierta");
+					} catch (DBException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 					
-					int resul= BD.obtenerAdministrador(con, n, c);
+					int resul = 0;
+					try {
+						resul = BD.obtenerAdministrador(con, n, c);
+					} catch (DBException e2) {
+						// TODO Auto-generated catch block
+						e2.printStackTrace();
+					}
 					if (resul != 0) {
 						JOptionPane.showMessageDialog(null, "Ese nombre de usuario ya existe", "Error", JOptionPane.ERROR_MESSAGE);
 					} else {
 						
-						BD.insertarAdministrador(con, n, c);
+						try {
+							BD.insertarAdministrador(con, n, c);
+						} catch (DBException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
 						
 						JOptionPane.showMessageDialog(null, "Te has registrado correctamente" , "Correcto", JOptionPane.INFORMATION_MESSAGE );
 					}
-					BD.closeBD(con);
+					try {
+						BD.closeBD(con);
+						VentanaInicio.logger.log(Level.INFO, "Conexion con la base de datos cerrada");
+					} catch (DBException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 					textUsuario.setText("");
 					textContrasenia.setText("");
 					
@@ -248,18 +385,42 @@ public class VentanaInicio extends JFrame {
 					
 					String n= textUsuario.getText();
 					String c= textContrasenia.getText();
-					Connection con=BD.initBD("Usuario.db");
+					Connection con = null;
+					try {
+						con = BD.initBD("Usuario.db");
+						VentanaInicio.logger.log(Level.INFO, "Conexion con la base de datos abierta");
+					} catch (DBException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 					
-					int resul= BD.obtenerAzafato(con, n, c);
+					int resul = 0;
+					try {
+						resul = BD.obtenerAzafato(con, n, c);
+					} catch (DBException e2) {
+						// TODO Auto-generated catch block
+						e2.printStackTrace();
+					}
 					if (resul != 0) {
 						JOptionPane.showMessageDialog(null, "Ese nombre de usuario ya existe", "Error", JOptionPane.ERROR_MESSAGE);
 					} else {
 						
-						BD.insertarAzafato(con, n, c);
+						try {
+							BD.insertarAzafato(con, n, c);
+						} catch (DBException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
 						
 						JOptionPane.showMessageDialog(null, "Te has registrado correctamente" , "Correcto", JOptionPane.INFORMATION_MESSAGE );
 					}
-					BD.closeBD(con);
+					try {
+						BD.closeBD(con);
+						VentanaInicio.logger.log(Level.INFO, "Conexion con la base de datos cerrada");
+					} catch (DBException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 					textUsuario.setText("");
 					textContrasenia.setText("");
 					
