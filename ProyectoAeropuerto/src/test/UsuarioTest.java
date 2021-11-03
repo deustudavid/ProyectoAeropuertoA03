@@ -9,26 +9,16 @@ import clases.Usuario;
 
 public class UsuarioTest {
 
-	Usuario usuario1;
-	Usuario usuario2;
-	Usuario usuario3;
-
-	@Before
-	public void setUp() {
-		usuario1 = new Usuario("asierbrizu@opendeusto.es", "ContraseñaFalsa1");
-		usuario2 = new Usuario("miguelgarcia@outlook.com", "EstaTampocoExiste2");
-		usuario3 = new Usuario("alvaroalvarez@gmail.com", "OroParecePlatanoEs");
-
+	@Test
+	public void testGetContraseña() {
+		Usuario u = new Usuario("diegoburzaco", "contraseña");
+		assertEquals("contraseña", u.getContrasenya());
 	}
 
 	@Test
-	public void testCorreo() {
-		usuario1.setUsuario("aa");
-		usuario2.setUsuario("bb");
-		usuario3.setUsuario("cc");
-		assertEquals("aa", usuario1.getUsuario());
-		assertEquals("bb", usuario2.getUsuario());
-		assertEquals("cc", usuario3.getUsuario());
+	public void testGetUsuario() {
+		Usuario u = new Usuario("diegoburzaco", "contraseña");
+		assertEquals("diegoburzaco", u.getUsuario());
 	}
 
 }
