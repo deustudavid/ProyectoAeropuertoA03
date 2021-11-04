@@ -136,7 +136,7 @@ public class VentanaInicio extends JFrame {
 			BD.closeBD(con);
 		} catch (DBException e1) {
 			// TODO Auto-generated catch block
-			e1.printStackTrace();
+			e1.printStackTrace();	
 		}
 
 		setTitle("VENTANA INICIO");
