@@ -1,9 +1,12 @@
 package clases;
+
+import java.util.ArrayList;
+
 public class Pasajero extends Persona {
 	
 	int telefono;
 	String direccion;
-	
+	ArrayList<Equipaje>ALmaletas = new ArrayList<>();
 	
 	
 	public Pasajero(String dni, String nombre, String apellido, int edad, int telefono, String direccion) {

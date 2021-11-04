@@ -24,6 +24,7 @@ import javax.swing.border.EmptyBorder;
 
 import bd.BD;
 import bd.DBException;
+import ventanas.VentanaAdministrador;
 import ventanas.VentanaPadre;
 
 import java.awt.Color;
@@ -228,7 +229,7 @@ public class VentanaInicio extends JFrame {
 							case 2:
 								JOptionPane.showMessageDialog(null, "Datos correctos", "Correcto", JOptionPane.INFORMATION_MESSAGE);
 								ventanaActual.dispose();
-								new VentanaPadre();
+								new VentanaAdministrador();
 
 								break;
 							default:

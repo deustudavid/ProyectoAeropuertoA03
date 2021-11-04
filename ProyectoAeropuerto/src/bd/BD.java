@@ -141,14 +141,9 @@ public class BD {
 		return resul;
 	}
 	
-	
-	
-	
-	
 	/**
 	 * Método que crea la tabla Azafato y Administrador si no existen
-	 * @param con Conexión con la BBDD
-	 * @throws DBException 
+
 	 */
 	public static void crearTablas(Connection con) throws DBException {
 		String sentencia1 = "CREATE TABLE IF NOT EXISTS Azafato (usuario String, contrasenya String)";

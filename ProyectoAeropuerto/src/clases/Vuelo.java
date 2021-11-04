@@ -1,5 +1,6 @@
 package clases;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Vuelo {
@@ -10,6 +11,7 @@ public class Vuelo {
 	String horaSalida;
 	String horaLlegada;
 	double precio;
+	ArrayList<Pasajero>Maleta = new ArrayList<>();
 	
 	public Vuelo(String ID, String origen, String destino, Date fecha, String horaSalida, String horaLlegada,
 			double precio) {
