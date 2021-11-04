@@ -91,7 +91,7 @@ public class ReservarTicket extends javax.swing.JInternalFrame {
         	public void actionPerformed(ActionEvent e) {
         		
         		dispose();
-        		VentanaPadre.desbloquearBotones();
+        		VentanaAdministrador.desbloquearBotones();
         	}
         });
         txtPrecioTotal = new javax.swing.JLabel();

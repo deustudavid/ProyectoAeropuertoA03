@@ -34,7 +34,7 @@ public class VerTickets extends javax.swing.JInternalFrame {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 
             	dispose();
-            	VentanaPadre.desbloquearBotones();
+            	VentanaAdministrador.desbloquearBotones();
             }
         });
 

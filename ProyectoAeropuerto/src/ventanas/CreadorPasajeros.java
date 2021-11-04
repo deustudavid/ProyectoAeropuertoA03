@@ -92,7 +92,7 @@ public class CreadorPasajeros extends javax.swing.JInternalFrame {
         btnCancelar.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		dispose();
-        		VentanaPadre.desbloquearBotones();
+        		VentanaAdministrador.desbloquearBotones();
         	}
         });
 

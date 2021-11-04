@@ -1,196 +1,204 @@
 package ventanas;
-
-
-import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JFrame;
 import javax.swing.JMenuItem;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 
 import main.VentanaInicio;
 
-public class VentanaAdministrador extends javax.swing.JFrame{
+public class VentanaAdministrador extends javax.swing.JFrame {
 
-	private JPanel contentPane;
-
-	/*public VentanaAdministrador() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
-		setContentPane(contentPane);
-		
-		
-		setVisible(true);
-	}
-	*/
-	private javax.swing.JDesktopPane jDesktopPane1;
+    private javax.swing.JDesktopPane jDesktopPane1;
     private static javax.swing.JMenu menuPasajero;
     private static javax.swing.JMenu menuTickets;
     private static javax.swing.JMenu menuVuelo;
     private static javax.swing.JMenu menuUsuario;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem menuItemAniadirPasajero;
-    private javax.swing.JMenuItem menuItemBuscarPasajero;
+    private javax.swing.JMenuItem menuItemGestionarPasajero;
     private javax.swing.JMenuItem menuItemReservarTicket;
     private javax.swing.JMenuItem menuItemVerTickets;
     private JMenuItem menuItemAnadirVuelo;
     private JMenuItem menuItemCerrarSesion;
+    private JMenuItem menuItemEliminarReserva;
+    private JMenuItem menuItemVerVuelos;
+    private JMenuItem menuItemGestionarAzafatos;
+    private JMenuItem menuItemEliminarVuelo;
+    private JMenuItem menuItemGestionarEquipajes;
+
  
     public VentanaAdministrador() {
-    	 jDesktopPane1 = new javax.swing.JDesktopPane();
-         jMenuBar1 = new javax.swing.JMenuBar();
-         menuPasajero = new javax.swing.JMenu();
-         menuItemAniadirPasajero = new javax.swing.JMenuItem();
-         menuItemAniadirPasajero.addActionListener(new ActionListener() {
-         	public void actionPerformed(ActionEvent e) {
-         		
-                CreadorPasajeros cus = new CreadorPasajeros();
-         		jDesktopPane1.add(cus);
-         		cus.setVisible(true);   
-         		bloquearBotones();
-         	}
-         });
-         menuItemBuscarPasajero = new javax.swing.JMenuItem();
-         menuTickets = new javax.swing.JMenu();
-         menuItemReservarTicket = new javax.swing.JMenuItem();
-         menuItemReservarTicket.addActionListener(new ActionListener() {
-         	public void actionPerformed(ActionEvent e) {
-         		ReservarTicket r=new ReservarTicket();
-             	jDesktopPane1.add(r);
-             	bloquearBotones();
-         	}
-         });
-         menuItemVerTickets = new javax.swing.JMenuItem();
-         menuVuelo = new javax.swing.JMenu();
-         menuUsuario = new javax.swing.JMenu();
 
-         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-         setPreferredSize(new java.awt.Dimension(1366, 768));
-         setVisible(true);
+        jDesktopPane1 = new javax.swing.JDesktopPane();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        menuPasajero = new javax.swing.JMenu();
+        menuItemAniadirPasajero = new javax.swing.JMenuItem();
+        menuItemAniadirPasajero.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		
+               CreadorPasajeros cus = new CreadorPasajeros();
+        		jDesktopPane1.add(cus);
+        		cus.setVisible(true);   
+        		bloquearBotones();
+        	}
+        });
+        menuItemGestionarPasajero = new javax.swing.JMenuItem();
+        menuTickets = new javax.swing.JMenu();
+        menuItemReservarTicket = new javax.swing.JMenuItem();
+        menuItemReservarTicket.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		ReservarTicket r=new ReservarTicket();
+            	jDesktopPane1.add(r);
+            	bloquearBotones();
+        	}
+        });
+        menuItemVerTickets = new javax.swing.JMenuItem();
+        menuVuelo = new javax.swing.JMenu();
+        menuUsuario = new javax.swing.JMenu();
 
-         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
-         jDesktopPane1.setLayout(jDesktopPane1Layout);
-         jDesktopPane1Layout.setHorizontalGroup(
-             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-             .addGap(0, 400, Short.MAX_VALUE)
-         );
-         jDesktopPane1Layout.setVerticalGroup(
-             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-             .addGap(0, 279, Short.MAX_VALUE)
-         );
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(1366, 768));
+        setVisible(true);
 
-         menuPasajero.setText("Pasajero");
+        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
+        jDesktopPane1.setLayout(jDesktopPane1Layout);
+        jDesktopPane1Layout.setHorizontalGroup(
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jDesktopPane1Layout.setVerticalGroup(
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 279, Short.MAX_VALUE)
+        );
 
-         menuItemAniadirPasajero.setText("Anadir pasajero");
-       
-         menuPasajero.add(menuItemAniadirPasajero);
+        menuPasajero.setText("Pasajero");
 
-         menuItemBuscarPasajero.setText("Buscar pasajero");
-         menuItemBuscarPasajero.addActionListener(new java.awt.event.ActionListener() {
-             public void actionPerformed(java.awt.event.ActionEvent evt) {
-             	BuscarPasajero b= new BuscarPasajero();
-             	jDesktopPane1.add(b);
-                 b.setVisible(true);
-                 bloquearBotones();
-               
-             }
-         });
-         menuPasajero.add(menuItemBuscarPasajero);
+        menuItemAniadirPasajero.setText("Anadir pasajero");
+      
+        menuPasajero.add(menuItemAniadirPasajero);
 
-         jMenuBar1.add(menuPasajero);
+        menuItemGestionarPasajero.setText("Gestionar pasajero");
+        menuItemGestionarPasajero.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            	BuscarPasajero b= new BuscarPasajero();
+            	jDesktopPane1.add(b);
+                b.setVisible(true);
+                bloquearBotones();
+              
+            }
+        });
+        menuPasajero.add(menuItemGestionarPasajero);
 
-         menuTickets.setText("Tickets");
-
-         menuItemReservarTicket.setText("Reservar Ticket");
+        jMenuBar1.add(menuPasajero);
         
-         menuTickets.add(menuItemReservarTicket);
+        menuItemGestionarEquipajes = new JMenuItem();
+        menuItemGestionarEquipajes.setText("Gestionar equipajes");
+        menuPasajero.add(menuItemGestionarEquipajes);
 
-         menuItemVerTickets.setText("Ver tickets");
-         
-         menuItemVerTickets.addActionListener(new java.awt.event.ActionListener() {
-             public void actionPerformed(java.awt.event.ActionEvent evt) {
-             	VerTickets v=new VerTickets();
-             	jDesktopPane1.add(v);
-                 v.setVisible(true);
-             	
-             	bloquearBotones();
-             
-             }
-         });
-         menuTickets.add(menuItemVerTickets);
+        menuTickets.setText("Tickets");
 
-         jMenuBar1.add(menuTickets);
+        menuItemReservarTicket.setText("Reservar Ticket");
+       
+        menuTickets.add(menuItemReservarTicket);
 
-         menuVuelo.setText("Vuelo");
+        menuItemVerTickets.setText("Ver tickets");
+        
+        menuItemVerTickets.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            	VerTickets v=new VerTickets();
+            	jDesktopPane1.add(v);
+                v.setVisible(true);
+            	
+            	bloquearBotones();
+            
+            }
+        });
+        menuTickets.add(menuItemVerTickets);
 
-         jMenuBar1.add(menuVuelo);
-         
-         menuItemAnadirVuelo = new JMenuItem();
-         menuItemAnadirVuelo.setText("Anadir vuelo");
-         menuItemAnadirVuelo.addActionListener(new java.awt.event.ActionListener() {
-             public void actionPerformed(java.awt.event.ActionEvent evt) {
-             	 CreadorVuelos f = new CreadorVuelos();
-                  jDesktopPane1.add(f);
-                  f.setVisible(true);
-                  bloquearBotones();
-             
-             }
-         });
-         
-         menuVuelo.add(menuItemAnadirVuelo);
+        jMenuBar1.add(menuTickets);
+        
+        menuItemEliminarReserva = new JMenuItem();
+        menuItemEliminarReserva.setText("Eliminar reserva");
+        menuTickets.add(menuItemEliminarReserva);
 
-         menuUsuario.setText("Usuario");
+        menuVuelo.setText("Vuelo");
 
-         jMenuBar1.add(menuUsuario);
-         
-         menuItemCerrarSesion = new JMenuItem();
-         menuItemCerrarSesion.addActionListener(new ActionListener() {
-         	public void actionPerformed(ActionEvent e) {
-         		dispose();
-         		new VentanaInicio();
-         	}
-         });
-         menuItemCerrarSesion.setText("Cerrar sesion");
-         menuUsuario.add(menuItemCerrarSesion);
+        jMenuBar1.add(menuVuelo);
+        
+        menuItemAnadirVuelo = new JMenuItem();
+        menuItemAnadirVuelo.setText("Anadir vuelo");
+        menuItemAnadirVuelo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            	 CreadorVuelos f = new CreadorVuelos();
+                 jDesktopPane1.add(f);
+                 f.setVisible(true);
+                 bloquearBotones();
+            
+            }
+        });
+        
+        menuVuelo.add(menuItemAnadirVuelo);
+        
+        menuItemVerVuelos = new JMenuItem();
+        menuItemVerVuelos.setText("Ver vuelos");
+        menuVuelo.add(menuItemVerVuelos);
+        
+        menuItemEliminarVuelo = new JMenuItem();
+        menuItemEliminarVuelo.setText("Eliminar vuelo");
+        menuVuelo.add(menuItemEliminarVuelo);
 
-         setJMenuBar(jMenuBar1);
+        menuUsuario.setText("Usuario");
 
-         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-         getContentPane().setLayout(layout);
-         layout.setHorizontalGroup(
-             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-             .addComponent(jDesktopPane1)
-         );
-         layout.setVerticalGroup(
-             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-             .addComponent(jDesktopPane1)
-         );
+        jMenuBar1.add(menuUsuario);
+        
+        menuItemCerrarSesion = new JMenuItem();
+        menuItemCerrarSesion.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		dispose();
+        		new VentanaInicio();
+        	}
+        });
+        menuItemCerrarSesion.setText("Cerrar sesion");
+        menuUsuario.add(menuItemCerrarSesion);
+        
+        menuItemGestionarAzafatos = new JMenuItem();
+        menuItemGestionarAzafatos.setText("Gestionar azafatos");
+        menuUsuario.add(menuItemGestionarAzafatos);
 
-         pack();
-     }
-     
-     public static void bloquearBotones() {
-     	    
- 				menuPasajero.setEnabled(false);	
-     	    menuTickets.setEnabled(false);;
-     	    menuVuelo.setEnabled(false);;
-     	    menuUsuario.setEnabled(false);;
-     	
-     }
-     
-     public static void desbloquearBotones() {
- 	    
- 				menuPasajero.setEnabled(true);
- 				menuTickets.setEnabled(true);;
-     	    menuVuelo.setEnabled(true);;
-     	    menuUsuario.setEnabled(true);;
-     	
+        setJMenuBar(jMenuBar1);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jDesktopPane1)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jDesktopPane1)
+        );
+
+        pack();
+    }
+    
+    public static void bloquearBotones() {
+    	    
+				menuPasajero.setEnabled(false);	
+    	    menuTickets.setEnabled(false);;
+    	    menuVuelo.setEnabled(false);;
+    	    menuUsuario.setEnabled(false);;
+    	
+    }
+    
+    public static void desbloquearBotones() {
+	    
+				menuPasajero.setEnabled(true);
+				menuTickets.setEnabled(true);;
+    	    menuVuelo.setEnabled(true);;
+    	    menuUsuario.setEnabled(true);;
+    	
     }
  
     
+
 }

@@ -266,7 +266,7 @@ public class BuscarPasajero extends javax.swing.JInternalFrame {
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
             	dispose();
-            	VentanaPadre.desbloquearBotones();
+            	VentanaAdministrador.desbloquearBotones();
                
             }
         });
