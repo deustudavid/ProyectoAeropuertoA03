@@ -1,4 +1,5 @@
 package ventanas;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -31,6 +32,7 @@ public class VentanaAdministrador extends javax.swing.JFrame {
 
         jDesktopPane1 = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
+        jMenuBar1.setBackground(Color.LIGHT_GRAY);
         menuPasajero = new javax.swing.JMenu();
         menuItemAniadirPasajero = new javax.swing.JMenuItem();
         menuItemAniadirPasajero.addActionListener(new ActionListener() {
@@ -151,6 +153,10 @@ public class VentanaAdministrador extends javax.swing.JFrame {
 
         jMenuBar1.add(menuUsuario);
         
+        menuItemGestionarAzafatos = new JMenuItem();
+        menuItemGestionarAzafatos.setText("Gestionar azafatos");
+        menuUsuario.add(menuItemGestionarAzafatos);
+        
         menuItemCerrarSesion = new JMenuItem();
         menuItemCerrarSesion.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
@@ -160,10 +166,6 @@ public class VentanaAdministrador extends javax.swing.JFrame {
         });
         menuItemCerrarSesion.setText("Cerrar sesion");
         menuUsuario.add(menuItemCerrarSesion);
-        
-        menuItemGestionarAzafatos = new JMenuItem();
-        menuItemGestionarAzafatos.setText("Gestionar azafatos");
-        menuUsuario.add(menuItemGestionarAzafatos);
 
         setJMenuBar(jMenuBar1);
 

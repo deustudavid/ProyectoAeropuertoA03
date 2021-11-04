@@ -2,6 +2,7 @@ package ventanas;
 
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -34,6 +35,7 @@ public class VentanaAzafato extends JFrame {
 
         jDesktopPane1 = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
+        jMenuBar1.setBackground(Color.orange);
         menuPasajero = new javax.swing.JMenu();
         menuItemAniadirPasajero = new javax.swing.JMenuItem();
         menuItemAniadirPasajero.addActionListener(new ActionListener() {
