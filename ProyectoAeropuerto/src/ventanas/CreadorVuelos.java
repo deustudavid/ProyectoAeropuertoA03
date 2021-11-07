@@ -3,9 +3,12 @@ package ventanas;
 
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.GroupLayout;
+import javax.swing.ImageIcon;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.Font;
 import javax.swing.JComboBox;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 
 public class CreadorVuelos extends javax.swing.JInternalFrame {
@@ -27,9 +30,12 @@ public class CreadorVuelos extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtPrecio;
     private javax.swing.JTextField txtIDVuelo;
     private javax.swing.JComboBox<String> txtOrigen;
+    private ImageIcon imagenGuardar;
   
 
     public CreadorVuelos() {
+    	
+    	imagenGuardar = new ImageIcon("img/guardar.png"); 
 
         panelCreacionVuelo = new javax.swing.JPanel();
         lblTituloVentana = new javax.swing.JLabel();
@@ -44,6 +50,11 @@ public class CreadorVuelos extends javax.swing.JInternalFrame {
         lblPrecio = new javax.swing.JLabel();
         txtPrecio = new javax.swing.JTextField();
         btnGuardar = new javax.swing.JButton();
+        btnGuardar.setIcon(imagenGuardar);
+        btnGuardar.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        	}
+        });
         btnCancelar = new javax.swing.JButton();
         txtOrigen = new javax.swing.JComboBox<>();
         txtDestino = new javax.swing.JComboBox<>();

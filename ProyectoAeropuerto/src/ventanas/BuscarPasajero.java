@@ -19,6 +19,8 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.GroupLayout;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 
 
@@ -51,10 +53,13 @@ public class BuscarPasajero extends javax.swing.JInternalFrame {
     private javax.swing.JLabel txtFoto;
     private JTextField txtEdad;
 
+    private ImageIcon imagenGuardar;
+    private ImageIcon imagenBuscar;
 
     public BuscarPasajero() {
     	
-    	
+    	imagenGuardar = new ImageIcon("img/guardar.png"); 
+    	imagenBuscar = new ImageIcon("img/lupa.png"); 
 
         panelIzquierda = new javax.swing.JPanel();
         lblNombre = new javax.swing.JLabel();
@@ -77,9 +82,20 @@ public class BuscarPasajero extends javax.swing.JInternalFrame {
         txtFoto = new javax.swing.JLabel();
         btnBuscarFoto = new javax.swing.JButton();
         btnActualizar = new javax.swing.JButton();
+        
+        btnActualizar.setIcon(imagenGuardar);
+        btnActualizar.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        	}
+        });
         btnCancelar = new javax.swing.JButton();
         txtDNI = new javax.swing.JTextField();
         btnBuscar = new javax.swing.JButton();
+        btnBuscar.setIcon(imagenBuscar);
+        btnBuscar.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        	}
+        });
 
         panelIzquierda.setBackground(new java.awt.Color(51, 0, 255));
 
@@ -287,16 +303,15 @@ public class BuscarPasajero extends javax.swing.JInternalFrame {
         				.addComponent(panelIzquierda, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
         			.addGroup(layout.createParallelGroup(Alignment.LEADING)
         				.addGroup(layout.createSequentialGroup()
-        					.addGap(39)
-        					.addComponent(btnActualizar, GroupLayout.PREFERRED_SIZE, 105, GroupLayout.PREFERRED_SIZE)
-        					.addGap(18)
-        					.addComponent(btnCancelar, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE))
-        				.addGroup(layout.createSequentialGroup()
         					.addGap(30)
         					.addComponent(btnBuscar, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE))
         				.addGroup(layout.createSequentialGroup()
         					.addGap(18)
         					.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        						.addGroup(layout.createSequentialGroup()
+        							.addComponent(btnActualizar, GroupLayout.PREFERRED_SIZE, 156, GroupLayout.PREFERRED_SIZE)
+        							.addGap(18)
+        							.addComponent(btnCancelar, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE))
         						.addGroup(layout.createSequentialGroup()
         							.addGap(337)
         							.addComponent(btnBuscarFoto, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE))
@@ -309,7 +324,7 @@ public class BuscarPasajero extends javax.swing.JInternalFrame {
         layout.setVerticalGroup(
         	layout.createParallelGroup(Alignment.TRAILING)
         		.addGroup(layout.createSequentialGroup()
-        			.addContainerGap(21, Short.MAX_VALUE)
+        			.addContainerGap(23, Short.MAX_VALUE)
         			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
         				.addComponent(lblDNIPasajero)
         				.addComponent(txtDNI, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
@@ -324,7 +339,7 @@ public class BuscarPasajero extends javax.swing.JInternalFrame {
         						.addComponent(panelCentral, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         					.addGap(18)
         					.addComponent(btnBuscarFoto, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
-        					.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        					.addPreferredGap(ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
         					.addGroup(layout.createParallelGroup(Alignment.BASELINE)
         						.addComponent(btnActualizar, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
         						.addComponent(btnCancelar, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE))))
