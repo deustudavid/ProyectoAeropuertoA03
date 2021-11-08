@@ -93,8 +93,18 @@ public class CreadorPasajeros extends javax.swing.JInternalFrame {
         btnCancelar.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		dispose();
-        		VentanaAdministrador.desbloquearBotones();
-        	}
+            	boolean resultadoAdministradorActivo=ventanas.VentanaAdministrador.VentanaAdminEstaActiva();
+            	boolean resultadoAzafatoActivo=ventanas.VentanaAzafato.VentanaAzafatoEstaActiva();
+            	
+            	if (resultadoAdministradorActivo==true && resultadoAzafatoActivo==false) {
+            		VentanaAdministrador.desbloquearBotones();
+					
+				}else {
+	            	VentanaAzafato.desbloquearBotones();
+
+				}
+               
+            }
         });
 
         panelIzquierda.setBackground(new java.awt.Color(51, 0, 255));

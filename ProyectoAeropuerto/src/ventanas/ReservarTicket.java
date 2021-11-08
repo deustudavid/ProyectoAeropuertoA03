@@ -89,18 +89,27 @@ public class ReservarTicket extends javax.swing.JInternalFrame {
         
         btnCancelar.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		
         		dispose();
-        		VentanaAdministrador.desbloquearBotones();
-        	}
+            	boolean resultadoAdministradorActivo=ventanas.VentanaAdministrador.VentanaAdminEstaActiva();
+            	boolean resultadoAzafatoActivo=ventanas.VentanaAzafato.VentanaAzafatoEstaActiva();
+            	
+            	if (resultadoAdministradorActivo==true && resultadoAzafatoActivo==false) {
+            		VentanaAdministrador.desbloquearBotones();
+					
+				}else {
+	            	VentanaAzafato.desbloquearBotones();
+
+				}
+               
+            }
         });
         txtPrecioTotal = new javax.swing.JLabel();
 
         panelBusquedaVuelo.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Selecciona pais", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
 
-        txtOrigen.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Italia\t", "Srilanka", "UK", "Usa", "Canada", "China" }));
+        txtOrigen.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Italia\t", "Srilanka", "UK", "USA", "Canada", "China" }));
 
-        txtDestino.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {"Italia\t", "Srilanka", "UK", "Usa", "Canada", "China" }));
+        txtDestino.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {"Italia\t", "Srilanka", "UK", "USA", "Canada", "China" }));
 
         lblOrigen.setText("Origen");
 

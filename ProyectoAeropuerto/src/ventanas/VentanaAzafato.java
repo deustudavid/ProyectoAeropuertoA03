@@ -48,8 +48,11 @@ public class VentanaAzafato extends JFrame {
     private ImageIcon imagenBorrar;
     private ImageIcon imagenUsuario;
     
+    public static JFrame ventanaActual;
+    
     public VentanaAzafato() {
     	
+    	ventanaActual = this;
     	
         imagenCerrarSesion = new ImageIcon("img/logout.png");
         imagenAniadir = new ImageIcon("img/plus.png");
@@ -80,7 +83,7 @@ public class VentanaAzafato extends JFrame {
                CreadorPasajeros cus = new CreadorPasajeros();
         		jDesktopPane1.add(cus);
         		cus.setVisible(true);   
-        		VentanaAdministrador.bloquearBotones();
+        		bloquearBotones();
         	}
         });
 
@@ -92,7 +95,7 @@ public class VentanaAzafato extends JFrame {
         	public void actionPerformed(ActionEvent e) {
         		ReservarTicket r=new ReservarTicket();
             	jDesktopPane1.add(r);
-            	VentanaAdministrador.bloquearBotones();
+            	bloquearBotones();
         	}
         });
         menuItemVerTickets = new javax.swing.JMenuItem();
@@ -130,7 +133,7 @@ public class VentanaAzafato extends JFrame {
             	BuscarPasajero b= new BuscarPasajero();
             	jDesktopPane1.add(b);
                 b.setVisible(true);
-                VentanaAdministrador.bloquearBotones();
+                bloquearBotones();
               
             }
         });
@@ -159,7 +162,7 @@ public class VentanaAzafato extends JFrame {
             	jDesktopPane1.add(v);
                 v.setVisible(true);
             	
-            	VentanaAdministrador.bloquearBotones();
+            	bloquearBotones();
             
             }
         });
@@ -200,6 +203,7 @@ public class VentanaAzafato extends JFrame {
         menuItemCerrarSesion.setIcon(imagenCerrarSesion);
         menuItemCerrarSesion.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
+        		ventanaActual=null;
         		dispose();
         		new VentanaInicio();
         	}
@@ -223,7 +227,34 @@ public class VentanaAzafato extends JFrame {
         pack();
     }
     
-
+    public static void bloquearBotones() {
+	    
+			menuPasajero.setEnabled(false);	
+    	    menuTickets.setEnabled(false);
+    	    menuVuelo.setEnabled(false);
+    	    menuUsuario.setEnabled(false);
+    	
+    }
+    
+    public static void desbloquearBotones() {
+	    
+			menuPasajero.setEnabled(true);
+			menuTickets.setEnabled(true);
+    	    menuVuelo.setEnabled(true);
+    	    menuUsuario.setEnabled(true);
+    	
+    }
+    public static boolean VentanaAzafatoEstaActiva() { 
+    	if (ventanaActual == null) {
+			return false;
+		}
+    	
+    	else if ( ventanaActual.isShowing() && ventanaActual != null) {
+		 return true;
+	 }
+		return false;
+	
+    }
  
     
 

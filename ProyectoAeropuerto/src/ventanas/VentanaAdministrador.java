@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JMenuItem;
 
 import main.VentanaInicio;
@@ -45,9 +46,13 @@ public class VentanaAdministrador extends javax.swing.JFrame {
     private ImageIcon imagenListar;
     private ImageIcon imagenBorrar;
     private ImageIcon imagenUsuario;
+    
+    public static JFrame ventanaActual;
 
  
     public VentanaAdministrador() {
+    	
+    	ventanaActual=this;
 	
 	
     imagenAzafato = new ImageIcon("img/azafato.png");
@@ -221,6 +226,7 @@ public class VentanaAdministrador extends javax.swing.JFrame {
         menuItemCerrarSesion.setIcon(imagenCerrarSesion);
         menuItemCerrarSesion.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
+        		ventanaActual=null;
         		dispose();
         		new VentanaInicio();
         	}
@@ -244,9 +250,10 @@ public class VentanaAdministrador extends javax.swing.JFrame {
         pack();
     }
     
+    
     public static void bloquearBotones() {
     	    
-				menuPasajero.setEnabled(false);	
+			menuPasajero.setEnabled(false);	
     	    menuTickets.setEnabled(false);
     	    menuVuelo.setEnabled(false);
     	    menuUsuario.setEnabled(false);
@@ -255,13 +262,28 @@ public class VentanaAdministrador extends javax.swing.JFrame {
     
     public static void desbloquearBotones() {
 	    
-				menuPasajero.setEnabled(true);
-				menuTickets.setEnabled(true);
+			menuPasajero.setEnabled(true);
+			menuTickets.setEnabled(true);
     	    menuVuelo.setEnabled(true);
     	    menuUsuario.setEnabled(true);
     	
     }
- 
     
+    /**
+     * Metodo que sirve para saber si la ventana que está abierta es la de administrador o la de azafato
+     * @return true si la ventana es la VentanaAdministrador
+     * 			false si es la ventana VentanaAzafato
+     */
+    public static boolean VentanaAdminEstaActiva() { 
+    	if (ventanaActual == null) {
+			return false;
+		}
+    	
+    	else if ( ventanaActual.isShowing() && ventanaActual != null) {
+		 return true;
+	 }
+		return false;
+	
+    }
 
 }
