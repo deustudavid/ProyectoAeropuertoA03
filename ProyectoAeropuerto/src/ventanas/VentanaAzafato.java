@@ -16,6 +16,7 @@ import javax.swing.KeyStroke;
 import javax.swing.border.EmptyBorder;
 
 import main.VentanaInicio;
+import java.awt.SystemColor;
 
 public class VentanaAzafato extends JFrame {
 
@@ -63,9 +64,9 @@ public class VentanaAzafato extends JFrame {
     	imagenUsuario = new ImageIcon("img/usuario.png");
 
         jDesktopPane1 = new javax.swing.JDesktopPane();
-        jDesktopPane1.setBackground(new Color(0, 255, 255));
+        jDesktopPane1.setBackground(new Color(240, 248, 255));
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenuBar1.setBackground(Color.CYAN);
+        jMenuBar1.setBackground(SystemColor.info);
         menuPasajero = new javax.swing.JMenu();
         menuPasajero.setIcon(imagenPasajero);
         menuPasajero.setMnemonic('P');
@@ -79,7 +80,7 @@ public class VentanaAzafato extends JFrame {
                CreadorPasajeros cus = new CreadorPasajeros();
         		jDesktopPane1.add(cus);
         		cus.setVisible(true);   
-        		bloquearBotones();
+        		VentanaAdministrador.bloquearBotones();
         	}
         });
 
@@ -91,7 +92,7 @@ public class VentanaAzafato extends JFrame {
         	public void actionPerformed(ActionEvent e) {
         		ReservarTicket r=new ReservarTicket();
             	jDesktopPane1.add(r);
-            	bloquearBotones();
+            	VentanaAdministrador.bloquearBotones();
         	}
         });
         menuItemVerTickets = new javax.swing.JMenuItem();
@@ -129,7 +130,7 @@ public class VentanaAzafato extends JFrame {
             	BuscarPasajero b= new BuscarPasajero();
             	jDesktopPane1.add(b);
                 b.setVisible(true);
-                bloquearBotones();
+                VentanaAdministrador.bloquearBotones();
               
             }
         });
@@ -158,7 +159,7 @@ public class VentanaAzafato extends JFrame {
             	jDesktopPane1.add(v);
                 v.setVisible(true);
             	
-            	bloquearBotones();
+            	VentanaAdministrador.bloquearBotones();
             
             }
         });
@@ -222,23 +223,7 @@ public class VentanaAzafato extends JFrame {
         pack();
     }
     
-    public static void bloquearBotones() {
-    	    
-				menuPasajero.setEnabled(false);	
-    	    menuTickets.setEnabled(false);;
-    	    menuVuelo.setEnabled(false);;
-    	    menuUsuario.setEnabled(false);;
-    	
-    }
-    
-    public static void desbloquearBotones() {
-	    
-				menuPasajero.setEnabled(true);
-				menuTickets.setEnabled(true);;
-    	    menuVuelo.setEnabled(true);;
-    	    menuUsuario.setEnabled(true);;
-    	
-    }
+
  
     
 

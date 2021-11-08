@@ -247,18 +247,18 @@ public class VentanaAdministrador extends javax.swing.JFrame {
     public static void bloquearBotones() {
     	    
 				menuPasajero.setEnabled(false);	
-    	    menuTickets.setEnabled(false);;
-    	    menuVuelo.setEnabled(false);;
-    	    menuUsuario.setEnabled(false);;
+    	    menuTickets.setEnabled(false);
+    	    menuVuelo.setEnabled(false);
+    	    menuUsuario.setEnabled(false);
     	
     }
     
     public static void desbloquearBotones() {
 	    
 				menuPasajero.setEnabled(true);
-				menuTickets.setEnabled(true);;
-    	    menuVuelo.setEnabled(true);;
-    	    menuUsuario.setEnabled(true);;
+				menuTickets.setEnabled(true);
+    	    menuVuelo.setEnabled(true);
+    	    menuUsuario.setEnabled(true);
     	
     }
  
