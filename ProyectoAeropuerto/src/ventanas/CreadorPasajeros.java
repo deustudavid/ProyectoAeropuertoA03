@@ -254,9 +254,14 @@ public class CreadorPasajeros extends javax.swing.JInternalFrame {
                 try {
                     JFileChooser picchooser = new JFileChooser();
                    picchooser.showOpenDialog(null);
+                   
+                   if (picchooser.getSelectedFile() != null) {
+					
+				
                    File pic = picchooser.getSelectedFile();       
                    FileNameExtensionFilter filter = new FileNameExtensionFilter("*.images","png","jpg");
-                   picchooser.addChoosableFileFilter(filter);     
+                   picchooser.addChoosableFileFilter(filter); 
+                   
                    String path= pic.getAbsolutePath();
                    BufferedImage img;                    
                    img = ImageIO.read(picchooser.getSelectedFile());
@@ -275,7 +280,10 @@ public class CreadorPasajeros extends javax.swing.JInternalFrame {
                         }
                         byte[] userimage=baos.toByteArray();
                           
-                          
+                } 
+                   else {
+                	   JOptionPane.showMessageDialog(picchooser, "Ninguna foto fue seleccionada");
+                   }
                           
                     } catch (IOException ex) {
                         Logger.getLogger(CreadorPasajeros.class.getName()).log(Level.SEVERE, null, ex);
@@ -328,18 +336,18 @@ public class CreadorPasajeros extends javax.swing.JInternalFrame {
         							.addGap(18)
         							.addComponent(btnCancelar, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE))
         						.addGroup(layout.createSequentialGroup()
-        							.addGap(337)
-        							.addComponent(btnBuscarFoto, GroupLayout.PREFERRED_SIZE, 126, GroupLayout.PREFERRED_SIZE))
-        						.addGroup(layout.createSequentialGroup()
         							.addComponent(panelCentral, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
         							.addGap(18)
-        							.addComponent(txtFoto, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)))))
+        							.addComponent(txtFoto, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE))
+        						.addGroup(layout.createSequentialGroup()
+        							.addGap(337)
+        							.addComponent(btnBuscarFoto, GroupLayout.PREFERRED_SIZE, 139, GroupLayout.PREFERRED_SIZE)))))
         			.addContainerGap(24, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
         	layout.createParallelGroup(Alignment.TRAILING)
         		.addGroup(layout.createSequentialGroup()
-        			.addContainerGap(23, Short.MAX_VALUE)
+        			.addContainerGap(27, Short.MAX_VALUE)
         			.addComponent(lblTituloVentana)
         			.addGap(41)
         			.addGroup(layout.createParallelGroup(Alignment.LEADING)

@@ -14,6 +14,7 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.GroupLayout;
@@ -245,10 +246,15 @@ public class BuscarPasajero extends javax.swing.JInternalFrame {
                 try {
                     JFileChooser picchooser = new JFileChooser();
                    picchooser.showOpenDialog(null);
+                   
+                   if (picchooser.getSelectedFile() != null) {
+					
+				
                    File pic = picchooser.getSelectedFile();       
                    FileNameExtensionFilter filter = new FileNameExtensionFilter("*.images","png","jpg");
-                   picchooser.addChoosableFileFilter(filter);     
-                  String path= pic.getAbsolutePath();
+                   picchooser.addChoosableFileFilter(filter); 
+                   
+                   String path= pic.getAbsolutePath();
                    BufferedImage img;                    
                    img = ImageIO.read(picchooser.getSelectedFile());
                    ImageIcon imageIcon = new ImageIcon(new
@@ -266,15 +272,18 @@ public class BuscarPasajero extends javax.swing.JInternalFrame {
                         }
                         byte[] userimage=baos.toByteArray();
                           
-                          
+                } 
+                   else {
+                	   JOptionPane.showMessageDialog(picchooser, "Ninguna foto fue seleccionada");
+                   }
                           
                     } catch (IOException ex) {
                         Logger.getLogger(CreadorPasajeros.class.getName()).log(Level.SEVERE, null, ex);
                     }
+                    
                
             }
         });
-
         btnActualizar.setText("Actualizar");
     
 
