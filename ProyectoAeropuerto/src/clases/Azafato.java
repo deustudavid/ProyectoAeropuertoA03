@@ -1,14 +1,15 @@
 package clases;
+
 public class Azafato extends Persona {
 	int anyosExperiencia;
 	String funcion;
-	
+
 	public Azafato(String dni, String nombre, String apellido, int edad, int anyosExperiencia, String funcion) {
 		super(dni, nombre, apellido, edad);
 		this.anyosExperiencia = anyosExperiencia;
 		this.funcion = funcion;
 	}
-	
+
 	public Azafato() {
 		super();
 		this.anyosExperiencia = 0;
@@ -37,10 +38,5 @@ public class Azafato extends Persona {
 				+ ", getNombre()=" + getNombre() + ", getApellido()=" + getApellido() + ", getEdad()=" + getEdad()
 				+ "]";
 	}
-
-	
-	
-	
-	
 
 }

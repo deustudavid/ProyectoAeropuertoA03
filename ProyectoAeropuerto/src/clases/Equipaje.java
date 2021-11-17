@@ -6,25 +6,24 @@ public class Equipaje {
 	double largo;
 	double altura;
 	double anchura;
-	
+
 	public Equipaje(String descripcion, double peso, double largo, double altura, double anchura) {
 		super();
-		this.descripcion=descripcion;
+		this.descripcion = descripcion;
 		this.peso = peso;
 		this.largo = largo;
 		this.altura = altura;
 		this.anchura = anchura;
 	}
-	
+
 	public Equipaje() {
 		super();
-		this.descripcion="";
+		this.descripcion = "";
 		this.peso = 0.0;
 		this.largo = 0.0;
 		this.altura = 0.0;
 		this.anchura = 0.0;
 	}
-	
 
 	public String getDescripcion() {
 		return descripcion;
@@ -72,7 +71,4 @@ public class Equipaje {
 				+ ", anchura=" + anchura + "]";
 	}
 
-	
-	
-	
 }
