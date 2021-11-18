@@ -8,7 +8,7 @@ import org.junit.Test;
 import clases.Equipaje;
 
 public class EquipajeTest {
-	
+
 	Equipaje e = new Equipaje("Descripcion", 22.0, 10.4, 40.3, 30.2);
 	Equipaje b = new Equipaje();
 
@@ -36,7 +36,7 @@ public class EquipajeTest {
 	public void testGetAnchura() {
 		assertTrue(30.2 == e.getAnchura());
 	}
-	
+
 	@Test
 	public void testSetDescripcion() {
 		b.setDescripcion("Descripcion");
@@ -66,10 +66,10 @@ public class EquipajeTest {
 		b.setAnchura(30.2);
 		assertTrue(30.2 == b.getAnchura());
 	}
-	
+
 	@Test
 	public void testToString() {
-		assertEquals("Equipaje [descripcion=" + e.getDescripcion() + ", peso=" + e.getPeso() + ", largo=" + e.getLargo() + ", altura=" + e.getAltura()
-				+ ", anchura=" + e.getAnchura() + "]", e.toString());
+		assertEquals("Equipaje [descripcion=" + e.getDescripcion() + ", peso=" + e.getPeso() + ", largo=" + e.getLargo()
+				+ ", altura=" + e.getAltura() + ", anchura=" + e.getAnchura() + "]", e.toString());
 	}
 }
