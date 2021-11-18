@@ -1,16 +1,27 @@
 package ventanas;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.AbstractAction;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import java.awt.FlowLayout;
+import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JMenuItem;
+import javax.swing.JPanel;
 
 import main.VentanaInicio;
 import javax.swing.KeyStroke;
+import javax.swing.border.EmptyBorder;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.plaf.basic.BasicOptionPaneUI.ButtonActionListener;
+
 import java.awt.event.KeyEvent;
+import java.io.File;
 import java.awt.event.InputEvent;
 
 public class VentanaAdministrador extends javax.swing.JFrame {
@@ -37,6 +48,7 @@ public class VentanaAdministrador extends javax.swing.JFrame {
     private ImageIcon imagenAzafato;
     private ImageIcon imagenCerrarSesion;
     private ImageIcon imagenAniadir;
+    private ImageIcon imagenAvion2;
     private ImageIcon imagenMaleta;
     private ImageIcon imagenPasajero;
     private ImageIcon imagenTicket;
@@ -46,6 +58,11 @@ public class VentanaAdministrador extends javax.swing.JFrame {
     private ImageIcon imagenListar;
     private ImageIcon imagenBorrar;
     private ImageIcon imagenUsuario;
+    private JButton btnEscogerAvion;
+    private JPanel panelsur;
+    private JPanel contentPane;
+    
+    
     
     public static JFrame ventanaActual;
 
@@ -67,6 +84,7 @@ public class VentanaAdministrador extends javax.swing.JFrame {
 	imagenListar = new ImageIcon("img/blocnotas.png"); 
 	imagenBorrar = new ImageIcon("img/papelera.png");
 	imagenUsuario = new ImageIcon("img/usuario.png");
+	imagenAvion2 = new ImageIcon("img/avion2.png");
 		   
    
    
@@ -131,6 +149,8 @@ public class VentanaAdministrador extends javax.swing.JFrame {
         menuItemAniadirPasajero.setText("Anadir pasajero");
       
         menuPasajero.add(menuItemAniadirPasajero);
+        
+        
 
         menuItemActualizarPasajero.setText("Actualizar pasajero");
         menuItemActualizarPasajero.addActionListener(new java.awt.event.ActionListener() {
@@ -170,7 +190,42 @@ public class VentanaAdministrador extends javax.swing.JFrame {
             	bloquearBotones();
             
             }
+            
         });
+        /*
+        contentPane = new JPanel();
+        contentPane.setBorder(new EmptyBorder(5,5,5,5));
+        contentPane.setLayout(new BorderLayout(0,0));
+        setContentPane(contentPane);
+        JPanel panelsur = new JPanel();
+        FlowLayout flowLayout = (FlowLayout) panelsur.getLayout();
+         contentPane.add(panelsur, BorderLayout.SOUTH);
+         panelsur.add(btnEscogerAviones);
+        */
+
+        JButton btnEscogerAviones = new JButton();
+        
+       
+        btnEscogerAviones.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JFileChooser fc = new JFileChooser("aviones");
+	    		FileNameExtensionFilter fnef = new FileNameExtensionFilter("JPG & JFIF", "jpg","jfif");
+	    		fc.setFileFilter(fnef);
+	    		int sel = fc.showOpenDialog(null);
+	    		if(sel == JFileChooser.APPROVE_OPTION) {
+	    			File ficheroSeleccionado = fc.getSelectedFile();
+	    			System.out.println("Nombre del fichero seleccionado"+ ficheroSeleccionado.getName());
+	    			System.out.println("Ruta del fichero seleccionado: "+ ficheroSeleccionado.getAbsolutePath());
+
+				
+	    		}
+	    
+	    		
+			}});
+       
+	
         menuTickets.add(menuItemVerTickets);
 
         jMenuBar1.add(menuTickets);
@@ -182,6 +237,19 @@ public class VentanaAdministrador extends javax.swing.JFrame {
 
         menuVuelo.setText("Vuelo");
         menuVuelo.setIcon(imagenAvion);
+        
+        JMenuItem menuItemElegirAvion = new JMenuItem();
+        menuItemElegirAvion = new JMenuItem();
+        menuItemElegirAvion.setIcon(imagenAvion2);
+        menuItemElegirAvion.setText("Elegir avion");
+        
+        
+        // imagenAvion2 = img.getScaledInstance(label.getWidth(),label.getHeight(),Image;
+        //ImageIcon imagenAvion2 = new ImageIcon(new ImageIcon("imagenAvion2.png").getImage().getScaledInstance(20, 20, imagenAvion2.SCALE_DEFAULT)); 
+    
+        menuVuelo.add(menuItemElegirAvion);
+        
+       
 
         jMenuBar1.add(menuVuelo);
         
@@ -249,6 +317,7 @@ public class VentanaAdministrador extends javax.swing.JFrame {
 
         pack();
     }
+
     
     
     public static void bloquearBotones() {
@@ -285,5 +354,6 @@ public class VentanaAdministrador extends javax.swing.JFrame {
 		return false;
 	
     }
-
+    
+    	
 }
