@@ -185,7 +185,7 @@ public class VentanaInicio extends JFrame {
 		panelCentral.add(lblContrasenia);
 
 		labelCerrar = new JLabel("Cerrando ventana...");
-		labelCerrar.setBounds(278, 360, 279, 14);
+		labelCerrar.setBounds(200, 300, 200, 10);
 		labelCerrar.setVisible(false);
 
 		textContrasenia = new JPasswordField();
