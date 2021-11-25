@@ -128,57 +128,57 @@ public class BuscarPasajero extends javax.swing.JInternalFrame {
         txtDireccion.setRows(5);
         jScrollPane1.setViewportView(txtDireccion);
 
-        javax.swing.GroupLayout gl_panelIzquierda = new javax.swing.GroupLayout(panelIzquierda);
-        panelIzquierda.setLayout(gl_panelIzquierda);
-        gl_panelIzquierda.setHorizontalGroup(
-            gl_panelIzquierda.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(gl_panelIzquierda.createSequentialGroup()
+        javax.swing.GroupLayout glPanelIzquierda = new javax.swing.GroupLayout(panelIzquierda);
+        panelIzquierda.setLayout(glPanelIzquierda);
+        glPanelIzquierda.setHorizontalGroup(
+            glPanelIzquierda.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(glPanelIzquierda.createSequentialGroup()
                 .addGap(26, 26, 26)
-                .addGroup(gl_panelIzquierda.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(gl_panelIzquierda.createSequentialGroup()
-                        .addGroup(gl_panelIzquierda.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(gl_panelIzquierda.createSequentialGroup()
+                .addGroup(glPanelIzquierda.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(glPanelIzquierda.createSequentialGroup()
+                        .addGroup(glPanelIzquierda.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(glPanelIzquierda.createSequentialGroup()
                                 .addComponent(lblNombre)
                                 .addGap(47, 47, 47)
                                 .addComponent(txtNombre))
-                            .addGroup(gl_panelIzquierda.createSequentialGroup()
-                                .addGroup(gl_panelIzquierda.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(glPanelIzquierda.createSequentialGroup()
+                                .addGroup(glPanelIzquierda.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblDireccion)
                                     .addComponent(lblTelefono)
                                     .addComponent(lblDni))
                                 .addGap(38, 38, 38)
-                                .addGroup(gl_panelIzquierda.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(glPanelIzquierda.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jScrollPane1)
                                     .addComponent(txtTelefono)
                                     .addComponent(txtDni))))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(gl_panelIzquierda.createSequentialGroup()
+                    .addGroup(glPanelIzquierda.createSequentialGroup()
                         .addComponent(lblApellido)
                         .addGap(48, 48, 48)
                         .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
-        gl_panelIzquierda.setVerticalGroup(
-            gl_panelIzquierda.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(gl_panelIzquierda.createSequentialGroup()
+        glPanelIzquierda.setVerticalGroup(
+            glPanelIzquierda.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(glPanelIzquierda.createSequentialGroup()
                 .addGap(37, 37, 37)
-                .addGroup(gl_panelIzquierda.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(glPanelIzquierda.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNombre)
                     .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(22, 22, 22)
-                .addGroup(gl_panelIzquierda.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(glPanelIzquierda.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblApellido)
                     .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(gl_panelIzquierda.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(glPanelIzquierda.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblDni)
                     .addComponent(txtDni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(gl_panelIzquierda.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(glPanelIzquierda.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTelefono)
                     .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(gl_panelIzquierda.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(glPanelIzquierda.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblDireccion)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34))
@@ -203,17 +203,17 @@ public class BuscarPasajero extends javax.swing.JInternalFrame {
         
         txtEdad = new JTextField();
 
-        javax.swing.GroupLayout gl_panelCentral = new javax.swing.GroupLayout(panelCentral);
-        gl_panelCentral.setHorizontalGroup(
-        	gl_panelCentral.createParallelGroup(Alignment.LEADING)
-        		.addGroup(gl_panelCentral.createSequentialGroup()
+        javax.swing.GroupLayout glPanelCentral = new javax.swing.GroupLayout(panelCentral);
+        glPanelCentral.setHorizontalGroup(
+        	glPanelCentral.createParallelGroup(Alignment.LEADING)
+        		.addGroup(glPanelCentral.createSequentialGroup()
         			.addGap(22)
-        			.addGroup(gl_panelCentral.createParallelGroup(Alignment.LEADING, false)
-        				.addGroup(gl_panelCentral.createSequentialGroup()
+        			.addGroup(glPanelCentral.createParallelGroup(Alignment.LEADING, false)
+        				.addGroup(glPanelCentral.createSequentialGroup()
         					.addComponent(lblEdad)
         					.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         					.addComponent(txtEdad, GroupLayout.PREFERRED_SIZE, 165, GroupLayout.PREFERRED_SIZE))
-        				.addGroup(gl_panelCentral.createSequentialGroup()
+        				.addGroup(glPanelCentral.createSequentialGroup()
         					.addComponent(lblGenero)
         					.addGap(46)
         					.addComponent(radioHombre)
@@ -221,21 +221,21 @@ public class BuscarPasajero extends javax.swing.JInternalFrame {
         					.addComponent(radioMujer)))
         			.addContainerGap(41, Short.MAX_VALUE))
         );
-        gl_panelCentral.setVerticalGroup(
-        	gl_panelCentral.createParallelGroup(Alignment.LEADING)
-        		.addGroup(gl_panelCentral.createSequentialGroup()
+        glPanelCentral.setVerticalGroup(
+        	glPanelCentral.createParallelGroup(Alignment.LEADING)
+        		.addGroup(glPanelCentral.createSequentialGroup()
         			.addGap(35)
-        			.addGroup(gl_panelCentral.createParallelGroup(Alignment.BASELINE)
+        			.addGroup(glPanelCentral.createParallelGroup(Alignment.BASELINE)
         				.addComponent(lblEdad)
         				.addComponent(txtEdad, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
         			.addGap(18)
-        			.addGroup(gl_panelCentral.createParallelGroup(Alignment.BASELINE)
+        			.addGroup(glPanelCentral.createParallelGroup(Alignment.BASELINE)
         				.addComponent(lblGenero)
         				.addComponent(radioHombre)
         				.addComponent(radioMujer))
         			.addContainerGap(160, Short.MAX_VALUE))
         );
-        panelCentral.setLayout(gl_panelCentral);
+        panelCentral.setLayout(glPanelCentral);
 
         txtFoto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 

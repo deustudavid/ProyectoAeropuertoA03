@@ -13,13 +13,13 @@ public class ReservarTicket extends javax.swing.JInternalFrame {
 	
 
     
-    private javax.swing.JLabel lbl_IdVuelo;
+    private javax.swing.JLabel lblIdVuelo;
     private javax.swing.JButton btnReservar;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnBuscadorDestinos;
     private javax.swing.JButton btnBuscarPasajero;
     private javax.swing.JLabel lblOrigen;
-    private javax.swing.JLabel lbl_ID_Vuelo;
+    private javax.swing.JLabel lblIDVuelo;
     private javax.swing.JLabel lblHoraSalida;
     private javax.swing.JLabel lblClase;
     private javax.swing.JLabel lblPrecio;
@@ -73,12 +73,12 @@ public class ReservarTicket extends javax.swing.JInternalFrame {
         txtTelefono = new javax.swing.JLabel();
         btnBuscarPasajero = new javax.swing.JButton();
         panelVuelo = new javax.swing.JPanel();
-        lbl_ID_Vuelo = new javax.swing.JLabel();
+        lblIDVuelo = new javax.swing.JLabel();
         lblHoraSalida = new javax.swing.JLabel();
         lblClase = new javax.swing.JLabel();
         lblPrecio = new javax.swing.JLabel();
         lblAsientos = new javax.swing.JLabel();
-        lbl_IdVuelo = new javax.swing.JLabel();
+        lblIdVuelo = new javax.swing.JLabel();
         txtHoraSalida = new javax.swing.JLabel();
         txtClaseVuelo = new javax.swing.JComboBox<>();
         txtPrecio = new javax.swing.JTextField();
@@ -118,36 +118,36 @@ public class ReservarTicket extends javax.swing.JInternalFrame {
         btnBuscadorDestinos.setText("Buscar para estos lugares");
    
 
-        javax.swing.GroupLayout gl_panelBusquedaVuelo = new javax.swing.GroupLayout(panelBusquedaVuelo);
-        panelBusquedaVuelo.setLayout(gl_panelBusquedaVuelo);
-        gl_panelBusquedaVuelo.setHorizontalGroup(
-            gl_panelBusquedaVuelo.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(gl_panelBusquedaVuelo.createSequentialGroup()
+        javax.swing.GroupLayout glPanelBusquedaVuelo = new javax.swing.GroupLayout(panelBusquedaVuelo);
+        panelBusquedaVuelo.setLayout(glPanelBusquedaVuelo);
+        glPanelBusquedaVuelo.setHorizontalGroup(
+            glPanelBusquedaVuelo.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(glPanelBusquedaVuelo.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(txtOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
                 .addComponent(txtDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35))
-            .addGroup(gl_panelBusquedaVuelo.createSequentialGroup()
+            .addGroup(glPanelBusquedaVuelo.createSequentialGroup()
                 .addGap(54, 54, 54)
                 .addComponent(lblOrigen)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblDestino)
                 .addGap(87, 87, 87))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, gl_panelBusquedaVuelo.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, glPanelBusquedaVuelo.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnBuscadorDestinos)
                 .addGap(49, 49, 49))
         );
-        gl_panelBusquedaVuelo.setVerticalGroup(
-            gl_panelBusquedaVuelo.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(gl_panelBusquedaVuelo.createSequentialGroup()
+        glPanelBusquedaVuelo.setVerticalGroup(
+            glPanelBusquedaVuelo.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(glPanelBusquedaVuelo.createSequentialGroup()
                 .addGap(32, 32, 32)
-                .addGroup(gl_panelBusquedaVuelo.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(glPanelBusquedaVuelo.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblOrigen)
                     .addComponent(lblDestino))
                 .addGap(18, 18, 18)
-                .addGroup(gl_panelBusquedaVuelo.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(glPanelBusquedaVuelo.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
@@ -195,55 +195,55 @@ public class ReservarTicket extends javax.swing.JInternalFrame {
         btnBuscarPasajero.setText("Buscar pasajero");
       
 
-        javax.swing.GroupLayout gl_panelBusquedaPasajero = new javax.swing.GroupLayout(panelBusquedaPasajero);
-        panelBusquedaPasajero.setLayout(gl_panelBusquedaPasajero);
-        gl_panelBusquedaPasajero.setHorizontalGroup(
-            gl_panelBusquedaPasajero.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(gl_panelBusquedaPasajero.createSequentialGroup()
+        javax.swing.GroupLayout glPanelBusquedaPasajero = new javax.swing.GroupLayout(panelBusquedaPasajero);
+        panelBusquedaPasajero.setLayout(glPanelBusquedaPasajero);
+        glPanelBusquedaPasajero.setHorizontalGroup(
+            glPanelBusquedaPasajero.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(glPanelBusquedaPasajero.createSequentialGroup()
                 .addGap(57, 57, 57)
-                .addGroup(gl_panelBusquedaPasajero.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(gl_panelBusquedaPasajero.createSequentialGroup()
+                .addGroup(glPanelBusquedaPasajero.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(glPanelBusquedaPasajero.createSequentialGroup()
                         .addComponent(lblDni)
                         .addGap(34, 34, 34)
                         .addComponent(txtDni, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                         .addComponent(btnBuscarPasajero))
-                    .addGroup(gl_panelBusquedaPasajero.createSequentialGroup()
-                        .addGroup(gl_panelBusquedaPasajero.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(glPanelBusquedaPasajero.createSequentialGroup()
+                        .addGroup(glPanelBusquedaPasajero.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblNombre)
                             .addComponent(lblApellido)
                             .addComponent(lblTelefono))
                         .addGap(56, 56, 56)
-                        .addGroup(gl_panelBusquedaPasajero.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(glPanelBusquedaPasajero.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtTelefono)
                             .addComponent(txtApellido)
                             .addComponent(txtNombre))))
                 .addContainerGap())
         );
-        gl_panelBusquedaPasajero.setVerticalGroup(
-            gl_panelBusquedaPasajero.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(gl_panelBusquedaPasajero.createSequentialGroup()
+        glPanelBusquedaPasajero.setVerticalGroup(
+            glPanelBusquedaPasajero.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(glPanelBusquedaPasajero.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(gl_panelBusquedaPasajero.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(glPanelBusquedaPasajero.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblDni)
                     .addComponent(txtDni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBuscarPasajero))
                 .addGap(26, 26, 26)
-                .addGroup(gl_panelBusquedaPasajero.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(glPanelBusquedaPasajero.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNombre)
                     .addComponent(txtNombre))
                 .addGap(31, 31, 31)
-                .addGroup(gl_panelBusquedaPasajero.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(glPanelBusquedaPasajero.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblApellido)
                     .addComponent(txtApellido))
                 .addGap(36, 36, 36)
-                .addGroup(gl_panelBusquedaPasajero.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(glPanelBusquedaPasajero.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTelefono)
                     .addComponent(txtTelefono))
                 .addContainerGap(37, Short.MAX_VALUE))
         );
 
-        lbl_ID_Vuelo.setText("ID Vuelo");
+        lblIDVuelo.setText("ID Vuelo");
 
         lblHoraSalida.setText("Hora salida");
 
@@ -253,9 +253,9 @@ public class ReservarTicket extends javax.swing.JInternalFrame {
 
         lblAsientos.setText("Asientos");
 
-        lbl_IdVuelo.setFont(new java.awt.Font("Tahoma", 1, 12)); 
-        lbl_IdVuelo.setForeground(new java.awt.Color(255, 0, 0));
-        lbl_IdVuelo.setText("lbl_ID_Vuelo");
+        lblIdVuelo.setFont(new java.awt.Font("Tahoma", 1, 12)); 
+        lblIdVuelo.setForeground(new java.awt.Color(255, 0, 0));
+        lblIdVuelo.setText("lblIdVuelo");
 
         txtHoraSalida.setFont(new java.awt.Font("Tahoma", 1, 12)); 
         txtHoraSalida.setForeground(new java.awt.Color(255, 0, 0));
@@ -265,67 +265,67 @@ public class ReservarTicket extends javax.swing.JInternalFrame {
 
         
 
-        javax.swing.GroupLayout gl_panelVuelo = new javax.swing.GroupLayout(panelVuelo);
-        gl_panelVuelo.setHorizontalGroup(
-        	gl_panelVuelo.createParallelGroup(Alignment.LEADING)
-        		.addGroup(gl_panelVuelo.createSequentialGroup()
+        javax.swing.GroupLayout glPanelVuelo = new javax.swing.GroupLayout(panelVuelo);
+        glPanelVuelo.setHorizontalGroup(
+        	glPanelVuelo.createParallelGroup(Alignment.LEADING)
+        		.addGroup(glPanelVuelo.createSequentialGroup()
         			.addGap(19)
-        			.addGroup(gl_panelVuelo.createParallelGroup(Alignment.TRAILING)
-        				.addGroup(gl_panelVuelo.createParallelGroup(Alignment.TRAILING)
+        			.addGroup(glPanelVuelo.createParallelGroup(Alignment.TRAILING)
+        				.addGroup(glPanelVuelo.createParallelGroup(Alignment.TRAILING)
         					.addComponent(lblHoraSalida)
         					.addComponent(lblClase, Alignment.LEADING)
         					.addComponent(lblPrecio, Alignment.LEADING)
-        					.addGroup(gl_panelVuelo.createSequentialGroup()
-        						.addComponent(lbl_ID_Vuelo)
+        					.addGroup(glPanelVuelo.createSequentialGroup()
+        						.addComponent(lblIDVuelo)
         						.addGap(16)))
-        				.addGroup(gl_panelVuelo.createSequentialGroup()
+        				.addGroup(glPanelVuelo.createSequentialGroup()
         					.addComponent(lblAsientos)
         					.addGap(35)))
-        			.addGroup(gl_panelVuelo.createParallelGroup(Alignment.LEADING)
-        				.addGroup(gl_panelVuelo.createSequentialGroup()
+        			.addGroup(glPanelVuelo.createParallelGroup(Alignment.LEADING)
+        				.addGroup(glPanelVuelo.createSequentialGroup()
         					.addGap(60)
-        					.addGroup(gl_panelVuelo.createParallelGroup(Alignment.LEADING)
+        					.addGroup(glPanelVuelo.createParallelGroup(Alignment.LEADING)
         						.addComponent(txtHoraSalida)
-        						.addGroup(gl_panelVuelo.createSequentialGroup()
-        							.addComponent(lbl_IdVuelo)
+        						.addGroup(glPanelVuelo.createSequentialGroup()
+        							.addComponent(lblIdVuelo)
         							.addGap(34)
         							.addComponent(txtdate, GroupLayout.PREFERRED_SIZE, 118, GroupLayout.PREFERRED_SIZE))))
-        				.addGroup(gl_panelVuelo.createSequentialGroup()
+        				.addGroup(glPanelVuelo.createSequentialGroup()
         					.addGap(50)
-        					.addGroup(gl_panelVuelo.createParallelGroup(Alignment.LEADING, false)
+        					.addGroup(glPanelVuelo.createParallelGroup(Alignment.LEADING, false)
         						.addComponent(txtClaseVuelo, 0, 116, Short.MAX_VALUE)
         						.addComponent(txtPrecio)
         						.addComponent(txtAsientos, GroupLayout.PREFERRED_SIZE, 64, GroupLayout.PREFERRED_SIZE))))
         			.addContainerGap(26, Short.MAX_VALUE))
         );
-        gl_panelVuelo.setVerticalGroup(
-        	gl_panelVuelo.createParallelGroup(Alignment.LEADING)
-        		.addGroup(gl_panelVuelo.createSequentialGroup()
+        glPanelVuelo.setVerticalGroup(
+        	glPanelVuelo.createParallelGroup(Alignment.LEADING)
+        		.addGroup(glPanelVuelo.createSequentialGroup()
         			.addGap(17)
-        			.addGroup(gl_panelVuelo.createParallelGroup(Alignment.TRAILING)
-        				.addGroup(gl_panelVuelo.createParallelGroup(Alignment.BASELINE)
-        					.addComponent(lbl_ID_Vuelo)
-        					.addComponent(lbl_IdVuelo))
+        			.addGroup(glPanelVuelo.createParallelGroup(Alignment.TRAILING)
+        				.addGroup(glPanelVuelo.createParallelGroup(Alignment.BASELINE)
+        					.addComponent(lblIDVuelo)
+        					.addComponent(lblIdVuelo))
         				.addComponent(txtdate, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
         			.addGap(74)
-        			.addGroup(gl_panelVuelo.createParallelGroup(Alignment.BASELINE)
+        			.addGroup(glPanelVuelo.createParallelGroup(Alignment.BASELINE)
         				.addComponent(lblHoraSalida)
         				.addComponent(txtHoraSalida))
         			.addGap(23)
-        			.addGroup(gl_panelVuelo.createParallelGroup(Alignment.BASELINE)
+        			.addGroup(glPanelVuelo.createParallelGroup(Alignment.BASELINE)
         				.addComponent(lblClase)
         				.addComponent(txtClaseVuelo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
         			.addGap(18)
-        			.addGroup(gl_panelVuelo.createParallelGroup(Alignment.BASELINE)
+        			.addGroup(glPanelVuelo.createParallelGroup(Alignment.BASELINE)
         				.addComponent(lblPrecio)
         				.addComponent(txtPrecio, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
         			.addGap(18)
-        			.addGroup(gl_panelVuelo.createParallelGroup(Alignment.TRAILING)
+        			.addGroup(glPanelVuelo.createParallelGroup(Alignment.TRAILING)
         				.addComponent(lblAsientos)
         				.addComponent(txtAsientos, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
         			.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        panelVuelo.setLayout(gl_panelVuelo);
+        panelVuelo.setLayout(glPanelVuelo);
 
         btnReservar.setText("Reservar");
        

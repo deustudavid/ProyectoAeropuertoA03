@@ -5,22 +5,20 @@ import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.Date;
-import java.text.SimpleDateFormat;
 import java.util.logging.FileHandler;
-import java.util.logging.Handler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.logging.SimpleFormatter;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
 
 import bd.BD;
 import bd.DBException;
@@ -28,7 +26,6 @@ import ventanas.VentanaAdministrador;
 import ventanas.VentanaAzafato;
 
 import java.awt.Color;
-import java.awt.GridLayout;
 import java.awt.HeadlessException;
 
 import javax.swing.JLabel;
@@ -41,18 +38,16 @@ import javax.swing.SwingConstants;
 public class VentanaInicio extends JFrame {
 
 	private JPanel contentPane;
-	private JPanel panelSur;
 	private JPanel panelCentral;
-
+	private JPanel panelOpciones;
 	private JLabel lblUsuario;
 	private JLabel lblContrasenia;
 	private JLabel labelCerrar;
-	private JLabel labelregistrarAdministrador;
 	private JFrame ventanaActual;
-
+	private JPasswordField textContrasenia;
 	private JTextField textUsuario;
 
-	private JPasswordField textContrasenia;
+	
 
 	private JProgressBar progressBarCerrar;
 	private JProgressBar progressBarRegistarAdmin;
@@ -144,54 +139,75 @@ public class VentanaInicio extends JFrame {
 		setTitle("VENTANA INICIO");
 		ventanaActual = this;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 920, 300);
+		setBounds(100, 100, 522, 300);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.BLACK);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 
-		panelSur = new JPanel();
-		panelSur.setBackground(Color.GRAY);
-		contentPane.add(panelSur, BorderLayout.SOUTH);
-
-		btnIniciarSesionAdministrador = new JButton("INICIAR SESION ADMINISTRADOR");
-		panelSur.add(btnIniciarSesionAdministrador);
-
-		btnRegistrarAdministrador = new JButton("REGISTRAR ADMINISTRADOR");
-		panelSur.add(btnRegistrarAdministrador);
-
-		btnRegistrarAzafato = new JButton("REGISTRAR AZAFATO");
-		panelSur.add(btnRegistrarAzafato);
-
-		btnIniciarSesionAzafato = new JButton("INICIAR SESION AZAFATO");
-		panelSur.add(btnIniciarSesionAzafato);
-
 		panelCentral = new JPanel();
 		contentPane.add(panelCentral, BorderLayout.CENTER);
-		panelCentral.setLayout(new GridLayout(0, 2, 0, 0));
+		panelCentral.setLayout(null);
 
-		lblUsuario = new JLabel(" Introduce tu nombre de Usuario:");
+		panelOpciones = new JPanel();
+		panelOpciones.setBounds(10, 104, 478, 138);
+		panelOpciones.setLayout(null);
+		panelOpciones.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Opciones: ", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(255, 255, 204)));
+		panelOpciones.setBackground(new Color(0, 0, 128));
+		panelCentral.add(panelOpciones);
+
+		btnRegistrarAdministrador = new JButton("REGISTRAR ADMINISTRADOR");
+		btnRegistrarAdministrador.setBackground(new Color(255, 218, 185));
+		btnRegistrarAdministrador.setBounds(10, 38, 213, 23);
+		panelOpciones.add(btnRegistrarAdministrador);
+
+		btnIniciarSesionAdministrador = new JButton("INICIAR SESION ADMINISTRADOR");
+		btnIniciarSesionAdministrador.setForeground(new Color(255, 250, 205));
+		btnIniciarSesionAdministrador.setBackground(Color.BLACK);
+		btnIniciarSesionAdministrador.setBounds(233, 72, 235, 23);
+		panelOpciones.add(btnIniciarSesionAdministrador);
+
+		btnIniciarSesionAzafato = new JButton("INICIAR SESION AZAFATO");
+		btnIniciarSesionAzafato.setForeground(new Color(255, 250, 205));
+		btnIniciarSesionAzafato.setBackground(Color.BLACK);
+		btnIniciarSesionAzafato.setBounds(10, 72, 213, 23);
+		panelOpciones.add(btnIniciarSesionAzafato);
+
+		btnCerrar = new JButton("Cerrar");
+		btnCerrar.setBackground(new Color(0, 153, 0));
+		btnCerrar.setBounds(155, 104, 119, 23);
+		panelOpciones.add(btnCerrar);
+
+		btnRegistrarAzafato = new JButton("REGISTRAR AZAFATO");
+		btnRegistrarAzafato.setBackground(new Color(255, 218, 185));
+		btnRegistrarAzafato.setBounds(233, 38, 235, 23);
+		panelOpciones.add(btnRegistrarAzafato);
+
+		lblContrasenia = new JLabel(" Introduce la contrase\u00F1a:");
+		lblContrasenia.setBounds(26, 68, 163, 14);
+		panelCentral.add(lblContrasenia);
+		lblContrasenia.setBackground(Color.DARK_GRAY);
+
+		textContrasenia = new JPasswordField();
+		textContrasenia.setBounds(281, 61, 157, 28);
+		panelCentral.add(textContrasenia);
+		textContrasenia.setColumns(10);
+
+		lblUsuario = new JLabel(" Introduce tu nombre de usuario:");
+		lblUsuario.setBounds(26, 26, 227, 14);
+		panelCentral.add(lblUsuario);
 		lblUsuario.setHorizontalAlignment(SwingConstants.LEFT);
 		lblUsuario.setBackground(Color.DARK_GRAY);
-		panelCentral.add(lblUsuario);
 
 		textUsuario = new JTextField();
 		textUsuario.setColumns(10);
+		textUsuario.setBounds(281, 22, 157, 28);
 		panelCentral.add(textUsuario);
-
-		lblContrasenia = new JLabel(" Introduce la contrasenia:");
-		lblContrasenia.setBackground(Color.DARK_GRAY);
-		panelCentral.add(lblContrasenia);
 
 		labelCerrar = new JLabel("Cerrando ventana...");
 		labelCerrar.setBounds(200, 300, 200, 10);
 		labelCerrar.setVisible(false);
-
-		textContrasenia = new JPasswordField();
-		textContrasenia.setText("");
-		textContrasenia.setColumns(10);
-		panelCentral.add(textContrasenia);
 
 		progressBarCerrar = new JProgressBar(0, 100);
 		progressBarCerrar.setBounds(415, 360, 146, 14);
@@ -199,9 +215,6 @@ public class VentanaInicio extends JFrame {
 		progressBarRegistarAdmin = new JProgressBar(0, 100);
 		progressBarRegistarAdmin.setBounds(415, 360, 146, 14);
 		progressBarRegistarAdmin.setVisible(false);
-
-		btnCerrar = new JButton("Cerrar");
-		panelSur.add(btnCerrar);
 
 		btnIniciarSesionAdministrador.addActionListener(new ActionListener() {
 			@Override
@@ -229,7 +242,6 @@ public class VentanaInicio extends JFrame {
 								JOptionPane.showMessageDialog(null, "Contraseña incorrecta", "Error", JOptionPane.ERROR_MESSAGE);
 								break;
 							case 2:
-								JOptionPane.showMessageDialog(null, "Datos correctos", "Correcto", JOptionPane.INFORMATION_MESSAGE);
 								ventanaActual.dispose();
 								new VentanaAdministrador();
 
@@ -288,7 +300,6 @@ public class VentanaInicio extends JFrame {
 							JOptionPane.showMessageDialog(null, "Contraseña incorrecta", "Error", JOptionPane.ERROR_MESSAGE);
 							break;
 						case 2:
-							JOptionPane.showMessageDialog(null, "Datos correctos", "Correcto", JOptionPane.INFORMATION_MESSAGE);
 							ventanaActual.dispose();
 							new VentanaAzafato();
 
@@ -437,42 +448,8 @@ public class VentanaInicio extends JFrame {
 			}
 
 		});
-		/* HILO A ARREGLAR
-		btnRegistrarAdministrador.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				ventanaActual.getContentPane().add(labelregistrarAdministrador);
-				ventanaActual.getContentPane().add(progressBarRegistarAdmin);
+	
 
-				Thread hiloCrearAdmin = new Thread(new Runnable() {
-
-					@Override
-					public void run() {
-						labelregistrarAdministrador.setVisible(true);
-						progressBarRegistarAdmin.setVisible(true);
-
-						for (int i = 0; i <= 100; i++) {
-							progressBarRegistarAdmin.setValue(i);
-							try {
-								Thread.sleep(7);
-							} catch (InterruptedException el) {
-								el.printStackTrace();
-							}
-						}
-
-						labelregistrarAdministrador.setVisible(false);
-						progressBarRegistarAdmin.setVisible(false);
-					
-						
-
-					}
-				});
-
-				hiloCrearAdmin.start();
-			}
-
-		});
-	*/
 		
 
 		btnCerrar.addActionListener(new ActionListener() {

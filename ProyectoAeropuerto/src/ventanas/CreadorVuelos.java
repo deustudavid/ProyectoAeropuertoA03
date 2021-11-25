@@ -17,7 +17,7 @@ public class CreadorVuelos extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JLabel lblTituloVentana;
-    private javax.swing.JLabel lbI_IDVuelo;
+    private javax.swing.JLabel lbIIDVuelo;
     private javax.swing.JLabel lblOrigen;
     private javax.swing.JLabel lblDestino;
     private javax.swing.JLabel lblFecha;
@@ -39,7 +39,7 @@ public class CreadorVuelos extends javax.swing.JInternalFrame {
 
         panelCreacionVuelo = new javax.swing.JPanel();
         lblTituloVentana = new javax.swing.JLabel();
-        lbI_IDVuelo = new javax.swing.JLabel();
+        lbIIDVuelo = new javax.swing.JLabel();
         lblOrigen = new javax.swing.JLabel();
         lblDestino = new javax.swing.JLabel();
         txtIDVuelo = new javax.swing.JTextField();
@@ -65,9 +65,9 @@ public class CreadorVuelos extends javax.swing.JInternalFrame {
         lblTituloVentana.setForeground(new java.awt.Color(255, 255, 255));
         lblTituloVentana.setText("Vuelo");
 
-        lbI_IDVuelo.setFont(new java.awt.Font("Tahoma", 1, 11));
-        lbI_IDVuelo.setForeground(new java.awt.Color(255, 255, 255));
-        lbI_IDVuelo.setText("ID Vuelo");
+        lbIIDVuelo.setFont(new java.awt.Font("Tahoma", 1, 11));
+        lbIIDVuelo.setForeground(new java.awt.Color(255, 255, 255));
+        lbIIDVuelo.setText("ID Vuelo");
 
         lblOrigen.setFont(new java.awt.Font("Tahoma", 1, 11)); 
         lblOrigen.setForeground(new java.awt.Color(255, 255, 255));
@@ -120,93 +120,93 @@ public class CreadorVuelos extends javax.swing.JInternalFrame {
         JComboBox<String> opcionesHoraLlegada = new JComboBox<String>();
         opcionesHoraLlegada.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "15:00\t", "15:30", "16:00", "16:30", "17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00", "20:30", "21:00", "21:30", "22:00", "22:30", "23:00" }));
         
-        javax.swing.GroupLayout gl_panelCreacionVuelo = new javax.swing.GroupLayout(panelCreacionVuelo);
-        gl_panelCreacionVuelo.setHorizontalGroup(
-        	gl_panelCreacionVuelo.createParallelGroup(Alignment.TRAILING)
-        		.addGroup(gl_panelCreacionVuelo.createSequentialGroup()
+        javax.swing.GroupLayout glPanelCreacionVuelo = new javax.swing.GroupLayout(panelCreacionVuelo);
+        glPanelCreacionVuelo.setHorizontalGroup(
+        	glPanelCreacionVuelo.createParallelGroup(Alignment.TRAILING)
+        		.addGroup(glPanelCreacionVuelo.createSequentialGroup()
         			.addGap(34)
-        			.addGroup(gl_panelCreacionVuelo.createParallelGroup(Alignment.TRAILING, false)
-        				.addGroup(gl_panelCreacionVuelo.createSequentialGroup()
-        					.addGroup(gl_panelCreacionVuelo.createParallelGroup(Alignment.LEADING)
+        			.addGroup(glPanelCreacionVuelo.createParallelGroup(Alignment.TRAILING, false)
+        				.addGroup(glPanelCreacionVuelo.createSequentialGroup()
+        					.addGroup(glPanelCreacionVuelo.createParallelGroup(Alignment.LEADING)
         						.addComponent(lblTituloVentana)
-        						.addComponent(lbI_IDVuelo))
+        						.addComponent(lbIIDVuelo))
         					.addGap(28)
         					.addComponent(txtIDVuelo, GroupLayout.PREFERRED_SIZE, 136, GroupLayout.PREFERRED_SIZE))
-        				.addGroup(gl_panelCreacionVuelo.createSequentialGroup()
-        					.addGroup(gl_panelCreacionVuelo.createParallelGroup(Alignment.LEADING)
+        				.addGroup(glPanelCreacionVuelo.createSequentialGroup()
+        					.addGroup(glPanelCreacionVuelo.createParallelGroup(Alignment.LEADING)
         						.addComponent(lblOrigen)
         						.addComponent(lblDestino))
         					.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        					.addGroup(gl_panelCreacionVuelo.createParallelGroup(Alignment.LEADING, false)
+        					.addGroup(glPanelCreacionVuelo.createParallelGroup(Alignment.LEADING, false)
         						.addComponent(txtOrigen, 0, 136, Short.MAX_VALUE)
         						.addComponent(txtDestino, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         			.addGap(103)
-        			.addGroup(gl_panelCreacionVuelo.createParallelGroup(Alignment.LEADING)
-        				.addGroup(gl_panelCreacionVuelo.createSequentialGroup()
-        					.addGroup(gl_panelCreacionVuelo.createParallelGroup(Alignment.LEADING)
+        			.addGroup(glPanelCreacionVuelo.createParallelGroup(Alignment.LEADING)
+        				.addGroup(glPanelCreacionVuelo.createSequentialGroup()
+        					.addGroup(glPanelCreacionVuelo.createParallelGroup(Alignment.LEADING)
         						.addComponent(lblFecha)
         						.addComponent(lblHoraSalida)
         						.addComponent(lblHoraLlegada))
         					.addGap(62)
-        					.addGroup(gl_panelCreacionVuelo.createParallelGroup(Alignment.LEADING)
+        					.addGroup(glPanelCreacionVuelo.createParallelGroup(Alignment.LEADING)
         						.addComponent(opcionesHoraLlegada, GroupLayout.PREFERRED_SIZE, 136, GroupLayout.PREFERRED_SIZE)
         						.addComponent(opcionesHoraSalida, GroupLayout.PREFERRED_SIZE, 136, GroupLayout.PREFERRED_SIZE)
         						.addComponent(txtFecha, GroupLayout.PREFERRED_SIZE, 174, GroupLayout.PREFERRED_SIZE)))
-        				.addGroup(gl_panelCreacionVuelo.createSequentialGroup()
+        				.addGroup(glPanelCreacionVuelo.createSequentialGroup()
         					.addComponent(lblPrecio)
         					.addGap(52)
         					.addComponent(txtPrecio, GroupLayout.PREFERRED_SIZE, 172, GroupLayout.PREFERRED_SIZE)))
         			.addContainerGap(103, Short.MAX_VALUE))
-        		.addGroup(gl_panelCreacionVuelo.createSequentialGroup()
+        		.addGroup(glPanelCreacionVuelo.createSequentialGroup()
         			.addContainerGap(455, Short.MAX_VALUE)
         			.addComponent(btnGuardar, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
         			.addGap(29)
         			.addComponent(btnCancelar, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
         			.addGap(39))
         );
-        gl_panelCreacionVuelo.setVerticalGroup(
-        	gl_panelCreacionVuelo.createParallelGroup(Alignment.LEADING)
-        		.addGroup(gl_panelCreacionVuelo.createSequentialGroup()
+        glPanelCreacionVuelo.setVerticalGroup(
+        	glPanelCreacionVuelo.createParallelGroup(Alignment.LEADING)
+        		.addGroup(glPanelCreacionVuelo.createSequentialGroup()
         			.addGap(36)
-        			.addGroup(gl_panelCreacionVuelo.createParallelGroup(Alignment.TRAILING)
-        				.addGroup(gl_panelCreacionVuelo.createParallelGroup(Alignment.BASELINE)
+        			.addGroup(glPanelCreacionVuelo.createParallelGroup(Alignment.TRAILING)
+        				.addGroup(glPanelCreacionVuelo.createParallelGroup(Alignment.BASELINE)
         					.addComponent(lblTituloVentana)
         					.addComponent(lblFecha))
         				.addComponent(txtFecha, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-        			.addGroup(gl_panelCreacionVuelo.createParallelGroup(Alignment.LEADING)
-        				.addGroup(gl_panelCreacionVuelo.createSequentialGroup()
+        			.addGroup(glPanelCreacionVuelo.createParallelGroup(Alignment.LEADING)
+        				.addGroup(glPanelCreacionVuelo.createSequentialGroup()
         					.addGap(18)
-        					.addGroup(gl_panelCreacionVuelo.createParallelGroup(Alignment.BASELINE)
-        						.addComponent(lbI_IDVuelo)
+        					.addGroup(glPanelCreacionVuelo.createParallelGroup(Alignment.BASELINE)
+        						.addComponent(lbIIDVuelo)
         						.addComponent(txtIDVuelo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
         						.addComponent(lblHoraSalida))
         					.addGap(28)
-        					.addGroup(gl_panelCreacionVuelo.createParallelGroup(Alignment.BASELINE)
+        					.addGroup(glPanelCreacionVuelo.createParallelGroup(Alignment.BASELINE)
         						.addComponent(lblOrigen)
         						.addComponent(lblHoraLlegada)
         						.addComponent(txtOrigen, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
         						.addComponent(opcionesHoraLlegada, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)))
-        				.addGroup(gl_panelCreacionVuelo.createSequentialGroup()
+        				.addGroup(glPanelCreacionVuelo.createSequentialGroup()
         					.addGap(18)
         					.addComponent(opcionesHoraSalida, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)))
-        			.addGroup(gl_panelCreacionVuelo.createParallelGroup(Alignment.LEADING)
-        				.addGroup(gl_panelCreacionVuelo.createSequentialGroup()
+        			.addGroup(glPanelCreacionVuelo.createParallelGroup(Alignment.LEADING)
+        				.addGroup(glPanelCreacionVuelo.createSequentialGroup()
         					.addGap(24)
-        					.addGroup(gl_panelCreacionVuelo.createParallelGroup(Alignment.BASELINE)
+        					.addGroup(glPanelCreacionVuelo.createParallelGroup(Alignment.BASELINE)
         						.addComponent(lblDestino)
         						.addComponent(txtDestino, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-        				.addGroup(gl_panelCreacionVuelo.createSequentialGroup()
+        				.addGroup(glPanelCreacionVuelo.createSequentialGroup()
         					.addGap(34)
-        					.addGroup(gl_panelCreacionVuelo.createParallelGroup(Alignment.BASELINE)
+        					.addGroup(glPanelCreacionVuelo.createParallelGroup(Alignment.BASELINE)
         						.addComponent(lblPrecio)
         						.addComponent(txtPrecio, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
         			.addPreferredGap(ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
-        			.addGroup(gl_panelCreacionVuelo.createParallelGroup(Alignment.BASELINE)
+        			.addGroup(glPanelCreacionVuelo.createParallelGroup(Alignment.BASELINE)
         				.addComponent(btnGuardar, GroupLayout.PREFERRED_SIZE, 46, GroupLayout.PREFERRED_SIZE)
         				.addComponent(btnCancelar, GroupLayout.PREFERRED_SIZE, 46, GroupLayout.PREFERRED_SIZE))
         			.addGap(43))
         );
-        panelCreacionVuelo.setLayout(gl_panelCreacionVuelo);
+        panelCreacionVuelo.setLayout(glPanelCreacionVuelo);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

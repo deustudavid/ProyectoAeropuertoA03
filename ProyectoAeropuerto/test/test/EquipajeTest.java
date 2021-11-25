@@ -1,5 +1,6 @@
 package test;
 
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -19,22 +20,22 @@ public class EquipajeTest {
 
 	@Test
 	public void testGetPeso() {
-		assertTrue(22.0 == e.getPeso());
+		assertEquals(22.0 == e.getPeso(),0.01);
 	}
 
 	@Test
 	public void testGetLargo() {
-		assertTrue(10.4 == e.getLargo());
+		assertEquals(10.4 == e.getLargo(),0.01);
 	}
 
 	@Test
 	public void testGetAltura() {
-		assertTrue(40.3 == e.getAltura());
+		assertEquals(40.3 == e.getAltura(),0.01);
 	}
 
 	@Test
 	public void testGetAnchura() {
-		assertTrue(30.2 == e.getAnchura());
+		assertEquals(30.2 == e.getAnchura(),0.01);
 	}
 
 	@Test
@@ -46,25 +47,25 @@ public class EquipajeTest {
 	@Test
 	public void testSetPeso() {
 		b.setPeso(22.0);
-		assertTrue(22.0 == b.getPeso());
+		assertEquals(22.0 == b.getPeso(),0.01);
 	}
 
 	@Test
 	public void testSetLargo() {
 		b.setLargo(10.4);
-		assertTrue(10.4 == b.getLargo());
+		assertEquals(10.4 == b.getLargo(),0.01);
 	}
 
 	@Test
 	public void testSetAltura() {
 		b.setAltura(40.3);
-		assertTrue(40.3 == b.getAltura());
+		assertEquals(40.3 == b.getAltura(),0.01);
 	}
 
 	@Test
 	public void testSetAnchura() {
 		b.setAnchura(30.2);
-		assertTrue(30.2 == b.getAnchura());
+		assertEquals(30.2 == b.getAnchura(),0.01);
 	}
 
 	@Test

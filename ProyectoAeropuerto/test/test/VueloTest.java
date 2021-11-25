@@ -1,5 +1,6 @@
 package test;
 
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -49,7 +50,7 @@ public class VueloTest {
 
 	@Test
 	public void testGetPrecio() {
-		assertTrue(v.getPrecio() == 20.0);
+		assertEquals(v.getPrecio() == 20.0,0.01);
 	}
 
 	@Test
@@ -91,7 +92,7 @@ public class VueloTest {
 	@Test
 	public void testSetPrecio() {
 		b.setPrecio(20.0);
-		assertTrue(b.getPrecio() == 20.0);
+		assertEquals(b.getPrecio() == 20.0,0.01);
 	}
 
 	@Test

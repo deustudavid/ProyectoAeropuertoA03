@@ -20,12 +20,12 @@ import java.awt.SystemColor;
 
 public class VentanaAzafato extends JFrame {
 
-	private javax.swing.JDesktopPane jDesktopPane1;
+	private javax.swing.JDesktopPane panelEscritorio;
     private static javax.swing.JMenu menuPasajero;
     private static javax.swing.JMenu menuTickets;
     private static javax.swing.JMenu menuVuelo;
     private static javax.swing.JMenu menuUsuario;
-    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuBar menuPrincipal;
     private javax.swing.JMenuItem menuItemAniadirPasajero;
     private javax.swing.JMenuItem menuItemActualizarPasajero;
     private javax.swing.JMenuItem menuItemReservarTicket;
@@ -66,10 +66,10 @@ public class VentanaAzafato extends JFrame {
     	imagenBorrar = new ImageIcon("img/papelera.png");
     	imagenUsuario = new ImageIcon("img/usuario.png");
 
-        jDesktopPane1 = new javax.swing.JDesktopPane();
-        jDesktopPane1.setBackground(new Color(240, 248, 255));
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenuBar1.setBackground(SystemColor.info);
+        panelEscritorio = new javax.swing.JDesktopPane();
+        panelEscritorio.setBackground(new Color(240, 248, 255));
+        menuPrincipal = new javax.swing.JMenuBar();
+        menuPrincipal.setBackground(SystemColor.info);
         menuPasajero = new javax.swing.JMenu();
         menuPasajero.setIcon(imagenPasajero);
         menuPasajero.setMnemonic('P');
@@ -81,7 +81,7 @@ public class VentanaAzafato extends JFrame {
         	public void actionPerformed(ActionEvent e) {
         		
                CreadorPasajeros cus = new CreadorPasajeros();
-        		jDesktopPane1.add(cus);
+        		panelEscritorio.add(cus);
         		cus.setVisible(true);   
         		bloquearBotones();
         	}
@@ -94,7 +94,7 @@ public class VentanaAzafato extends JFrame {
         menuItemReservarTicket.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		ReservarTicket r=new ReservarTicket();
-            	jDesktopPane1.add(r);
+            	panelEscritorio.add(r);
             	bloquearBotones();
         	}
         });
@@ -108,14 +108,14 @@ public class VentanaAzafato extends JFrame {
         setPreferredSize(new java.awt.Dimension(1366, 768));
         setVisible(true);
 
-        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
-        jDesktopPane1.setLayout(jDesktopPane1Layout);
-        jDesktopPane1Layout.setHorizontalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout gl_panelEscritorio = new javax.swing.GroupLayout(panelEscritorio);
+        panelEscritorio.setLayout(gl_panelEscritorio);
+        gl_panelEscritorio.setHorizontalGroup(
+            gl_panelEscritorio.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 400, Short.MAX_VALUE)
         );
-        jDesktopPane1Layout.setVerticalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        gl_panelEscritorio.setVerticalGroup(
+            gl_panelEscritorio.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 279, Short.MAX_VALUE)
         );
 
@@ -131,7 +131,7 @@ public class VentanaAzafato extends JFrame {
         menuItemActualizarPasajero.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
             	BuscarPasajero b= new BuscarPasajero();
-            	jDesktopPane1.add(b);
+            	panelEscritorio.add(b);
                 b.setVisible(true);
                 bloquearBotones();
               
@@ -139,7 +139,7 @@ public class VentanaAzafato extends JFrame {
         });
         menuPasajero.add(menuItemActualizarPasajero);
 
-        jMenuBar1.add(menuPasajero);
+        menuPrincipal.add(menuPasajero);
         
         menuItemGestionarEquipajes = new JMenuItem();
         menuItemGestionarEquipajes.setIcon(imagenMaleta);
@@ -159,7 +159,7 @@ public class VentanaAzafato extends JFrame {
         menuItemVerTickets.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
             	VerTickets v=new VerTickets();
-            	jDesktopPane1.add(v);
+            	panelEscritorio.add(v);
                 v.setVisible(true);
             	
             	bloquearBotones();
@@ -168,7 +168,7 @@ public class VentanaAzafato extends JFrame {
         });
         menuTickets.add(menuItemVerTickets);
 
-        jMenuBar1.add(menuTickets);
+        menuPrincipal.add(menuTickets);
         
         menuItemEliminarReserva = new JMenuItem();
         menuItemEliminarReserva.setIcon(imagenBorrar);
@@ -178,7 +178,7 @@ public class VentanaAzafato extends JFrame {
         menuVuelo.setText("Vuelo");
         menuVuelo.setIcon(imagenAvion);
 
-        jMenuBar1.add(menuVuelo);
+        menuPrincipal.add(menuVuelo);
         
       
         
@@ -194,7 +194,7 @@ public class VentanaAzafato extends JFrame {
         menuUsuario.setText("Usuario");
         menuUsuario.setIcon(imagenUsuario);
 
-        jMenuBar1.add(menuUsuario);
+        menuPrincipal.add(menuUsuario);
         
 
         
@@ -211,17 +211,17 @@ public class VentanaAzafato extends JFrame {
         menuItemCerrarSesion.setText("Cerrar sesion");
         menuUsuario.add(menuItemCerrarSesion);
 
-        setJMenuBar(jMenuBar1);
+        setJMenuBar(menuPrincipal);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1)
+            .addComponent(panelEscritorio)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1)
+            .addComponent(panelEscritorio)
         );
 
         pack();
