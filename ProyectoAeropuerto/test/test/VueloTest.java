@@ -50,7 +50,7 @@ public class VueloTest {
 
 	@Test
 	public void testGetPrecio() {
-		assertEquals(v.getPrecio() == 20.0,0.01);
+		assertEquals(v.getPrecio() == 20.0,true);
 	}
 
 	@Test
@@ -92,7 +92,7 @@ public class VueloTest {
 	@Test
 	public void testSetPrecio() {
 		b.setPrecio(20.0);
-		assertEquals(b.getPrecio() == 20.0,0.01);
+		assertEquals(b.getPrecio() == 20.0, true);
 	}
 
 	@Test

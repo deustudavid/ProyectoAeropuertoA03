@@ -20,22 +20,22 @@ public class EquipajeTest {
 
 	@Test
 	public void testGetPeso() {
-		assertEquals(22.0 == e.getPeso(),0.01);
+		assertEquals(22.0 == e.getPeso(),true);
 	}
 
 	@Test
 	public void testGetLargo() {
-		assertEquals(10.4 == e.getLargo(),0.01);
+		assertEquals(10.4 == e.getLargo(),true);
 	}
 
 	@Test
 	public void testGetAltura() {
-		assertEquals(40.3 == e.getAltura(),0.01);
+		assertEquals(40.3 == e.getAltura(),true);
 	}
 
 	@Test
 	public void testGetAnchura() {
-		assertEquals(30.2 == e.getAnchura(),0.01);
+		assertEquals(30.2 == e.getAnchura(),true);
 	}
 
 	@Test
@@ -47,25 +47,25 @@ public class EquipajeTest {
 	@Test
 	public void testSetPeso() {
 		b.setPeso(22.0);
-		assertEquals(22.0 == b.getPeso(),0.01);
+		assertEquals(22.0 == b.getPeso(),true);
 	}
 
 	@Test
 	public void testSetLargo() {
 		b.setLargo(10.4);
-		assertEquals(10.4 == b.getLargo(),0.01);
+		assertEquals(10.4 == b.getLargo(),true);
 	}
 
 	@Test
 	public void testSetAltura() {
 		b.setAltura(40.3);
-		assertEquals(40.3 == b.getAltura(),0.01);
+		assertEquals(40.3 == b.getAltura(),true);
 	}
 
 	@Test
 	public void testSetAnchura() {
 		b.setAnchura(30.2);
-		assertEquals(30.2 == b.getAnchura(),0.01);
+		assertEquals(30.2 == b.getAnchura(),true);
 	}
 
 	@Test

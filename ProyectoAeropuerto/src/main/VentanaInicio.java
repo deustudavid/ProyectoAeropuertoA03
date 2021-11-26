@@ -53,8 +53,6 @@ public class VentanaInicio extends JFrame {
 	private JProgressBar progressBarRegistarAdmin;
 
 	private JButton btnIniciarSesionAdministrador;
-	private JButton btnRegistrarAdministrador;
-	private JButton btnRegistrarAzafato;
 	private JButton btnIniciarSesionAzafato;
 	private JButton btnCerrar;
 	
@@ -139,7 +137,7 @@ public class VentanaInicio extends JFrame {
 		setTitle("VENTANA INICIO");
 		ventanaActual = this;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 522, 300);
+		setBounds(100, 100, 522, 261);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.BLACK);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -151,40 +149,30 @@ public class VentanaInicio extends JFrame {
 		panelCentral.setLayout(null);
 
 		panelOpciones = new JPanel();
-		panelOpciones.setBounds(10, 104, 478, 138);
+		panelOpciones.setBounds(10, 104, 478, 111);
 		panelOpciones.setLayout(null);
 		panelOpciones.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Opciones: ", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(255, 255, 204)));
 		panelOpciones.setBackground(new Color(0, 0, 128));
 		panelCentral.add(panelOpciones);
 
-		btnRegistrarAdministrador = new JButton("REGISTRAR ADMINISTRADOR");
-		btnRegistrarAdministrador.setBackground(new Color(255, 218, 185));
-		btnRegistrarAdministrador.setBounds(10, 38, 213, 23);
-		panelOpciones.add(btnRegistrarAdministrador);
-
 		btnIniciarSesionAdministrador = new JButton("INICIAR SESION ADMINISTRADOR");
 		btnIniciarSesionAdministrador.setForeground(new Color(255, 250, 205));
 		btnIniciarSesionAdministrador.setBackground(Color.BLACK);
-		btnIniciarSesionAdministrador.setBounds(233, 72, 235, 23);
+		btnIniciarSesionAdministrador.setBounds(233, 36, 235, 23);
 		panelOpciones.add(btnIniciarSesionAdministrador);
 
 		btnIniciarSesionAzafato = new JButton("INICIAR SESION AZAFATO");
 		btnIniciarSesionAzafato.setForeground(new Color(255, 250, 205));
 		btnIniciarSesionAzafato.setBackground(Color.BLACK);
-		btnIniciarSesionAzafato.setBounds(10, 72, 213, 23);
+		btnIniciarSesionAzafato.setBounds(10, 36, 213, 23);
 		panelOpciones.add(btnIniciarSesionAzafato);
 
 		btnCerrar = new JButton("Cerrar");
 		btnCerrar.setBackground(new Color(0, 153, 0));
-		btnCerrar.setBounds(155, 104, 119, 23);
+		btnCerrar.setBounds(160, 70, 119, 23);
 		panelOpciones.add(btnCerrar);
 
-		btnRegistrarAzafato = new JButton("REGISTRAR AZAFATO");
-		btnRegistrarAzafato.setBackground(new Color(255, 218, 185));
-		btnRegistrarAzafato.setBounds(233, 38, 235, 23);
-		panelOpciones.add(btnRegistrarAzafato);
-
-		lblContrasenia = new JLabel(" Introduce la contrase\u00F1a:");
+		lblContrasenia = new JLabel(" Introduce la contrasenia:");
 		lblContrasenia.setBounds(26, 68, 163, 14);
 		panelCentral.add(lblContrasenia);
 		lblContrasenia.setBackground(Color.DARK_GRAY);
@@ -329,121 +317,6 @@ public class VentanaInicio extends JFrame {
 				else {
 					 JOptionPane.showMessageDialog(null, "Hay campos vacios", "Error", JOptionPane.ERROR_MESSAGE);
 				}
-
-			}
-
-		});
-
-		btnRegistrarAdministrador.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-
-				if (!textUsuario.getText().equals("") && !textContrasenia.getText().equals("")) {
-					
-					String n= textUsuario.getText();
-					String c= textContrasenia.getText();
-					Connection con = null;
-					try {
-						con = BD.initBD("Usuario.db");
-						VentanaInicio.logger.log(Level.INFO, "Conexion con la base de datos abierta");
-					} catch (DBException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-					
-					int resul = 0;
-					try {
-						resul = BD.obtenerAdministrador(con, n, c);
-					} catch (DBException e2) {
-						// TODO Auto-generated catch block
-						e2.printStackTrace();
-					}
-					if (resul != 0) {
-						JOptionPane.showMessageDialog(null, "Ese nombre de usuario ya existe", "Error", JOptionPane.ERROR_MESSAGE);
-					} else {
-						
-						try {
-							BD.insertarAdministrador(con, n, c);
-						} catch (DBException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
-						
-						JOptionPane.showMessageDialog(null, "Te has registrado correctamente" , "Correcto", JOptionPane.INFORMATION_MESSAGE );
-					}
-					try {
-						BD.closeBD(con);
-						VentanaInicio.logger.log(Level.INFO, "Conexion con la base de datos cerrada");
-					} catch (DBException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-					textUsuario.setText("");
-					textContrasenia.setText("");
-					
-				}
-				else {
-					 JOptionPane.showMessageDialog(null, "Hay campos vacios", "Error", JOptionPane.ERROR_MESSAGE);
-				}
-
-
-			}
-
-		});
-
-		btnRegistrarAzafato.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				
-				if (!textUsuario.getText().equals("") && !textContrasenia.getText().equals("")) {
-					
-					String n= textUsuario.getText();
-					String c= textContrasenia.getText();
-					Connection con = null;
-					try {
-						con = BD.initBD("Usuario.db");
-						VentanaInicio.logger.log(Level.INFO, "Conexion con la base de datos abierta");
-					} catch (DBException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-					
-					int resul = 0;
-					try {
-						resul = BD.obtenerAzafato(con, n, c);
-					} catch (DBException e2) {
-						// TODO Auto-generated catch block
-						e2.printStackTrace();
-					}
-					if (resul != 0) {
-						JOptionPane.showMessageDialog(null, "Ese nombre de usuario ya existe", "Error", JOptionPane.ERROR_MESSAGE);
-					} else {
-						
-						try {
-							BD.insertarAzafato(con, n, c);
-						} catch (DBException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
-						
-						JOptionPane.showMessageDialog(null, "Te has registrado correctamente" , "Correcto", JOptionPane.INFORMATION_MESSAGE );
-					}
-					try {
-						BD.closeBD(con);
-						VentanaInicio.logger.log(Level.INFO, "Conexion con la base de datos cerrada");
-					} catch (DBException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-					textUsuario.setText("");
-					textContrasenia.setText("");
-					
-				}
-				else {
-					 JOptionPane.showMessageDialog(null, "Hay campos vacios", "Error", JOptionPane.ERROR_MESSAGE);
-				}
-
-			
 
 			}
 
