@@ -1,42 +1,18 @@
 package ventanas;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.File;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.sql.Connection;
-import java.sql.Date;
-import java.util.logging.FileHandler;
+import java.awt.*;
+import java.awt.event.*;
+import java.sql.*;
 import java.util.logging.Level;
-import java.util.logging.Logger;
-
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.border.EtchedBorder;
-import javax.swing.border.TitledBorder;
+import javax.swing.*;
+import javax.swing.border.*;
 
 import bd.BD;
 import bd.DBException;
 import main.VentanaInicio;
-import ventanas.VentanaAdministrador;
-import ventanas.VentanaAzafato;
 
-import java.awt.Color;
-import java.awt.HeadlessException;
 
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JTextField;
-import javax.swing.JPasswordField;
-import javax.swing.JProgressBar;
-import javax.swing.SwingConstants;
-
-public class VentanaPermisos extends javax.swing.JInternalFrame {
+public class VentanaPermisos extends JInternalFrame {
 
 	private JPanel contentPane;
 	private JPanel panelCentral;
@@ -44,24 +20,21 @@ public class VentanaPermisos extends javax.swing.JInternalFrame {
 	private JLabel lblUsuario;
 	private JLabel lblContrasenia;
 	private JLabel labelCerrar;
-	
+
 	private JPasswordField textContrasenia;
 	private JTextField textUsuario;
-
-	
 
 	private JProgressBar progressBarCerrar;
 	private JProgressBar progressBarRegistarAdmin;
 	private JButton btnRegistrarAdministrador;
 	private JButton btnRegistrarAzafato;
-	
-	
+
 	public VentanaPermisos() {
-		
-		Connection con =null;
+
+		Connection con = null;
 		try {
 			con = BD.initBD("Usuario.db");
-			
+
 		} catch (DBException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -76,10 +49,8 @@ public class VentanaPermisos extends javax.swing.JInternalFrame {
 			BD.closeBD(con);
 		} catch (DBException e1) {
 			// TODO Auto-generated catch block
-			e1.printStackTrace();	
+			e1.printStackTrace();
 		}
-		
-		
 
 		setTitle("VENTANA INICIO");
 
@@ -99,7 +70,9 @@ public class VentanaPermisos extends javax.swing.JInternalFrame {
 		panelOpciones = new JPanel();
 		panelOpciones.setBounds(10, 98, 478, 104);
 		panelOpciones.setLayout(null);
-		panelOpciones.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Opciones: ", TitledBorder.CENTER, TitledBorder.TOP, null, Color.RED));
+		panelOpciones.setBorder(new TitledBorder(
+				new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)),
+				"Opciones: ", TitledBorder.CENTER, TitledBorder.TOP, null, Color.RED));
 		panelOpciones.setBackground(Color.WHITE);
 		panelCentral.add(panelOpciones);
 
@@ -112,26 +85,28 @@ public class VentanaPermisos extends javax.swing.JInternalFrame {
 		btnRegistrarAzafato.setBackground(new Color(255, 218, 185));
 		btnRegistrarAzafato.setBounds(250, 30, 218, 23);
 		panelOpciones.add(btnRegistrarAzafato);
-		
+
 		JButton btnCancelar = new JButton("Cerrar");
-		
-		
-       btnCancelar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-            	dispose();
-            	boolean resultadoAdministradorActivo=ventanas.VentanaAdministrador.VentanaAdminEstaActiva();
-            	boolean resultadoAzafatoActivo=ventanas.VentanaAzafato.VentanaAzafatoEstaActiva();
-            	
-            	if (resultadoAdministradorActivo==true && resultadoAzafatoActivo==false) {
-            		VentanaAdministrador.desbloquearBotones();
-					
-				}else {
-	            	VentanaAzafato.desbloquearBotones();
+
+		btnCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				if (VentanaAdministrador.VentanaAdminEstaActiva()) {
+					VentanaAdministrador.tablaVuelos.setVisible(true);
+				}
+				dispose();
+				boolean resultadoAdministradorActivo = ventanas.VentanaAdministrador.VentanaAdminEstaActiva();
+				boolean resultadoAzafatoActivo = ventanas.VentanaAzafato.VentanaAzafatoEstaActiva();
+
+				if (resultadoAdministradorActivo == true && resultadoAzafatoActivo == false) {
+					VentanaAdministrador.desbloquearBotones();
+
+				} else {
+					VentanaAzafato.desbloquearBotones();
 
 				}
-               
-            }
-        });
+
+			}
+		});
 		btnCancelar.setBackground(new Color(0, 153, 0));
 		btnCancelar.setBounds(178, 70, 119, 23);
 		panelOpciones.add(btnCancelar);
@@ -173,9 +148,9 @@ public class VentanaPermisos extends javax.swing.JInternalFrame {
 			public void actionPerformed(ActionEvent e) {
 
 				if (!textUsuario.getText().equals("") && !textContrasenia.getText().equals("")) {
-					
-					String n= textUsuario.getText();
-					String c= textContrasenia.getText();
+
+					String n = textUsuario.getText();
+					String c = textContrasenia.getText();
 					Connection con = null;
 					try {
 						con = BD.initBD("Usuario.db");
@@ -184,7 +159,7 @@ public class VentanaPermisos extends javax.swing.JInternalFrame {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
-					
+
 					int resul = 0;
 					try {
 						resul = BD.obtenerAdministrador(con, n, c);
@@ -193,9 +168,10 @@ public class VentanaPermisos extends javax.swing.JInternalFrame {
 						e2.printStackTrace();
 					}
 					if (resul != 0) {
-						JOptionPane.showMessageDialog(null, "Ese nombre de usuario ya existe", "Error", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Ese nombre de usuario ya existe", "Error",
+								JOptionPane.ERROR_MESSAGE);
 					} else {
-						
+
 						try {
 							BD.insertarAdministrador(con, n, c);
 							BD.insertarAzafato(con, n, c);
@@ -203,8 +179,9 @@ public class VentanaPermisos extends javax.swing.JInternalFrame {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
-						
-						JOptionPane.showMessageDialog(null, "Te has registrado correctamente" , "Correcto", JOptionPane.INFORMATION_MESSAGE );
+
+						JOptionPane.showMessageDialog(null, "Te has registrado correctamente", "Correcto",
+								JOptionPane.INFORMATION_MESSAGE);
 					}
 					try {
 						BD.closeBD(con);
@@ -215,12 +192,10 @@ public class VentanaPermisos extends javax.swing.JInternalFrame {
 					}
 					textUsuario.setText("");
 					textContrasenia.setText("");
-					
-				}
-				else {
-					 JOptionPane.showMessageDialog(null, "Hay campos vacios", "Error", JOptionPane.ERROR_MESSAGE);
-				}
 
+				} else {
+					JOptionPane.showMessageDialog(null, "Hay campos vacios", "Error", JOptionPane.ERROR_MESSAGE);
+				}
 
 			}
 
@@ -229,11 +204,11 @@ public class VentanaPermisos extends javax.swing.JInternalFrame {
 		btnRegistrarAzafato.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+
 				if (!textUsuario.getText().equals("") && !textContrasenia.getText().equals("")) {
-					
-					String n= textUsuario.getText();
-					String c= textContrasenia.getText();
+
+					String n = textUsuario.getText();
+					String c = textContrasenia.getText();
 					Connection con = null;
 					try {
 						con = BD.initBD("Usuario.db");
@@ -242,7 +217,7 @@ public class VentanaPermisos extends javax.swing.JInternalFrame {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
-					
+
 					int resul = 0;
 					try {
 						resul = BD.obtenerAzafato(con, n, c);
@@ -251,17 +226,19 @@ public class VentanaPermisos extends javax.swing.JInternalFrame {
 						e2.printStackTrace();
 					}
 					if (resul != 0) {
-						JOptionPane.showMessageDialog(null, "Ese nombre de usuario ya existe", "Error", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Ese nombre de usuario ya existe", "Error",
+								JOptionPane.ERROR_MESSAGE);
 					} else {
-						
+
 						try {
 							BD.insertarAzafato(con, n, c);
 						} catch (DBException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
-						
-						JOptionPane.showMessageDialog(null, "Te has registrado correctamente" , "Correcto", JOptionPane.INFORMATION_MESSAGE );
+
+						JOptionPane.showMessageDialog(null, "Te has registrado correctamente", "Correcto",
+								JOptionPane.INFORMATION_MESSAGE);
 					}
 					try {
 						BD.closeBD(con);
@@ -272,19 +249,14 @@ public class VentanaPermisos extends javax.swing.JInternalFrame {
 					}
 					textUsuario.setText("");
 					textContrasenia.setText("");
-					
-				}
-				else {
-					 JOptionPane.showMessageDialog(null, "Hay campos vacios", "Error", JOptionPane.ERROR_MESSAGE);
-				}
 
-			
+				} else {
+					JOptionPane.showMessageDialog(null, "Hay campos vacios", "Error", JOptionPane.ERROR_MESSAGE);
+				}
 
 			}
 
 		});
-	
-
 
 		setVisible(true);
 	}

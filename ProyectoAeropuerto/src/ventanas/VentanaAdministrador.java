@@ -1,42 +1,33 @@
 package ventanas;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.AbstractAction;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-import java.awt.FlowLayout;
-import javax.swing.JButton;
-import javax.swing.JFileChooser;
-import javax.swing.JFrame;
-import javax.swing.JMenuItem;
-import javax.swing.JPanel;
+import javax.swing.*;
+import javax.swing.GroupLayout.Alignment;
 
 import main.VentanaInicio;
 import javax.swing.KeyStroke;
-import javax.swing.border.EmptyBorder;
-import javax.swing.filechooser.FileNameExtensionFilter;
-import javax.swing.plaf.basic.BasicOptionPaneUI.ButtonActionListener;
+import javax.swing.table.DefaultTableModel;
 
 import java.awt.event.KeyEvent;
-import java.io.File;
 import java.awt.event.InputEvent;
 
-public class VentanaAdministrador extends javax.swing.JFrame {
 
-	private javax.swing.JDesktopPane panelEscritorio;
-	private static javax.swing.JMenu menuPasajero;
-	private static javax.swing.JMenu menuTickets;
-	private static javax.swing.JMenu menuVuelo;
-	private static javax.swing.JMenu menuUsuario;
-	private javax.swing.JMenuBar menuPrincipal;
-	private javax.swing.JMenuItem menuItemAniadirPasajero;
-	private javax.swing.JMenuItem menuItemActualizarPasajero;
-	private javax.swing.JMenuItem menuItemReservarTicket;
-	private javax.swing.JMenuItem menuItemVerTickets;
+public class VentanaAdministrador extends JFrame {
+
+	private JDesktopPane panelEscritorio;
+	private static JMenu menuPasajero;
+	private static JMenu menuTickets;
+	private static JMenu menuVuelo;
+	private static JMenu menuUsuario;
+	private JMenuBar menuPrincipal;
+	private JMenuItem menuItemAniadirPasajero;
+	private JMenuItem menuItemActualizarPasajero;
+	private JMenuItem menuItemReservarTicket;
+	private JMenuItem menuItemVerTickets;
 	private JMenuItem menuItemAnadirVuelo;
 	private JMenuItem menuItemCerrarSesion;
 	private JMenuItem menuItemEliminarReserva;
@@ -59,8 +50,9 @@ public class VentanaAdministrador extends javax.swing.JFrame {
 	private ImageIcon imagenListar;
 	private ImageIcon imagenBorrar;
 	private ImageIcon imagenUsuario;
-
+	
 	public static JFrame ventanaActual;
+	static JTable tablaVuelos;
 
 	public VentanaAdministrador() {
 
@@ -80,57 +72,73 @@ public class VentanaAdministrador extends javax.swing.JFrame {
 		imagenUsuario = new ImageIcon("img/usuario.png");
 		imagenLlave = new ImageIcon("img/llave.png");
 
-		panelEscritorio = new javax.swing.JDesktopPane();
+		panelEscritorio = new JDesktopPane();
 		panelEscritorio.setBackground(new Color(0, 255, 255));
-		menuPrincipal = new javax.swing.JMenuBar();
+		menuPrincipal = new JMenuBar();
 		menuPrincipal.setBackground(Color.LIGHT_GRAY);
-		menuPasajero = new javax.swing.JMenu();
+		menuPasajero = new JMenu();
 		menuPasajero.setIcon(imagenPasajero);
 		menuPasajero.setMnemonic('P');
 
-		menuItemAniadirPasajero = new javax.swing.JMenuItem();
+		menuItemAniadirPasajero = new JMenuItem();
 		menuItemAniadirPasajero.setIcon(imagenAniadir);
 		menuItemAniadirPasajero.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, InputEvent.CTRL_MASK));
 		menuItemAniadirPasajero.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				tablaVuelos.setVisible(false);
 				CreadorPasajeros cus = new CreadorPasajeros();
 				panelEscritorio.add(cus);
 				cus.setVisible(true);
 				bloquearBotones();
 			}
 		});
-		menuItemActualizarPasajero = new javax.swing.JMenuItem();
+		menuItemActualizarPasajero = new JMenuItem();
 		menuItemActualizarPasajero.setIcon(imagenActualizar);
 
 		menuItemActualizarPasajero.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, InputEvent.CTRL_MASK));
-		menuTickets = new javax.swing.JMenu();
+		menuTickets = new JMenu();
 		menuTickets.setIcon(imagenTicket);
 		menuTickets.setMnemonic('T');
-		menuItemReservarTicket = new javax.swing.JMenuItem();
+		menuItemReservarTicket = new JMenuItem();
 		menuItemReservarTicket.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				tablaVuelos.setVisible(false);
 				ReservarTicket r = new ReservarTicket();
 				panelEscritorio.add(r);
 				bloquearBotones();
 			}
 		});
-		menuItemVerTickets = new javax.swing.JMenuItem();
-		menuVuelo = new javax.swing.JMenu();
+		menuItemVerTickets = new JMenuItem();
+		menuVuelo = new JMenu();
 		menuVuelo.setMnemonic('V');
-		menuUsuario = new javax.swing.JMenu();
+		menuUsuario = new JMenu();
 		menuUsuario.setMnemonic('U');// alt+u para abrir menu usuario
 
-		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-		setPreferredSize(new java.awt.Dimension(1366, 768));
+		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		setPreferredSize(new Dimension(1366, 768));
 		setVisible(true);
+		
+		tablaVuelos = new JTable();
 
-		javax.swing.GroupLayout gl_panelEscritorio = new javax.swing.GroupLayout(panelEscritorio);
+		GroupLayout gl_panelEscritorio = new GroupLayout(panelEscritorio);
+		gl_panelEscritorio.setHorizontalGroup(
+			gl_panelEscritorio.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panelEscritorio.createSequentialGroup()
+					.addGap(59)
+					.addComponent(tablaVuelos, GroupLayout.PREFERRED_SIZE, 709, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(582, Short.MAX_VALUE))
+		);
+		gl_panelEscritorio.setVerticalGroup(
+			gl_panelEscritorio.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panelEscritorio.createSequentialGroup()
+					.addGap(78)
+					.addComponent(tablaVuelos, GroupLayout.PREFERRED_SIZE, 383, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(246, Short.MAX_VALUE))
+		);
+		
+		
+		
 		panelEscritorio.setLayout(gl_panelEscritorio);
-		gl_panelEscritorio.setHorizontalGroup(gl_panelEscritorio
-				.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGap(0, 400, Short.MAX_VALUE));
-		gl_panelEscritorio.setVerticalGroup(gl_panelEscritorio
-				.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGap(0, 279, Short.MAX_VALUE));
 
 		menuPasajero.setText("Pasajero");
 
@@ -139,8 +147,9 @@ public class VentanaAdministrador extends javax.swing.JFrame {
 		menuPasajero.add(menuItemAniadirPasajero);
 
 		menuItemActualizarPasajero.setText("Actualizar pasajero");
-		menuItemActualizarPasajero.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
+		menuItemActualizarPasajero.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				tablaVuelos.setVisible(false);
 				BuscarPasajero b = new BuscarPasajero();
 				panelEscritorio.add(b);
 				b.setVisible(true);
@@ -167,8 +176,9 @@ public class VentanaAdministrador extends javax.swing.JFrame {
 		menuItemVerTickets.setText("Ver tickets");
 		menuItemVerTickets.setIcon(imagenListar);
 
-		menuItemVerTickets.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
+		menuItemVerTickets.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				tablaVuelos.setVisible(false);
 				VerTickets v = new VerTickets();
 				panelEscritorio.add(v);
 				v.setVisible(true);
@@ -197,8 +207,9 @@ public class VentanaAdministrador extends javax.swing.JFrame {
 		menuItemAnadirVuelo.setIcon(imagenAniadir);
 		menuItemAnadirVuelo.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, InputEvent.CTRL_MASK));
 		menuItemAnadirVuelo.setText("Anadir vuelo");
-		menuItemAnadirVuelo.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
+		menuItemAnadirVuelo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				tablaVuelos.setVisible(false);
 				CreadorVuelos f = new CreadorVuelos();
 				panelEscritorio.add(f);
 				f.setVisible(true);
@@ -245,8 +256,9 @@ public class VentanaAdministrador extends javax.swing.JFrame {
 		menuItemDarPermisos.setText("Dar permisos");
 		menuItemDarPermisos.setIcon(imagenLlave);
 		menuUsuario.add(menuItemDarPermisos);
-		menuItemDarPermisos.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
+		menuItemDarPermisos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				tablaVuelos.setVisible(false);
 				VentanaPermisos v = new VentanaPermisos();
 				panelEscritorio.add(v);
 				v.setVisible(true);
@@ -258,12 +270,12 @@ public class VentanaAdministrador extends javax.swing.JFrame {
 
 		setJMenuBar(menuPrincipal);
 
-		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+		GroupLayout layout = new GroupLayout(getContentPane());
 		getContentPane().setLayout(layout);
 		layout.setHorizontalGroup(
-				layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addComponent(panelEscritorio));
+				layout.createParallelGroup(GroupLayout.Alignment.LEADING).addComponent(panelEscritorio));
 		layout.setVerticalGroup(
-				layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addComponent(panelEscritorio));
+				layout.createParallelGroup(GroupLayout.Alignment.LEADING).addComponent(panelEscritorio));
 
 		pack();
 	}
@@ -304,5 +316,4 @@ public class VentanaAdministrador extends javax.swing.JFrame {
 		return false;
 
 	}
-
 }

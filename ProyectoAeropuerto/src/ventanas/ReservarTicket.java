@@ -1,424 +1,378 @@
 package ventanas;
 
-
-
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.GroupLayout;
+import javax.swing.*;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import javax.swing.border.TitledBorder;
+import javax.swing.table.DefaultTableModel;
 
+import com.toedter.calendar.JDateChooser;
 
-public class ReservarTicket extends javax.swing.JInternalFrame {
-	
+import java.awt.*;
+import java.awt.event.*;
 
-    
-    private javax.swing.JLabel lblIdVuelo;
-    private javax.swing.JButton btnReservar;
-    private javax.swing.JButton btnCancelar;
-    private javax.swing.JButton btnBuscadorDestinos;
-    private javax.swing.JButton btnBuscarPasajero;
-    private javax.swing.JLabel lblOrigen;
-    private javax.swing.JLabel lblIDVuelo;
-    private javax.swing.JLabel lblHoraSalida;
-    private javax.swing.JLabel lblClase;
-    private javax.swing.JLabel lblPrecio;
-    private javax.swing.JLabel lblAsientos;
-    private javax.swing.JLabel lblDestino;
-    private javax.swing.JLabel lblTicketNum;
-    private javax.swing.JLabel lblDni;
-    private javax.swing.JLabel lblNombre;
-    private javax.swing.JLabel lblApellido;
-    private javax.swing.JLabel lblTelefono;
-    private javax.swing.JPanel panelBusquedaVuelo;
-    private javax.swing.JPanel panelVuelo;
-    private javax.swing.JPanel panelBusquedaPasajero;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tablaVuelos;
-    private javax.swing.JComboBox<String> txtClaseVuelo;
-    private javax.swing.JTextField txtDni;
-    private com.toedter.calendar.JDateChooser txtdate;
-    private javax.swing.JComboBox<String> txtDestino;
-    private javax.swing.JLabel txtHoraSalida;
-    private javax.swing.JLabel txtNombre;
-    private javax.swing.JLabel txtApellido;
-    private javax.swing.JLabel txtTelefono;
-    private javax.swing.JTextField txtPrecio;
-    private javax.swing.JSpinner txtAsientos;
-    private javax.swing.JComboBox<String> txtOrigen;
-    private javax.swing.JLabel txtTicketNum;
-    private javax.swing.JLabel txtPrecioTotal;
-   
+public class ReservarTicket extends JInternalFrame {
 
-    public ReservarTicket() {
+	private JLabel lblIdVuelo;
+	private JButton btnReservar;
+	private JButton btnCancelar;
+	private JButton btnBuscadorDestinos;
+	private JButton btnBuscarPasajero;
+	private JLabel lblOrigen;
+	private JLabel lblIDVuelo;
+	private JLabel lblHoraSalida;
+	private JLabel lblClase;
+	private JLabel lblPrecio;
+	private JLabel lblAsientos;
+	private JLabel lblDestino;
+	private JLabel lblTicketNum;
+	private JLabel lblDni;
+	private JLabel lblNombre;
+	private JLabel lblApellido;
+	private JLabel lblTelefono;
+	private JPanel panelBusquedaVuelo;
+	private JPanel panelVuelo;
+	private JPanel panelBusquedaPasajero;
+	private JScrollPane jScrollPane1;
+	private JTable tablaVuelos;
+	private JComboBox<String> txtClaseVuelo;
+	private JTextField txtDni;
+	private JDateChooser txtdate;
+	private JComboBox<String> txtDestino;
+	private JLabel txtHoraSalida;
+	private JLabel txtNombre;
+	private JLabel txtApellido;
+	private JLabel txtTelefono;
+	private JTextField txtPrecio;
+	private JSpinner txtAsientos;
+	private JComboBox<String> txtOrigen;
+	private JLabel txtTicketNum;
+	private JLabel txtPrecioTotal;
 
-        panelBusquedaVuelo = new javax.swing.JPanel();
-        txtOrigen = new javax.swing.JComboBox<>();
-        txtDestino = new javax.swing.JComboBox<>();
-        lblOrigen = new javax.swing.JLabel();
-        lblDestino = new javax.swing.JLabel();
-        btnBuscadorDestinos = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tablaVuelos = new javax.swing.JTable();
-        lblTicketNum = new javax.swing.JLabel();
-        txtTicketNum = new javax.swing.JLabel();
-        panelBusquedaPasajero = new javax.swing.JPanel();
-        lblDni = new javax.swing.JLabel();
-        lblNombre = new javax.swing.JLabel();
-        lblApellido = new javax.swing.JLabel();
-        txtDni = new javax.swing.JTextField();
-        lblTelefono = new javax.swing.JLabel();
-        txtNombre = new javax.swing.JLabel();
-        txtApellido = new javax.swing.JLabel();
-        txtTelefono = new javax.swing.JLabel();
-        btnBuscarPasajero = new javax.swing.JButton();
-        panelVuelo = new javax.swing.JPanel();
-        lblIDVuelo = new javax.swing.JLabel();
-        lblHoraSalida = new javax.swing.JLabel();
-        lblClase = new javax.swing.JLabel();
-        lblPrecio = new javax.swing.JLabel();
-        lblAsientos = new javax.swing.JLabel();
-        lblIdVuelo = new javax.swing.JLabel();
-        txtHoraSalida = new javax.swing.JLabel();
-        txtClaseVuelo = new javax.swing.JComboBox<>();
-        txtPrecio = new javax.swing.JTextField();
-        txtAsientos = new javax.swing.JSpinner();
-        txtdate = new com.toedter.calendar.JDateChooser();
-        btnReservar = new javax.swing.JButton();
-        btnCancelar = new javax.swing.JButton();
-        
-        btnCancelar.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		dispose();
-            	boolean resultadoAdministradorActivo=ventanas.VentanaAdministrador.VentanaAdminEstaActiva();
-            	boolean resultadoAzafatoActivo=ventanas.VentanaAzafato.VentanaAzafatoEstaActiva();
-            	
-            	if (resultadoAdministradorActivo==true && resultadoAzafatoActivo==false) {
-            		VentanaAdministrador.desbloquearBotones();
-					
-				}else {
-	            	VentanaAzafato.desbloquearBotones();
+	public ReservarTicket() {
+
+		panelBusquedaVuelo = new JPanel();
+		txtOrigen = new JComboBox<>();
+		txtDestino = new JComboBox<>();
+		lblOrigen = new JLabel();
+		lblDestino = new JLabel();
+		btnBuscadorDestinos = new JButton();
+		jScrollPane1 = new JScrollPane();
+		tablaVuelos = new JTable();
+		lblTicketNum = new JLabel();
+		txtTicketNum = new JLabel();
+		panelBusquedaPasajero = new JPanel();
+		lblDni = new JLabel();
+		lblNombre = new JLabel();
+		lblApellido = new JLabel();
+		txtDni = new JTextField();
+		lblTelefono = new JLabel();
+		txtNombre = new JLabel();
+		txtApellido = new JLabel();
+		txtTelefono = new JLabel();
+		btnBuscarPasajero = new JButton();
+		panelVuelo = new JPanel();
+		lblIDVuelo = new JLabel();
+		lblHoraSalida = new JLabel();
+		lblClase = new JLabel();
+		lblPrecio = new JLabel();
+		lblAsientos = new JLabel();
+		lblIdVuelo = new JLabel();
+		txtHoraSalida = new JLabel();
+		txtClaseVuelo = new JComboBox<>();
+		txtPrecio = new JTextField();
+		txtAsientos = new JSpinner();
+		txtdate = new com.toedter.calendar.JDateChooser();
+		btnReservar = new JButton();
+		btnCancelar = new JButton();
+
+		btnCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (VentanaAdministrador.VentanaAdminEstaActiva()) {
+					VentanaAdministrador.tablaVuelos.setVisible(true);
+				}
+				dispose();
+				boolean resultadoAdministradorActivo = ventanas.VentanaAdministrador.VentanaAdminEstaActiva();
+				boolean resultadoAzafatoActivo = ventanas.VentanaAzafato.VentanaAzafatoEstaActiva();
+
+				if (resultadoAdministradorActivo == true && resultadoAzafatoActivo == false) {
+					VentanaAdministrador.desbloquearBotones();
+
+				} else {
+					VentanaAzafato.desbloquearBotones();
 
 				}
-               
-            }
-        });
-        txtPrecioTotal = new javax.swing.JLabel();
 
-        panelBusquedaVuelo.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Selecciona pais", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+			}
+		});
+		txtPrecioTotal = new JLabel();
 
-        txtOrigen.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Italia\t", "Srilanka", "UK", "USA", "Canada", "China" }));
+		panelBusquedaVuelo.setBorder(BorderFactory.createTitledBorder(null, "Selecciona pais",
+				TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION,
+				new Font("Tahoma", 1, 12))); // NOI18N
 
-        txtDestino.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {"Italia\t", "Srilanka", "UK", "USA", "Canada", "China" }));
+		txtOrigen.setModel(new DefaultComboBoxModel<>(
+				new String[] { "Italia\t", "Srilanka", "UK", "USA", "Canada", "China" }));
 
-        lblOrigen.setText("Origen");
+		txtDestino.setModel(new DefaultComboBoxModel<>(
+				new String[] { "Italia\t", "Srilanka", "UK", "USA", "Canada", "China" }));
 
-        lblDestino.setText("Destino");
+		lblOrigen.setText("Origen");
 
-        btnBuscadorDestinos.setText("Buscar para estos lugares");
-   
+		lblDestino.setText("Destino");
 
-        javax.swing.GroupLayout glPanelBusquedaVuelo = new javax.swing.GroupLayout(panelBusquedaVuelo);
-        panelBusquedaVuelo.setLayout(glPanelBusquedaVuelo);
-        glPanelBusquedaVuelo.setHorizontalGroup(
-            glPanelBusquedaVuelo.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(glPanelBusquedaVuelo.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(txtOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
-                .addComponent(txtDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35))
-            .addGroup(glPanelBusquedaVuelo.createSequentialGroup()
-                .addGap(54, 54, 54)
-                .addComponent(lblOrigen)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblDestino)
-                .addGap(87, 87, 87))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, glPanelBusquedaVuelo.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnBuscadorDestinos)
-                .addGap(49, 49, 49))
-        );
-        glPanelBusquedaVuelo.setVerticalGroup(
-            glPanelBusquedaVuelo.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(glPanelBusquedaVuelo.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addGroup(glPanelBusquedaVuelo.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblOrigen)
-                    .addComponent(lblDestino))
-                .addGap(18, 18, 18)
-                .addGroup(glPanelBusquedaVuelo.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
-                .addComponent(btnBuscadorDestinos)
-                .addContainerGap())
-        );
+		btnBuscadorDestinos.setText("Buscar para estos lugares");
 
-        tablaVuelos.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
+		GroupLayout glPanelBusquedaVuelo = new GroupLayout(panelBusquedaVuelo);
+		panelBusquedaVuelo.setLayout(glPanelBusquedaVuelo);
+		glPanelBusquedaVuelo.setHorizontalGroup(glPanelBusquedaVuelo
+				.createParallelGroup(GroupLayout.Alignment.LEADING)
+				.addGroup(glPanelBusquedaVuelo.createSequentialGroup().addContainerGap()
+						.addComponent(txtOrigen, GroupLayout.PREFERRED_SIZE, 124,
+								GroupLayout.PREFERRED_SIZE)
+						.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+						.addComponent(txtDestino, GroupLayout.PREFERRED_SIZE, 111,
+								GroupLayout.PREFERRED_SIZE)
+						.addGap(35, 35, 35))
+				.addGroup(glPanelBusquedaVuelo.createSequentialGroup().addGap(54, 54, 54).addComponent(lblOrigen)
+						.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED,
+								GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(lblDestino).addGap(87, 87, 87))
+				.addGroup(GroupLayout.Alignment.TRAILING,
+						glPanelBusquedaVuelo.createSequentialGroup()
+								.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(btnBuscadorDestinos).addGap(49, 49, 49)));
+		glPanelBusquedaVuelo.setVerticalGroup(glPanelBusquedaVuelo
+				.createParallelGroup(GroupLayout.Alignment.LEADING)
+				.addGroup(glPanelBusquedaVuelo.createSequentialGroup().addGap(32, 32, 32)
+						.addGroup(glPanelBusquedaVuelo.createParallelGroup(GroupLayout.Alignment.BASELINE)
+								.addComponent(lblOrigen).addComponent(lblDestino))
+						.addGap(18, 18, 18)
+						.addGroup(glPanelBusquedaVuelo.createParallelGroup(GroupLayout.Alignment.BASELINE)
+								.addComponent(txtOrigen, GroupLayout.PREFERRED_SIZE,
+										GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(txtDestino, GroupLayout.PREFERRED_SIZE,
+										GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+						.addComponent(btnBuscadorDestinos).addContainerGap()));
 
-            },
-            new String [] {
-            		 "ID Vuelo", "Origen", "Destino", "Fecha", "HoraSalida", "HoraLlegada", "Precio"
-            }
-        ));
-      
-        jScrollPane1.setViewportView(tablaVuelos);
+		tablaVuelos.setModel(new DefaultTableModel(new Object[][] {
 
-        lblTicketNum.setText("Ticket num");
+		}, new String[] { "ID Vuelo", "Origen", "Destino", "Fecha", "HoraSalida", "HoraLlegada", "Precio" }));
 
-        txtTicketNum.setFont(new java.awt.Font("Tahoma", 1, 24)); 
-        txtTicketNum.setForeground(new java.awt.Color(255, 0, 0));
-        txtTicketNum.setText("Ticket Num");
+		jScrollPane1.setViewportView(tablaVuelos);
 
-        lblDni.setText("DNI pasajero");
+		lblTicketNum.setText("Ticket num");
 
-        lblNombre.setText("Nombre");
+		txtTicketNum.setFont(new Font("Tahoma", 1, 24));
+		txtTicketNum.setForeground(new Color(255, 0, 0));
+		txtTicketNum.setText("Ticket Num");
 
-        lblApellido.setText("Apellido");
+		lblDni.setText("DNI pasajero");
 
-        lblTelefono.setText("Telefono");
+		lblNombre.setText("Nombre");
 
-        txtNombre.setFont(new java.awt.Font("Tahoma", 1, 14)); 
-        txtNombre.setForeground(new java.awt.Color(255, 0, 0));
-        txtNombre.setText("lblNombre");
+		lblApellido.setText("Apellido");
 
-        txtApellido.setFont(new java.awt.Font("Tahoma", 1, 14)); 
-        txtApellido.setForeground(new java.awt.Color(255, 0, 0));
-        txtApellido.setText("lblApellido");
+		lblTelefono.setText("Telefono");
 
-        txtTelefono.setFont(new java.awt.Font("Tahoma", 1, 14));
-        txtTelefono.setForeground(new java.awt.Color(255, 0, 0));
-        txtTelefono.setText("lblTelefono");
+		txtNombre.setFont(new Font("Tahoma", 1, 14));
+		txtNombre.setForeground(new Color(255, 0, 0));
+		txtNombre.setText("lblNombre");
 
-        btnBuscarPasajero.setText("Buscar pasajero");
-      
+		txtApellido.setFont(new Font("Tahoma", 1, 14));
+		txtApellido.setForeground(new Color(255, 0, 0));
+		txtApellido.setText("lblApellido");
 
-        javax.swing.GroupLayout glPanelBusquedaPasajero = new javax.swing.GroupLayout(panelBusquedaPasajero);
-        panelBusquedaPasajero.setLayout(glPanelBusquedaPasajero);
-        glPanelBusquedaPasajero.setHorizontalGroup(
-            glPanelBusquedaPasajero.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(glPanelBusquedaPasajero.createSequentialGroup()
-                .addGap(57, 57, 57)
-                .addGroup(glPanelBusquedaPasajero.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(glPanelBusquedaPasajero.createSequentialGroup()
-                        .addComponent(lblDni)
-                        .addGap(34, 34, 34)
-                        .addComponent(txtDni, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
-                        .addComponent(btnBuscarPasajero))
-                    .addGroup(glPanelBusquedaPasajero.createSequentialGroup()
-                        .addGroup(glPanelBusquedaPasajero.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblNombre)
-                            .addComponent(lblApellido)
-                            .addComponent(lblTelefono))
-                        .addGap(56, 56, 56)
-                        .addGroup(glPanelBusquedaPasajero.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtTelefono)
-                            .addComponent(txtApellido)
-                            .addComponent(txtNombre))))
-                .addContainerGap())
-        );
-        glPanelBusquedaPasajero.setVerticalGroup(
-            glPanelBusquedaPasajero.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(glPanelBusquedaPasajero.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(glPanelBusquedaPasajero.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblDni)
-                    .addComponent(txtDni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBuscarPasajero))
-                .addGap(26, 26, 26)
-                .addGroup(glPanelBusquedaPasajero.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblNombre)
-                    .addComponent(txtNombre))
-                .addGap(31, 31, 31)
-                .addGroup(glPanelBusquedaPasajero.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblApellido)
-                    .addComponent(txtApellido))
-                .addGap(36, 36, 36)
-                .addGroup(glPanelBusquedaPasajero.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblTelefono)
-                    .addComponent(txtTelefono))
-                .addContainerGap(37, Short.MAX_VALUE))
-        );
+		txtTelefono.setFont(new Font("Tahoma", 1, 14));
+		txtTelefono.setForeground(new Color(255, 0, 0));
+		txtTelefono.setText("lblTelefono");
 
-        lblIDVuelo.setText("ID Vuelo");
+		btnBuscarPasajero.setText("Buscar pasajero");
 
-        lblHoraSalida.setText("Hora salida");
+		GroupLayout glPanelBusquedaPasajero = new GroupLayout(panelBusquedaPasajero);
+		panelBusquedaPasajero.setLayout(glPanelBusquedaPasajero);
+		glPanelBusquedaPasajero.setHorizontalGroup(glPanelBusquedaPasajero
+				.createParallelGroup(GroupLayout.Alignment.LEADING)
+				.addGroup(glPanelBusquedaPasajero.createSequentialGroup().addGap(57, 57, 57)
+						.addGroup(glPanelBusquedaPasajero.createParallelGroup(GroupLayout.Alignment.LEADING)
+								.addGroup(glPanelBusquedaPasajero.createSequentialGroup().addComponent(lblDni)
+										.addGap(34, 34, 34)
+										.addComponent(txtDni, GroupLayout.PREFERRED_SIZE, 151,
+												GroupLayout.PREFERRED_SIZE)
+										.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 15,
+												Short.MAX_VALUE)
+										.addComponent(btnBuscarPasajero))
+								.addGroup(glPanelBusquedaPasajero.createSequentialGroup()
+										.addGroup(glPanelBusquedaPasajero
+												.createParallelGroup(GroupLayout.Alignment.LEADING)
+												.addComponent(lblNombre).addComponent(lblApellido)
+												.addComponent(lblTelefono))
+										.addGap(56, 56, 56)
+										.addGroup(glPanelBusquedaPasajero
+												.createParallelGroup(GroupLayout.Alignment.LEADING)
+												.addComponent(txtTelefono).addComponent(txtApellido)
+												.addComponent(txtNombre))))
+						.addContainerGap()));
+		glPanelBusquedaPasajero.setVerticalGroup(glPanelBusquedaPasajero
+				.createParallelGroup(GroupLayout.Alignment.LEADING)
+				.addGroup(glPanelBusquedaPasajero.createSequentialGroup().addGap(20, 20, 20)
+						.addGroup(glPanelBusquedaPasajero
+								.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(lblDni)
+								.addComponent(txtDni, GroupLayout.PREFERRED_SIZE,
+										GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(btnBuscarPasajero))
+						.addGap(26, 26, 26)
+						.addGroup(
+								glPanelBusquedaPasajero.createParallelGroup(GroupLayout.Alignment.BASELINE)
+										.addComponent(lblNombre).addComponent(txtNombre))
+						.addGap(31, 31, 31)
+						.addGroup(
+								glPanelBusquedaPasajero.createParallelGroup(GroupLayout.Alignment.BASELINE)
+										.addComponent(lblApellido).addComponent(txtApellido))
+						.addGap(36, 36, 36)
+						.addGroup(
+								glPanelBusquedaPasajero.createParallelGroup(GroupLayout.Alignment.BASELINE)
+										.addComponent(lblTelefono).addComponent(txtTelefono))
+						.addContainerGap(37, Short.MAX_VALUE)));
 
-        lblClase.setText("Clase");
+		lblIDVuelo.setText("ID Vuelo");
 
-        lblPrecio.setText("Precio");
+		lblHoraSalida.setText("Hora salida");
 
-        lblAsientos.setText("Asientos");
+		lblClase.setText("Clase");
 
-        lblIdVuelo.setFont(new java.awt.Font("Tahoma", 1, 12)); 
-        lblIdVuelo.setForeground(new java.awt.Color(255, 0, 0));
-        lblIdVuelo.setText("lblIdVuelo");
+		lblPrecio.setText("Precio");
 
-        txtHoraSalida.setFont(new java.awt.Font("Tahoma", 1, 12)); 
-        txtHoraSalida.setForeground(new java.awt.Color(255, 0, 0));
-        txtHoraSalida.setText("lblHoraSalida");
+		lblAsientos.setText("Asientos");
 
-        txtClaseVuelo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Economico", "Business" }));
+		lblIdVuelo.setFont(new Font("Tahoma", 1, 12));
+		lblIdVuelo.setForeground(new Color(255, 0, 0));
+		lblIdVuelo.setText("lblIdVuelo");
 
-        
+		txtHoraSalida.setFont(new Font("Tahoma", 1, 12));
+		txtHoraSalida.setForeground(new Color(255, 0, 0));
+		txtHoraSalida.setText("lblHoraSalida");
 
-        javax.swing.GroupLayout glPanelVuelo = new javax.swing.GroupLayout(panelVuelo);
-        glPanelVuelo.setHorizontalGroup(
-        	glPanelVuelo.createParallelGroup(Alignment.LEADING)
-        		.addGroup(glPanelVuelo.createSequentialGroup()
-        			.addGap(19)
-        			.addGroup(glPanelVuelo.createParallelGroup(Alignment.TRAILING)
-        				.addGroup(glPanelVuelo.createParallelGroup(Alignment.TRAILING)
-        					.addComponent(lblHoraSalida)
-        					.addComponent(lblClase, Alignment.LEADING)
-        					.addComponent(lblPrecio, Alignment.LEADING)
-        					.addGroup(glPanelVuelo.createSequentialGroup()
-        						.addComponent(lblIDVuelo)
-        						.addGap(16)))
-        				.addGroup(glPanelVuelo.createSequentialGroup()
-        					.addComponent(lblAsientos)
-        					.addGap(35)))
-        			.addGroup(glPanelVuelo.createParallelGroup(Alignment.LEADING)
-        				.addGroup(glPanelVuelo.createSequentialGroup()
-        					.addGap(60)
-        					.addGroup(glPanelVuelo.createParallelGroup(Alignment.LEADING)
-        						.addComponent(txtHoraSalida)
-        						.addGroup(glPanelVuelo.createSequentialGroup()
-        							.addComponent(lblIdVuelo)
-        							.addGap(34)
-        							.addComponent(txtdate, GroupLayout.PREFERRED_SIZE, 118, GroupLayout.PREFERRED_SIZE))))
-        				.addGroup(glPanelVuelo.createSequentialGroup()
-        					.addGap(50)
-        					.addGroup(glPanelVuelo.createParallelGroup(Alignment.LEADING, false)
-        						.addComponent(txtClaseVuelo, 0, 116, Short.MAX_VALUE)
-        						.addComponent(txtPrecio)
-        						.addComponent(txtAsientos, GroupLayout.PREFERRED_SIZE, 64, GroupLayout.PREFERRED_SIZE))))
-        			.addContainerGap(26, Short.MAX_VALUE))
-        );
-        glPanelVuelo.setVerticalGroup(
-        	glPanelVuelo.createParallelGroup(Alignment.LEADING)
-        		.addGroup(glPanelVuelo.createSequentialGroup()
-        			.addGap(17)
-        			.addGroup(glPanelVuelo.createParallelGroup(Alignment.TRAILING)
-        				.addGroup(glPanelVuelo.createParallelGroup(Alignment.BASELINE)
-        					.addComponent(lblIDVuelo)
-        					.addComponent(lblIdVuelo))
-        				.addComponent(txtdate, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-        			.addGap(74)
-        			.addGroup(glPanelVuelo.createParallelGroup(Alignment.BASELINE)
-        				.addComponent(lblHoraSalida)
-        				.addComponent(txtHoraSalida))
-        			.addGap(23)
-        			.addGroup(glPanelVuelo.createParallelGroup(Alignment.BASELINE)
-        				.addComponent(lblClase)
-        				.addComponent(txtClaseVuelo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-        			.addGap(18)
-        			.addGroup(glPanelVuelo.createParallelGroup(Alignment.BASELINE)
-        				.addComponent(lblPrecio)
-        				.addComponent(txtPrecio, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-        			.addGap(18)
-        			.addGroup(glPanelVuelo.createParallelGroup(Alignment.TRAILING)
-        				.addComponent(lblAsientos)
-        				.addComponent(txtAsientos, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-        			.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        panelVuelo.setLayout(glPanelVuelo);
+		txtClaseVuelo.setModel(new DefaultComboBoxModel<>(new String[] { "Economico", "Business" }));
 
-        btnReservar.setText("Reservar");
-       
+		GroupLayout glPanelVuelo = new GroupLayout(panelVuelo);
+		glPanelVuelo.setHorizontalGroup(glPanelVuelo.createParallelGroup(Alignment.LEADING).addGroup(glPanelVuelo
+				.createSequentialGroup().addGap(19)
+				.addGroup(glPanelVuelo.createParallelGroup(Alignment.TRAILING)
+						.addGroup(glPanelVuelo.createParallelGroup(Alignment.TRAILING).addComponent(lblHoraSalida)
+								.addComponent(lblClase, Alignment.LEADING).addComponent(lblPrecio, Alignment.LEADING)
+								.addGroup(glPanelVuelo.createSequentialGroup().addComponent(lblIDVuelo).addGap(16)))
+						.addGroup(glPanelVuelo.createSequentialGroup().addComponent(lblAsientos).addGap(35)))
+				.addGroup(glPanelVuelo.createParallelGroup(Alignment.LEADING).addGroup(glPanelVuelo
+						.createSequentialGroup().addGap(60)
+						.addGroup(glPanelVuelo.createParallelGroup(Alignment.LEADING).addComponent(txtHoraSalida)
+								.addGroup(glPanelVuelo.createSequentialGroup().addComponent(lblIdVuelo).addGap(34)
+										.addComponent(txtdate, GroupLayout.PREFERRED_SIZE, 118,
+												GroupLayout.PREFERRED_SIZE))))
+						.addGroup(glPanelVuelo.createSequentialGroup().addGap(50)
+								.addGroup(glPanelVuelo.createParallelGroup(Alignment.LEADING, false)
+										.addComponent(txtClaseVuelo, 0, 116, Short.MAX_VALUE).addComponent(txtPrecio)
+										.addComponent(txtAsientos, GroupLayout.PREFERRED_SIZE, 64,
+												GroupLayout.PREFERRED_SIZE))))
+				.addContainerGap(26, Short.MAX_VALUE)));
+		glPanelVuelo.setVerticalGroup(glPanelVuelo.createParallelGroup(Alignment.LEADING)
+				.addGroup(glPanelVuelo.createSequentialGroup().addGap(17)
+						.addGroup(glPanelVuelo.createParallelGroup(Alignment.TRAILING)
+								.addGroup(glPanelVuelo.createParallelGroup(Alignment.BASELINE).addComponent(lblIDVuelo)
+										.addComponent(lblIdVuelo))
+								.addComponent(txtdate, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+										GroupLayout.PREFERRED_SIZE))
+						.addGap(74)
+						.addGroup(glPanelVuelo.createParallelGroup(Alignment.BASELINE).addComponent(lblHoraSalida)
+								.addComponent(txtHoraSalida))
+						.addGap(23)
+						.addGroup(glPanelVuelo.createParallelGroup(Alignment.BASELINE).addComponent(lblClase)
+								.addComponent(txtClaseVuelo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+										GroupLayout.PREFERRED_SIZE))
+						.addGap(18)
+						.addGroup(glPanelVuelo.createParallelGroup(Alignment.BASELINE).addComponent(lblPrecio)
+								.addComponent(txtPrecio, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+										GroupLayout.PREFERRED_SIZE))
+						.addGap(18)
+						.addGroup(glPanelVuelo.createParallelGroup(Alignment.TRAILING).addComponent(lblAsientos)
+								.addComponent(txtAsientos, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+										GroupLayout.PREFERRED_SIZE))
+						.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
+		panelVuelo.setLayout(glPanelVuelo);
 
-        btnCancelar.setText("Cancelar");
-      
+		btnReservar.setText("Reservar");
 
-        txtPrecioTotal.setFont(new java.awt.Font("Tahoma", 1, 24)); 
-        txtPrecioTotal.setForeground(new java.awt.Color(255, 0, 0));
-        txtPrecioTotal.setText("PrecioTotal");
+		btnCancelar.setText("Cancelar");
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        layout.setHorizontalGroup(
-        	layout.createParallelGroup(Alignment.LEADING)
-        		.addGroup(layout.createSequentialGroup()
-        			.addGap(32)
-        			.addGroup(layout.createParallelGroup(Alignment.LEADING)
-        				.addGroup(layout.createSequentialGroup()
-        					.addComponent(panelBusquedaVuelo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-        					.addGroup(layout.createParallelGroup(Alignment.LEADING)
-        						.addGroup(layout.createSequentialGroup()
-        							.addGap(44)
-        							.addComponent(lblTicketNum))
-        						.addGroup(layout.createSequentialGroup()
-        							.addPreferredGap(ComponentPlacement.UNRELATED)
-        							.addComponent(txtTicketNum)))
-        					.addGap(41)
-        					.addComponent(panelBusquedaPasajero, GroupLayout.DEFAULT_SIZE, 434, Short.MAX_VALUE)
-        					.addGap(31))
-        				.addGroup(layout.createSequentialGroup()
-        					.addGroup(layout.createParallelGroup(Alignment.TRAILING)
-        						.addGroup(layout.createSequentialGroup()
-        							.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 534, GroupLayout.PREFERRED_SIZE)
-        							.addPreferredGap(ComponentPlacement.RELATED))
-        						.addGroup(layout.createSequentialGroup()
-        							.addComponent(txtPrecioTotal, GroupLayout.PREFERRED_SIZE, 226, GroupLayout.PREFERRED_SIZE)
-        							.addGap(101)))
-        					.addGroup(layout.createParallelGroup(Alignment.LEADING)
-        						.addGroup(layout.createSequentialGroup()
-        							.addGap(51)
-        							.addComponent(btnReservar, GroupLayout.PREFERRED_SIZE, 138, GroupLayout.PREFERRED_SIZE)
-        							.addPreferredGap(ComponentPlacement.RELATED)
-        							.addComponent(btnCancelar, GroupLayout.PREFERRED_SIZE, 134, GroupLayout.PREFERRED_SIZE)
-        							.addGap(0, 142, Short.MAX_VALUE))
-        						.addGroup(layout.createSequentialGroup()
-        							.addGap(33)
-        							.addComponent(panelVuelo, GroupLayout.DEFAULT_SIZE, 432, Short.MAX_VALUE)
-        							.addContainerGap())))))
-        );
-        layout.setVerticalGroup(
-        	layout.createParallelGroup(Alignment.LEADING)
-        		.addGroup(layout.createSequentialGroup()
-        			.addGroup(layout.createParallelGroup(Alignment.LEADING)
-        				.addGroup(layout.createSequentialGroup()
-        					.addGap(42)
-        					.addComponent(panelBusquedaVuelo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-        				.addGroup(layout.createSequentialGroup()
-        					.addGap(53)
-        					.addComponent(lblTicketNum)
-        					.addGap(18)
-        					.addComponent(txtTicketNum))
-        				.addGroup(layout.createSequentialGroup()
-        					.addGap(31)
-        					.addComponent(panelBusquedaPasajero, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-        			.addGroup(layout.createParallelGroup(Alignment.LEADING)
-        				.addGroup(layout.createSequentialGroup()
-        					.addGap(18)
-        					.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 213, GroupLayout.PREFERRED_SIZE)
-        					.addGap(34)
-        					.addComponent(txtPrecioTotal, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE))
-        				.addGroup(layout.createSequentialGroup()
-        					.addPreferredGap(ComponentPlacement.UNRELATED)
-        					.addComponent(panelVuelo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-        					.addPreferredGap(ComponentPlacement.RELATED)
-        					.addGroup(layout.createParallelGroup(Alignment.BASELINE)
-        						.addComponent(btnReservar, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE)
-        						.addComponent(btnCancelar, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE))))
-        			.addContainerGap(19, Short.MAX_VALUE))
-        );
-        getContentPane().setLayout(layout);
+		txtPrecioTotal.setFont(new Font("Tahoma", 1, 24));
+		txtPrecioTotal.setForeground(new Color(255, 0, 0));
+		txtPrecioTotal.setText("PrecioTotal");
 
-        pack();
-    
-        setVisible(true);
-  
+		GroupLayout layout = new GroupLayout(getContentPane());
+		layout.setHorizontalGroup(layout.createParallelGroup(Alignment.LEADING).addGroup(layout.createSequentialGroup()
+				.addGap(32)
+				.addGroup(layout.createParallelGroup(Alignment.LEADING).addGroup(layout.createSequentialGroup()
+						.addComponent(panelBusquedaVuelo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+								GroupLayout.PREFERRED_SIZE)
+						.addGroup(layout.createParallelGroup(Alignment.LEADING)
+								.addGroup(layout.createSequentialGroup().addGap(44).addComponent(lblTicketNum))
+								.addGroup(layout.createSequentialGroup().addPreferredGap(ComponentPlacement.UNRELATED)
+										.addComponent(txtTicketNum)))
+						.addGap(41).addComponent(panelBusquedaPasajero, GroupLayout.DEFAULT_SIZE, 434, Short.MAX_VALUE)
+						.addGap(31))
+						.addGroup(layout.createSequentialGroup().addGroup(layout
+								.createParallelGroup(Alignment.TRAILING)
+								.addGroup(layout.createSequentialGroup()
+										.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 534,
+												GroupLayout.PREFERRED_SIZE)
+										.addPreferredGap(ComponentPlacement.RELATED))
+								.addGroup(layout.createSequentialGroup()
+										.addComponent(txtPrecioTotal, GroupLayout.PREFERRED_SIZE, 226,
+												GroupLayout.PREFERRED_SIZE)
+										.addGap(101)))
+								.addGroup(layout.createParallelGroup(Alignment.LEADING)
+										.addGroup(layout.createSequentialGroup().addGap(51)
+												.addComponent(btnReservar, GroupLayout.PREFERRED_SIZE, 138,
+														GroupLayout.PREFERRED_SIZE)
+												.addPreferredGap(ComponentPlacement.RELATED)
+												.addComponent(btnCancelar, GroupLayout.PREFERRED_SIZE, 134,
+														GroupLayout.PREFERRED_SIZE)
+												.addGap(0, 142, Short.MAX_VALUE))
+										.addGroup(layout
+												.createSequentialGroup().addGap(33).addComponent(panelVuelo,
+														GroupLayout.DEFAULT_SIZE, 432, Short.MAX_VALUE)
+												.addContainerGap()))))));
+		layout.setVerticalGroup(layout.createParallelGroup(Alignment.LEADING).addGroup(layout
+				.createSequentialGroup()
+				.addGroup(layout.createParallelGroup(Alignment.LEADING)
+						.addGroup(layout.createSequentialGroup().addGap(42).addComponent(panelBusquedaVuelo,
+								GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addGroup(layout.createSequentialGroup().addGap(53).addComponent(lblTicketNum).addGap(18)
+								.addComponent(txtTicketNum))
+						.addGroup(layout.createSequentialGroup().addGap(31).addComponent(panelBusquedaPasajero,
+								GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+				.addGroup(layout.createParallelGroup(Alignment.LEADING)
+						.addGroup(layout.createSequentialGroup().addGap(18)
+								.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 213, GroupLayout.PREFERRED_SIZE)
+								.addGap(34).addComponent(txtPrecioTotal, GroupLayout.PREFERRED_SIZE, 24,
+										GroupLayout.PREFERRED_SIZE))
+						.addGroup(layout.createSequentialGroup().addPreferredGap(ComponentPlacement.UNRELATED)
+								.addComponent(panelVuelo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+										GroupLayout.PREFERRED_SIZE)
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+										.addComponent(btnReservar, GroupLayout.PREFERRED_SIZE, 41,
+												GroupLayout.PREFERRED_SIZE)
+										.addComponent(btnCancelar, GroupLayout.PREFERRED_SIZE, 41,
+												GroupLayout.PREFERRED_SIZE))))
+				.addContainerGap(19, Short.MAX_VALUE)));
+		getContentPane().setLayout(layout);
 
-    
-  
-    }
-    
-    
-    
-    
- 
+		pack();
+
+		setVisible(true);
+
+	}
 
 }

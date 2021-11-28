@@ -2,34 +2,32 @@ package ventanas;
 
 
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.GroupLayout;
-import javax.swing.ImageIcon;
+import javax.swing.*;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import java.awt.Font;
-import javax.swing.JComboBox;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import java.awt.*;
+import java.awt.event.*;
 
 
-public class CreadorVuelos extends javax.swing.JInternalFrame {
+
+public class CreadorVuelos extends JInternalFrame {
 	
 	   
-    private javax.swing.JButton btnGuardar;
-    private javax.swing.JButton btnCancelar;
-    private javax.swing.JLabel lblTituloVentana;
-    private javax.swing.JLabel lbIIDVuelo;
-    private javax.swing.JLabel lblOrigen;
-    private javax.swing.JLabel lblDestino;
-    private javax.swing.JLabel lblFecha;
-    private javax.swing.JLabel lblHoraSalida;
-    private javax.swing.JLabel lblHoraLlegada;
-    private javax.swing.JLabel lblPrecio;
-    private javax.swing.JPanel panelCreacionVuelo;
+    private JButton btnGuardar;
+    private JButton btnCancelar;
+    private JLabel lblTituloVentana;
+    private JLabel lbIIDVuelo;
+    private JLabel lblOrigen;
+    private JLabel lblDestino;
+    private JLabel lblFecha;
+    private JLabel lblHoraSalida;
+    private JLabel lblHoraLlegada;
+    private JLabel lblPrecio;
+    private JPanel panelCreacionVuelo;
     private com.toedter.calendar.JDateChooser txtFecha;
-    private javax.swing.JComboBox<String> txtDestino;
-    private javax.swing.JTextField txtPrecio;
-    private javax.swing.JTextField txtIDVuelo;
-    private javax.swing.JComboBox<String> txtOrigen;
+    private JComboBox<String> txtDestino;
+    private JTextField txtPrecio;
+    private JTextField txtIDVuelo;
+    private JComboBox<String> txtOrigen;
     private ImageIcon imagenGuardar;
   
 
@@ -37,64 +35,67 @@ public class CreadorVuelos extends javax.swing.JInternalFrame {
     	
     	imagenGuardar = new ImageIcon("img/guardar.png"); 
 
-        panelCreacionVuelo = new javax.swing.JPanel();
-        lblTituloVentana = new javax.swing.JLabel();
-        lbIIDVuelo = new javax.swing.JLabel();
-        lblOrigen = new javax.swing.JLabel();
-        lblDestino = new javax.swing.JLabel();
-        txtIDVuelo = new javax.swing.JTextField();
-        lblFecha = new javax.swing.JLabel();
+        panelCreacionVuelo = new JPanel();
+        lblTituloVentana = new JLabel();
+        lbIIDVuelo = new JLabel();
+        lblOrigen = new JLabel();
+        lblDestino = new JLabel();
+        txtIDVuelo = new JTextField();
+        lblFecha = new JLabel();
         txtFecha = new com.toedter.calendar.JDateChooser();
-        lblHoraSalida = new javax.swing.JLabel();
-        lblHoraLlegada = new javax.swing.JLabel();
-        lblPrecio = new javax.swing.JLabel();
-        txtPrecio = new javax.swing.JTextField();
-        btnGuardar = new javax.swing.JButton();
+        lblHoraSalida = new JLabel();
+        lblHoraLlegada = new JLabel();
+        lblPrecio = new JLabel();
+        txtPrecio = new JTextField();
+        btnGuardar = new JButton();
         btnGuardar.setIcon(imagenGuardar);
         btnGuardar.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         	}
         });
-        btnCancelar = new javax.swing.JButton();
-        txtOrigen = new javax.swing.JComboBox<>();
-        txtDestino = new javax.swing.JComboBox<>();
+        btnCancelar = new JButton();
+        txtOrigen = new JComboBox<>();
+        txtDestino = new JComboBox<>();
 
-        panelCreacionVuelo.setBackground(new java.awt.Color(51, 51, 255));
+        panelCreacionVuelo.setBackground(new Color(51, 51, 255));
 
         lblTituloVentana.setFont(new Font("Tahoma", Font.BOLD, 13)); 
-        lblTituloVentana.setForeground(new java.awt.Color(255, 255, 255));
+        lblTituloVentana.setForeground(new Color(255, 255, 255));
         lblTituloVentana.setText("Vuelo");
 
-        lbIIDVuelo.setFont(new java.awt.Font("Tahoma", 1, 11));
-        lbIIDVuelo.setForeground(new java.awt.Color(255, 255, 255));
+        lbIIDVuelo.setFont(new Font("Tahoma", 1, 11));
+        lbIIDVuelo.setForeground(new Color(255, 255, 255));
         lbIIDVuelo.setText("ID Vuelo");
 
-        lblOrigen.setFont(new java.awt.Font("Tahoma", 1, 11)); 
-        lblOrigen.setForeground(new java.awt.Color(255, 255, 255));
+        lblOrigen.setFont(new Font("Tahoma", 1, 11)); 
+        lblOrigen.setForeground(new Color(255, 255, 255));
         lblOrigen.setText("Origen");
 
-        lblDestino.setFont(new java.awt.Font("Tahoma", 1, 11)); 
-        lblDestino.setForeground(new java.awt.Color(255, 255, 255));
+        lblDestino.setFont(new Font("Tahoma", 1, 11)); 
+        lblDestino.setForeground(new Color(255, 255, 255));
         lblDestino.setText("Destino");
 
-        lblFecha.setForeground(new java.awt.Color(255, 255, 255));
+        lblFecha.setForeground(new Color(255, 255, 255));
         lblFecha.setText("Fecha");
 
-        lblHoraSalida.setForeground(new java.awt.Color(255, 255, 255));
+        lblHoraSalida.setForeground(new Color(255, 255, 255));
         lblHoraSalida.setText("Hora Salida");
 
-        lblHoraLlegada.setForeground(new java.awt.Color(255, 255, 255));
+        lblHoraLlegada.setForeground(new Color(255, 255, 255));
         lblHoraLlegada.setText("Hora Llegada");
 
-        lblPrecio.setForeground(new java.awt.Color(255, 255, 255));
+        lblPrecio.setForeground(new Color(255, 255, 255));
         lblPrecio.setText("Precio");
 
         btnGuardar.setText("Guardar");
       
 
         btnCancelar.setText("Cancelar");
-        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnCancelar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+            	if (VentanaAdministrador.VentanaAdminEstaActiva()) {
+					VentanaAdministrador.tablaVuelos.setVisible(true);
+				}
             	dispose();
             	boolean resultadoAdministradorActivo=ventanas.VentanaAdministrador.VentanaAdminEstaActiva();
             	boolean resultadoAzafatoActivo=ventanas.VentanaAzafato.VentanaAzafatoEstaActiva();
@@ -110,17 +111,17 @@ public class CreadorVuelos extends javax.swing.JInternalFrame {
             }
         });
 
-        txtOrigen.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Italia\t", "Srilanka", "UK", "Usa", "Canada", "China" }));
+        txtOrigen.setModel(new DefaultComboBoxModel<>(new String[] { "Italia\t", "Srilanka", "UK", "Usa", "Canada", "China" }));
 
-        txtDestino.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Italia\t", "Srilanka", "UK", "Usa", "Canada", "China" }));
+        txtDestino.setModel(new DefaultComboBoxModel<>(new String[] { "Italia\t", "Srilanka", "UK", "Usa", "Canada", "China" }));
         
         JComboBox<String> opcionesHoraSalida = new JComboBox<String>();
-        opcionesHoraSalida.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "6:00\t", "6:30", "7:00", "7:30", "8:00", "8:30", "9:00", "9:30", "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00" }));
+        opcionesHoraSalida.setModel(new DefaultComboBoxModel<>(new String[] { "6:00\t", "6:30", "7:00", "7:30", "8:00", "8:30", "9:00", "9:30", "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00" }));
        
         JComboBox<String> opcionesHoraLlegada = new JComboBox<String>();
-        opcionesHoraLlegada.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "15:00\t", "15:30", "16:00", "16:30", "17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00", "20:30", "21:00", "21:30", "22:00", "22:30", "23:00" }));
+        opcionesHoraLlegada.setModel(new DefaultComboBoxModel<>(new String[] { "15:00\t", "15:30", "16:00", "16:30", "17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00", "20:30", "21:00", "21:30", "22:00", "22:30", "23:00" }));
         
-        javax.swing.GroupLayout glPanelCreacionVuelo = new javax.swing.GroupLayout(panelCreacionVuelo);
+        GroupLayout glPanelCreacionVuelo = new GroupLayout(panelCreacionVuelo);
         glPanelCreacionVuelo.setHorizontalGroup(
         	glPanelCreacionVuelo.createParallelGroup(Alignment.TRAILING)
         		.addGroup(glPanelCreacionVuelo.createSequentialGroup()
@@ -208,20 +209,20 @@ public class CreadorVuelos extends javax.swing.JInternalFrame {
         );
         panelCreacionVuelo.setLayout(glPanelCreacionVuelo);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(34, 34, 34)
-                .addComponent(panelCreacionVuelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(panelCreacionVuelo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(22, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(panelCreacionVuelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(panelCreacionVuelo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                 .addGap(39, 39, 39))
         );
 

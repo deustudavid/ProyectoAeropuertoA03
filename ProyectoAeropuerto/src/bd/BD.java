@@ -6,6 +6,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Date;
 import java.util.logging.Level;
 
 import main.VentanaInicio;
@@ -148,12 +149,14 @@ public class BD {
 	public static void crearTablas(Connection con) throws DBException {
 		String sentencia1 = "CREATE TABLE IF NOT EXISTS Azafato (usuario String, contrasenya String)";
 		String sentencia2 = "CREATE TABLE IF NOT EXISTS Administrador (usuario String, contrasenya String)";
+		String sentencia3 = "CREATE TABLE IF NOT EXISTS Vuelo (ID String, origen String, destino String, fecha Date, horaSalida String, horaLlegada String)";
 
 		Statement st = null;
 		try {
 			st = con.createStatement();
 			st.executeUpdate(sentencia1);
 			st.executeUpdate(sentencia2);
+			st.executeUpdate(sentencia3);
 			st.close();
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -1,852 +1,576 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2021-11-26T09:44:15.968711100Z</date>
-  <millis>1637919855968</millis>
-  <nanos>711100</nanos>
+  <date>2021-11-28T14:27:51.927834500Z</date>
+  <millis>1638109671927</millis>
+  <nanos>834500</nanos>
   <sequence>0</sequence>
   <logger>main.VentanaInicio</logger>
   <level>INFO</level>
   <class>main.VentanaInicio$1</class>
   <method>run</method>
-  <thread>18</thread>
-  <message>Se ejecuta la ventana de inicio</message>
-</record>
-</log>
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE log SYSTEM "logger.dtd">
-<log>
-<record>
-  <date>2021-11-26T09:58:39.311984400Z</date>
-  <millis>1637920719311</millis>
-  <nanos>984400</nanos>
-  <sequence>0</sequence>
-  <logger>main.VentanaInicio</logger>
-  <level>INFO</level>
-  <class>main.VentanaInicio$1</class>
-  <method>run</method>
-  <thread>18</thread>
+  <thread>19</thread>
   <message>Se ejecuta la ventana de inicio</message>
 </record>
 <record>
-  <date>2021-11-26T09:58:46.191453200Z</date>
-  <millis>1637920726191</millis>
-  <nanos>453200</nanos>
+  <date>2021-11-28T14:28:01.461208400Z</date>
+  <millis>1638109681461</millis>
+  <nanos>208400</nanos>
   <sequence>1</sequence>
   <logger>main.VentanaInicio</logger>
   <level>INFO</level>
   <class>main.VentanaInicio$2</class>
   <method>actionPerformed</method>
-  <thread>18</thread>
+  <thread>19</thread>
   <message>Conexion con la base de datos abierta</message>
 </record>
 <record>
-  <date>2021-11-26T09:58:46.554018300Z</date>
-  <millis>1637920726554</millis>
-  <nanos>18300</nanos>
+  <date>2021-11-28T14:28:02.743397600Z</date>
+  <millis>1638109682743</millis>
+  <nanos>397600</nanos>
   <sequence>2</sequence>
   <logger>main.VentanaInicio</logger>
   <level>INFO</level>
   <class>main.VentanaInicio$2</class>
   <method>actionPerformed</method>
-  <thread>18</thread>
+  <thread>19</thread>
   <message>Conexion con la base de datos cerrada</message>
 </record>
 </log>
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2021-11-26T09:59:13.435080400Z</date>
-  <millis>1637920753435</millis>
-  <nanos>80400</nanos>
+  <date>2021-11-28T14:31:22.283956900Z</date>
+  <millis>1638109882283</millis>
+  <nanos>956900</nanos>
   <sequence>0</sequence>
   <logger>main.VentanaInicio</logger>
   <level>INFO</level>
   <class>main.VentanaInicio$1</class>
   <method>run</method>
-  <thread>18</thread>
+  <thread>19</thread>
   <message>Se ejecuta la ventana de inicio</message>
 </record>
 <record>
-  <date>2021-11-26T09:59:18.265653Z</date>
-  <millis>1637920758265</millis>
-  <nanos>653000</nanos>
+  <date>2021-11-28T14:31:31.659505800Z</date>
+  <millis>1638109891659</millis>
+  <nanos>505800</nanos>
   <sequence>1</sequence>
   <logger>main.VentanaInicio</logger>
   <level>INFO</level>
   <class>main.VentanaInicio$2</class>
   <method>actionPerformed</method>
-  <thread>18</thread>
+  <thread>19</thread>
   <message>Conexion con la base de datos abierta</message>
 </record>
 <record>
-  <date>2021-11-26T09:59:18.697752400Z</date>
-  <millis>1637920758697</millis>
-  <nanos>752400</nanos>
+  <date>2021-11-28T14:31:31.723036800Z</date>
+  <millis>1638109891723</millis>
+  <nanos>36800</nanos>
   <sequence>2</sequence>
   <logger>main.VentanaInicio</logger>
   <level>INFO</level>
   <class>main.VentanaInicio$2</class>
   <method>actionPerformed</method>
-  <thread>18</thread>
-  <message>Conexion con la base de datos cerrada</message>
-</record>
-</log>
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE log SYSTEM "logger.dtd">
-<log>
-<record>
-  <date>2021-11-26T10:06:01.801850600Z</date>
-  <millis>1637921161801</millis>
-  <nanos>850600</nanos>
-  <sequence>0</sequence>
-  <logger>main.VentanaInicio</logger>
-  <level>INFO</level>
-  <class>main.VentanaInicio$1</class>
-  <method>run</method>
-  <thread>18</thread>
-  <message>Se ejecuta la ventana de inicio</message>
-</record>
-<record>
-  <date>2021-11-26T10:06:45.257214Z</date>
-  <millis>1637921205257</millis>
-  <nanos>214000</nanos>
-  <sequence>1</sequence>
-  <logger>main.VentanaInicio</logger>
-  <level>INFO</level>
-  <class>main.VentanaInicio$2</class>
-  <method>actionPerformed</method>
-  <thread>18</thread>
-  <message>Conexion con la base de datos abierta</message>
-</record>
-<record>
-  <date>2021-11-26T10:06:45.571106Z</date>
-  <millis>1637921205571</millis>
-  <nanos>106000</nanos>
-  <sequence>2</sequence>
-  <logger>main.VentanaInicio</logger>
-  <level>INFO</level>
-  <class>main.VentanaInicio$2</class>
-  <method>actionPerformed</method>
-  <thread>18</thread>
-  <message>Conexion con la base de datos cerrada</message>
-</record>
-</log>
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE log SYSTEM "logger.dtd">
-<log>
-<record>
-  <date>2021-11-26T10:20:37.280726600Z</date>
-  <millis>1637922037280</millis>
-  <nanos>726600</nanos>
-  <sequence>0</sequence>
-  <logger>main.VentanaInicio</logger>
-  <level>INFO</level>
-  <class>main.VentanaInicio$1</class>
-  <method>run</method>
-  <thread>18</thread>
-  <message>Se ejecuta la ventana de inicio</message>
-</record>
-<record>
-  <date>2021-11-26T10:21:01.372413700Z</date>
-  <millis>1637922061372</millis>
-  <nanos>413700</nanos>
-  <sequence>1</sequence>
-  <logger>main.VentanaInicio</logger>
-  <level>INFO</level>
-  <class>main.VentanaInicio$3</class>
-  <method>actionPerformed</method>
-  <thread>18</thread>
-  <message>Conexion con la base de datos abierta</message>
-</record>
-<record>
-  <date>2021-11-26T10:21:01.682332Z</date>
-  <millis>1637922061682</millis>
-  <nanos>332000</nanos>
-  <sequence>2</sequence>
-  <logger>main.VentanaInicio</logger>
-  <level>INFO</level>
-  <class>main.VentanaInicio$3</class>
-  <method>actionPerformed</method>
-  <thread>18</thread>
+  <thread>19</thread>
   <message>Conexion con la base de datos cerrada</message>
 </record>
 <record>
-  <date>2021-11-26T10:21:20.059457500Z</date>
-  <millis>1637922080059</millis>
-  <nanos>457500</nanos>
+  <date>2021-11-28T14:31:43.611119800Z</date>
+  <millis>1638109903611</millis>
+  <nanos>119800</nanos>
   <sequence>3</sequence>
   <logger>main.VentanaInicio</logger>
   <level>INFO</level>
   <class>main.VentanaInicio$3</class>
   <method>actionPerformed</method>
-  <thread>18</thread>
+  <thread>19</thread>
   <message>Conexion con la base de datos abierta</message>
 </record>
 <record>
-  <date>2021-11-26T10:21:21.895132900Z</date>
-  <millis>1637922081895</millis>
-  <nanos>132900</nanos>
+  <date>2021-11-28T14:31:49.543775300Z</date>
+  <millis>1638109909543</millis>
+  <nanos>775300</nanos>
   <sequence>4</sequence>
   <logger>main.VentanaInicio</logger>
   <level>INFO</level>
   <class>main.VentanaInicio$3</class>
   <method>actionPerformed</method>
-  <thread>18</thread>
+  <thread>19</thread>
+  <message>Conexion con la base de datos cerrada</message>
+</record>
+</log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2021-11-28T15:08:19.026278900Z</date>
+  <millis>1638112099026</millis>
+  <nanos>278900</nanos>
+  <sequence>0</sequence>
+  <logger>main.VentanaInicio</logger>
+  <level>INFO</level>
+  <class>main.VentanaInicio$1</class>
+  <method>run</method>
+  <thread>19</thread>
+  <message>Se ejecuta la ventana de inicio</message>
+</record>
+<record>
+  <date>2021-11-28T15:08:25.285325900Z</date>
+  <millis>1638112105285</millis>
+  <nanos>325900</nanos>
+  <sequence>1</sequence>
+  <logger>main.VentanaInicio</logger>
+  <level>INFO</level>
+  <class>main.VentanaInicio$2</class>
+  <method>actionPerformed</method>
+  <thread>19</thread>
+  <message>Conexion con la base de datos abierta</message>
+</record>
+<record>
+  <date>2021-11-28T15:08:25.381347500Z</date>
+  <millis>1638112105381</millis>
+  <nanos>347500</nanos>
+  <sequence>2</sequence>
+  <logger>main.VentanaInicio</logger>
+  <level>INFO</level>
+  <class>main.VentanaInicio$2</class>
+  <method>actionPerformed</method>
+  <thread>19</thread>
+  <message>Conexion con la base de datos cerrada</message>
+</record>
+</log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2021-11-28T15:32:45.210429500Z</date>
+  <millis>1638113565210</millis>
+  <nanos>429500</nanos>
+  <sequence>0</sequence>
+  <logger>main.VentanaInicio</logger>
+  <level>INFO</level>
+  <class>main.VentanaInicio$1</class>
+  <method>run</method>
+  <thread>19</thread>
+  <message>Se ejecuta la ventana de inicio</message>
+</record>
+<record>
+  <date>2021-11-28T15:32:51.542274500Z</date>
+  <millis>1638113571542</millis>
+  <nanos>274500</nanos>
+  <sequence>1</sequence>
+  <logger>main.VentanaInicio</logger>
+  <level>INFO</level>
+  <class>main.VentanaInicio$2</class>
+  <method>actionPerformed</method>
+  <thread>19</thread>
+  <message>Conexion con la base de datos abierta</message>
+</record>
+<record>
+  <date>2021-11-28T15:32:51.632294900Z</date>
+  <millis>1638113571632</millis>
+  <nanos>294900</nanos>
+  <sequence>2</sequence>
+  <logger>main.VentanaInicio</logger>
+  <level>INFO</level>
+  <class>main.VentanaInicio$2</class>
+  <method>actionPerformed</method>
+  <thread>19</thread>
+  <message>Conexion con la base de datos cerrada</message>
+</record>
+</log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2021-11-28T15:35:33.454472900Z</date>
+  <millis>1638113733454</millis>
+  <nanos>472900</nanos>
+  <sequence>0</sequence>
+  <logger>main.VentanaInicio</logger>
+  <level>INFO</level>
+  <class>main.VentanaInicio$1</class>
+  <method>run</method>
+  <thread>19</thread>
+  <message>Se ejecuta la ventana de inicio</message>
+</record>
+<record>
+  <date>2021-11-28T15:35:39.846927Z</date>
+  <millis>1638113739846</millis>
+  <nanos>927000</nanos>
+  <sequence>1</sequence>
+  <logger>main.VentanaInicio</logger>
+  <level>INFO</level>
+  <class>main.VentanaInicio$2</class>
+  <method>actionPerformed</method>
+  <thread>19</thread>
+  <message>Conexion con la base de datos abierta</message>
+</record>
+<record>
+  <date>2021-11-28T15:35:39.942748100Z</date>
+  <millis>1638113739942</millis>
+  <nanos>748100</nanos>
+  <sequence>2</sequence>
+  <logger>main.VentanaInicio</logger>
+  <level>INFO</level>
+  <class>main.VentanaInicio$2</class>
+  <method>actionPerformed</method>
+  <thread>19</thread>
+  <message>Conexion con la base de datos cerrada</message>
+</record>
+</log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2021-11-28T15:40:38.030771500Z</date>
+  <millis>1638114038030</millis>
+  <nanos>771500</nanos>
+  <sequence>0</sequence>
+  <logger>main.VentanaInicio</logger>
+  <level>INFO</level>
+  <class>main.VentanaInicio$1</class>
+  <method>run</method>
+  <thread>19</thread>
+  <message>Se ejecuta la ventana de inicio</message>
+</record>
+<record>
+  <date>2021-11-28T15:40:43.134721800Z</date>
+  <millis>1638114043134</millis>
+  <nanos>721800</nanos>
+  <sequence>1</sequence>
+  <logger>main.VentanaInicio</logger>
+  <level>INFO</level>
+  <class>main.VentanaInicio$2</class>
+  <method>actionPerformed</method>
+  <thread>19</thread>
+  <message>Conexion con la base de datos abierta</message>
+</record>
+<record>
+  <date>2021-11-28T15:40:43.206737800Z</date>
+  <millis>1638114043206</millis>
+  <nanos>737800</nanos>
+  <sequence>2</sequence>
+  <logger>main.VentanaInicio</logger>
+  <level>INFO</level>
+  <class>main.VentanaInicio$2</class>
+  <method>actionPerformed</method>
+  <thread>19</thread>
+  <message>Conexion con la base de datos cerrada</message>
+</record>
+</log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2021-11-28T15:41:08.441827Z</date>
+  <millis>1638114068441</millis>
+  <nanos>827000</nanos>
+  <sequence>0</sequence>
+  <logger>main.VentanaInicio</logger>
+  <level>INFO</level>
+  <class>main.VentanaInicio$1</class>
+  <method>run</method>
+  <thread>19</thread>
+  <message>Se ejecuta la ventana de inicio</message>
+</record>
+<record>
+  <date>2021-11-28T15:41:14.006897600Z</date>
+  <millis>1638114074006</millis>
+  <nanos>897600</nanos>
+  <sequence>1</sequence>
+  <logger>main.VentanaInicio</logger>
+  <level>INFO</level>
+  <class>main.VentanaInicio$2</class>
+  <method>actionPerformed</method>
+  <thread>19</thread>
+  <message>Conexion con la base de datos abierta</message>
+</record>
+<record>
+  <date>2021-11-28T15:41:14.087914900Z</date>
+  <millis>1638114074087</millis>
+  <nanos>914900</nanos>
+  <sequence>2</sequence>
+  <logger>main.VentanaInicio</logger>
+  <level>INFO</level>
+  <class>main.VentanaInicio$2</class>
+  <method>actionPerformed</method>
+  <thread>19</thread>
+  <message>Conexion con la base de datos cerrada</message>
+</record>
+</log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2021-11-28T15:47:40.750285800Z</date>
+  <millis>1638114460750</millis>
+  <nanos>285800</nanos>
+  <sequence>0</sequence>
+  <logger>main.VentanaInicio</logger>
+  <level>INFO</level>
+  <class>main.VentanaInicio$1</class>
+  <method>run</method>
+  <thread>19</thread>
+  <message>Se ejecuta la ventana de inicio</message>
+</record>
+<record>
+  <date>2021-11-28T15:47:47.463058900Z</date>
+  <millis>1638114467463</millis>
+  <nanos>58900</nanos>
+  <sequence>1</sequence>
+  <logger>main.VentanaInicio</logger>
+  <level>INFO</level>
+  <class>main.VentanaInicio$2</class>
+  <method>actionPerformed</method>
+  <thread>19</thread>
+  <message>Conexion con la base de datos abierta</message>
+</record>
+<record>
+  <date>2021-11-28T15:47:47.544076600Z</date>
+  <millis>1638114467544</millis>
+  <nanos>76600</nanos>
+  <sequence>2</sequence>
+  <logger>main.VentanaInicio</logger>
+  <level>INFO</level>
+  <class>main.VentanaInicio$2</class>
+  <method>actionPerformed</method>
+  <thread>19</thread>
+  <message>Conexion con la base de datos cerrada</message>
+</record>
+</log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2021-11-28T15:48:26.202037700Z</date>
+  <millis>1638114506202</millis>
+  <nanos>37700</nanos>
+  <sequence>0</sequence>
+  <logger>main.VentanaInicio</logger>
+  <level>INFO</level>
+  <class>main.VentanaInicio$1</class>
+  <method>run</method>
+  <thread>19</thread>
+  <message>Se ejecuta la ventana de inicio</message>
+</record>
+<record>
+  <date>2021-11-28T15:48:31.159314700Z</date>
+  <millis>1638114511159</millis>
+  <nanos>314700</nanos>
+  <sequence>1</sequence>
+  <logger>main.VentanaInicio</logger>
+  <level>INFO</level>
+  <class>main.VentanaInicio$3</class>
+  <method>actionPerformed</method>
+  <thread>19</thread>
+  <message>Conexion con la base de datos abierta</message>
+</record>
+<record>
+  <date>2021-11-28T15:48:31.221332800Z</date>
+  <millis>1638114511221</millis>
+  <nanos>332800</nanos>
+  <sequence>2</sequence>
+  <logger>main.VentanaInicio</logger>
+  <level>INFO</level>
+  <class>main.VentanaInicio$3</class>
+  <method>actionPerformed</method>
+  <thread>19</thread>
+  <message>Conexion con la base de datos cerrada</message>
+</record>
+</log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2021-11-28T15:50:56.779555500Z</date>
+  <millis>1638114656779</millis>
+  <nanos>555500</nanos>
+  <sequence>0</sequence>
+  <logger>main.VentanaInicio</logger>
+  <level>INFO</level>
+  <class>main.VentanaInicio$1</class>
+  <method>run</method>
+  <thread>19</thread>
+  <message>Se ejecuta la ventana de inicio</message>
+</record>
+<record>
+  <date>2021-11-28T15:51:03.071163200Z</date>
+  <millis>1638114663071</millis>
+  <nanos>163200</nanos>
+  <sequence>1</sequence>
+  <logger>main.VentanaInicio</logger>
+  <level>INFO</level>
+  <class>main.VentanaInicio$2</class>
+  <method>actionPerformed</method>
+  <thread>19</thread>
+  <message>Conexion con la base de datos abierta</message>
+</record>
+<record>
+  <date>2021-11-28T15:51:03.187251900Z</date>
+  <millis>1638114663187</millis>
+  <nanos>251900</nanos>
+  <sequence>2</sequence>
+  <logger>main.VentanaInicio</logger>
+  <level>INFO</level>
+  <class>main.VentanaInicio$2</class>
+  <method>actionPerformed</method>
+  <thread>19</thread>
   <message>Conexion con la base de datos cerrada</message>
 </record>
 <record>
-  <date>2021-11-26T10:21:27.453113600Z</date>
-  <millis>1637922087453</millis>
-  <nanos>113600</nanos>
+  <date>2021-11-28T15:51:12.143121Z</date>
+  <millis>1638114672143</millis>
+  <nanos>121000</nanos>
+  <sequence>3</sequence>
+  <logger>main.VentanaInicio</logger>
+  <level>INFO</level>
+  <class>main.VentanaInicio$3</class>
+  <method>actionPerformed</method>
+  <thread>19</thread>
+  <message>Conexion con la base de datos abierta</message>
+</record>
+<record>
+  <date>2021-11-28T15:51:12.184130400Z</date>
+  <millis>1638114672184</millis>
+  <nanos>130400</nanos>
+  <sequence>4</sequence>
+  <logger>main.VentanaInicio</logger>
+  <level>INFO</level>
+  <class>main.VentanaInicio$3</class>
+  <method>actionPerformed</method>
+  <thread>19</thread>
+  <message>Conexion con la base de datos cerrada</message>
+</record>
+</log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2021-11-28T15:51:53.262355Z</date>
+  <millis>1638114713262</millis>
+  <nanos>355000</nanos>
+  <sequence>0</sequence>
+  <logger>main.VentanaInicio</logger>
+  <level>INFO</level>
+  <class>main.VentanaInicio$1</class>
+  <method>run</method>
+  <thread>19</thread>
+  <message>Se ejecuta la ventana de inicio</message>
+</record>
+<record>
+  <date>2021-11-28T15:52:01.423423400Z</date>
+  <millis>1638114721423</millis>
+  <nanos>423400</nanos>
+  <sequence>1</sequence>
+  <logger>main.VentanaInicio</logger>
+  <level>INFO</level>
+  <class>main.VentanaInicio$3</class>
+  <method>actionPerformed</method>
+  <thread>19</thread>
+  <message>Conexion con la base de datos abierta</message>
+</record>
+<record>
+  <date>2021-11-28T15:52:01.482435Z</date>
+  <millis>1638114721482</millis>
+  <nanos>435000</nanos>
+  <sequence>2</sequence>
+  <logger>main.VentanaInicio</logger>
+  <level>INFO</level>
+  <class>main.VentanaInicio$3</class>
+  <method>actionPerformed</method>
+  <thread>19</thread>
+  <message>Conexion con la base de datos cerrada</message>
+</record>
+</log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2021-11-28T15:54:11.038579300Z</date>
+  <millis>1638114851038</millis>
+  <nanos>579300</nanos>
+  <sequence>0</sequence>
+  <logger>main.VentanaInicio</logger>
+  <level>INFO</level>
+  <class>main.VentanaInicio$1</class>
+  <method>run</method>
+  <thread>19</thread>
+  <message>Se ejecuta la ventana de inicio</message>
+</record>
+<record>
+  <date>2021-11-28T15:54:16.047496500Z</date>
+  <millis>1638114856047</millis>
+  <nanos>496500</nanos>
+  <sequence>1</sequence>
+  <logger>main.VentanaInicio</logger>
+  <level>INFO</level>
+  <class>main.VentanaInicio$3</class>
+  <method>actionPerformed</method>
+  <thread>19</thread>
+  <message>Conexion con la base de datos abierta</message>
+</record>
+<record>
+  <date>2021-11-28T15:54:16.116506200Z</date>
+  <millis>1638114856116</millis>
+  <nanos>506200</nanos>
+  <sequence>2</sequence>
+  <logger>main.VentanaInicio</logger>
+  <level>INFO</level>
+  <class>main.VentanaInicio$3</class>
+  <method>actionPerformed</method>
+  <thread>19</thread>
+  <message>Conexion con la base de datos cerrada</message>
+</record>
+<record>
+  <date>2021-11-28T15:54:38.223541300Z</date>
+  <millis>1638114878223</millis>
+  <nanos>541300</nanos>
+  <sequence>3</sequence>
+  <logger>main.VentanaInicio</logger>
+  <level>INFO</level>
+  <class>main.VentanaInicio$3</class>
+  <method>actionPerformed</method>
+  <thread>19</thread>
+  <message>Conexion con la base de datos abierta</message>
+</record>
+<record>
+  <date>2021-11-28T15:54:38.249547800Z</date>
+  <millis>1638114878249</millis>
+  <nanos>547800</nanos>
+  <sequence>4</sequence>
+  <logger>main.VentanaInicio</logger>
+  <level>INFO</level>
+  <class>main.VentanaInicio$3</class>
+  <method>actionPerformed</method>
+  <thread>19</thread>
+  <message>Conexion con la base de datos cerrada</message>
+</record>
+<record>
+  <date>2021-11-28T15:54:45.415645900Z</date>
+  <millis>1638114885415</millis>
+  <nanos>645900</nanos>
   <sequence>5</sequence>
   <logger>main.VentanaInicio</logger>
   <level>INFO</level>
   <class>main.VentanaInicio$2</class>
   <method>actionPerformed</method>
-  <thread>18</thread>
+  <thread>19</thread>
   <message>Conexion con la base de datos abierta</message>
 </record>
 <record>
-  <date>2021-11-26T10:21:28.704712500Z</date>
-  <millis>1637922088704</millis>
-  <nanos>712500</nanos>
+  <date>2021-11-28T15:54:45.470657900Z</date>
+  <millis>1638114885470</millis>
+  <nanos>657900</nanos>
   <sequence>6</sequence>
   <logger>main.VentanaInicio</logger>
   <level>INFO</level>
   <class>main.VentanaInicio$2</class>
   <method>actionPerformed</method>
-  <thread>18</thread>
-  <message>Conexion con la base de datos cerrada</message>
-</record>
-<record>
-  <date>2021-11-26T10:21:35.236041600Z</date>
-  <millis>1637922095236</millis>
-  <nanos>41600</nanos>
-  <sequence>7</sequence>
-  <logger>main.VentanaInicio</logger>
-  <level>INFO</level>
-  <class>main.VentanaInicio$2</class>
-  <method>actionPerformed</method>
-  <thread>18</thread>
-  <message>Conexion con la base de datos abierta</message>
-</record>
-<record>
-  <date>2021-11-26T10:21:35.439675100Z</date>
-  <millis>1637922095439</millis>
-  <nanos>675100</nanos>
-  <sequence>8</sequence>
-  <logger>main.VentanaInicio</logger>
-  <level>INFO</level>
-  <class>main.VentanaInicio$2</class>
-  <method>actionPerformed</method>
-  <thread>18</thread>
-  <message>Conexion con la base de datos cerrada</message>
-</record>
-<record>
-  <date>2021-11-26T10:21:51.054850500Z</date>
-  <millis>1637922111054</millis>
-  <nanos>850500</nanos>
-  <sequence>9</sequence>
-  <logger>main.VentanaInicio</logger>
-  <level>INFO</level>
-  <class>ventanas.VentanaPermisos$1</class>
-  <method>actionPerformed</method>
-  <thread>18</thread>
-  <message>Conexion con la base de datos abierta</message>
-</record>
-<record>
-  <date>2021-11-26T10:21:51.065777600Z</date>
-  <millis>1637922111065</millis>
-  <nanos>777600</nanos>
-  <sequence>10</sequence>
-  <logger>main.VentanaInicio</logger>
-  <level>INFO</level>
-  <class>bd.BD</class>
-  <method>insertarAdministrador</method>
-  <thread>18</thread>
-  <message>Se ha añadido un administrador</message>
-</record>
-<record>
-  <date>2021-11-26T10:21:51.071737400Z</date>
-  <millis>1637922111071</millis>
-  <nanos>737400</nanos>
-  <sequence>11</sequence>
-  <logger>main.VentanaInicio</logger>
-  <level>INFO</level>
-  <class>bd.BD</class>
-  <method>insertarAzafato</method>
-  <thread>18</thread>
-  <message>Se ha añadido un azafato</message>
-</record>
-<record>
-  <date>2021-11-26T10:21:56.727768900Z</date>
-  <millis>1637922116727</millis>
-  <nanos>768900</nanos>
-  <sequence>12</sequence>
-  <logger>main.VentanaInicio</logger>
-  <level>INFO</level>
-  <class>ventanas.VentanaPermisos$1</class>
-  <method>actionPerformed</method>
-  <thread>18</thread>
-  <message>Conexion con la base de datos cerrada</message>
-</record>
-<record>
-  <date>2021-11-26T10:22:07.747790600Z</date>
-  <millis>1637922127747</millis>
-  <nanos>790600</nanos>
-  <sequence>13</sequence>
-  <logger>main.VentanaInicio</logger>
-  <level>INFO</level>
-  <class>ventanas.VentanaPermisos$2</class>
-  <method>actionPerformed</method>
-  <thread>18</thread>
-  <message>Conexion con la base de datos abierta</message>
-</record>
-<record>
-  <date>2021-11-26T10:22:07.757724600Z</date>
-  <millis>1637922127757</millis>
-  <nanos>724600</nanos>
-  <sequence>14</sequence>
-  <logger>main.VentanaInicio</logger>
-  <level>INFO</level>
-  <class>bd.BD</class>
-  <method>insertarAzafato</method>
-  <thread>18</thread>
-  <message>Se ha añadido un azafato</message>
-</record>
-<record>
-  <date>2021-11-26T10:22:09.255669400Z</date>
-  <millis>1637922129255</millis>
-  <nanos>669400</nanos>
-  <sequence>15</sequence>
-  <logger>main.VentanaInicio</logger>
-  <level>INFO</level>
-  <class>ventanas.VentanaPermisos$2</class>
-  <method>actionPerformed</method>
-  <thread>18</thread>
-  <message>Conexion con la base de datos cerrada</message>
-</record>
-</log>
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE log SYSTEM "logger.dtd">
-<log>
-<record>
-  <date>2021-11-26T10:22:54.961621900Z</date>
-  <millis>1637922174961</millis>
-  <nanos>621900</nanos>
-  <sequence>0</sequence>
-  <logger>main.VentanaInicio</logger>
-  <level>INFO</level>
-  <class>main.VentanaInicio$1</class>
-  <method>run</method>
-  <thread>18</thread>
-  <message>Se ejecuta la ventana de inicio</message>
-</record>
-<record>
-  <date>2021-11-26T10:23:04.173000800Z</date>
-  <millis>1637922184173</millis>
-  <nanos>800</nanos>
-  <sequence>1</sequence>
-  <logger>main.VentanaInicio</logger>
-  <level>INFO</level>
-  <class>main.VentanaInicio$2</class>
-  <method>actionPerformed</method>
-  <thread>18</thread>
-  <message>Conexion con la base de datos abierta</message>
-</record>
-<record>
-  <date>2021-11-26T10:23:05.433539900Z</date>
-  <millis>1637922185433</millis>
-  <nanos>539900</nanos>
-  <sequence>2</sequence>
-  <logger>main.VentanaInicio</logger>
-  <level>INFO</level>
-  <class>main.VentanaInicio$2</class>
-  <method>actionPerformed</method>
-  <thread>18</thread>
-  <message>Conexion con la base de datos cerrada</message>
-</record>
-<record>
-  <date>2021-11-26T10:23:12.141510300Z</date>
-  <millis>1637922192141</millis>
-  <nanos>510300</nanos>
-  <sequence>3</sequence>
-  <logger>main.VentanaInicio</logger>
-  <level>INFO</level>
-  <class>main.VentanaInicio$3</class>
-  <method>actionPerformed</method>
-  <thread>18</thread>
-  <message>Conexion con la base de datos abierta</message>
-</record>
-<record>
-  <date>2021-11-26T10:23:18.393539200Z</date>
-  <millis>1637922198393</millis>
-  <nanos>539200</nanos>
-  <sequence>4</sequence>
-  <logger>main.VentanaInicio</logger>
-  <level>INFO</level>
-  <class>main.VentanaInicio$3</class>
-  <method>actionPerformed</method>
-  <thread>18</thread>
-  <message>Conexion con la base de datos cerrada</message>
-</record>
-<record>
-  <date>2021-11-26T10:23:25.345006300Z</date>
-  <millis>1637922205345</millis>
-  <nanos>6300</nanos>
-  <sequence>5</sequence>
-  <logger>main.VentanaInicio</logger>
-  <level>INFO</level>
-  <class>main.VentanaInicio$3</class>
-  <method>actionPerformed</method>
-  <thread>18</thread>
-  <message>Conexion con la base de datos abierta</message>
-</record>
-<record>
-  <date>2021-11-26T10:23:25.635058Z</date>
-  <millis>1637922205635</millis>
-  <nanos>58000</nanos>
-  <sequence>6</sequence>
-  <logger>main.VentanaInicio</logger>
-  <level>INFO</level>
-  <class>main.VentanaInicio$3</class>
-  <method>actionPerformed</method>
-  <thread>18</thread>
-  <message>Conexion con la base de datos cerrada</message>
-</record>
-<record>
-  <date>2021-11-26T10:23:36.798227800Z</date>
-  <millis>1637922216798</millis>
-  <nanos>227800</nanos>
-  <sequence>7</sequence>
-  <logger>main.VentanaInicio</logger>
-  <level>INFO</level>
-  <class>main.VentanaInicio$3</class>
-  <method>actionPerformed</method>
-  <thread>18</thread>
-  <message>Conexion con la base de datos abierta</message>
-</record>
-<record>
-  <date>2021-11-26T10:23:36.937293300Z</date>
-  <millis>1637922216937</millis>
-  <nanos>293300</nanos>
-  <sequence>8</sequence>
-  <logger>main.VentanaInicio</logger>
-  <level>INFO</level>
-  <class>main.VentanaInicio$3</class>
-  <method>actionPerformed</method>
-  <thread>18</thread>
-  <message>Conexion con la base de datos cerrada</message>
-</record>
-<record>
-  <date>2021-11-26T10:23:46.829885800Z</date>
-  <millis>1637922226829</millis>
-  <nanos>885800</nanos>
-  <sequence>9</sequence>
-  <logger>main.VentanaInicio</logger>
-  <level>INFO</level>
-  <class>main.VentanaInicio$2</class>
-  <method>actionPerformed</method>
-  <thread>18</thread>
-  <message>Conexion con la base de datos abierta</message>
-</record>
-<record>
-  <date>2021-11-26T10:23:47.011664700Z</date>
-  <millis>1637922227011</millis>
-  <nanos>664700</nanos>
-  <sequence>10</sequence>
-  <logger>main.VentanaInicio</logger>
-  <level>INFO</level>
-  <class>main.VentanaInicio$2</class>
-  <method>actionPerformed</method>
-  <thread>18</thread>
-  <message>Conexion con la base de datos cerrada</message>
-</record>
-<record>
-  <date>2021-11-26T10:24:04.720784400Z</date>
-  <millis>1637922244720</millis>
-  <nanos>784400</nanos>
-  <sequence>11</sequence>
-  <logger>main.VentanaInicio</logger>
-  <level>INFO</level>
-  <class>main.VentanaInicio$3</class>
-  <method>actionPerformed</method>
-  <thread>18</thread>
-  <message>Conexion con la base de datos abierta</message>
-</record>
-<record>
-  <date>2021-11-26T10:24:05.918742400Z</date>
-  <millis>1637922245918</millis>
-  <nanos>742400</nanos>
-  <sequence>12</sequence>
-  <logger>main.VentanaInicio</logger>
-  <level>INFO</level>
-  <class>main.VentanaInicio$3</class>
-  <method>actionPerformed</method>
-  <thread>18</thread>
-  <message>Conexion con la base de datos cerrada</message>
-</record>
-<record>
-  <date>2021-11-26T10:24:13.187945300Z</date>
-  <millis>1637922253187</millis>
-  <nanos>945300</nanos>
-  <sequence>13</sequence>
-  <logger>main.VentanaInicio</logger>
-  <level>INFO</level>
-  <class>main.VentanaInicio$3</class>
-  <method>actionPerformed</method>
-  <thread>18</thread>
-  <message>Conexion con la base de datos abierta</message>
-</record>
-<record>
-  <date>2021-11-26T10:24:13.313103400Z</date>
-  <millis>1637922253313</millis>
-  <nanos>103400</nanos>
-  <sequence>14</sequence>
-  <logger>main.VentanaInicio</logger>
-  <level>INFO</level>
-  <class>main.VentanaInicio$3</class>
-  <method>actionPerformed</method>
-  <thread>18</thread>
-  <message>Conexion con la base de datos cerrada</message>
-</record>
-</log>
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE log SYSTEM "logger.dtd">
-<log>
-<record>
-  <date>2021-11-26T10:28:29.845181200Z</date>
-  <millis>1637922509845</millis>
-  <nanos>181200</nanos>
-  <sequence>0</sequence>
-  <logger>main.VentanaInicio</logger>
-  <level>INFO</level>
-  <class>main.VentanaInicio$1</class>
-  <method>run</method>
-  <thread>18</thread>
-  <message>Se ejecuta la ventana de inicio</message>
-</record>
-<record>
-  <date>2021-11-26T10:28:42.147595200Z</date>
-  <millis>1637922522147</millis>
-  <nanos>595200</nanos>
-  <sequence>1</sequence>
-  <logger>main.VentanaInicio</logger>
-  <level>INFO</level>
-  <class>main.VentanaInicio$2</class>
-  <method>actionPerformed</method>
-  <thread>18</thread>
-  <message>Conexion con la base de datos abierta</message>
-</record>
-<record>
-  <date>2021-11-26T10:28:43.940559600Z</date>
-  <millis>1637922523940</millis>
-  <nanos>559600</nanos>
-  <sequence>2</sequence>
-  <logger>main.VentanaInicio</logger>
-  <level>INFO</level>
-  <class>main.VentanaInicio$2</class>
-  <method>actionPerformed</method>
-  <thread>18</thread>
-  <message>Conexion con la base de datos cerrada</message>
-</record>
-<record>
-  <date>2021-11-26T10:28:49.981012100Z</date>
-  <millis>1637922529981</millis>
-  <nanos>12100</nanos>
-  <sequence>3</sequence>
-  <logger>main.VentanaInicio</logger>
-  <level>INFO</level>
-  <class>main.VentanaInicio$2</class>
-  <method>actionPerformed</method>
-  <thread>18</thread>
-  <message>Conexion con la base de datos abierta</message>
-</record>
-<record>
-  <date>2021-11-26T10:28:50.328675800Z</date>
-  <millis>1637922530328</millis>
-  <nanos>675800</nanos>
-  <sequence>4</sequence>
-  <logger>main.VentanaInicio</logger>
-  <level>INFO</level>
-  <class>main.VentanaInicio$2</class>
-  <method>actionPerformed</method>
-  <thread>18</thread>
-  <message>Conexion con la base de datos cerrada</message>
-</record>
-<record>
-  <date>2021-11-26T10:29:15.700357400Z</date>
-  <millis>1637922555700</millis>
-  <nanos>357400</nanos>
-  <sequence>5</sequence>
-  <logger>main.VentanaInicio</logger>
-  <level>INFO</level>
-  <class>ventanas.VentanaPermisos$1</class>
-  <method>actionPerformed</method>
-  <thread>18</thread>
-  <message>Conexion con la base de datos abierta</message>
-</record>
-<record>
-  <date>2021-11-26T10:29:19.161124600Z</date>
-  <millis>1637922559161</millis>
-  <nanos>124600</nanos>
-  <sequence>6</sequence>
-  <logger>main.VentanaInicio</logger>
-  <level>INFO</level>
-  <class>ventanas.VentanaPermisos$1</class>
-  <method>actionPerformed</method>
-  <thread>18</thread>
-  <message>Conexion con la base de datos cerrada</message>
-</record>
-<record>
-  <date>2021-11-26T10:29:27.664044700Z</date>
-  <millis>1637922567664</millis>
-  <nanos>44700</nanos>
-  <sequence>7</sequence>
-  <logger>main.VentanaInicio</logger>
-  <level>INFO</level>
-  <class>ventanas.VentanaPermisos$1</class>
-  <method>actionPerformed</method>
-  <thread>18</thread>
-  <message>Conexion con la base de datos abierta</message>
-</record>
-<record>
-  <date>2021-11-26T10:29:30.321207500Z</date>
-  <millis>1637922570321</millis>
-  <nanos>207500</nanos>
-  <sequence>8</sequence>
-  <logger>main.VentanaInicio</logger>
-  <level>INFO</level>
-  <class>ventanas.VentanaPermisos$1</class>
-  <method>actionPerformed</method>
-  <thread>18</thread>
-  <message>Conexion con la base de datos cerrada</message>
-</record>
-<record>
-  <date>2021-11-26T10:29:38.027476300Z</date>
-  <millis>1637922578027</millis>
-  <nanos>476300</nanos>
-  <sequence>9</sequence>
-  <logger>main.VentanaInicio</logger>
-  <level>INFO</level>
-  <class>ventanas.VentanaPermisos$2</class>
-  <method>actionPerformed</method>
-  <thread>18</thread>
-  <message>Conexion con la base de datos abierta</message>
-</record>
-<record>
-  <date>2021-11-26T10:29:39.523432200Z</date>
-  <millis>1637922579523</millis>
-  <nanos>432200</nanos>
-  <sequence>10</sequence>
-  <logger>main.VentanaInicio</logger>
-  <level>INFO</level>
-  <class>ventanas.VentanaPermisos$2</class>
-  <method>actionPerformed</method>
-  <thread>18</thread>
-  <message>Conexion con la base de datos cerrada</message>
-</record>
-</log>
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE log SYSTEM "logger.dtd">
-<log>
-<record>
-  <date>2021-11-26T10:30:46.612553900Z</date>
-  <millis>1637922646612</millis>
-  <nanos>553900</nanos>
-  <sequence>0</sequence>
-  <logger>main.VentanaInicio</logger>
-  <level>INFO</level>
-  <class>main.VentanaInicio$1</class>
-  <method>run</method>
-  <thread>18</thread>
-  <message>Se ejecuta la ventana de inicio</message>
-</record>
-</log>
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE log SYSTEM "logger.dtd">
-<log>
-<record>
-  <date>2021-11-26T10:34:15.817398800Z</date>
-  <millis>1637922855817</millis>
-  <nanos>398800</nanos>
-  <sequence>0</sequence>
-  <logger>main.VentanaInicio</logger>
-  <level>INFO</level>
-  <class>main.VentanaInicio$1</class>
-  <method>run</method>
-  <thread>18</thread>
-  <message>Se ejecuta la ventana de inicio</message>
-</record>
-<record>
-  <date>2021-11-26T10:34:25.723510200Z</date>
-  <millis>1637922865723</millis>
-  <nanos>510200</nanos>
-  <sequence>1</sequence>
-  <logger>main.VentanaInicio</logger>
-  <level>INFO</level>
-  <class>main.VentanaInicio$2</class>
-  <method>actionPerformed</method>
-  <thread>18</thread>
-  <message>Conexion con la base de datos abierta</message>
-</record>
-<record>
-  <date>2021-11-26T10:34:26.037402300Z</date>
-  <millis>1637922866037</millis>
-  <nanos>402300</nanos>
-  <sequence>2</sequence>
-  <logger>main.VentanaInicio</logger>
-  <level>INFO</level>
-  <class>main.VentanaInicio$2</class>
-  <method>actionPerformed</method>
-  <thread>18</thread>
-  <message>Conexion con la base de datos cerrada</message>
-</record>
-<record>
-  <date>2021-11-26T10:34:40.966004600Z</date>
-  <millis>1637922880966</millis>
-  <nanos>4600</nanos>
-  <sequence>3</sequence>
-  <logger>main.VentanaInicio</logger>
-  <level>INFO</level>
-  <class>main.VentanaInicio$2</class>
-  <method>actionPerformed</method>
-  <thread>18</thread>
-  <message>Conexion con la base de datos abierta</message>
-</record>
-<record>
-  <date>2021-11-26T10:34:41.028584Z</date>
-  <millis>1637922881028</millis>
-  <nanos>584000</nanos>
-  <sequence>4</sequence>
-  <logger>main.VentanaInicio</logger>
-  <level>INFO</level>
-  <class>main.VentanaInicio$2</class>
-  <method>actionPerformed</method>
-  <thread>18</thread>
-  <message>Conexion con la base de datos cerrada</message>
-</record>
-</log>
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE log SYSTEM "logger.dtd">
-<log>
-<record>
-  <date>2021-11-26T10:36:42.551579Z</date>
-  <millis>1637923002551</millis>
-  <nanos>579000</nanos>
-  <sequence>0</sequence>
-  <logger>main.VentanaInicio</logger>
-  <level>INFO</level>
-  <class>main.VentanaInicio$1</class>
-  <method>run</method>
-  <thread>18</thread>
-  <message>Se ejecuta la ventana de inicio</message>
-</record>
-<record>
-  <date>2021-11-26T10:36:49.546621400Z</date>
-  <millis>1637923009546</millis>
-  <nanos>621400</nanos>
-  <sequence>1</sequence>
-  <logger>main.VentanaInicio</logger>
-  <level>INFO</level>
-  <class>main.VentanaInicio$2</class>
-  <method>actionPerformed</method>
-  <thread>18</thread>
-  <message>Conexion con la base de datos abierta</message>
-</record>
-<record>
-  <date>2021-11-26T10:36:49.906207500Z</date>
-  <millis>1637923009906</millis>
-  <nanos>207500</nanos>
-  <sequence>2</sequence>
-  <logger>main.VentanaInicio</logger>
-  <level>INFO</level>
-  <class>main.VentanaInicio$2</class>
-  <method>actionPerformed</method>
-  <thread>18</thread>
-  <message>Conexion con la base de datos cerrada</message>
-</record>
-</log>
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE log SYSTEM "logger.dtd">
-<log>
-<record>
-  <date>2021-11-26T10:38:30.752105700Z</date>
-  <millis>1637923110752</millis>
-  <nanos>105700</nanos>
-  <sequence>0</sequence>
-  <logger>main.VentanaInicio</logger>
-  <level>INFO</level>
-  <class>main.VentanaInicio$1</class>
-  <method>run</method>
-  <thread>18</thread>
-  <message>Se ejecuta la ventana de inicio</message>
-</record>
-<record>
-  <date>2021-11-26T10:38:38.167325600Z</date>
-  <millis>1637923118167</millis>
-  <nanos>325600</nanos>
-  <sequence>1</sequence>
-  <logger>main.VentanaInicio</logger>
-  <level>INFO</level>
-  <class>main.VentanaInicio$2</class>
-  <method>actionPerformed</method>
-  <thread>18</thread>
-  <message>Conexion con la base de datos abierta</message>
-</record>
-<record>
-  <date>2021-11-26T10:38:38.472279500Z</date>
-  <millis>1637923118472</millis>
-  <nanos>279500</nanos>
-  <sequence>2</sequence>
-  <logger>main.VentanaInicio</logger>
-  <level>INFO</level>
-  <class>main.VentanaInicio$2</class>
-  <method>actionPerformed</method>
-  <thread>18</thread>
-  <message>Conexion con la base de datos cerrada</message>
-</record>
-</log>
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE log SYSTEM "logger.dtd">
-<log>
-<record>
-  <date>2021-11-26T10:44:34.503251Z</date>
-  <millis>1637923474503</millis>
-  <nanos>251000</nanos>
-  <sequence>0</sequence>
-  <logger>main.VentanaInicio</logger>
-  <level>INFO</level>
-  <class>main.VentanaInicio$1</class>
-  <method>run</method>
-  <thread>18</thread>
-  <message>Se ejecuta la ventana de inicio</message>
-</record>
-<record>
-  <date>2021-11-26T10:44:40.356954900Z</date>
-  <millis>1637923480356</millis>
-  <nanos>954900</nanos>
-  <sequence>1</sequence>
-  <logger>main.VentanaInicio</logger>
-  <level>INFO</level>
-  <class>main.VentanaInicio$2</class>
-  <method>actionPerformed</method>
-  <thread>18</thread>
-  <message>Conexion con la base de datos abierta</message>
-</record>
-<record>
-  <date>2021-11-26T10:44:40.827794Z</date>
-  <millis>1637923480827</millis>
-  <nanos>794000</nanos>
-  <sequence>2</sequence>
-  <logger>main.VentanaInicio</logger>
-  <level>INFO</level>
-  <class>main.VentanaInicio$2</class>
-  <method>actionPerformed</method>
-  <thread>18</thread>
+  <thread>19</thread>
   <message>Conexion con la base de datos cerrada</message>
 </record>
 </log>
