@@ -4,8 +4,18 @@ package ventanas;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.*;
 import javax.swing.LayoutStyle.ComponentPlacement;
+
+import bd.BD;
+import bd.DBException;
+import clases.Vuelo;
+import main.VentanaInicio;
+
 import java.awt.*;
 import java.awt.event.*;
+import java.sql.Connection;
+import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.util.logging.Level;
 
 
 
@@ -86,8 +96,70 @@ public class CreadorVuelos extends JInternalFrame {
 
         lblPrecio.setForeground(new Color(255, 255, 255));
         lblPrecio.setText("Precio");
+        
+        
+        JComboBox<String> opcionesHoraSalida = new JComboBox<String>();
+        opcionesHoraSalida.setModel(new DefaultComboBoxModel<>(new String[] { "6:00\t", "6:30", "7:00", "7:30", "8:00", "8:30", "9:00", "9:30", "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00" }));
+       
+        JComboBox<String> opcionesHoraLlegada = new JComboBox<String>();
+        opcionesHoraLlegada.setModel(new DefaultComboBoxModel<>(new String[] { "15:00\t", "15:30", "16:00", "16:30", "17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00", "20:30", "21:00", "21:30", "22:00", "22:30", "23:00" }));
 
         btnGuardar.setText("Guardar");
+        
+        //Procedimiento que guarda un vuelo en la base de datos
+        btnGuardar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+            	BD db = new BD();
+            	
+
+            	try {
+            		
+            		db.initBD(title);
+            		
+            		Vuelo vuelo = new Vuelo();
+                	
+                	Object selectedItem = txtDestino.getSelectedItem();
+                	String destinoDB = selectedItem.toString();
+                	vuelo.setDestino(destinoDB);
+                	
+                	Object selectedItem2 = txtOrigen.getSelectedItem();
+                	String origenDB = selectedItem2.toString();
+                	vuelo.setOrigen(origenDB);
+                   
+                	
+                	Object selectedItem3 = opcionesHoraLlegada.getSelectedItem();
+                	String hLlegadaDB = selectedItem3.toString();
+                	vuelo.setHoraLlegada(hLlegadaDB);
+                	
+                	
+                	Object selectedItem4 = opcionesHoraSalida.getSelectedItem();
+                	String hSalidaDB = selectedItem4.toString();
+                	vuelo.setHoraSalida(hSalidaDB);
+                	
+                	
+                	Date date = txtFecha.getDate();
+                    vuelo.setFecha(date);
+                    
+					
+                	vuelo.setID(txtIDVuelo.getText());
+                	vuelo.setPrecio( Double.valueOf(txtPrecio.getText()));
+                	
+	
+                	Connection con = null;      	
+                	
+					con = BD.initBD("Usuario.db");
+					//CreadorVuelos.logger.log(Level.INFO, "Conexion con la base de datos abierta");
+					BD.insertarVuelo(con, vuelo);
+					JOptionPane.showMessageDialog(null, "Vuelo guardado correctamente");
+					BD.closeBD(con);
+
+
+				} catch (Exception e) {
+					// TODO: handle exception
+				}
+            }	
+        
+        });
       
 
         btnCancelar.setText("Cancelar");
@@ -115,11 +187,7 @@ public class CreadorVuelos extends JInternalFrame {
 
         txtDestino.setModel(new DefaultComboBoxModel<>(new String[] { "Italia\t", "Srilanka", "UK", "Usa", "Canada", "China" }));
         
-        JComboBox<String> opcionesHoraSalida = new JComboBox<String>();
-        opcionesHoraSalida.setModel(new DefaultComboBoxModel<>(new String[] { "6:00\t", "6:30", "7:00", "7:30", "8:00", "8:30", "9:00", "9:30", "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00" }));
-       
-        JComboBox<String> opcionesHoraLlegada = new JComboBox<String>();
-        opcionesHoraLlegada.setModel(new DefaultComboBoxModel<>(new String[] { "15:00\t", "15:30", "16:00", "16:30", "17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00", "20:30", "21:00", "21:30", "22:00", "22:30", "23:00" }));
+        
         
         GroupLayout glPanelCreacionVuelo = new GroupLayout(panelCreacionVuelo);
         glPanelCreacionVuelo.setHorizontalGroup(

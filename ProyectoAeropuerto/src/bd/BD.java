@@ -3,12 +3,23 @@ package bd;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeParseException;
 import java.util.Date;
 import java.util.logging.Level;
 
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
+import java.util.StringTokenizer;
+import java.util.logging.Logger;
+
+import clases.Vuelo;
 import main.VentanaInicio;
 
 public class BD {
@@ -208,6 +219,38 @@ public class BD {
 					e.printStackTrace();
 				}
 			}
+		}
+	}
+	
+	
+	public static void insertarVuelo(Connection con, Vuelo vuelo) throws DBException {
+		try (PreparedStatement stmt = con.prepareStatement("INSERT INTO vuelo (id, origen, destino, fecha, horaSalida, horaLlegada) VALUES (?, ?, ?, ?, ?, ?)"); 
+			Statement stmtForId = con.createStatement()) {
+			
+			stmt.setString(1, vuelo.getID());
+			stmt.setString(2, vuelo.getOrigen());
+			stmt.setString(3, vuelo.getDestino());
+			
+			
+	        
+			Date date = vuelo.getFecha();  
+			SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+	        String strdate = sdf.format(date);
+	        
+
+            
+			stmt.setString(4, strdate);
+			stmt.setString(5, vuelo.getHoraSalida());
+			stmt.setString(6, vuelo.getHoraLlegada());
+			
+
+	
+			stmt.executeUpdate();
+			VentanaInicio.logger.log(Level.INFO, "Se ha añadido un azafato");
+			stmt.close();
+			 
+		} catch (SQLException | DateTimeParseException e) {
+			throw new DBException("Error al insertar vuelo'", e);
 		}
 	}
 	
