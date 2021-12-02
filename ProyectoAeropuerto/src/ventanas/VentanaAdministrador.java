@@ -203,7 +203,7 @@ public class VentanaAdministrador extends JFrame {
 		menuVuelo.add(menuEscogerAvion);
 		// hashmap
 		HashMap<String, String> hashAviones = new HashMap<String, String>();
-		hashAviones.put("Tipo1.jfif", "AIRBUS");
+		hashAviones.put("Tipo1.jpg", "AIRBUS");
 		hashAviones.put("Tipo2.jpg", "AIRJET");
 		hashAviones.put("Tipo3.jfif", "EUROFLY");
 		hashAviones.put("Tipo4.jpg", "TURBLUNT");
