@@ -33,7 +33,7 @@ public class VentanaPermisos extends JInternalFrame {
 
 		Connection con = null;
 		try {
-			con = BD.initBD("Usuario.db");
+			con = BD.initBD("Aeropuerto.db");
 
 		} catch (DBException e1) {
 			// TODO Auto-generated catch block
@@ -90,9 +90,6 @@ public class VentanaPermisos extends JInternalFrame {
 
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				if (VentanaAdministrador.VentanaAdminEstaActiva()) {
-					VentanaAdministrador.tablaVuelos.setVisible(true);
-				}
 				dispose();
 				boolean resultadoAdministradorActivo = ventanas.VentanaAdministrador.VentanaAdminEstaActiva();
 				boolean resultadoAzafatoActivo = ventanas.VentanaAzafato.VentanaAzafatoEstaActiva();
@@ -153,7 +150,7 @@ public class VentanaPermisos extends JInternalFrame {
 					String c = textContrasenia.getText();
 					Connection con = null;
 					try {
-						con = BD.initBD("Usuario.db");
+						con = BD.initBD("Aeropuerto.db");
 						VentanaInicio.logger.log(Level.INFO, "Conexion con la base de datos abierta");
 					} catch (DBException e1) {
 						// TODO Auto-generated catch block
@@ -211,7 +208,7 @@ public class VentanaPermisos extends JInternalFrame {
 					String c = textContrasenia.getText();
 					Connection con = null;
 					try {
-						con = BD.initBD("Usuario.db");
+						con = BD.initBD("Aeropuerto.db");
 						VentanaInicio.logger.log(Level.INFO, "Conexion con la base de datos abierta");
 					} catch (DBException e1) {
 						// TODO Auto-generated catch block

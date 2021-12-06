@@ -247,9 +247,6 @@ public class BuscarPasajero extends javax.swing.JInternalFrame {
 		btnCancelar.setText("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				if (VentanaAdministrador.VentanaAdminEstaActiva()) {
-					VentanaAdministrador.tablaVuelos.setVisible(true);
-				}
 				dispose();
 				boolean resultadoAdministradorActivo = VentanaAdministrador.VentanaAdminEstaActiva();
 				boolean resultadoAzafatoActivo = VentanaAzafato.VentanaAzafatoEstaActiva();

@@ -88,9 +88,6 @@ public class ReservarTicket extends JInternalFrame {
 
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (VentanaAdministrador.VentanaAdminEstaActiva()) {
-					VentanaAdministrador.tablaVuelos.setVisible(true);
-				}
 				dispose();
 				boolean resultadoAdministradorActivo = ventanas.VentanaAdministrador.VentanaAdminEstaActiva();
 				boolean resultadoAzafatoActivo = ventanas.VentanaAzafato.VentanaAzafatoEstaActiva();

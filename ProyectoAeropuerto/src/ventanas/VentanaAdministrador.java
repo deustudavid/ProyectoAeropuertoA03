@@ -52,7 +52,6 @@ public class VentanaAdministrador extends JFrame {
 	private ImageIcon imagenUsuario;
 	
 	public static JFrame ventanaActual;
-	static JTable tablaVuelos;
 
 	public VentanaAdministrador() {
 
@@ -85,7 +84,6 @@ public class VentanaAdministrador extends JFrame {
 		menuItemAniadirPasajero.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, InputEvent.CTRL_MASK));
 		menuItemAniadirPasajero.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				tablaVuelos.setVisible(false);
 				CreadorPasajeros cus = new CreadorPasajeros();
 				panelEscritorio.add(cus);
 				cus.setVisible(true);
@@ -102,7 +100,6 @@ public class VentanaAdministrador extends JFrame {
 		menuItemReservarTicket = new JMenuItem();
 		menuItemReservarTicket.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				tablaVuelos.setVisible(false);
 				ReservarTicket r = new ReservarTicket();
 				panelEscritorio.add(r);
 				bloquearBotones();
@@ -117,24 +114,15 @@ public class VentanaAdministrador extends JFrame {
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setPreferredSize(new Dimension(1366, 768));
 		setVisible(true);
-		
-		tablaVuelos = new JTable();
-		DefaultTableModel modeloTablaVuelos = (DefaultTableModel)tablaVuelos.getModel();
 
 		GroupLayout gl_panelEscritorio = new GroupLayout(panelEscritorio);
 		gl_panelEscritorio.setHorizontalGroup(
 			gl_panelEscritorio.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panelEscritorio.createSequentialGroup()
-					.addGap(59)
-					.addComponent(tablaVuelos, GroupLayout.PREFERRED_SIZE, 709, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(582, Short.MAX_VALUE))
+				.addGap(0, 1350, Short.MAX_VALUE)
 		);
 		gl_panelEscritorio.setVerticalGroup(
 			gl_panelEscritorio.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panelEscritorio.createSequentialGroup()
-					.addGap(78)
-					.addComponent(tablaVuelos, GroupLayout.PREFERRED_SIZE, 383, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(246, Short.MAX_VALUE))
+				.addGap(0, 707, Short.MAX_VALUE)
 		);
 		
 		
@@ -150,7 +138,6 @@ public class VentanaAdministrador extends JFrame {
 		menuItemActualizarPasajero.setText("Actualizar pasajero");
 		menuItemActualizarPasajero.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				tablaVuelos.setVisible(false);
 				BuscarPasajero b = new BuscarPasajero();
 				panelEscritorio.add(b);
 				b.setVisible(true);
@@ -179,7 +166,6 @@ public class VentanaAdministrador extends JFrame {
 
 		menuItemVerTickets.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				tablaVuelos.setVisible(false);
 				VerTickets v = new VerTickets();
 				panelEscritorio.add(v);
 				v.setVisible(true);
@@ -210,7 +196,6 @@ public class VentanaAdministrador extends JFrame {
 		menuItemAnadirVuelo.setText("Anadir vuelo");
 		menuItemAnadirVuelo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				tablaVuelos.setVisible(false);
 				CreadorVuelos f = new CreadorVuelos();
 				panelEscritorio.add(f);
 				f.setVisible(true);
@@ -271,7 +256,6 @@ public class VentanaAdministrador extends JFrame {
 		menuUsuario.add(menuItemDarPermisos);
 		menuItemDarPermisos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				tablaVuelos.setVisible(false);
 				VentanaPermisos v = new VentanaPermisos();
 				panelEscritorio.add(v);
 				v.setVisible(true);

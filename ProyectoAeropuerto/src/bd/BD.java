@@ -1,33 +1,33 @@
 package bd;
 
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeParseException;
 import java.util.Date;
 import java.util.logging.Level;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
-import java.util.StringTokenizer;
-import java.util.logging.Logger;
-
 import clases.Vuelo;
+
 import main.VentanaInicio;
 
 public class BD {
-	
 	/**
-	 * Método que crea la conexión con la BBD
+	 * MÃ©todo que crea la conexiÃ³n con la BBD
 	 * @param nombreBD El nombre de la BBDD
-	 * @return El objeto Conexión
+	 * @return El objeto ConexiÃ³n
 	 * @throws DBException 
 	 */
 	public static Connection initBD(String nombreBD) throws DBException {
@@ -49,8 +49,8 @@ public class BD {
 		return con;
 	}
 	/**
-	 * Método que cierra la conexión con la BBDD
-	 * @param con Objecto Connection
+	 * MÃ©todo que cierra la conexiï¿½n con la BBDD
+	 * @param con Objeto Connection
 	 * @throws DBException 
 	 */
 	public static void closeBD(Connection con) throws DBException {
@@ -68,12 +68,12 @@ public class BD {
 
 	
 	/**
-	 * Método que recibe los datos de un Azafato y comprueba que está registrado en la BBDD
+	 * MÃ©todo que recibe los datos de un Azafato y comprueba que estï¿½ registrado en la BBDD
 	 * @param usuario Nombre de usuario del azafato
-	 * @param contras contraseña del azafato
-	 * @return 0 si el nombre de usuario del azafato no está registrado
-	 * 		   1 si el nombre de usuario del azafato está registrado pero la contraseña no es correcta
-	 * 		   2 si el nombre de usuario del azafato está registrado y la contraseña es correcta
+	 * @param contras contraseï¿½a del azafato
+	 * @return 0 si el nombre de usuario del azafato no estï¿½ registrado
+	 * 		   1 si el nombre de usuario del azafato estï¿½ registrado pero la contraseï¿½a no es correcta
+	 * 		   2 si el nombre de usuario del azafato estï¿½ registrado y la contraseï¿½a es correcta
 	 * @throws DBException 
 	 */
 	public static int obtenerAzafato(Connection con, String usuario, String contra) throws DBException {
@@ -83,7 +83,7 @@ public class BD {
 		try {
 			st = con.createStatement();
 			ResultSet rs = st.executeQuery(sentencia);
-			//Si la sentencia nos ha devuelto al menos un valor, rs estará apuntando a una tupla
+			//Si la sentencia nos ha devuelto al menos un valor, rs estarï¿½ apuntando a una tupla
 			if(rs.next()) {
 				if(rs.getString("contrasenya").equals(contra)) {
 					resul = 2;
@@ -111,12 +111,12 @@ public class BD {
 	
 	
 	/**
-	 * Método que recibe los datos de un Administrador y comprueba que está registrado en la BBDD
+	 * MÃ©todo que recibe los datos de un Administrador y comprueba que estï¿½ registrado en la BBDD
 	 * @param usuario Nombre de usuario del administrador
-	 * @param contras contraseña del administrador
-	 * @return 0 si el administrador no está registrado
-	 * 		   1 si el administrador está registrado pero la contraseña no es correcta
-	 * 		   2 si el administrador está registrado y la contraseña es correcta
+	 * @param contras contraseï¿½a del administrador
+	 * @return 0 si el administrador no estï¿½ registrado
+	 * 		   1 si el administrador estï¿½ registrado pero la contraseï¿½a no es correcta
+	 * 		   2 si el administrador estï¿½ registrado y la contraseï¿½a es correcta
 	 * @throws DBException 
 	 */
 	public static int obtenerAdministrador(Connection con, String usuario, String contra) throws DBException {
@@ -126,7 +126,7 @@ public class BD {
 		try {
 			st = con.createStatement();
 			ResultSet rs = st.executeQuery(sentencia);
-			//Si la sentencia nos ha devuelto al menos un valor, rs estará apuntando a una tupla
+			//Si la sentencia nos ha devuelto al menos un valor, rs estarï¿½ apuntando a una tupla
 			if(rs.next()) {
 				if(rs.getString("contrasenya").equals(contra)) {
 					resul = 2;
@@ -154,13 +154,18 @@ public class BD {
 	}
 	
 	/**
-	 * Método que crea la tabla Azafato y Administrador si no existen
+	 * MÃ©todo que crea la tabla Azafato y Administrador si no existen
 
 	 */
 	public static void crearTablas(Connection con) throws DBException {
 		String sentencia1 = "CREATE TABLE IF NOT EXISTS Azafato (usuario String, contrasenya String)";
+		VentanaInicio.logger.log( Level.INFO, "Statement: " + sentencia1 );
 		String sentencia2 = "CREATE TABLE IF NOT EXISTS Administrador (usuario String, contrasenya String)";
+		VentanaInicio.logger.log( Level.INFO, "Statement: " + sentencia2 );
 		String sentencia3 = "CREATE TABLE IF NOT EXISTS Vuelo (ID String, origen String, destino String, fecha Date, horaSalida String, horaLlegada String)";
+		VentanaInicio.logger.log( Level.INFO, "Statement: " + sentencia3 );
+		String sentencia4 = "CREATE TABLE IF NOT EXISTS Pasajero(dni String , nombre String ,apellido String, edad int, telefono int, direccion String)";
+		VentanaInicio.logger.log( Level.INFO, "Statement: " + sentencia4 );
 
 		Statement st = null;
 		try {
@@ -168,11 +173,16 @@ public class BD {
 			st.executeUpdate(sentencia1);
 			st.executeUpdate(sentencia2);
 			st.executeUpdate(sentencia3);
+			st.executeUpdate(sentencia4);
+			
+			
+		
 			st.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new DBException("No se han podido crear las tablas", e);
 			
+	
 		} finally {
 			if(st!=null) {
 				try {
@@ -190,10 +200,10 @@ public class BD {
 	
 	
 	/**
-	 * Método que inserta los datos de un Azafato (si no está repetido) en la BBDD 
-	 * @param con Conexión con la BBDD
+	 * Mï¿½todo que inserta los datos de un Azafato (si no estï¿½ repetido) en la BBDD 
+	 * @param con ConexiÃ³n con la BBDD
 	 * @param usuario Nombre de usuario del azafato
-	 * @param contra Contraseña del azafato
+	 * @param contra ContraseÃ±a del azafato
 	 * @throws DBException 
 	 */
 	public static void insertarAzafato(Connection con, String usuario, String contra) throws DBException {
@@ -204,7 +214,7 @@ public class BD {
 		try {
 			st = con.createStatement();
 			st.executeUpdate(sentencia);
-			VentanaInicio.logger.log(Level.INFO, "Se ha añadido un azafato");
+			VentanaInicio.logger.log(Level.INFO, "Se ha aÃ±adido un azafato");
 			st.close();
 		} catch (SQLException e) {
 			
@@ -246,7 +256,7 @@ public class BD {
 
 	
 			stmt.executeUpdate();
-			VentanaInicio.logger.log(Level.INFO, "Se ha añadido un azafato");
+			VentanaInicio.logger.log(Level.INFO, "Se ha aï¿½adido un azafato");
 			stmt.close();
 			 
 		} catch (SQLException | DateTimeParseException e) {
@@ -255,10 +265,10 @@ public class BD {
 	}
 	
 	/**
-	 * Método que inserta los datos de un Administrador (si no está repetido) en la BBDD 
-	 * @param con Conexión con la BBDD
+	 * Mï¿½todo que inserta los datos de un Administrador (si no estï¿½ repetido) en la BBDD 
+	 * @param con ConexiÃ³n con la BBDD
 	 * @param usuario Nombre de usuario del administrador
-	 * @param contra Contraseña del administrador
+	 * @param contra ContraseÃ±a del administrador
 	 * @throws DBException 
 	 */
 	public static void insertarAdministrador(Connection con, String usuario, String contra) throws DBException {
@@ -269,10 +279,10 @@ public class BD {
 		try {
 			st = con.createStatement();
 			st.executeUpdate(sentencia);
-			VentanaInicio.logger.log(Level.INFO, "Se ha añadido un administrador");
+			VentanaInicio.logger.log(Level.INFO, "Se ha aÃ±adido un administrador");
 			st.close();
 		} catch (SQLException e) {
-			VentanaInicio.logger.log(Level.SEVERE, "ERROR al añadir un administrador");
+			VentanaInicio.logger.log(Level.SEVERE, "ERROR al aÃ±adir un administrador");
 			e.printStackTrace();
 			throw new DBException("No se ha podido insertar administrador");
 			
@@ -288,6 +298,133 @@ public class BD {
 				}
 			}
 		}
-	}	
+	}
+	
+	public static void insertarPasajero(Connection con,String dni, String nombre, String apellido, int edad, int telefono, String direccion) throws DBException {
 		
+		String sentencia = "INSERT INTO Pasajero VALUES('" + dni + "','" + nombre + "','" + apellido + "'," + edad + "," + telefono + ",'" + direccion + "')";
+		Statement st = null;
+		
+		try {
+			st = con.createStatement();
+			st.executeUpdate(sentencia);
+			VentanaInicio.logger.log(Level.INFO, "Se ha aÃ±adido un pasajero");
+			st.close();
+		} catch (SQLException e) {
+			VentanaInicio.logger.log(Level.SEVERE, "ERROR al aÃ±adir un pasajero");
+			e.printStackTrace();
+			throw new DBException("No se ha podido insertar el pasajero en la BBDDr");
+			
+			
+		} finally {
+			if(st!=null) {
+				try {
+					st.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+					
+				}
+			}
+		}
+	}
+	
+	
+	 //Comprueba si existe un pasajero de un determinado dni
+	public static boolean existePasajero(Connection con, String dni) throws SQLException {
+		
+		String sent = "select * from Pasajero where dni='"+dni+"'";
+		Statement st = null;
+		st = con.createStatement();
+
+		ResultSet rs = st.executeQuery(sent);
+		boolean existe = false;
+		if(rs.next())
+			existe = true;
+		rs.close();
+		return existe;
+	}
+	public static void cargarPasajerosdeFichero(Connection con) throws DBException, SQLException {
+			initBD("Aeropuerto.db");
+			Statement st=null;
+			st=con.createStatement();
+			
+			
+			BufferedReader br = null;
+			
+			try {
+				br = new BufferedReader(new FileReader("pasajerosIberia.txt"));
+				String linea = br.readLine();
+				while(linea!=null) {
+					//Tratamiento de la lÃ­nea
+					String [] datos = linea.split("\t");
+					
+					String dni = datos[0];
+					String nom = datos[1];
+					String apellido = datos[2];
+					int edad = Integer.parseInt(datos[3]);
+					int tfno = Integer.parseInt(datos[4]);
+					String dir = datos[5];
+					if (!existePasajero(con, dni)) {
+						String sentencia = "insert into Pasajero (dni, nombre, apellido, edad, telefono, direccion) values ('" + dni + "','" + nom + "','" + apellido + "'," + edad + "," + tfno + ",'" + dir + "');";
+						VentanaInicio.logger.log( Level.INFO, "Statement: " + sentencia );
+						st.executeUpdate( sentencia );
+						linea = br.readLine();
+					} else {
+						linea = br.readLine();
+					}
+					
+				}
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} finally {
+				if(br!=null) {
+					try {
+						br.close();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			}
+			
+			
+	
+	}	
+	public static void InsertarPasajeroEnFichero(Connection con,String dni, String nombre, String apellido, int edad, int telefono, String direccion) {
+		
+		
+		
+		PrintWriter pw = null;
+		try {
+			FileWriter fw = null;
+			try {
+				fw = new FileWriter("pasajerosIberia.txt", true);//true= escribe despuÃ©s del contenido, no borra todo lo que habÃ­a antes
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			BufferedWriter bw = new BufferedWriter(fw);
+			pw = new PrintWriter(bw);
+			
+			String dniParaFichero=dni;
+			String nombreParaFichero=nombre;
+			String apellidoParaFichero=apellido;
+			String edadParaFichero= String.valueOf(edad) ;
+			String TelefonoParaFichero= String.valueOf(telefono) ;
+			String direccionParaFichero= direccion;
+			String direccionParaFicheroSinTabuladores=direccionParaFichero.replace("\t", " ");
+			
+			pw.println(dniParaFichero + "\t" + nombreParaFichero + "\t" + apellidoParaFichero + "\t" + edadParaFichero + "\t" + TelefonoParaFichero + "\t" + direccionParaFicheroSinTabuladores);
+		} finally {
+			pw.flush();
+			pw.close();
+			
+			
+		}
+	}
 }

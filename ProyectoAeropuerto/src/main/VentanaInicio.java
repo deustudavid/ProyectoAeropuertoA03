@@ -5,13 +5,17 @@ import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.Date;
+import java.sql.SQLException;
 import java.util.logging.FileHandler;
+import java.util.logging.Handler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -59,9 +63,10 @@ public class VentanaInicio extends JFrame {
 	/* LOGGER */
 	
 	public static Logger logger = initLogger();
-	private static long MAX_SIZE_FICHERO_LOG = 5 * 1024;  // 5 Kb es el tamaño maximo del fichero log para reiniciarlo
+	private static long MAX_SIZE_FICHERO_LOG = 5 * 1024;  // 5 Kb es el tamaÃ±o maximo del fichero log para reiniciarlo
 	private static final String NOMBRE_FICHERO_LOG = "logBaseDatos";
 	private static final String EXT_FICHERO_LOG = ".log"; // extension del fichero log
+	private static Handler handler ;
 	
 	private static Logger initLogger() {
 		if (logger==null) {  // Logger por defecto local:
@@ -81,7 +86,9 @@ public class VentanaInicio extends JFrame {
 			logger = Logger.getLogger( VentanaInicio.class.getName() );  // Nombre del logger - el de la clase
 			logger.setLevel( Level.ALL );  // Loguea todos los niveles
 			try {
-				logger.addHandler( new FileHandler( NOMBRE_FICHERO_LOG + EXT_FICHERO_LOG, true ) );  // Y saca el log a fichero .log (añadiendo al log previo)
+				handler = new FileHandler(NOMBRE_FICHERO_LOG + EXT_FICHERO_LOG, true );// Y saca el log a fichero .log (aÃ±adiendo al log previo)
+				handler.setFormatter(new SimpleFormatter());
+				logger.addHandler(handler);
 			} catch (Exception e) {
 				JOptionPane.showMessageDialog( null, "Error, no se puede crear fichero de log.", 
 						"Error al crear fichero", JOptionPane.ERROR_MESSAGE );
@@ -113,18 +120,29 @@ public class VentanaInicio extends JFrame {
 		
 		Connection con =null;
 		try {
-			con = BD.initBD("Usuario.db");
+			con = BD.initBD("Aeropuerto.db");
 			
 		} catch (DBException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		try {
-			BD.crearTablas(con);
-		} catch (DBException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+		
+			try {
+				BD.crearTablas(con);
+			} catch (DBException e3) {
+				// TODO Auto-generated catch block
+				e3.printStackTrace();
+			}
+			try {
+				BD.cargarPasajerosdeFichero(con);
+			} catch (DBException e3) {
+				// TODO Auto-generated catch block
+				e3.printStackTrace();
+			} catch (SQLException e3) {
+				// TODO Auto-generated catch block
+				e3.printStackTrace();
+			}
+			
 		try {
 			BD.closeBD(con);
 		} catch (DBException e1) {
@@ -214,7 +232,7 @@ public class VentanaInicio extends JFrame {
 					String c= textContrasenia.getText();
 					Connection con = null;
 					try {
-						con = BD.initBD("Usuario.db");
+						con = BD.initBD("Aeropuerto.db");
 						VentanaInicio.logger.log(Level.INFO, "Conexion con la base de datos abierta");
 					} catch (DBException e1) {
 						// TODO Auto-generated catch block
@@ -224,10 +242,10 @@ public class VentanaInicio extends JFrame {
 					try {
 						switch (BD.obtenerAdministrador(con,n,c)) {
 							case 0:
-								JOptionPane.showMessageDialog(null, "Ese administrador no está registrado", "Error", JOptionPane.ERROR_MESSAGE);
+								JOptionPane.showMessageDialog(null, "Ese administrador no estï¿½ registrado", "Error", JOptionPane.ERROR_MESSAGE);
 								break;
 							case 1:
-								JOptionPane.showMessageDialog(null, "Contraseña incorrecta", "Error", JOptionPane.ERROR_MESSAGE);
+								JOptionPane.showMessageDialog(null, "Contraseï¿½a incorrecta", "Error", JOptionPane.ERROR_MESSAGE);
 								break;
 							case 2:
 								ventanaActual.dispose();
@@ -272,7 +290,7 @@ public class VentanaInicio extends JFrame {
 				String c= textContrasenia.getText();
 				Connection con = null;
 				try {
-					con = BD.initBD("Usuario.db");
+					con = BD.initBD("Aeropuerto.db");
 					VentanaInicio.logger.log(Level.INFO, "Conexion con la base de datos abierta");
 				} catch (DBException e1) {
 					// TODO Auto-generated catch block
@@ -282,10 +300,10 @@ public class VentanaInicio extends JFrame {
 				try {
 					switch (BD.obtenerAzafato(con,n,c)) {
 						case 0:
-							JOptionPane.showMessageDialog(null, "Ese azafato no está registrado", "Error", JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(null, "Ese azafato no estï¿½ registrado", "Error", JOptionPane.ERROR_MESSAGE);
 							break;
 						case 1:
-							JOptionPane.showMessageDialog(null, "Contraseña incorrecta", "Error", JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(null, "Contraseï¿½a incorrecta", "Error", JOptionPane.ERROR_MESSAGE);
 							break;
 						case 2:
 							ventanaActual.dispose();
@@ -359,6 +377,8 @@ public class VentanaInicio extends JFrame {
 			}
 
 		});
+		
+		
 
 		setVisible(true);
 	}
