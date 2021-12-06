@@ -3,7 +3,8 @@ package ventanas;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
-
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -11,6 +12,11 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 
 import javax.swing.filechooser.FileNameExtensionFilter;
+
+import bd.BD;
+import bd.DBException;
+import clases.Pasajero;
+
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
@@ -46,8 +52,12 @@ public class BuscarPasajero extends javax.swing.JInternalFrame {
 
 	private ImageIcon imagenGuardar;
 	private ImageIcon imagenBuscar;
+	
+	private static Connection con;
 
 	public BuscarPasajero() {
+		
+		con=null;
 
 		imagenGuardar = new ImageIcon("img/guardar.png");
 		imagenBuscar = new ImageIcon("img/lupa.png");
@@ -85,6 +95,28 @@ public class BuscarPasajero extends javax.swing.JInternalFrame {
 		btnBuscar.setIcon(imagenBuscar);
 		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				String DniAbuscar = txtDNI.getText();
+				try {
+					con = BD.initBD("Aeropuerto.db");
+				} catch (DBException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				try {
+					Pasajero p = BD.buscarPasajero(con, DniAbuscar);
+					txtNombre.setText(p.getDni());
+					txtApellido.setText(p.getApellido());
+					txtDni.setText(p.getDni());
+					int tf=p.getTelefono();
+					txtTelefono.setText(String.valueOf(tf));
+					txtDireccion.setText(p.getDireccion());
+					int edad=p.getEdad();
+					txtEdad.setText(String.valueOf(edad));
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
 			}
 		});
 

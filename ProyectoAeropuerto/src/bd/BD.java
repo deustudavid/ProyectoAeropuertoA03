@@ -19,6 +19,7 @@ import java.time.format.DateTimeParseException;
 import java.util.Date;
 import java.util.logging.Level;
 
+import clases.Pasajero;
 import clases.Vuelo;
 
 import main.VentanaInicio;
@@ -426,5 +427,30 @@ public class BD {
 			
 			
 		}
+	}
+	public static Pasajero buscarPasajero(Connection con,String dni) throws SQLException {
+		String sentencia = "SELECT * FROM Pasajero WHERE dni = '"+dni+"'";
+		Statement st = null;
+		Pasajero p=null;
+		
+			st = con.createStatement();
+			ResultSet rs = st.executeQuery(sentencia);
+			//Si la sentencia nos ha devuelto al menos un valor, rs estar� apuntando a una tupla
+			if(rs.next()) {
+					String dniPasajero= rs.getString("dni");
+					String nombrePasajero=rs.getString("nombre");
+					String apellidoPasajero=rs.getString("apellido");
+					int edadPasajero=rs.getInt("edad");
+					int tfnoPasajero=rs.getInt("telefono");
+					String direccionPasajero=rs.getString("direccion");
+					
+					p= new Pasajero(dniPasajero,nombrePasajero,apellidoPasajero,edadPasajero, tfnoPasajero, direccionPasajero);
+		
+			
+			
+		
+		}
+			rs.close();
+			return p;
 	}
 }
