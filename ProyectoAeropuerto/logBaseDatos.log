@@ -1,10 +1,66 @@
-dic. 06, 2021 4:41:18 P. M. main.VentanaInicio$1 run
+dic. 07, 2021 12:32:34 A. M. main.VentanaInicio$1 run
 INFO: Se ejecuta la ventana de inicio
-dic. 06, 2021 4:41:19 P. M. bd.BD crearTablas
+dic. 07, 2021 12:32:34 A. M. bd.BD crearTablas
 INFO: Statement: CREATE TABLE IF NOT EXISTS Azafato (usuario String, contrasenya String)
-dic. 06, 2021 4:41:19 P. M. bd.BD crearTablas
+dic. 07, 2021 12:32:34 A. M. bd.BD crearTablas
 INFO: Statement: CREATE TABLE IF NOT EXISTS Administrador (usuario String, contrasenya String)
-dic. 06, 2021 4:41:19 P. M. bd.BD crearTablas
+dic. 07, 2021 12:32:34 A. M. bd.BD crearTablas
 INFO: Statement: CREATE TABLE IF NOT EXISTS Vuelo (ID String, origen String, destino String, fecha Date, horaSalida String, horaLlegada String)
-dic. 06, 2021 4:41:19 P. M. bd.BD crearTablas
+dic. 07, 2021 12:32:34 A. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Pasajero(dni String , nombre String ,apellido String, edad int, telefono int, direccion String)
+dic. 07, 2021 12:32:40 A. M. main.VentanaInicio$2 actionPerformed
+INFO: Conexion con la base de datos abierta
+dic. 07, 2021 12:32:40 A. M. main.VentanaInicio$2 actionPerformed
+INFO: Conexion con la base de datos cerrada
+dic. 07, 2021 12:43:34 A. M. main.VentanaInicio$1 run
+INFO: Se ejecuta la ventana de inicio
+dic. 07, 2021 12:43:34 A. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Azafato (usuario String, contrasenya String)
+dic. 07, 2021 12:43:34 A. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Administrador (usuario String, contrasenya String)
+dic. 07, 2021 12:43:34 A. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Vuelo (ID String, origen String, destino String, fecha Date, horaSalida String, horaLlegada String)
+dic. 07, 2021 12:43:34 A. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Pasajero(dni String , nombre String ,apellido String, edad int, telefono int, direccion String)
+dic. 07, 2021 12:43:40 A. M. main.VentanaInicio$2 actionPerformed
+INFO: Conexion con la base de datos abierta
+dic. 07, 2021 12:43:40 A. M. main.VentanaInicio$2 actionPerformed
+INFO: Conexion con la base de datos cerrada
+dic. 07, 2021 12:43:52 A. M. bd.BD buscarPasajero
+INFO: Se ha encontrado el pasajero de dni: 87654321B
+dic. 07, 2021 12:43:52 A. M. bd.BD buscarPasajero
+INFO: Se ha encontrado el pasajero de dni: 87654321B
+dic. 07, 2021 12:44:07 A. M. bd.BD modificarPasajero
+INFO: Se ha modificado el pasajero de dni: 
+dic. 07, 2021 12:48:49 A. M. main.VentanaInicio$1 run
+INFO: Se ejecuta la ventana de inicio
+dic. 07, 2021 12:48:50 A. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Azafato (usuario String, contrasenya String)
+dic. 07, 2021 12:48:50 A. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Administrador (usuario String, contrasenya String)
+dic. 07, 2021 12:48:50 A. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Vuelo (ID String, origen String, destino String, fecha Date, horaSalida String, horaLlegada String)
+dic. 07, 2021 12:48:50 A. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Pasajero(dni String , nombre String ,apellido String, edad int, telefono int, direccion String)
+dic. 07, 2021 12:48:58 A. M. main.VentanaInicio$2 actionPerformed
+INFO: Conexion con la base de datos abierta
+dic. 07, 2021 12:48:59 A. M. main.VentanaInicio$2 actionPerformed
+INFO: Conexion con la base de datos cerrada
+dic. 07, 2021 12:49:06 A. M. main.VentanaInicio$2 actionPerformed
+INFO: Conexion con la base de datos abierta
+dic. 07, 2021 12:49:06 A. M. main.VentanaInicio$2 actionPerformed
+INFO: Conexion con la base de datos cerrada
+dic. 07, 2021 12:49:11 A. M. bd.BD buscarPasajero
+INFO: Se ha encontrado el pasajero de dni: 00000000Q
+dic. 07, 2021 12:49:11 A. M. bd.BD buscarPasajero
+INFO: Se ha encontrado el pasajero de dni: 00000000Q
+dic. 07, 2021 12:49:39 A. M. bd.BD modificarPasajero
+INFO: Se ha modificado el pasajero de dni: 00000000Q
+dic. 07, 2021 12:50:20 A. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Azafato (usuario String, contrasenya String)
+dic. 07, 2021 12:50:20 A. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Administrador (usuario String, contrasenya String)
+dic. 07, 2021 12:50:20 A. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Vuelo (ID String, origen String, destino String, fecha Date, horaSalida String, horaLlegada String)
+dic. 07, 2021 12:50:20 A. M. bd.BD crearTablas
 INFO: Statement: CREATE TABLE IF NOT EXISTS Pasajero(dni String , nombre String ,apellido String, edad int, telefono int, direccion String)

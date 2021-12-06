@@ -428,6 +428,13 @@ public class BD {
 			
 		}
 	}
+	public static void modificarPasajero(Connection con,String dni, String nombre, String apellido, int edad, int telefono, String direccion) throws SQLException  {
+		Statement statement = con.createStatement();
+		String sent = "update Pasajero set  nombre='"+nombre+"',apellido='"+apellido+"',edad="+edad+",telefono="+telefono+",direccion='"+direccion+"' where dni='"+dni+"'";
+		statement.executeUpdate(sent);
+		VentanaInicio.logger.log(Level.INFO, "Se ha modificado el pasajero de dni: " + dni);
+	}
+	
 	public static Pasajero buscarPasajero(Connection con,String dni) throws SQLException {
 		String sentencia = "SELECT * FROM Pasajero WHERE dni = '"+dni+"'";
 		Statement st = null;
@@ -445,7 +452,7 @@ public class BD {
 					String direccionPasajero=rs.getString("direccion");
 					
 					p= new Pasajero(dniPasajero,nombrePasajero,apellidoPasajero,edadPasajero, tfnoPasajero, direccionPasajero);
-		
+					VentanaInicio.logger.log(Level.INFO, "Se ha encontrado el pasajero de dni: " + dni);
 			
 			
 		
@@ -453,4 +460,5 @@ public class BD {
 			rs.close();
 			return p;
 	}
+	
 }
