@@ -2,6 +2,7 @@ package ventanas;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.beans.PropertyChangeListener;
 
 import javax.swing.*;
 
@@ -168,6 +169,15 @@ public class VentanaAzafato extends JFrame {
 		menuItemVerVuelos.setIcon(imagenListar);
 		menuItemVerVuelos.setText("Ver vuelos");
 		menuVuelo.add(menuItemVerVuelos);
+		
+		menuItemVerVuelos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				VerVuelos v = new VerVuelos();
+				panelEscritorio.add(v);
+				v.setVisible(true);
+				bloquearBotones();
+			}
+		});
 
 		menuUsuario.setText("Usuario");
 		menuUsuario.setIcon(imagenUsuario);
