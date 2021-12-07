@@ -5,6 +5,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 
 import org.junit.Test;
 
@@ -13,9 +14,12 @@ import clases.Vuelo;
 public class VueloTest {
 
 	long milis = System.currentTimeMillis();
+	
 	Date fecha = new Date(milis);
+	SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss:SSS");
+    String f = sdf.format(fecha);
 
-	Vuelo v = new Vuelo("1", "Bilbao", "Madrid", fecha, "2:00", "3:00", 20);
+	Vuelo v = new Vuelo("1", "Bilbao", "Madrid", f, "2:00", "3:00", 20);
 	Vuelo b = new Vuelo();
 
 	@Test
@@ -35,7 +39,7 @@ public class VueloTest {
 
 	@Test
 	public void testGetFecha() {
-		assertEquals(fecha, v.getFecha());
+		assertEquals(f, v.getFecha());
 	}
 
 	@Test
@@ -73,8 +77,8 @@ public class VueloTest {
 
 	@Test
 	public void testSetFecha() {
-		b.setFecha(fecha);
-		assertEquals(fecha, b.getFecha());
+		b.setFecha(f);
+		assertEquals(f, b.getFecha());
 	}
 
 	@Test

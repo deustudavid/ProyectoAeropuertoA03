@@ -13,6 +13,7 @@ import javax.swing.KeyStroke;
 import javax.swing.table.DefaultTableModel;
 
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 import java.awt.event.InputEvent;
 
 
@@ -212,14 +213,10 @@ public class VentanaAdministrador extends JFrame {
 		menuVuelo.add(menuItemVerVuelos);
 		menuItemVerVuelos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				//tablaVuelos.setVisible(tru);
-				//hacer consulta a la base de datos
-				//tablaVuelos.set
-				Object [] fila = new Object[2];
-				//fila[0] = "dato columna 1"; --> cada fila un vuelo
-				//fila[1] = "dato columna 3"; --> cada fila un vuelo
-				//modeloTablaVerVuelos.addRow ( fila );
-
+				VerVuelos v = new VerVuelos();
+				panelEscritorio.add(v);
+				v.setVisible(true);
+				bloquearBotones();
 			}
 		});
 

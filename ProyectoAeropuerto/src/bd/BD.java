@@ -14,9 +14,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.SimpleDateFormat;
 import java.time.format.DateTimeParseException;
-import java.util.Date;
+import java.util.ArrayList;
 import java.util.logging.Level;
 
 import clases.Pasajero;
@@ -163,7 +162,7 @@ public class BD {
 		VentanaInicio.logger.log( Level.INFO, "Statement: " + sentencia1 );
 		String sentencia2 = "CREATE TABLE IF NOT EXISTS Administrador (usuario String, contrasenya String)";
 		VentanaInicio.logger.log( Level.INFO, "Statement: " + sentencia2 );
-		String sentencia3 = "CREATE TABLE IF NOT EXISTS Vuelo (ID String, origen String, destino String, fecha Date, horaSalida String, horaLlegada String)";
+		String sentencia3 = "CREATE TABLE IF NOT EXISTS Vuelo (ID String, origen String, destino String, fecha String, horaSalida String, horaLlegada String)";
 		VentanaInicio.logger.log( Level.INFO, "Statement: " + sentencia3 );
 		String sentencia4 = "CREATE TABLE IF NOT EXISTS Pasajero(dni String , nombre String ,apellido String, edad int, telefono int, direccion String)";
 		VentanaInicio.logger.log( Level.INFO, "Statement: " + sentencia4 );
@@ -241,16 +240,7 @@ public class BD {
 			stmt.setString(1, vuelo.getID());
 			stmt.setString(2, vuelo.getOrigen());
 			stmt.setString(3, vuelo.getDestino());
-			
-			
-	        
-			Date date = vuelo.getFecha();  
-			SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-	        String strdate = sdf.format(date);
-	        
-
-            
-			stmt.setString(4, strdate);
+			stmt.setString(4, vuelo.getFecha());
 			stmt.setString(5, vuelo.getHoraSalida());
 			stmt.setString(6, vuelo.getHoraLlegada());
 			
@@ -460,5 +450,27 @@ public class BD {
 			rs.close();
 			return p;
 	}
+	public static ArrayList<Vuelo> obtenerVuelos(Connection con) {
+        try (Statement statement = con.createStatement()) {
+            ArrayList<Vuelo> ret = new ArrayList<>();
+            String sent = "select * from Vuelo;";
+            VentanaInicio.logger.log( Level.INFO, "Statement: " + sent );
+            ResultSet rs = statement.executeQuery( sent );
+            while( rs.next() ) { // Leer el resultset
+                String id = rs.getString("ID");
+                String origen= rs.getString("origen");
+                String destino= rs.getString("destino");
+                String fecha = rs.getString("fecha");
+                String horaSalida=rs.getString("horaSalida");
+                String horaLlegada=rs.getString("horaLlegada");
+
+                ret.add( new Vuelo ( id, origen, destino, fecha,horaSalida, horaLlegada) );
+            }
+            return ret;
+        } catch (Exception e) {
+            VentanaInicio.logger.log( Level.SEVERE, "Excepción", e );
+            return null;
+        }
+    }
 	
 }

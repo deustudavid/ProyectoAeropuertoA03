@@ -37,8 +37,8 @@ public class VerTickets extends JInternalFrame {
         btnCancelar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
             	dispose();
-            	boolean resultadoAdministradorActivo=ventanas.VentanaAdministrador.VentanaAdminEstaActiva();
-            	boolean resultadoAzafatoActivo=ventanas.VentanaAzafato.VentanaAzafatoEstaActiva();
+            	boolean resultadoAdministradorActivo=VentanaAdministrador.VentanaAdminEstaActiva();
+            	boolean resultadoAzafatoActivo=VentanaAzafato.VentanaAzafatoEstaActiva();
             	
             	if (resultadoAdministradorActivo==true && resultadoAzafatoActivo==false) {
             		VentanaAdministrador.desbloquearBotones();

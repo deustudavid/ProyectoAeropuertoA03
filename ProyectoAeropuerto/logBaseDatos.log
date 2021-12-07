@@ -1,66 +1,204 @@
-dic. 07, 2021 12:32:34 A.Â M. main.VentanaInicio$1 run
+dic. 07, 2021 1:54:53 P. M. main.VentanaInicio$1 run
 INFO: Se ejecuta la ventana de inicio
-dic. 07, 2021 12:32:34 A.Â M. bd.BD crearTablas
+dic. 07, 2021 1:54:53 P. M. bd.BD crearTablas
 INFO: Statement: CREATE TABLE IF NOT EXISTS Azafato (usuario String, contrasenya String)
-dic. 07, 2021 12:32:34 A.Â M. bd.BD crearTablas
+dic. 07, 2021 1:54:53 P. M. bd.BD crearTablas
 INFO: Statement: CREATE TABLE IF NOT EXISTS Administrador (usuario String, contrasenya String)
-dic. 07, 2021 12:32:34 A.Â M. bd.BD crearTablas
+dic. 07, 2021 1:54:53 P. M. bd.BD crearTablas
 INFO: Statement: CREATE TABLE IF NOT EXISTS Vuelo (ID String, origen String, destino String, fecha Date, horaSalida String, horaLlegada String)
-dic. 07, 2021 12:32:34 A.Â M. bd.BD crearTablas
+dic. 07, 2021 1:54:53 P. M. bd.BD crearTablas
 INFO: Statement: CREATE TABLE IF NOT EXISTS Pasajero(dni String , nombre String ,apellido String, edad int, telefono int, direccion String)
-dic. 07, 2021 12:32:40 A.Â M. main.VentanaInicio$2 actionPerformed
+dic. 07, 2021 1:54:59 P. M. main.VentanaInicio$2 actionPerformed
 INFO: Conexion con la base de datos abierta
-dic. 07, 2021 12:32:40 A.Â M. main.VentanaInicio$2 actionPerformed
+dic. 07, 2021 1:54:59 P. M. main.VentanaInicio$2 actionPerformed
 INFO: Conexion con la base de datos cerrada
-dic. 07, 2021 12:43:34 A.Â M. main.VentanaInicio$1 run
+dic. 07, 2021 2:12:50 P. M. main.VentanaInicio$1 run
 INFO: Se ejecuta la ventana de inicio
-dic. 07, 2021 12:43:34 A.Â M. bd.BD crearTablas
+dic. 07, 2021 2:12:50 P. M. bd.BD crearTablas
 INFO: Statement: CREATE TABLE IF NOT EXISTS Azafato (usuario String, contrasenya String)
-dic. 07, 2021 12:43:34 A.Â M. bd.BD crearTablas
+dic. 07, 2021 2:12:50 P. M. bd.BD crearTablas
 INFO: Statement: CREATE TABLE IF NOT EXISTS Administrador (usuario String, contrasenya String)
-dic. 07, 2021 12:43:34 A.Â M. bd.BD crearTablas
+dic. 07, 2021 2:12:50 P. M. bd.BD crearTablas
 INFO: Statement: CREATE TABLE IF NOT EXISTS Vuelo (ID String, origen String, destino String, fecha Date, horaSalida String, horaLlegada String)
-dic. 07, 2021 12:43:34 A.Â M. bd.BD crearTablas
+dic. 07, 2021 2:12:50 P. M. bd.BD crearTablas
 INFO: Statement: CREATE TABLE IF NOT EXISTS Pasajero(dni String , nombre String ,apellido String, edad int, telefono int, direccion String)
-dic. 07, 2021 12:43:40 A.Â M. main.VentanaInicio$2 actionPerformed
+dic. 07, 2021 2:12:55 P. M. main.VentanaInicio$2 actionPerformed
 INFO: Conexion con la base de datos abierta
-dic. 07, 2021 12:43:40 A.Â M. main.VentanaInicio$2 actionPerformed
+dic. 07, 2021 2:12:55 P. M. main.VentanaInicio$2 actionPerformed
 INFO: Conexion con la base de datos cerrada
-dic. 07, 2021 12:43:52 A.Â M. bd.BD buscarPasajero
-INFO: Se ha encontrado el pasajero de dni: 87654321B
-dic. 07, 2021 12:43:52 A.Â M. bd.BD buscarPasajero
-INFO: Se ha encontrado el pasajero de dni: 87654321B
-dic. 07, 2021 12:44:07 A.Â M. bd.BD modificarPasajero
-INFO: Se ha modificado el pasajero de dni: 
-dic. 07, 2021 12:48:49 A.Â M. main.VentanaInicio$1 run
+dic. 07, 2021 2:12:57 P. M. bd.BD obtenerVuelos
+SEVERE: Excepción
+java.lang.NullPointerException: Cannot invoke "java.sql.Connection.createStatement()" because "con" is null
+	at bd.BD.obtenerVuelos(BD.java:465)
+	at ventanas.VerVuelos.<init>(VerVuelos.java:48)
+	at ventanas.VentanaAdministrador$6.actionPerformed(VentanaAdministrador.java:216)
+	at java.desktop/javax.swing.AbstractButton.fireActionPerformed(AbstractButton.java:1967)
+	at java.desktop/javax.swing.AbstractButton$Handler.actionPerformed(AbstractButton.java:2308)
+	at java.desktop/javax.swing.DefaultButtonModel.fireActionPerformed(DefaultButtonModel.java:405)
+	at java.desktop/javax.swing.DefaultButtonModel.setPressed(DefaultButtonModel.java:262)
+	at java.desktop/javax.swing.AbstractButton.doClick(AbstractButton.java:369)
+	at java.desktop/javax.swing.plaf.basic.BasicMenuItemUI.doClick(BasicMenuItemUI.java:1012)
+	at java.desktop/javax.swing.plaf.basic.BasicMenuItemUI$Handler.mouseReleased(BasicMenuItemUI.java:1056)
+	at java.desktop/java.awt.Component.processMouseEvent(Component.java:6614)
+	at java.desktop/javax.swing.JComponent.processMouseEvent(JComponent.java:3342)
+	at java.desktop/java.awt.Component.processEvent(Component.java:6379)
+	at java.desktop/java.awt.Container.processEvent(Container.java:2263)
+	at java.desktop/java.awt.Component.dispatchEventImpl(Component.java:4990)
+	at java.desktop/java.awt.Container.dispatchEventImpl(Container.java:2321)
+	at java.desktop/java.awt.Component.dispatchEvent(Component.java:4822)
+	at java.desktop/java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:4919)
+	at java.desktop/java.awt.LightweightDispatcher.processMouseEvent(Container.java:4548)
+	at java.desktop/java.awt.LightweightDispatcher.dispatchEvent(Container.java:4489)
+	at java.desktop/java.awt.Container.dispatchEventImpl(Container.java:2307)
+	at java.desktop/java.awt.Window.dispatchEventImpl(Window.java:2769)
+	at java.desktop/java.awt.Component.dispatchEvent(Component.java:4822)
+	at java.desktop/java.awt.EventQueue.dispatchEventImpl(EventQueue.java:772)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:721)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:715)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:391)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:85)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:95)
+	at java.desktop/java.awt.EventQueue$5.run(EventQueue.java:745)
+	at java.desktop/java.awt.EventQueue$5.run(EventQueue.java:743)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:391)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:85)
+	at java.desktop/java.awt.EventQueue.dispatchEvent(EventQueue.java:742)
+	at java.desktop/java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.desktop/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)
+
+dic. 07, 2021 2:33:27 P. M. main.VentanaInicio$1 run
 INFO: Se ejecuta la ventana de inicio
-dic. 07, 2021 12:48:50 A.Â M. bd.BD crearTablas
+dic. 07, 2021 2:33:27 P. M. bd.BD crearTablas
 INFO: Statement: CREATE TABLE IF NOT EXISTS Azafato (usuario String, contrasenya String)
-dic. 07, 2021 12:48:50 A.Â M. bd.BD crearTablas
+dic. 07, 2021 2:33:27 P. M. bd.BD crearTablas
 INFO: Statement: CREATE TABLE IF NOT EXISTS Administrador (usuario String, contrasenya String)
-dic. 07, 2021 12:48:50 A.Â M. bd.BD crearTablas
+dic. 07, 2021 2:33:27 P. M. bd.BD crearTablas
 INFO: Statement: CREATE TABLE IF NOT EXISTS Vuelo (ID String, origen String, destino String, fecha Date, horaSalida String, horaLlegada String)
-dic. 07, 2021 12:48:50 A.Â M. bd.BD crearTablas
+dic. 07, 2021 2:33:27 P. M. bd.BD crearTablas
 INFO: Statement: CREATE TABLE IF NOT EXISTS Pasajero(dni String , nombre String ,apellido String, edad int, telefono int, direccion String)
-dic. 07, 2021 12:48:58 A.Â M. main.VentanaInicio$2 actionPerformed
+dic. 07, 2021 2:33:34 P. M. main.VentanaInicio$2 actionPerformed
 INFO: Conexion con la base de datos abierta
-dic. 07, 2021 12:48:59 A.Â M. main.VentanaInicio$2 actionPerformed
+dic. 07, 2021 2:33:34 P. M. main.VentanaInicio$2 actionPerformed
 INFO: Conexion con la base de datos cerrada
-dic. 07, 2021 12:49:06 A.Â M. main.VentanaInicio$2 actionPerformed
-INFO: Conexion con la base de datos abierta
-dic. 07, 2021 12:49:06 A.Â M. main.VentanaInicio$2 actionPerformed
-INFO: Conexion con la base de datos cerrada
-dic. 07, 2021 12:49:11 A.Â M. bd.BD buscarPasajero
-INFO: Se ha encontrado el pasajero de dni: 00000000Q
-dic. 07, 2021 12:49:11 A.Â M. bd.BD buscarPasajero
-INFO: Se ha encontrado el pasajero de dni: 00000000Q
-dic. 07, 2021 12:49:39 A.Â M. bd.BD modificarPasajero
-INFO: Se ha modificado el pasajero de dni: 00000000Q
-dic. 07, 2021 12:50:20 A.Â M. bd.BD crearTablas
+dic. 07, 2021 2:33:55 P. M. bd.BD obtenerVuelos
+SEVERE: Excepción
+java.lang.NullPointerException: Cannot invoke "java.sql.Connection.createStatement()" because "con" is null
+	at bd.BD.obtenerVuelos(BD.java:465)
+	at ventanas.VerVuelos.<init>(VerVuelos.java:51)
+	at ventanas.VentanaAdministrador$6.actionPerformed(VentanaAdministrador.java:216)
+	at java.desktop/javax.swing.AbstractButton.fireActionPerformed(AbstractButton.java:1967)
+	at java.desktop/javax.swing.AbstractButton$Handler.actionPerformed(AbstractButton.java:2308)
+	at java.desktop/javax.swing.DefaultButtonModel.fireActionPerformed(DefaultButtonModel.java:405)
+	at java.desktop/javax.swing.DefaultButtonModel.setPressed(DefaultButtonModel.java:262)
+	at java.desktop/javax.swing.AbstractButton.doClick(AbstractButton.java:369)
+	at java.desktop/javax.swing.plaf.basic.BasicMenuItemUI.doClick(BasicMenuItemUI.java:1012)
+	at java.desktop/javax.swing.plaf.basic.BasicMenuItemUI$Handler.mouseReleased(BasicMenuItemUI.java:1056)
+	at java.desktop/java.awt.Component.processMouseEvent(Component.java:6614)
+	at java.desktop/javax.swing.JComponent.processMouseEvent(JComponent.java:3342)
+	at java.desktop/java.awt.Component.processEvent(Component.java:6379)
+	at java.desktop/java.awt.Container.processEvent(Container.java:2263)
+	at java.desktop/java.awt.Component.dispatchEventImpl(Component.java:4990)
+	at java.desktop/java.awt.Container.dispatchEventImpl(Container.java:2321)
+	at java.desktop/java.awt.Component.dispatchEvent(Component.java:4822)
+	at java.desktop/java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:4919)
+	at java.desktop/java.awt.LightweightDispatcher.processMouseEvent(Container.java:4548)
+	at java.desktop/java.awt.LightweightDispatcher.dispatchEvent(Container.java:4489)
+	at java.desktop/java.awt.Container.dispatchEventImpl(Container.java:2307)
+	at java.desktop/java.awt.Window.dispatchEventImpl(Window.java:2769)
+	at java.desktop/java.awt.Component.dispatchEvent(Component.java:4822)
+	at java.desktop/java.awt.EventQueue.dispatchEventImpl(EventQueue.java:772)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:721)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:715)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:391)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:85)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:95)
+	at java.desktop/java.awt.EventQueue$5.run(EventQueue.java:745)
+	at java.desktop/java.awt.EventQueue$5.run(EventQueue.java:743)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:391)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:85)
+	at java.desktop/java.awt.EventQueue.dispatchEvent(EventQueue.java:742)
+	at java.desktop/java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.desktop/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)
+
+dic. 07, 2021 2:33:58 P. M. bd.BD obtenerVuelos
+SEVERE: Excepción
+java.lang.NullPointerException: Cannot invoke "java.sql.Connection.createStatement()" because "con" is null
+	at bd.BD.obtenerVuelos(BD.java:465)
+	at ventanas.VerVuelos.<init>(VerVuelos.java:51)
+	at ventanas.VentanaAdministrador$6.actionPerformed(VentanaAdministrador.java:216)
+	at java.desktop/javax.swing.AbstractButton.fireActionPerformed(AbstractButton.java:1967)
+	at java.desktop/javax.swing.AbstractButton$Handler.actionPerformed(AbstractButton.java:2308)
+	at java.desktop/javax.swing.DefaultButtonModel.fireActionPerformed(DefaultButtonModel.java:405)
+	at java.desktop/javax.swing.DefaultButtonModel.setPressed(DefaultButtonModel.java:262)
+	at java.desktop/javax.swing.AbstractButton.doClick(AbstractButton.java:369)
+	at java.desktop/javax.swing.plaf.basic.BasicMenuItemUI.doClick(BasicMenuItemUI.java:1012)
+	at java.desktop/javax.swing.plaf.basic.BasicMenuItemUI$Handler.mouseReleased(BasicMenuItemUI.java:1056)
+	at java.desktop/java.awt.Component.processMouseEvent(Component.java:6614)
+	at java.desktop/javax.swing.JComponent.processMouseEvent(JComponent.java:3342)
+	at java.desktop/java.awt.Component.processEvent(Component.java:6379)
+	at java.desktop/java.awt.Container.processEvent(Container.java:2263)
+	at java.desktop/java.awt.Component.dispatchEventImpl(Component.java:4990)
+	at java.desktop/java.awt.Container.dispatchEventImpl(Container.java:2321)
+	at java.desktop/java.awt.Component.dispatchEvent(Component.java:4822)
+	at java.desktop/java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:4919)
+	at java.desktop/java.awt.LightweightDispatcher.processMouseEvent(Container.java:4548)
+	at java.desktop/java.awt.LightweightDispatcher.dispatchEvent(Container.java:4489)
+	at java.desktop/java.awt.Container.dispatchEventImpl(Container.java:2307)
+	at java.desktop/java.awt.Window.dispatchEventImpl(Window.java:2769)
+	at java.desktop/java.awt.Component.dispatchEvent(Component.java:4822)
+	at java.desktop/java.awt.EventQueue.dispatchEventImpl(EventQueue.java:772)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:721)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:715)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:391)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:85)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:95)
+	at java.desktop/java.awt.EventQueue$5.run(EventQueue.java:745)
+	at java.desktop/java.awt.EventQueue$5.run(EventQueue.java:743)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:391)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:85)
+	at java.desktop/java.awt.EventQueue.dispatchEvent(EventQueue.java:742)
+	at java.desktop/java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.desktop/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)
+
+dic. 07, 2021 2:58:59 P. M. main.VentanaInicio$1 run
+INFO: Se ejecuta la ventana de inicio
+dic. 07, 2021 2:59:00 P. M. bd.BD crearTablas
 INFO: Statement: CREATE TABLE IF NOT EXISTS Azafato (usuario String, contrasenya String)
-dic. 07, 2021 12:50:20 A.Â M. bd.BD crearTablas
+dic. 07, 2021 2:59:00 P. M. bd.BD crearTablas
 INFO: Statement: CREATE TABLE IF NOT EXISTS Administrador (usuario String, contrasenya String)
-dic. 07, 2021 12:50:20 A.Â M. bd.BD crearTablas
-INFO: Statement: CREATE TABLE IF NOT EXISTS Vuelo (ID String, origen String, destino String, fecha Date, horaSalida String, horaLlegada String)
-dic. 07, 2021 12:50:20 A.Â M. bd.BD crearTablas
+dic. 07, 2021 2:59:00 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Vuelo (ID String, origen String, destino String, fecha String, horaSalida String, horaLlegada String)
+dic. 07, 2021 2:59:00 P. M. bd.BD crearTablas
 INFO: Statement: CREATE TABLE IF NOT EXISTS Pasajero(dni String , nombre String ,apellido String, edad int, telefono int, direccion String)
+dic. 07, 2021 2:59:04 P. M. main.VentanaInicio$2 actionPerformed
+INFO: Conexion con la base de datos abierta
+dic. 07, 2021 2:59:05 P. M. main.VentanaInicio$2 actionPerformed
+INFO: Conexion con la base de datos cerrada
+dic. 07, 2021 2:59:06 P. M. bd.BD obtenerVuelos
+INFO: Statement: select * from Vuelo;
+dic. 07, 2021 3:03:22 P. M. main.VentanaInicio$1 run
+INFO: Se ejecuta la ventana de inicio
+dic. 07, 2021 3:03:22 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Azafato (usuario String, contrasenya String)
+dic. 07, 2021 3:03:22 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Administrador (usuario String, contrasenya String)
+dic. 07, 2021 3:03:22 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Vuelo (ID String, origen String, destino String, fecha String, horaSalida String, horaLlegada String)
+dic. 07, 2021 3:03:22 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Pasajero(dni String , nombre String ,apellido String, edad int, telefono int, direccion String)
+dic. 07, 2021 3:03:27 P. M. main.VentanaInicio$2 actionPerformed
+INFO: Conexion con la base de datos abierta
+dic. 07, 2021 3:03:27 P. M. main.VentanaInicio$2 actionPerformed
+INFO: Conexion con la base de datos cerrada

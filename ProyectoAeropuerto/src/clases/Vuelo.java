@@ -7,13 +7,13 @@ public class Vuelo {
 	String ID;
 	String origen;
 	String destino;
-	Date fecha;
+	String fecha;
 	String horaSalida;
 	String horaLlegada;
 	double precio;
 	ArrayList<Pasajero>Maleta = new ArrayList<>();
 	
-	public Vuelo(String ID, String origen, String destino, Date fecha, String horaSalida, String horaLlegada,
+	public Vuelo(String ID, String origen, String destino, String fecha, String horaSalida, String horaLlegada,
 			double precio) {
 		super();
 		this.ID = ID;
@@ -36,6 +36,18 @@ public class Vuelo {
 		this.horaLlegada = "";
 		this.precio = 0.0;
 	}
+	
+	// constructor sin atributo precio
+    public Vuelo(String id2, String origen2, String destino2, String fecha2, String horaSalida2, String horaLlegada2) {
+        super();
+        this.ID = id2;
+        this.origen = origen2;
+        this.destino = destino2;
+        this.fecha = fecha2;
+        this.horaSalida = horaSalida2;
+        this.horaLlegada = horaLlegada2;
+
+    }
 
 
 	public String getID() {
@@ -68,12 +80,12 @@ public class Vuelo {
 	}
 
 
-	public Date getFecha() {
+	public String getFecha() {
 		return fecha;
 	}
 
 
-	public void setFecha(Date fecha) {
+	public void setFecha(String fecha) {
 		this.fecha = fecha;
 	}
 

@@ -138,7 +138,9 @@ public class CreadorVuelos extends JInternalFrame {
                 	
                 	
                 	Date date = txtFecha.getDate();
-                    vuelo.setFecha(date);
+                	SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+                	String f = sdf.format(date);
+                    vuelo.setFecha(f);
                     
 					
                 	vuelo.setID(txtIDVuelo.getText());
