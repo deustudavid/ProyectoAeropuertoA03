@@ -18,9 +18,10 @@ import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 
+import clases.Clase;
 import clases.Pasajero;
+import clases.Ticket;
 import clases.Vuelo;
-
 import main.VentanaInicio;
 
 public class BD {
@@ -162,10 +163,12 @@ public class BD {
 		VentanaInicio.logger.log( Level.INFO, "Statement: " + sentencia1 );
 		String sentencia2 = "CREATE TABLE IF NOT EXISTS Administrador (usuario String, contrasenya String)";
 		VentanaInicio.logger.log( Level.INFO, "Statement: " + sentencia2 );
-		String sentencia3 = "CREATE TABLE IF NOT EXISTS Vuelo (ID String, origen String, destino String, fecha String, horaSalida String, horaLlegada String)";
+		String sentencia3 = "CREATE TABLE IF NOT EXISTS Vuelo (ID String, origen String, destino String, fecha String, horaSalida String, horaLlegada String, asientosMax int)";
 		VentanaInicio.logger.log( Level.INFO, "Statement: " + sentencia3 );
 		String sentencia4 = "CREATE TABLE IF NOT EXISTS Pasajero(dni String , nombre String ,apellido String, edad int, telefono int, direccion String)";
 		VentanaInicio.logger.log( Level.INFO, "Statement: " + sentencia4 );
+		String sentencia5 = "CREATE TABLE IF NOT EXISTS Ticket(ticketNum INTEGER PRIMARY KEY AUTOINCREMENT, dniPasajero String ,idVuelo String , clase String,  precio double, numAsientos int, fecha String)";
+		VentanaInicio.logger.log( Level.INFO, "Statement: " + sentencia5 );
 
 		Statement st = null;
 		try {
@@ -174,7 +177,7 @@ public class BD {
 			st.executeUpdate(sentencia2);
 			st.executeUpdate(sentencia3);
 			st.executeUpdate(sentencia4);
-			
+			st.executeUpdate(sentencia5);
 			
 		
 			st.close();
@@ -234,7 +237,7 @@ public class BD {
 	
 	
 	public static void insertarVuelo(Connection con, Vuelo vuelo) throws DBException {
-		try (PreparedStatement stmt = con.prepareStatement("INSERT INTO vuelo (id, origen, destino, fecha, horaSalida, horaLlegada) VALUES (?, ?, ?, ?, ?, ?)"); 
+		try (PreparedStatement stmt = con.prepareStatement("INSERT INTO vuelo (id, origen, destino, fecha, horaSalida, horaLlegada) VALUES (?, ?, ?, ?, ?, ?, ?)"); 
 			Statement stmtForId = con.createStatement()) {
 			
 			stmt.setString(1, vuelo.getID());
@@ -243,11 +246,11 @@ public class BD {
 			stmt.setString(4, vuelo.getFecha());
 			stmt.setString(5, vuelo.getHoraSalida());
 			stmt.setString(6, vuelo.getHoraLlegada());
-			
+			stmt.setInt(7, vuelo.getAsientosMax());
 
 	
 			stmt.executeUpdate();
-			VentanaInicio.logger.log(Level.INFO, "Se ha a�adido un azafato");
+			VentanaInicio.logger.log(Level.INFO, "Se ha añadido un vuelo");
 			stmt.close();
 			 
 		} catch (SQLException | DateTimeParseException e) {
@@ -320,6 +323,90 @@ public class BD {
 		}
 	}
 	
+	public static void insertarVuelo(Connection con,String id, String origen, String destino, String fecha, String horaSalida, String horaLlegada, int asientosMax) throws DBException {
+		
+		String sentencia = "INSERT INTO Vuelo VALUES('" + id + "','" + origen + "','" + destino + "','" + fecha + "','" + horaSalida + "','" + horaLlegada + "'," + asientosMax + ")";
+		Statement st = null;
+		
+		try {
+			st = con.createStatement();
+			st.executeUpdate(sentencia);
+			VentanaInicio.logger.log(Level.INFO, "Se ha añadido un vuelo");
+			st.close();
+		} catch (SQLException e) {
+			VentanaInicio.logger.log(Level.SEVERE, "ERROR al añadir un vuelo");
+			e.printStackTrace();
+			throw new DBException("No se ha podido insertar el vuelo en la BBDDr");
+			
+			
+		} finally {
+			if(st!=null) {
+				try {
+					st.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+					
+				}
+			}
+		}
+	}
+	
+	
+	public static void insertarTicket(Connection con,int ticketNum , String dniPasajero  ,String idVuelo  ,Clase clase , double precio , int numAsientos ,String fecha ) throws DBException {
+		
+		
+		
+		switch (clase) {
+		case BARATO :
+			
+			precio=20.0;
+			
+			break;
+		case ESTANDAR:
+			precio=30.0;
+			break;
+		case BUSINESS:
+			
+			precio=40.0;
+			break;
+		case LUJO:
+			precio=50.0;
+			break;
+
+		default :
+			precio=0.0;
+			break;
+		}
+		
+		String sentencia = "INSERT INTO Ticket VALUES(" + ticketNum + ",'" + dniPasajero + "','" + idVuelo + "','" + clase + "'," + precio + "," + numAsientos + ",'" + fecha + "')";
+		Statement st = null;
+		
+		try {
+			st = con.createStatement();
+			st.executeUpdate(sentencia);
+			VentanaInicio.logger.log(Level.INFO, "Se ha añadido un vuelo");
+			st.close();
+		} catch (SQLException e) {
+			VentanaInicio.logger.log(Level.SEVERE, "ERROR al añadir un vuelo");
+			e.printStackTrace();
+			throw new DBException("No se ha podido insertar el vuelo en la BBDDr");
+			
+			
+		} finally {
+			if(st!=null) {
+				try {
+					st.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+					
+				}
+			}
+		}
+	}
+	
+	
 	
 	 //Comprueba si existe un pasajero de un determinado dni
 	public static boolean existePasajero(Connection con, String dni) throws SQLException {
@@ -335,6 +422,22 @@ public class BD {
 		rs.close();
 		return existe;
 	}
+	
+	 //Comprueba si existe un vuelo de un determinado id
+	public static boolean existeVuelo(Connection con, String ID) throws SQLException {
+		
+		String sent = "select * from Vuelo where ID='"+ID+"'";
+		Statement st = null;
+		st = con.createStatement();
+
+		ResultSet rs = st.executeQuery(sent);
+		boolean existe = false;
+		if(rs.next())
+			existe = true;
+		rs.close();
+		return existe;
+	}
+	
 	public static void cargarPasajerosdeFichero(Connection con) throws DBException, SQLException {
 			initBD("Aeropuerto.db");
 			Statement st=null;
@@ -431,6 +534,7 @@ public class BD {
 		Pasajero p=null;
 		
 			st = con.createStatement();
+
 			ResultSet rs = st.executeQuery(sentencia);
 			//Si la sentencia nos ha devuelto al menos un valor, rs estar� apuntando a una tupla
 			if(rs.next()) {
@@ -463,8 +567,9 @@ public class BD {
                 String fecha = rs.getString("fecha");
                 String horaSalida=rs.getString("horaSalida");
                 String horaLlegada=rs.getString("horaLlegada");
+                int asientosMax=rs.getInt("asientosMax");
 
-                ret.add( new Vuelo ( id, origen, destino, fecha,horaSalida, horaLlegada) );
+                ret.add( new Vuelo ( id, origen, destino, fecha,horaSalida, horaLlegada,asientosMax) );
             }
             return ret;
         } catch (Exception e) {
@@ -472,5 +577,54 @@ public class BD {
             return null;
         }
     }
-	
+
+
+	public static ArrayList<Ticket> obtenerTickets(Connection con) {
+        try (Statement statement = con.createStatement()) {
+            ArrayList<Ticket> ret = new ArrayList<>();
+            String sent = "select * from Ticket;";
+            VentanaInicio.logger.log( Level.INFO, "Statement: " + sent );
+            ResultSet rs = statement.executeQuery( sent );
+            while( rs.next() ) { // Leer el resultset
+            	int ticketNum = rs.getInt("ticketNum");
+            	 String idVuelo= rs.getString("idVuelo");
+                String dniPasajero= rs.getString("dniPasajero");
+                String claseStr = rs.getString("clase");
+                double precio=rs.getDouble("precio");
+                int numAsientos=rs.getInt("numAsientos");
+                String fecha=rs.getString("fecha");
+
+                ret.add( new Ticket ( ticketNum, idVuelo, dniPasajero, claseStr, precio, numAsientos, fecha) );
+            }
+            return ret;
+        } catch (Exception e) {
+            VentanaInicio.logger.log( Level.SEVERE, "Excepción", e );
+            return null;
+        }
+    }
+	//"SELECT * FROM Pasajero WHERE dni = '"+dni+"'";
+	public static ArrayList<Vuelo> obtenerVuelosSegunOrigenDestino(Connection con, String origen, String destino) {
+        try (Statement statement = con.createStatement()) {
+            ArrayList<Vuelo> ret = new ArrayList<>();
+            String sent = "SELECT * FROM Vuelo WHERE origen = '"+origen.trim()+"' AND destino = '"+destino.trim()+"'";
+            VentanaInicio.logger.log( Level.INFO, "Statement: " + sent );
+            ResultSet rs = statement.executeQuery( sent );
+            while( rs.next() ) { // Leer el resultset
+                String id = rs.getString("ID");
+                String origenAbuscar= rs.getString("origen");
+                String destinoAbuscar= rs.getString("destino");
+                String fecha = rs.getString("fecha");
+                String horaSalida=rs.getString("horaSalida");
+                String horaLlegada=rs.getString("horaLlegada");
+                int asientosMax=rs.getInt("asientosMax");
+                ret.add( new Vuelo ( id, origenAbuscar, destinoAbuscar, fecha,horaSalida, horaLlegada,asientosMax) );
+                VentanaInicio.logger.log(Level.INFO, "Se ha encontrado el vuelo de origen: " + origen + " y destino: "+ destino);
+            }
+           
+            return ret;
+        } catch (Exception e) {
+            VentanaInicio.logger.log( Level.SEVERE, "Excepción", e );
+            return null;
+        }
+    }
 }

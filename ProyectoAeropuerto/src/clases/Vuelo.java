@@ -10,11 +10,11 @@ public class Vuelo {
 	String fecha;
 	String horaSalida;
 	String horaLlegada;
-	double precio;
+	int asientosMax;
+
 	ArrayList<Pasajero>Maleta = new ArrayList<>();
 	
-	public Vuelo(String ID, String origen, String destino, String fecha, String horaSalida, String horaLlegada,
-			double precio) {
+	public Vuelo(String ID, String origen, String destino, String fecha, String horaSalida, String horaLlegada, int asientosMax) {
 		super();
 		this.ID = ID;
 		this.origen = origen;
@@ -22,32 +22,25 @@ public class Vuelo {
 		this.fecha = fecha;
 		this.horaSalida = horaSalida;
 		this.horaLlegada = horaLlegada;
-		this.precio = precio;
+		this.asientosMax=asientosMax;
 	}
 	
 	
+
+
+
 	public Vuelo() {
 		super();
 		this.ID = "";
 		this.origen = "";
 		this.destino = "";
-		this.fecha = null;
+		this.fecha = "";
 		this.horaSalida = "";
 		this.horaLlegada = "";
-		this.precio = 0.0;
+		this.asientosMax=0;
 	}
 	
-	// constructor sin atributo precio
-    public Vuelo(String id2, String origen2, String destino2, String fecha2, String horaSalida2, String horaLlegada2) {
-        super();
-        this.ID = id2;
-        this.origen = origen2;
-        this.destino = destino2;
-        this.fecha = fecha2;
-        this.horaSalida = horaSalida2;
-        this.horaLlegada = horaLlegada2;
 
-    }
 
 
 	public String getID() {
@@ -109,22 +102,28 @@ public class Vuelo {
 		this.horaLlegada = horaLlegada;
 	}
 
-
-	public double getPrecio() {
-		return precio;
+	public int getAsientosMax() {
+		return asientosMax;
 	}
 
 
-	public void setPrecio(double precio) {
-		this.precio = precio;
+	public void setAsientosMax(int asientosMax) {
+		asientosMax = asientosMax;
 	}
+
+
+
 
 
 	@Override
 	public String toString() {
 		return "Vuelo [ID=" + ID + ", origen=" + origen + ", destino=" + destino + ", fecha=" + fecha + ", horaSalida="
-				+ horaSalida + ", horaLlegada=" + horaLlegada + ", precio=" + precio + "]";
+				+ horaSalida + ", horaLlegada=" + horaLlegada + ", asientosMax=" + asientosMax + "]";
 	}
+
+
+
+
 	
 	
 	

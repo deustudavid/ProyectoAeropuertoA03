@@ -11,6 +11,8 @@ import javax.swing.table.DefaultTableModel;
 import bd.BD;
 import bd.DBException;
 import clases.Vuelo;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class VerVuelos extends JInternalFrame {
 
@@ -37,7 +39,7 @@ public class VerVuelos extends JInternalFrame {
 				return true;
 			}
 		};
-		String[] nombreColumnas = { "ID", "origen", "destino", "fecha", "horaSalida", "horaLlegada" };
+		String[] nombreColumnas = { "ID", "origen", "destino", "fecha", "horaSalida", "horaLlegada", "AsientosTotales" };
 		modeloTablaVuelos.setColumnIdentifiers(nombreColumnas);
 
 		try {
@@ -57,11 +59,26 @@ public class VerVuelos extends JInternalFrame {
 
 		for (Vuelo vuelo : v) {
 			String[] fila = { vuelo.getID(), vuelo.getOrigen(), vuelo.getDestino(), vuelo.getFecha(),
-					vuelo.getHoraSalida(), vuelo.getHoraLlegada() };
+					vuelo.getHoraSalida(), vuelo.getHoraLlegada() ,String.valueOf(vuelo.getAsientosMax()) };
 			modeloTablaVuelos.addRow(fila);
 		}
 
 		tabla = new JTable(modeloTablaVuelos);
+		tabla.getColumnModel().getColumn(0).setMinWidth(120);
+		tabla.getColumnModel().getColumn(0).setMaxWidth(120);
+		tabla.getColumnModel().getColumn(1).setMinWidth(100);
+		tabla.getColumnModel().getColumn(1).setMaxWidth(100);
+		tabla.getColumnModel().getColumn(2).setMinWidth(100);
+		tabla.getColumnModel().getColumn(2).setMaxWidth(100);
+		tabla.getColumnModel().getColumn(3).setMinWidth(80);
+		tabla.getColumnModel().getColumn(3).setMaxWidth(80);
+		tabla.getColumnModel().getColumn(4).setMinWidth(90);
+		tabla.getColumnModel().getColumn(4).setMaxWidth(90);
+		tabla.getColumnModel().getColumn(5).setMinWidth(90);
+		tabla.getColumnModel().getColumn(5).setMaxWidth(90);
+		tabla.getColumnModel().getColumn(6).setMinWidth(120);
+		tabla.getColumnModel().getColumn(6).setMaxWidth(120);
+		
 		tabla.setBackground(SystemColor.info);
 
 		panelScroll.setViewportView(tabla);
@@ -85,21 +102,28 @@ public class VerVuelos extends JInternalFrame {
 		});
 
 		GroupLayout layout = new GroupLayout(getContentPane());
-		getContentPane().setLayout(layout);
-		layout.setHorizontalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+		layout.setHorizontalGroup(
+			layout.createParallelGroup(Alignment.LEADING)
 				.addGroup(layout.createSequentialGroup()
-						.addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-								.addGroup(layout.createSequentialGroup().addContainerGap().addComponent(panelScroll,
-										GroupLayout.PREFERRED_SIZE, 509, GroupLayout.PREFERRED_SIZE))
-								.addGroup(layout.createSequentialGroup().addGap(226, 226, 226).addComponent(btnCancelar,
-										GroupLayout.PREFERRED_SIZE, 155, GroupLayout.PREFERRED_SIZE)))
-						.addContainerGap(35, Short.MAX_VALUE)));
-		layout.setVerticalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-				.addGroup(layout.createSequentialGroup().addGap(29, 29, 29)
-						.addComponent(panelScroll, GroupLayout.PREFERRED_SIZE, 259, GroupLayout.PREFERRED_SIZE)
-						.addGap(35, 35, 35)
-						.addComponent(btnCancelar, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE)
-						.addContainerGap(37, Short.MAX_VALUE)));
+					.addGroup(layout.createParallelGroup(Alignment.LEADING)
+						.addGroup(layout.createSequentialGroup()
+							.addGap(281)
+							.addComponent(btnCancelar, GroupLayout.PREFERRED_SIZE, 155, GroupLayout.PREFERRED_SIZE))
+						.addGroup(layout.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(panelScroll, GroupLayout.DEFAULT_SIZE, 711, Short.MAX_VALUE)))
+					.addContainerGap())
+		);
+		layout.setVerticalGroup(
+			layout.createParallelGroup(Alignment.LEADING)
+				.addGroup(Alignment.TRAILING, layout.createSequentialGroup()
+					.addGap(29)
+					.addComponent(panelScroll, GroupLayout.PREFERRED_SIZE, 259, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+					.addComponent(btnCancelar, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE)
+					.addGap(37))
+		);
+		getContentPane().setLayout(layout);
 
 		pack();
 	}

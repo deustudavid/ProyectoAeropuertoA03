@@ -5,6 +5,8 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.*;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
+import com.toedter.calendar.JTextFieldDateEditor;
+
 import bd.BD;
 import bd.DBException;
 import clases.Vuelo;
@@ -13,6 +15,7 @@ import main.VentanaInicio;
 import java.awt.*;
 import java.awt.event.*;
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
@@ -31,18 +34,29 @@ public class CreadorVuelos extends JInternalFrame {
     private JLabel lblFecha;
     private JLabel lblHoraSalida;
     private JLabel lblHoraLlegada;
-    private JLabel lblPrecio;
     private JPanel panelCreacionVuelo;
     private com.toedter.calendar.JDateChooser txtFecha;
     private JComboBox<String> txtDestino;
-    private JTextField txtPrecio;
     private JTextField txtIDVuelo;
     private JComboBox<String> txtOrigen;
     private ImageIcon imagenGuardar;
+    private JSpinner spinnerAsientos;
   
+    private static boolean correctoID,correctoFecha;
+    private static String id;
+    private static String fechaStr;
+    private JLabel lblMensajeID;
 
+    public static Connection con;
+    
     public CreadorVuelos() {
-    	
+    	 spinnerAsientos = new JSpinner();
+         spinnerAsientos.setModel(new SpinnerNumberModel(1, 1, 50, 1));
+         fechaStr="";
+    	con=null;
+    	correctoID=false;
+    	correctoFecha=false;
+    	id="";
     	imagenGuardar = new ImageIcon("img/guardar.png"); 
 
         panelCreacionVuelo = new JPanel();
@@ -51,18 +65,33 @@ public class CreadorVuelos extends JInternalFrame {
         lblOrigen = new JLabel();
         lblDestino = new JLabel();
         txtIDVuelo = new JTextField();
+        txtIDVuelo.addKeyListener(new KeyAdapter() {
+	    	@Override
+	    	public void keyReleased(KeyEvent e) {
+	    		String erID = "^[A-Za-z0-9]+";//solo contiene letras y numeros
+				String IDIntroducida= txtIDVuelo.getText();
+				  correctoID = IDIntroducida.matches(erID);
+				if (correctoID) {
+					lblMensajeID.setText("*");
+					 id= txtIDVuelo.getText();
+				}else {
+					lblMensajeID.setText("Solo letras y números");
+				}
+	    	}
+	    });
         lblFecha = new JLabel();
+        // HACER QUE EL TEXTFIELD DONDE APARECE LA FECHA TRAS SELECCIONARLA CON JFILECHOOSER NO SE PUEDA EDITAR
         txtFecha = new com.toedter.calendar.JDateChooser();
+        JTextFieldDateEditor editor = (JTextFieldDateEditor) txtFecha.getDateEditor();
+        editor.setEditable(false);
+        // solo se puede seleccionar una fecha a partir de la de hoy
+        txtFecha.setMinSelectableDate(new Date(System.currentTimeMillis()));
+       
         lblHoraSalida = new JLabel();
         lblHoraLlegada = new JLabel();
-        lblPrecio = new JLabel();
-        txtPrecio = new JTextField();
         btnGuardar = new JButton();
         btnGuardar.setIcon(imagenGuardar);
-        btnGuardar.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        	}
-        });
+ 
         btnCancelar = new JButton();
         txtOrigen = new JComboBox<>();
         txtDestino = new JComboBox<>();
@@ -93,9 +122,6 @@ public class CreadorVuelos extends JInternalFrame {
 
         lblHoraLlegada.setForeground(new Color(255, 255, 255));
         lblHoraLlegada.setText("Hora Llegada");
-
-        lblPrecio.setForeground(new Color(255, 255, 255));
-        lblPrecio.setText("Precio");
         
         
         JComboBox<String> opcionesHoraSalida = new JComboBox<String>();
@@ -106,62 +132,100 @@ public class CreadorVuelos extends JInternalFrame {
 
         btnGuardar.setText("Guardar");
         
+     
+        
         //Procedimiento que guarda un vuelo en la base de datos
         btnGuardar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-            	BD db = new BD();
-            	
-
-            	try {
-            		
-            		db.initBD(title);
-            		
-            		Vuelo vuelo = new Vuelo();
-                	
-                	Object selectedItem = txtDestino.getSelectedItem();
-                	String destinoDB = selectedItem.toString();
-                	vuelo.setDestino(destinoDB);
-                	
-                	Object selectedItem2 = txtOrigen.getSelectedItem();
-                	String origenDB = selectedItem2.toString();
-                	vuelo.setOrigen(origenDB);
-                   
-                	
-                	Object selectedItem3 = opcionesHoraLlegada.getSelectedItem();
-                	String hLlegadaDB = selectedItem3.toString();
-                	vuelo.setHoraLlegada(hLlegadaDB);
-                	
-                	
-                	Object selectedItem4 = opcionesHoraSalida.getSelectedItem();
-                	String hSalidaDB = selectedItem4.toString();
-                	vuelo.setHoraSalida(hSalidaDB);
-                	
-                	
-                	Date date = txtFecha.getDate();
-                	SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-                	String f = sdf.format(date);
-                    vuelo.setFecha(f);
-                    
-					
-                	vuelo.setID(txtIDVuelo.getText());
-                	vuelo.setPrecio( Double.valueOf(txtPrecio.getText()));
-                	
-	
-                	Connection con = null;      	
-                	
-					con = BD.initBD("Usuario.db");
-					//CreadorVuelos.logger.log(Level.INFO, "Conexion con la base de datos abierta");
-					BD.insertarVuelo(con, vuelo);
-					JOptionPane.showMessageDialog(null, "Vuelo guardado correctamente");
-					BD.closeBD(con);
-
-
-				} catch (Exception e) {
-					// TODO: handle exception
+            
+            	Date fecha=null; 
+        		fecha= txtFecha.getDate();
+        		if (!(fecha == null)) {
+        			
+        			SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+            		fechaStr = sdf.format(fecha);
+            		correctoFecha=true;
 				}
-            }	
+        	
+            	if (correctoID &&  correctoFecha ) {
+	            	try {
+						con = BD.initBD("Aeropuerto.db");
+					} catch (DBException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+	        		
+        			
+						try {
+							if (!BD.existeVuelo(con, id)) {
+								
+									con=BD.initBD("Aeropuerto.db");
+									
+							    	
+							    	Object destino = txtDestino.getSelectedItem();
+							    	String destinoStr = destino.toString();
+							    	
+							    	Object origen = txtOrigen.getSelectedItem();
+							    	String origenStr = origen.toString();
+							       
+							    	
+							    	Object llegada = opcionesHoraLlegada.getSelectedItem();
+							    	String llegadaStr = llegada.toString();
+							    	
+							    	
+							    	Object salida = opcionesHoraSalida.getSelectedItem();
+							    	String salidaStr = salida.toString();
+							    
+							    	int numAsientos = (Integer) spinnerAsientos.getValue();
+							    	
+							    	
+									try {
+										BD.insertarVuelo(con, id,origenStr,destinoStr,fechaStr,salidaStr,llegadaStr,numAsientos);
+									} catch (DBException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									}
+									JOptionPane.showMessageDialog(null, "Vuelo guardado correctamente");
+									try {
+										BD.closeBD(con);
+									} catch (DBException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									}
+									
+
+								
+								
+							}else {
+								try {
+									BD.closeBD(con);
+								} catch (DBException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+								JOptionPane.showMessageDialog(null, "Ya existe un vuelo con ese id", "Error", JOptionPane.WARNING_MESSAGE);
+							}
+						} catch (HeadlessException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						} catch (SQLException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						} catch (DBException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+        			
+
+            	
+        		
+        		
+            }
+            	else {
+     				JOptionPane.showMessageDialog(null, "Quedan campos vacíos o incorrectos.", "Error", JOptionPane.WARNING_MESSAGE);
+     			}
         
-        });
+        }});
       
 
         btnCancelar.setText("Cancelar");
@@ -182,9 +246,21 @@ public class CreadorVuelos extends JInternalFrame {
             }
         });
 
-        txtOrigen.setModel(new DefaultComboBoxModel<>(new String[] { "Italia\t", "Srilanka", "UK", "Usa", "Canada", "China" }));
+        txtOrigen.setModel(new DefaultComboBoxModel<>(new String[] { "Italia\t", "Srilanka", "Brasilia", "Nueva York", "Canadá", "China", "España", "Londres", "Japón", "Marruecos", "Sydney", "Francia" }));
 
-        txtDestino.setModel(new DefaultComboBoxModel<>(new String[] { "Italia\t", "Srilanka", "UK", "Usa", "Canada", "China" }));
+        txtDestino.setModel(new DefaultComboBoxModel<>(new String[] { "Italia\t", "Srilanka", "Brasilia", "Nueva York", "Canadá", "China", "España", "Londres", "Japón", "Marruecos", "Sydney", "Francia" }));
+
+        
+        JLabel lblNumAsientosDisponibles = new JLabel();
+        lblNumAsientosDisponibles.setText("Num. asientos");
+        lblNumAsientosDisponibles.setForeground(Color.WHITE);
+        
+       
+        
+        lblMensajeID = new JLabel("*");
+        lblMensajeID.setForeground(Color.ORANGE);
+        
+     
         
         
         
@@ -193,40 +269,34 @@ public class CreadorVuelos extends JInternalFrame {
         	glPanelCreacionVuelo.createParallelGroup(Alignment.TRAILING)
         		.addGroup(glPanelCreacionVuelo.createSequentialGroup()
         			.addGap(34)
-        			.addGroup(glPanelCreacionVuelo.createParallelGroup(Alignment.TRAILING, false)
-        				.addGroup(glPanelCreacionVuelo.createSequentialGroup()
+        			.addGroup(glPanelCreacionVuelo.createParallelGroup(Alignment.LEADING)
+        				.addGroup(Alignment.TRAILING, glPanelCreacionVuelo.createSequentialGroup()
         					.addGroup(glPanelCreacionVuelo.createParallelGroup(Alignment.LEADING)
         						.addComponent(lblTituloVentana)
         						.addComponent(lbIIDVuelo))
-        					.addGap(28)
-        					.addComponent(txtIDVuelo, GroupLayout.PREFERRED_SIZE, 136, GroupLayout.PREFERRED_SIZE))
-        				.addGroup(glPanelCreacionVuelo.createSequentialGroup()
-        					.addGroup(glPanelCreacionVuelo.createParallelGroup(Alignment.LEADING)
-        						.addComponent(lblOrigen)
-        						.addComponent(lblDestino))
-        					.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        					.addGroup(glPanelCreacionVuelo.createParallelGroup(Alignment.LEADING, false)
-        						.addComponent(txtOrigen, 0, 136, Short.MAX_VALUE)
-        						.addComponent(txtDestino, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+        					.addGap(28))
+        				.addComponent(lblOrigen)
+        				.addComponent(lblDestino))
+        			.addGroup(glPanelCreacionVuelo.createParallelGroup(Alignment.LEADING, false)
+        				.addComponent(txtDestino, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        				.addComponent(txtOrigen, 0, 136, Short.MAX_VALUE)
+        				.addComponent(lblMensajeID, GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
+        				.addComponent(txtIDVuelo))
         			.addGap(103)
         			.addGroup(glPanelCreacionVuelo.createParallelGroup(Alignment.LEADING)
-        				.addGroup(glPanelCreacionVuelo.createSequentialGroup()
-        					.addGroup(glPanelCreacionVuelo.createParallelGroup(Alignment.LEADING)
-        						.addComponent(lblFecha)
-        						.addComponent(lblHoraSalida)
-        						.addComponent(lblHoraLlegada))
-        					.addGap(62)
-        					.addGroup(glPanelCreacionVuelo.createParallelGroup(Alignment.LEADING)
-        						.addComponent(opcionesHoraLlegada, GroupLayout.PREFERRED_SIZE, 136, GroupLayout.PREFERRED_SIZE)
-        						.addComponent(opcionesHoraSalida, GroupLayout.PREFERRED_SIZE, 136, GroupLayout.PREFERRED_SIZE)
-        						.addComponent(txtFecha, GroupLayout.PREFERRED_SIZE, 174, GroupLayout.PREFERRED_SIZE)))
-        				.addGroup(glPanelCreacionVuelo.createSequentialGroup()
-        					.addComponent(lblPrecio)
-        					.addGap(52)
-        					.addComponent(txtPrecio, GroupLayout.PREFERRED_SIZE, 172, GroupLayout.PREFERRED_SIZE)))
+        				.addComponent(lblFecha)
+        				.addComponent(lblHoraSalida)
+        				.addComponent(lblHoraLlegada)
+        				.addComponent(lblNumAsientosDisponibles, GroupLayout.PREFERRED_SIZE, 85, GroupLayout.PREFERRED_SIZE))
+        			.addGap(40)
+        			.addGroup(glPanelCreacionVuelo.createParallelGroup(Alignment.LEADING)
+        				.addComponent(opcionesHoraLlegada, GroupLayout.PREFERRED_SIZE, 136, GroupLayout.PREFERRED_SIZE)
+        				.addComponent(opcionesHoraSalida, GroupLayout.PREFERRED_SIZE, 136, GroupLayout.PREFERRED_SIZE)
+        				.addComponent(txtFecha, GroupLayout.PREFERRED_SIZE, 174, GroupLayout.PREFERRED_SIZE)
+        				.addComponent(spinnerAsientos, GroupLayout.PREFERRED_SIZE, 58, GroupLayout.PREFERRED_SIZE))
         			.addContainerGap(103, Short.MAX_VALUE))
         		.addGroup(glPanelCreacionVuelo.createSequentialGroup()
-        			.addContainerGap(455, Short.MAX_VALUE)
+        			.addContainerGap(470, Short.MAX_VALUE)
         			.addComponent(btnGuardar, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
         			.addGap(29)
         			.addComponent(btnCancelar, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
@@ -235,15 +305,20 @@ public class CreadorVuelos extends JInternalFrame {
         glPanelCreacionVuelo.setVerticalGroup(
         	glPanelCreacionVuelo.createParallelGroup(Alignment.LEADING)
         		.addGroup(glPanelCreacionVuelo.createSequentialGroup()
-        			.addGap(36)
-        			.addGroup(glPanelCreacionVuelo.createParallelGroup(Alignment.TRAILING)
-        				.addGroup(glPanelCreacionVuelo.createParallelGroup(Alignment.BASELINE)
-        					.addComponent(lblTituloVentana)
-        					.addComponent(lblFecha))
-        				.addComponent(txtFecha, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
         			.addGroup(glPanelCreacionVuelo.createParallelGroup(Alignment.LEADING)
         				.addGroup(glPanelCreacionVuelo.createSequentialGroup()
-        					.addGap(18)
+        					.addGap(36)
+        					.addGroup(glPanelCreacionVuelo.createParallelGroup(Alignment.TRAILING)
+        						.addGroup(glPanelCreacionVuelo.createParallelGroup(Alignment.BASELINE)
+        							.addComponent(lblTituloVentana)
+        							.addComponent(lblFecha))
+        						.addComponent(txtFecha, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+        				.addGroup(glPanelCreacionVuelo.createSequentialGroup()
+        					.addGap(49)
+        					.addComponent(lblMensajeID)))
+        			.addPreferredGap(ComponentPlacement.UNRELATED)
+        			.addGroup(glPanelCreacionVuelo.createParallelGroup(Alignment.LEADING)
+        				.addGroup(glPanelCreacionVuelo.createSequentialGroup()
         					.addGroup(glPanelCreacionVuelo.createParallelGroup(Alignment.BASELINE)
         						.addComponent(lbIIDVuelo)
         						.addComponent(txtIDVuelo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
@@ -252,22 +327,15 @@ public class CreadorVuelos extends JInternalFrame {
         					.addGroup(glPanelCreacionVuelo.createParallelGroup(Alignment.BASELINE)
         						.addComponent(lblOrigen)
         						.addComponent(lblHoraLlegada)
-        						.addComponent(txtOrigen, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-        						.addComponent(opcionesHoraLlegada, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)))
-        				.addGroup(glPanelCreacionVuelo.createSequentialGroup()
-        					.addGap(18)
-        					.addComponent(opcionesHoraSalida, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)))
-        			.addGroup(glPanelCreacionVuelo.createParallelGroup(Alignment.LEADING)
-        				.addGroup(glPanelCreacionVuelo.createSequentialGroup()
-        					.addGap(24)
-        					.addGroup(glPanelCreacionVuelo.createParallelGroup(Alignment.BASELINE)
-        						.addComponent(lblDestino)
-        						.addComponent(txtDestino, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-        				.addGroup(glPanelCreacionVuelo.createSequentialGroup()
-        					.addGap(34)
-        					.addGroup(glPanelCreacionVuelo.createParallelGroup(Alignment.BASELINE)
-        						.addComponent(lblPrecio)
-        						.addComponent(txtPrecio, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
+        						.addComponent(opcionesHoraLlegada, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+        						.addComponent(txtOrigen, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+        				.addComponent(opcionesHoraSalida, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE))
+        			.addGap(24)
+        			.addGroup(glPanelCreacionVuelo.createParallelGroup(Alignment.BASELINE)
+        				.addComponent(lblDestino)
+        				.addComponent(lblNumAsientosDisponibles)
+        				.addComponent(spinnerAsientos, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        				.addComponent(txtDestino, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
         			.addPreferredGap(ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
         			.addGroup(glPanelCreacionVuelo.createParallelGroup(Alignment.BASELINE)
         				.addComponent(btnGuardar, GroupLayout.PREFERRED_SIZE, 46, GroupLayout.PREFERRED_SIZE)

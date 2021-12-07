@@ -10,6 +10,7 @@ import javax.swing.table.DefaultTableModel;
 
 import bd.BD;
 import bd.DBException;
+import clases.Ticket;
 import clases.Vuelo;
 
 public class VerTickets extends JInternalFrame {
@@ -18,12 +19,12 @@ public class VerTickets extends JInternalFrame {
 	private JScrollPane panelScroll;
 	private JTable tabla;
 	private DefaultTableModel modeloTablaTickets;
-	//private ArrayList<Ticket> t;
+	private ArrayList<Ticket> t;
 	private static Connection con;
 
 	public VerTickets() {
 		
-		//t = null;
+		t = null;
 		con = null;
 
 		panelScroll = new JScrollPane();
@@ -37,12 +38,12 @@ public class VerTickets extends JInternalFrame {
 				return true;
 			}
 		};
-		String[] nombreColumnas = { "TicketNum", "ID Vuelo", "DNI Pasajero", "Clase", "Precio", "Asiento", "Fecha" };
+		String[] nombreColumnas = { "TicketNum", "ID Vuelo", "DNI Pasajero", "Clase", "Precio", "nº Asientos", "Fecha" };
 		modeloTablaTickets.setColumnIdentifiers(nombreColumnas);
 		
 		try {
 			con = BD.initBD("Aeropuerto.db");
-			//t = BD.obtenerTickets(con);
+			t = BD.obtenerTickets(con);
 		} catch (DBException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -55,14 +56,13 @@ public class VerTickets extends JInternalFrame {
 			e.printStackTrace();
 		}
 		
-		/*
-		 * for (Ticket ticket : t) {
+		
+		  for (Ticket ticket : t) {
 		 
-			String[] fila = { ticket.getID(), ticket.getOrigen(), ticket.getDestino(), ticket.getFecha(),
-					ticket.getHoraSalida(), ticket.getHoraLlegada() };
-			modeloTablaTickets.addRow(fila);
+			modeloTablaTickets.addRow(new Object[]   {ticket.getTicketNum(), ticket.getIDVuelo(),  ticket.getDNIPasajero(),ticket.getClase(),ticket.getAsientos() ,ticket.getFecha() }
+);
 			}
-		*/	
+			
 		
 		tabla = new JTable(modeloTablaTickets);
 		tabla.setBackground(SystemColor.info);

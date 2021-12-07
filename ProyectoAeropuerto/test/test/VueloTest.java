@@ -19,7 +19,7 @@ public class VueloTest {
 	SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss:SSS");
     String f = sdf.format(fecha);
 
-	Vuelo v = new Vuelo("1", "Bilbao", "Madrid", f, "2:00", "3:00", 20);
+	Vuelo v = new Vuelo("1", "Bilbao", "Madrid", f, "2:00", "3:00", 0);
 	Vuelo b = new Vuelo();
 
 	@Test
@@ -52,10 +52,7 @@ public class VueloTest {
 		assertEquals("3:00", v.getHoraLlegada());
 	}
 
-	@Test
-	public void testGetPrecio() {
-		assertEquals(v.getPrecio() ,20.0,0.00f);
-	}
+	
 
 	@Test
 	public void testSetId() {
@@ -93,17 +90,13 @@ public class VueloTest {
 		assertEquals("3:00", b.getHoraLlegada());
 	}
 
-	@Test
-	public void testSetPrecio() {
-		b.setPrecio(20.0);
-		assertEquals(b.getPrecio() ,20.0, 0.00f);
-	}
+
 
 	@Test
 	public void testToString() {
 		assertEquals("Vuelo [ID=" + v.getID() + ", origen=" + v.getOrigen() + ", destino=" + v.getDestino() + ", fecha="
 				+ v.getFecha() + ", horaSalida=" + v.getHoraSalida() + ", horaLlegada=" + v.getHoraLlegada()
-				+ ", precio=" + v.getPrecio() + "]", v.toString());
+				+ "]", v.toString());
 	}
 
 }
