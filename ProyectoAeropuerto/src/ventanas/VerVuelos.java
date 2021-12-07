@@ -3,8 +3,6 @@ package ventanas;
 import java.awt.*;
 import java.awt.event.*;
 import java.sql.Connection;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import javax.swing.*;
@@ -28,8 +26,7 @@ public class VerVuelos extends JInternalFrame {
 		v = null;
 		con = null;
 		panelScroll = new JScrollPane();
-		
-		
+
 		btnCancelar = new JButton();
 
 		modeloTablaVuelos = new DefaultTableModel() {
@@ -50,7 +47,7 @@ public class VerVuelos extends JInternalFrame {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		try {
 			BD.closeBD(con);
 		} catch (DBException e) {
@@ -59,11 +56,11 @@ public class VerVuelos extends JInternalFrame {
 		}
 
 		for (Vuelo vuelo : v) {
-			String[] fila = { vuelo.getID(), vuelo.getOrigen(), vuelo.getDestino(), vuelo.getFecha(), vuelo.getHoraSalida(),
-					vuelo.getHoraLlegada() };
+			String[] fila = { vuelo.getID(), vuelo.getOrigen(), vuelo.getDestino(), vuelo.getFecha(),
+					vuelo.getHoraSalida(), vuelo.getHoraLlegada() };
 			modeloTablaVuelos.addRow(fila);
 		}
-		
+
 		tabla = new JTable(modeloTablaVuelos);
 		tabla.setBackground(SystemColor.info);
 

@@ -10,10 +10,7 @@ import javax.swing.GroupLayout.Alignment;
 
 import main.VentanaInicio;
 import javax.swing.KeyStroke;
-import javax.swing.table.DefaultTableModel;
-
 import java.awt.event.KeyEvent;
-import java.util.ArrayList;
 import java.awt.event.InputEvent;
 
 
