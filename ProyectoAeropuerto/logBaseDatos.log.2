@@ -104,3 +104,23 @@ dic. 07, 2021 9:11:42 P. M. bd.BD buscarPasajero
 INFO: Se ha encontrado el pasajero de dni: 00000000Q
 dic. 07, 2021 9:11:42 P. M. bd.BD buscarPasajero
 INFO: Se ha encontrado el pasajero de dni: 00000000Q
+dic. 08, 2021 1:13:30 P. M. main.VentanaInicio$1 run
+INFO: Se ejecuta la ventana de inicio
+dic. 08, 2021 1:13:31 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Azafato (usuario String, contrasenya String)
+dic. 08, 2021 1:13:31 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Administrador (usuario String, contrasenya String)
+dic. 08, 2021 1:13:31 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Vuelo (ID String, origen String, destino String, fecha String, horaSalida String, horaLlegada String, asientosMax int)
+dic. 08, 2021 1:13:31 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Pasajero(dni String , nombre String ,apellido String, edad int, telefono int, direccion String)
+dic. 08, 2021 1:13:31 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Ticket(ticketNum INTEGER PRIMARY KEY AUTOINCREMENT, dniPasajero String ,idVuelo String , clase String,  precio double, numAsientos int, fecha String)
+dic. 08, 2021 1:13:36 P. M. main.VentanaInicio$2 actionPerformed
+INFO: Conexion con la base de datos abierta
+dic. 08, 2021 1:13:36 P. M. main.VentanaInicio$2 actionPerformed
+INFO: Conexion con la base de datos cerrada
+dic. 08, 2021 1:13:43 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Statement: SELECT * FROM Vuelo WHERE origen = 'Sydney' AND destino = 'Nueva York'
+dic. 08, 2021 1:13:43 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Sydney y destino: Nueva York

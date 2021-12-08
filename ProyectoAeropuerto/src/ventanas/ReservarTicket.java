@@ -1,6 +1,8 @@
 package ventanas;
 
 import javax.swing.GroupLayout.Alignment;
+
+
 import javax.swing.*;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.TitledBorder;
@@ -13,6 +15,7 @@ import com.toedter.calendar.JTextFieldDateEditor;
 import bd.BD;
 import bd.DBException;
 import clases.Clase;
+import clases.CoordenadasAeropuerto;
 import clases.Pasajero;
 import clases.Vuelo;
 
@@ -79,6 +82,8 @@ public class ReservarTicket extends JInternalFrame {
 
 	public ReservarTicket() {
 		
+		
+		
         // HACER QUE EL TEXTFIELD DONDE APARECE LA FECHA TRAS SELECCIONARLA CON JFILECHOOSER NO SE PUEDA EDITAR
         txtFecha = new com.toedter.calendar.JDateChooser();
         JTextFieldDateEditor editor = (JTextFieldDateEditor) txtFecha.getDateEditor();
@@ -97,6 +102,10 @@ public class ReservarTicket extends JInternalFrame {
 		txtDireccion.setRows(5);
 		txtDireccion.setColumns(20);
 		scrollDireccion.setViewportView(txtDireccion);
+		
+		txtPrecio = new JLabel();
+		txtPrecio.setEnabled(false);
+		txtPrecio.setText("30.0");
 
 		panelBusquedaVuelo = new JPanel();
 		txtOrigen = new JComboBox<>();
@@ -151,7 +160,11 @@ public class ReservarTicket extends JInternalFrame {
 		tablaVuelos.getColumnModel().getColumn(6).setMinWidth(100);
 		tablaVuelos.getColumnModel().getColumn(6).setMaxWidth(100);
 		
-
+		JLabel txtPrecioTotalaMostrar = new JLabel();
+		txtPrecioTotalaMostrar.setEnabled(false);
+		txtPrecioTotalaMostrar.setText(" ");
+		txtPrecioTotalaMostrar.setForeground(Color.RED);
+		txtPrecioTotalaMostrar.setFont(new Font("Tahoma", Font.BOLD, 24));
 
 		scrollTabla.setViewportView(tablaVuelos);
 		panelBusquedaPasajero = new JPanel();
@@ -216,6 +229,212 @@ public class ReservarTicket extends JInternalFrame {
 		
 		txtFecha.getCalendarButton().setEnabled(false);
 		btnReservar = new JButton();
+		btnReservar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				if (!txtTelefono.getText().isBlank()) {
+					
+					int asientosComprados=(int) txtAsientos.getValue();
+					double precioIndividual =Double.parseDouble(txtPrecio.getText());
+					 System.out.println("Esa cantidad de asientos cuesta :" + asientosComprados + " * "+ precioIndividual);
+					double precioViaje = asientosComprados * precioIndividual;
+					System.out.println("Esa cantidad de asientos cuesta :" + precioViaje);
+					//Ahora veremos si se aplica algun descuento
+				    if (asientosComprados >= 2 && asientosComprados <= 5) {
+				       // 10 % de descuento
+				    	 System.out.println( precioViaje + " * 0.9" );
+				        precioViaje=precioViaje * 0.9;
+				        System.out.println("Con descuento, el precio del viaje es :" + precioViaje);
+				       
+				    }
+				    else if (asientosComprados >= 6 && asientosComprados <= 10) {
+				    	// 15 % de descuento
+				   	 System.out.println(precioViaje + " * 0.85" );
+				        precioViaje=precioViaje * 0.85;
+				        System.out.println("Con descuento, el precio del viaje es :" + precioViaje);
+				    }
+				    else if (asientosComprados >= 11 && asientosComprados<= 14) {
+				    	// 20 % de descuento
+					   	 System.out.println( precioViaje + " * 0.8" );
+					   	 precioViaje=precioViaje * 0.8;
+				        System.out.println("Con descuento, el precio del viaje es :" + precioViaje);
+				    }
+				    else if (asientosComprados > 14) {
+					   	 System.out.println(	precioViaje + " * 0.55" );
+					   	 // 45 % de descuento
+				        precioViaje=precioViaje * 0.55;
+				        System.out.println("Con descuento, el precio del viaje es :" + precioViaje);
+				    }
+				    
+				    /*Calcular distancia entre el origen y destino */
+					String origen=txtOrigenMostrado.getText();
+					String destino=txtDestinoMostrado.getText();
+					
+					if (!origen.isBlank() & !destino.isBlank()) {
+						
+					
+					CoordenadasAeropuerto coorItalia= new CoordenadasAeropuerto(42.76698, 12.493823);
+					CoordenadasAeropuerto coorSrilanka= new CoordenadasAeropuerto(7.7891335, 80.680725);
+					CoordenadasAeropuerto coorBrasilia= new CoordenadasAeropuerto(-15.77843, -47.92865);
+					CoordenadasAeropuerto coorNuevaYork= new CoordenadasAeropuerto(40.71455, -74.00712);
+					CoordenadasAeropuerto coorCanada= new CoordenadasAeropuerto(56.130366, -106.346771);
+					CoordenadasAeropuerto coorChina= new CoordenadasAeropuerto(36.553085, 103.97543);
+					CoordenadasAeropuerto coorEspaña= new CoordenadasAeropuerto(40.463667, -3.74922);
+					CoordenadasAeropuerto coorLondres= new CoordenadasAeropuerto(51.500153, -0.1262362);
+					CoordenadasAeropuerto coorJapon= new CoordenadasAeropuerto(36.281647, 139.07727);
+					CoordenadasAeropuerto coorMarruecos= new CoordenadasAeropuerto(31.925692, -6.229583);
+					CoordenadasAeropuerto coorSydney= new CoordenadasAeropuerto(-33.8696, 151.20695);
+					CoordenadasAeropuerto coorFrancia= new CoordenadasAeropuerto(46.63728, 2.3382623);
+					
+					double latitudOrigen=0.0;
+					double longitudOrigen=0.0;
+					double latitudDestino=0.0;
+					double longitudDestino=0.0;
+					
+					switch (origen) {
+					case "Italia":
+						latitudOrigen=coorItalia.getLatitud();
+						longitudOrigen=coorItalia.getLongitud();
+						break;
+					case "Srilanka":
+						latitudOrigen=coorSrilanka.getLatitud();
+						longitudOrigen=coorSrilanka.getLongitud();			
+						break;
+					case "Brasilia":
+						latitudOrigen=coorBrasilia.getLatitud();
+						longitudOrigen=coorBrasilia.getLongitud();
+						break;
+					case "Nueva York":
+						latitudOrigen=coorNuevaYork.getLatitud();
+						longitudOrigen=coorNuevaYork.getLongitud();
+						break;
+					case "Canadá":
+						latitudOrigen=coorCanada.getLatitud();
+						longitudOrigen=coorCanada.getLongitud();
+						break;
+					case "China":
+						latitudOrigen=coorChina.getLatitud();
+						longitudOrigen=coorChina.getLongitud();
+						break;
+					case "España":
+						latitudOrigen=coorEspaña.getLatitud();
+						longitudOrigen=coorEspaña.getLongitud();
+						break;
+					case "Londres":
+						latitudOrigen=coorLondres.getLatitud();
+						longitudOrigen=coorLondres.getLongitud();
+						break;
+					case "Japón":
+						latitudOrigen=coorJapon.getLatitud();
+						longitudOrigen=coorJapon.getLongitud();
+						break;
+					case "Marruecos":
+						latitudOrigen=coorMarruecos.getLatitud();
+						longitudOrigen=coorMarruecos.getLongitud();
+						break;
+					case "Sydney":
+						latitudOrigen=coorSydney.getLatitud();
+						longitudOrigen=coorSydney.getLongitud();
+						break;
+					case "Francia":
+						latitudOrigen=coorFrancia.getLatitud();
+						longitudOrigen=coorFrancia.getLongitud();
+						break;
+					default:
+						latitudOrigen=0.0;
+						longitudOrigen=0.0;
+						break;
+					}
+					
+					switch (destino) {
+					case "Italia":
+						latitudDestino=coorItalia.getLatitud();
+						longitudDestino=coorItalia.getLongitud();
+						break;
+					case "Srilanka":
+						latitudDestino=coorSrilanka.getLatitud();
+						longitudDestino=coorSrilanka.getLongitud();			
+						break;
+					case "Brasilia":
+						latitudDestino=coorBrasilia.getLatitud();
+						longitudDestino=coorBrasilia.getLongitud();
+						break;
+					case "Nueva York":
+						latitudDestino=coorNuevaYork.getLatitud();
+						longitudDestino=coorNuevaYork.getLongitud();
+						break;
+					case "Canadá":
+						latitudDestino=coorCanada.getLatitud();
+						longitudDestino=coorCanada.getLongitud();
+						break;
+					case "China":
+						latitudDestino=coorChina.getLatitud();
+						longitudDestino=coorChina.getLongitud();
+						break;
+					case "España":
+						latitudDestino=coorEspaña.getLatitud();
+						longitudDestino=coorEspaña.getLongitud();
+						break;
+					case "Londres":
+						latitudDestino=coorLondres.getLatitud();
+						longitudDestino=coorLondres.getLongitud();
+						break;
+					case "Japón":
+						latitudDestino=coorJapon.getLatitud();
+						longitudDestino=coorJapon.getLongitud();
+						break;
+					case "Marruecos":
+						latitudDestino=coorMarruecos.getLatitud();
+						longitudDestino=coorMarruecos.getLongitud();
+						break;
+					case "Sydney":
+						latitudDestino=coorSydney.getLatitud();
+						longitudDestino=coorSydney.getLongitud();
+						break;
+					case "Francia":
+						latitudDestino=coorFrancia.getLatitud();
+						longitudDestino=coorFrancia.getLongitud();
+						break;
+					default:
+						latitudDestino=0.0;
+						longitudDestino=0.0;
+						break;
+					}
+					System.out.println("-----------------------------");
+					System.out.println("latitudOrigen:" + latitudOrigen);
+					System.out.println("longitudOrigen:" + longitudOrigen);
+					System.out.println("latitudDestino:" + latitudDestino);
+					System.out.println("longitudOrigen:" + longitudDestino);
+					System.out.println("-----------------------------");
+					
+					//si el pais de origen y el de destino son diferentes, se calcula el precio por lejania
+					if (latitudOrigen != latitudDestino) {
+						double distanciaEntre2Aeropuertos=CoordenadasAeropuerto.calcularDistanciaPuntosSuperficieTierra(latitudOrigen, longitudOrigen, latitudDestino, longitudDestino);
+						System.out.println("La distancia entre el aeropuerto origen y destino es: "+ distanciaEntre2Aeropuertos);
+							int primeros3digitos = Integer.parseInt(String.valueOf(distanciaEntre2Aeropuertos).substring(0, 3));
+							System.out.println("PRECIO A PAGAR: " + precioViaje + " * (" + primeros3digitos + " /10)" );
+							precioViaje=precioViaje*(primeros3digitos/10);
+							System.out.println("PRECIO A PAGAR: " +precioViaje );
+							txtPrecioTotalaMostrar.setText(String.valueOf(precioViaje));
+					} else {
+						System.out.println("No se cobra extra porque no se viaja al extranjero");
+					}
+					}else {
+						JOptionPane.showMessageDialog(null, "Selecciona un vuelo de la tabla",
+					               "Faltan datos", JOptionPane.WARNING_MESSAGE);
+					}
+						
+				}else {
+					JOptionPane.showMessageDialog(null, "Busca un pasajero primero",
+				               "Faltan datos", JOptionPane.WARNING_MESSAGE);
+				}
+				
+				
+			
+				
+				
+			}});
+		
 		btnCancelar = new JButton();
 
 		btnCancelar.addActionListener(new ActionListener() {
@@ -399,7 +618,7 @@ public class ReservarTicket extends JInternalFrame {
 
 		lblAsientos.setText("Asientos");
 		
-
+		
 
 		lblIdVuelo.setFont(new Font("Tahoma", 1, 12));
 		lblIdVuelo.setForeground(new Color(255, 0, 0));
@@ -432,7 +651,7 @@ public class ReservarTicket extends JInternalFrame {
 					break;
 
 				default :
-					txtPrecio.setText("");
+					txtPrecio.setText("30.0");
 					break;
 				}
 		    }
@@ -501,9 +720,7 @@ public class ReservarTicket extends JInternalFrame {
 		txtDestinoMostrado.setFont(new Font("Tahoma", Font.BOLD, 12));
 		txtDestinoMostrado.setEnabled(false);
 		
-		txtPrecio = new JLabel();
-		txtPrecio.setEnabled(false);
-		txtPrecio.setText(" ");
+	
 
 		GroupLayout glPanelVuelo = new GroupLayout(panelVuelo);
 		glPanelVuelo.setHorizontalGroup(
@@ -594,6 +811,10 @@ public class ReservarTicket extends JInternalFrame {
 		txtPrecioTotal.setFont(new Font("Tahoma", 1, 24));
 		txtPrecioTotal.setForeground(new Color(255, 0, 0));
 		txtPrecioTotal.setText("PrecioTotal");
+		
+
+		
+		
 
 		GroupLayout layout = new GroupLayout(getContentPane());
 		layout.setHorizontalGroup(
@@ -605,31 +826,31 @@ public class ReservarTicket extends JInternalFrame {
 						.addGroup(layout.createSequentialGroup()
 							.addGroup(layout.createParallelGroup(Alignment.TRAILING)
 								.addGroup(layout.createSequentialGroup()
-									.addComponent(txtPrecioTotal, GroupLayout.PREFERRED_SIZE, 226, GroupLayout.PREFERRED_SIZE)
-									.addGap(101))
-								.addGroup(layout.createSequentialGroup()
 									.addComponent(scrollTabla, GroupLayout.PREFERRED_SIZE, 653, GroupLayout.PREFERRED_SIZE)
-									.addPreferredGap(ComponentPlacement.RELATED)))
+									.addPreferredGap(ComponentPlacement.RELATED))
+								.addGroup(layout.createSequentialGroup()
+									.addGroup(layout.createParallelGroup(Alignment.LEADING)
+										.addComponent(txtPrecioTotalaMostrar, GroupLayout.PREFERRED_SIZE, 226, GroupLayout.PREFERRED_SIZE)
+										.addComponent(txtPrecioTotal, GroupLayout.PREFERRED_SIZE, 226, GroupLayout.PREFERRED_SIZE))
+									.addGap(101)))
+							.addPreferredGap(ComponentPlacement.RELATED)
 							.addGroup(layout.createParallelGroup(Alignment.TRAILING)
 								.addGroup(layout.createSequentialGroup()
-									.addGap(51)
 									.addComponent(btnReservar, GroupLayout.PREFERRED_SIZE, 138, GroupLayout.PREFERRED_SIZE)
 									.addGap(111)
 									.addComponent(btnCancelar, GroupLayout.PREFERRED_SIZE, 134, GroupLayout.PREFERRED_SIZE))
-								.addGroup(layout.createSequentialGroup()
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addGroup(layout.createParallelGroup(Alignment.LEADING, false)
-										.addComponent(panelBusquedaPasajero, Alignment.TRAILING, 0, 0, Short.MAX_VALUE)
-										.addComponent(panelVuelo, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 502, Short.MAX_VALUE))))
-							.addContainerGap())))
+								.addGroup(layout.createParallelGroup(Alignment.LEADING, false)
+									.addComponent(panelBusquedaPasajero, Alignment.TRAILING, 0, 0, Short.MAX_VALUE)
+									.addComponent(panelVuelo, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 502, Short.MAX_VALUE)))))
+					.addContainerGap())
 		);
 		layout.setVerticalGroup(
 			layout.createParallelGroup(Alignment.LEADING)
 				.addGroup(layout.createSequentialGroup()
 					.addGap(31)
-					.addGroup(layout.createParallelGroup(Alignment.LEADING)
-						.addComponent(panelBusquedaVuelo, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addGroup(Alignment.TRAILING, layout.createSequentialGroup()
+					.addGroup(layout.createParallelGroup(Alignment.TRAILING)
+						.addComponent(panelBusquedaVuelo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addGroup(layout.createSequentialGroup()
 							.addComponent(panelBusquedaPasajero, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 							.addGap(11)))
 					.addGroup(layout.createParallelGroup(Alignment.LEADING)
@@ -637,7 +858,9 @@ public class ReservarTicket extends JInternalFrame {
 							.addGap(18)
 							.addComponent(scrollTabla, GroupLayout.PREFERRED_SIZE, 213, GroupLayout.PREFERRED_SIZE)
 							.addGap(34)
-							.addComponent(txtPrecioTotal, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE))
+							.addComponent(txtPrecioTotal, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(txtPrecioTotalaMostrar, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE))
 						.addGroup(layout.createSequentialGroup()
 							.addGap(11)
 							.addComponent(panelVuelo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
@@ -645,7 +868,7 @@ public class ReservarTicket extends JInternalFrame {
 							.addGroup(layout.createParallelGroup(Alignment.BASELINE)
 								.addComponent(btnReservar, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE)
 								.addComponent(btnCancelar, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE))))
-					.addContainerGap(20, Short.MAX_VALUE))
+					.addContainerGap(15, Short.MAX_VALUE))
 		);
 		getContentPane().setLayout(layout);
 
