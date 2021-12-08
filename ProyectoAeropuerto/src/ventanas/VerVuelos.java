@@ -39,7 +39,7 @@ public class VerVuelos extends JInternalFrame {
 				return true;
 			}
 		};
-		String[] nombreColumnas = { "ID", "origen", "destino", "fecha", "horaSalida", "horaLlegada", "AsientosTotales" };
+		String[] nombreColumnas = { "ID", "origen", "destino", "fecha", "horaSalida", "horaLlegada", "AsientosTotales", "AsientosDisponibles" };
 		modeloTablaVuelos.setColumnIdentifiers(nombreColumnas);
 
 		try {
@@ -59,13 +59,13 @@ public class VerVuelos extends JInternalFrame {
 
 		for (Vuelo vuelo : v) {
 			String[] fila = { vuelo.getID(), vuelo.getOrigen(), vuelo.getDestino(), vuelo.getFecha(),
-					vuelo.getHoraSalida(), vuelo.getHoraLlegada() ,String.valueOf(vuelo.getAsientosMax()) };
+					vuelo.getHoraSalida(), vuelo.getHoraLlegada() ,String.valueOf(vuelo.getAsientosMax()),String.valueOf(vuelo.getAsientosRestantes()) };
 			modeloTablaVuelos.addRow(fila);
 		}
 
 		tabla = new JTable(modeloTablaVuelos);
-		tabla.getColumnModel().getColumn(0).setMinWidth(120);
-		tabla.getColumnModel().getColumn(0).setMaxWidth(120);
+		tabla.getColumnModel().getColumn(0).setMinWidth(110);
+		tabla.getColumnModel().getColumn(0).setMaxWidth(110);
 		tabla.getColumnModel().getColumn(1).setMinWidth(100);
 		tabla.getColumnModel().getColumn(1).setMaxWidth(100);
 		tabla.getColumnModel().getColumn(2).setMinWidth(100);
@@ -78,6 +78,8 @@ public class VerVuelos extends JInternalFrame {
 		tabla.getColumnModel().getColumn(5).setMaxWidth(90);
 		tabla.getColumnModel().getColumn(6).setMinWidth(120);
 		tabla.getColumnModel().getColumn(6).setMaxWidth(120);
+		tabla.getColumnModel().getColumn(7).setMinWidth(120);
+		tabla.getColumnModel().getColumn(7).setMaxWidth(120);
 		
 		tabla.setBackground(SystemColor.info);
 
@@ -105,23 +107,23 @@ public class VerVuelos extends JInternalFrame {
 		layout.setHorizontalGroup(
 			layout.createParallelGroup(Alignment.LEADING)
 				.addGroup(layout.createSequentialGroup()
+					.addContainerGap()
 					.addGroup(layout.createParallelGroup(Alignment.LEADING)
 						.addGroup(layout.createSequentialGroup()
-							.addGap(281)
-							.addComponent(btnCancelar, GroupLayout.PREFERRED_SIZE, 155, GroupLayout.PREFERRED_SIZE))
-						.addGroup(layout.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(panelScroll, GroupLayout.DEFAULT_SIZE, 711, Short.MAX_VALUE)))
-					.addContainerGap())
+							.addComponent(panelScroll, GroupLayout.DEFAULT_SIZE, 811, Short.MAX_VALUE)
+							.addContainerGap())
+						.addGroup(Alignment.TRAILING, layout.createSequentialGroup()
+							.addComponent(btnCancelar, GroupLayout.PREFERRED_SIZE, 155, GroupLayout.PREFERRED_SIZE)
+							.addGap(275))))
 		);
 		layout.setVerticalGroup(
-			layout.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, layout.createSequentialGroup()
+			layout.createParallelGroup(Alignment.TRAILING)
+				.addGroup(Alignment.LEADING, layout.createSequentialGroup()
 					.addGap(29)
 					.addComponent(panelScroll, GroupLayout.PREFERRED_SIZE, 259, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
 					.addComponent(btnCancelar, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE)
-					.addGap(37))
+					.addGap(35))
 		);
 		getContentPane().setLayout(layout);
 

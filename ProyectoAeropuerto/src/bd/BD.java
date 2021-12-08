@@ -163,7 +163,7 @@ public class BD {
 		VentanaInicio.logger.log( Level.INFO, "Statement: " + sentencia1 );
 		String sentencia2 = "CREATE TABLE IF NOT EXISTS Administrador (usuario String, contrasenya String)";
 		VentanaInicio.logger.log( Level.INFO, "Statement: " + sentencia2 );
-		String sentencia3 = "CREATE TABLE IF NOT EXISTS Vuelo (ID String, origen String, destino String, fecha String, horaSalida String, horaLlegada String, asientosMax int)";
+		String sentencia3 = "CREATE TABLE IF NOT EXISTS Vuelo (ID String, origen String, destino String, fecha String, horaSalida String, horaLlegada String, asientosMax int, asientosDisponibles int)";
 		VentanaInicio.logger.log( Level.INFO, "Statement: " + sentencia3 );
 		String sentencia4 = "CREATE TABLE IF NOT EXISTS Pasajero(dni String , nombre String ,apellido String, edad int, telefono int, direccion String)";
 		VentanaInicio.logger.log( Level.INFO, "Statement: " + sentencia4 );
@@ -568,8 +568,8 @@ public class BD {
                 String horaSalida=rs.getString("horaSalida");
                 String horaLlegada=rs.getString("horaLlegada");
                 int asientosMax=rs.getInt("asientosMax");
-
-                ret.add( new Vuelo ( id, origen, destino, fecha,horaSalida, horaLlegada,asientosMax) );
+                int asientosDisponibles=rs.getInt("asientosDisponibles");
+                ret.add( new Vuelo ( id, origen, destino, fecha,horaSalida, horaLlegada,asientosMax, asientosDisponibles) );
             }
             return ret;
         } catch (Exception e) {
@@ -617,7 +617,8 @@ public class BD {
                 String horaSalida=rs.getString("horaSalida");
                 String horaLlegada=rs.getString("horaLlegada");
                 int asientosMax=rs.getInt("asientosMax");
-                ret.add( new Vuelo ( id, origenAbuscar, destinoAbuscar, fecha,horaSalida, horaLlegada,asientosMax) );
+                int asientosDisponibles=rs.getInt("asientosDisponibles");
+                ret.add( new Vuelo ( id, origenAbuscar, destinoAbuscar, fecha,horaSalida, horaLlegada,asientosMax,asientosDisponibles) );
                 VentanaInicio.logger.log(Level.INFO, "Se ha encontrado el vuelo de origen: " + origen + " y destino: "+ destino);
             }
            
@@ -627,4 +628,13 @@ public class BD {
             return null;
         }
     }
+	
+	public static void actualizarAsientosDeVuelo(Connection con,Vuelo v, int asientosAreservar) throws SQLException  {
+		Statement statement = con.createStatement();
+		int resul=v.getAsientosRestantes()- asientosAreservar;
+		String sent = "update Vuelo set  asientosDisponibles="+resul+" where ID='"+v.getID()+"'";
+		statement.executeUpdate(sent);
+		VentanaInicio.logger.log(Level.INFO, "Se ha actualizado el numero de asientos restantes en el vuelo: " + v.getID());
+	}
+	
 }
