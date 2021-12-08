@@ -246,9 +246,9 @@ public class CreadorVuelos extends JInternalFrame {
             }
         });
 
-        txtOrigen.setModel(new DefaultComboBoxModel<>(new String[] { "Italia\t", "Srilanka", "Brasilia", "Nueva York", "Canadá", "China", "España", "Londres", "Japón", "Marruecos", "Sydney", "Francia" }));
+        txtOrigen.setModel(new DefaultComboBoxModel<>(new String[] { "Italia", "Srilanka", "Brasilia", "Nueva York", "Canada", "China", "Espana", "Londres", "Japon", "Marruecos", "Sydney", "Francia" }));
 
-        txtDestino.setModel(new DefaultComboBoxModel<>(new String[] { "Italia\t", "Srilanka", "Brasilia", "Nueva York", "Canadá", "China", "España", "Londres", "Japón", "Marruecos", "Sydney", "Francia" }));
+        txtDestino.setModel(new DefaultComboBoxModel<>(new String[] { "Italia", "Srilanka", "Brasilia", "Nueva York", "Canada", "China", "Espana", "Londres", "Japon", "Marruecos", "Sydney", "Francia" }));
 
         
         JLabel lblNumAsientosDisponibles = new JLabel();

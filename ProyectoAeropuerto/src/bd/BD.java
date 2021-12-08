@@ -352,8 +352,8 @@ public class BD {
 		}
 	}
 	
-	
-	public static void insertarTicket(Connection con,int ticketNum , String dniPasajero  ,String idVuelo  ,Clase clase , double precio , int numAsientos ,String fecha ) throws DBException {
+	/* revisar , hay que informarse sobre como hacer que la primary key se cree sola*/
+	public static void insertarTicket(Connection con , int ticketNum, String dniPasajero  ,String idVuelo  ,Clase clase , double precio , int numAsientos ,String fecha ) throws DBException {
 		
 		
 		
@@ -385,12 +385,12 @@ public class BD {
 		try {
 			st = con.createStatement();
 			st.executeUpdate(sentencia);
-			VentanaInicio.logger.log(Level.INFO, "Se ha añadido un vuelo");
+			VentanaInicio.logger.log(Level.INFO, "Se ha añadido un ticket");
 			st.close();
 		} catch (SQLException e) {
-			VentanaInicio.logger.log(Level.SEVERE, "ERROR al añadir un vuelo");
+			VentanaInicio.logger.log(Level.SEVERE, "ERROR al añadir ticket");
 			e.printStackTrace();
-			throw new DBException("No se ha podido insertar el vuelo en la BBDDr");
+			throw new DBException("No se ha podido insertar el ticket en la BBDDr");
 			
 			
 		} finally {
@@ -602,11 +602,11 @@ public class BD {
             return null;
         }
     }
-	//"SELECT * FROM Pasajero WHERE dni = '"+dni+"'";
+	
 	public static ArrayList<Vuelo> obtenerVuelosSegunOrigenDestino(Connection con, String origen, String destino) {
         try (Statement statement = con.createStatement()) {
             ArrayList<Vuelo> ret = new ArrayList<>();
-            String sent = "SELECT * FROM Vuelo WHERE origen = '"+origen.trim()+"' AND destino = '"+destino.trim()+"'";
+            String sent = "SELECT * FROM Vuelo WHERE origen = '"+origen+"' AND destino = '"+destino+"'";
             VentanaInicio.logger.log( Level.INFO, "Statement: " + sent );
             ResultSet rs = statement.executeQuery( sent );
             while( rs.next() ) { // Leer el resultset
@@ -631,10 +631,11 @@ public class BD {
 	
 	public static void actualizarAsientosDeVuelo(Connection con,Vuelo v, int asientosAreservar) throws SQLException  {
 		Statement statement = con.createStatement();
-		int resul=v.getAsientosRestantes()- asientosAreservar;
-		String sent = "update Vuelo set  asientosDisponibles="+resul+" where ID='"+v.getID()+"'";
-		statement.executeUpdate(sent);
-		VentanaInicio.logger.log(Level.INFO, "Se ha actualizado el numero de asientos restantes en el vuelo: " + v.getID());
-	}
+		
+			String sent = "update Vuelo set  asientosDisponibles="+asientosAreservar+" where ID='"+v.getID()+"'";
+			statement.executeUpdate(sent);
+			VentanaInicio.logger.log(Level.INFO, "Se ha actualizado el numero de asientos restantes en el vuelo: " + v.getID());
+		
+		}
 	
 }

@@ -59,7 +59,9 @@ public static double calcularDistanciaPuntosSuperficieTierra(double latitudPunto
 	return distancia;
 
 }
-
+public static void main(String[] args) {
+	System.out.println(calcularDistanciaPuntosSuperficieTierra(51.4077145, 30.044050, 35.219777, -101.826976));
+}
 
  }
 

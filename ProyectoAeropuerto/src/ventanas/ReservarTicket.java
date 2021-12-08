@@ -117,10 +117,8 @@ public class ReservarTicket extends JInternalFrame {
 
 		modeloTablaVuelos = new DefaultTableModel() {
 			public boolean isCellEditable(int row, int column) {
-				if (column == 0) {
-					return false;
-				}
-				return true;
+				
+				return false;
 			}
 		};
 		String[] nombresColumnas = { "ID Vuelo", "Origen", "Destino", "Fecha", "HoraSalida", "HoraLlegada",
@@ -247,60 +245,114 @@ public class ReservarTicket extends JInternalFrame {
 
 					int asientosComprados = (int) txtAsientos.getValue();
 
-					int asientosDisponibles = Vuelo.CalcularAsientosRestantes(vueloObtenido, asientosComprados);
-					if (asientosDisponibles != -1) {
-						try {
-							BD.actualizarAsientosDeVuelo(con, vueloObtenido, asientosDisponibles);
-						} catch (SQLException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
-					} else {
-						JOptionPane.showMessageDialog(null, "No hay asientos libres suficientes. Quedan " + vueloObtenido.getAsientosRestantes(), "Error",
-								JOptionPane.WARNING_MESSAGE);
-					}
+					
 					double precioIndividual = Double.parseDouble(txtPrecio.getText());
-					System.out.println(
-							"Esa cantidad de asientos cuesta :" + asientosComprados + " * " + precioIndividual);
+					System.out.println("Esa cantidad de asientos cuesta :" + asientosComprados + " * " + precioIndividual);
 					double precioViaje = asientosComprados * precioIndividual;
 					System.out.println("Esa cantidad de asientos cuesta :" + precioViaje);
-					// Ahora veremos si se aplica algun descuento
-					if (asientosComprados >= 2 && asientosComprados <= 5) {
-						// 10 % de descuento
-						System.out.println(precioViaje + " * 0.9");
-						precioViaje = precioViaje * 0.9;
-						System.out.println("Con descuento, el precio del viaje es :" + precioViaje);
+					
+					
 
-					} else if (asientosComprados >= 6 && asientosComprados <= 10) {
-						// 15 % de descuento
-						System.out.println(precioViaje + " * 0.85");
-						precioViaje = precioViaje * 0.85;
-						System.out.println("Con descuento, el precio del viaje es :" + precioViaje);
-					} else if (asientosComprados >= 11 && asientosComprados <= 14) {
-						// 20 % de descuento
-						System.out.println(precioViaje + " * 0.8");
-						precioViaje = precioViaje * 0.8;
-						System.out.println("Con descuento, el precio del viaje es :" + precioViaje);
-					} else if (asientosComprados > 14) {
-						System.out.println(precioViaje + " * 0.55");
-						// 45 % de descuento
-						precioViaje = precioViaje * 0.55;
-						System.out.println("Con descuento, el precio del viaje es :" + precioViaje);
-					}
-
-					/* Calcular distancia entre el origen y destino */
+					
 					String origen = txtOrigenMostrado.getText();
 					String destino = txtDestinoMostrado.getText();
 
 					if (!origen.isBlank() & !destino.isBlank()) {
+						
+				
+						
+						try {
+							con=BD.initBD("Aeropuerto.db");
+						} catch (DBException e2) {
+							// TODO Auto-generated catch block
+							e2.printStackTrace();
+						}
+						// ver si la cantidad de asientos que se quiere reservar es correcta
+						int asientosDisponibles = Vuelo.CalcularAsientosRestantes(vueloObtenido, asientosComprados);
+						if (asientosDisponibles != -1) {
+							try {
+								BD.actualizarAsientosDeVuelo(con, vueloObtenido, asientosDisponibles);
+								
+								// actualizar la tabla con la nueva informacion del vuelo, con un numero nuevo de asientos disponibles
+								
+								a = BD.obtenerVuelosSegunOrigenDestino(con, origen, destino);
+								
 
+								// vaciar la tabla cuando se selecciona un nuevo origen-destino
+								while (modeloTablaVuelos.getRowCount() > 0) {
+									int filas = tablaVuelos.getRowCount();
+									if (0 < filas) {
+										modeloTablaVuelos.removeRow(0);
+									}
+
+								}
+
+								// Cargamos el ArrayList de Vuelos en el modelo de la tabla
+								for (Vuelo vu : a) {
+									String[] fila = { vu.getID(), vu.getOrigen(), vu.getDestino(), vu.getFecha(), vu.getHoraSalida(),
+											vu.getHoraLlegada(), String.valueOf(vu.getAsientosMax()),String.valueOf(vu.getAsientosRestantes()) };
+									modeloTablaVuelos.addRow(fila);
+								}
+								
+								
+								
+								/////
+								try {
+									BD.closeBD(con);
+								} catch (DBException e1) {
+									// TODO Auto-generated catch block
+									e1.printStackTrace();
+								}
+								
+							} catch (SQLException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							
+							}
+						} else {
+							try {
+								BD.closeBD(con);
+							} catch (DBException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+							JOptionPane.showMessageDialog(null, "No hay asientos libres suficientes. Quedan " + vueloObtenido.getAsientosRestantes(), "Error",
+									JOptionPane.WARNING_MESSAGE);
+							
+							
+						}
+						
+						// Ahora veremos si se aplica algun descuento
+						if (asientosComprados >= 2 && asientosComprados <= 5) {
+							// 10 % de descuento
+							System.out.println(precioViaje + " * 0.9");
+							precioViaje = precioViaje * 0.9;
+							System.out.println("Con descuento, el precio del viaje es :" + precioViaje);
+
+						} else if (asientosComprados >= 6 && asientosComprados <= 10) {
+							// 15 % de descuento
+							System.out.println(precioViaje + " * 0.85");
+							precioViaje = precioViaje * 0.85;
+							System.out.println("Con descuento, el precio del viaje es :" + precioViaje);
+						} else if (asientosComprados >= 11 && asientosComprados <= 14) {
+							// 20 % de descuento
+							System.out.println(precioViaje + " * 0.8");
+							precioViaje = precioViaje * 0.8;
+							System.out.println("Con descuento, el precio del viaje es :" + precioViaje);
+						} else if (asientosComprados > 14) {
+							System.out.println(precioViaje + " * 0.55");
+							// 45 % de descuento
+							precioViaje = precioViaje * 0.55;
+							System.out.println("Con descuento, el precio del viaje es :" + precioViaje);
+						}
+						/* Calcular distancia entre el origen y destino */
 						CoordenadasAeropuerto coorItalia = new CoordenadasAeropuerto(42.76698, 12.493823);
 						CoordenadasAeropuerto coorSrilanka = new CoordenadasAeropuerto(7.7891335, 80.680725);
 						CoordenadasAeropuerto coorBrasilia = new CoordenadasAeropuerto(-15.77843, -47.92865);
 						CoordenadasAeropuerto coorNuevaYork = new CoordenadasAeropuerto(40.71455, -74.00712);
 						CoordenadasAeropuerto coorCanada = new CoordenadasAeropuerto(56.130366, -106.346771);
 						CoordenadasAeropuerto coorChina = new CoordenadasAeropuerto(36.553085, 103.97543);
-						CoordenadasAeropuerto coorEspaña = new CoordenadasAeropuerto(40.463667, -3.74922);
+						CoordenadasAeropuerto coorEspana = new CoordenadasAeropuerto(40.463667, -3.74922);
 						CoordenadasAeropuerto coorLondres = new CoordenadasAeropuerto(51.500153, -0.1262362);
 						CoordenadasAeropuerto coorJapon = new CoordenadasAeropuerto(36.281647, 139.07727);
 						CoordenadasAeropuerto coorMarruecos = new CoordenadasAeropuerto(31.925692, -6.229583);
@@ -329,7 +381,7 @@ public class ReservarTicket extends JInternalFrame {
 							latitudOrigen = coorNuevaYork.getLatitud();
 							longitudOrigen = coorNuevaYork.getLongitud();
 							break;
-						case "Canadá":
+						case "Canada":
 							latitudOrigen = coorCanada.getLatitud();
 							longitudOrigen = coorCanada.getLongitud();
 							break;
@@ -337,15 +389,15 @@ public class ReservarTicket extends JInternalFrame {
 							latitudOrigen = coorChina.getLatitud();
 							longitudOrigen = coorChina.getLongitud();
 							break;
-						case "España":
-							latitudOrigen = coorEspaña.getLatitud();
-							longitudOrigen = coorEspaña.getLongitud();
+						case "Espana":
+							latitudOrigen = coorEspana.getLatitud();
+							longitudOrigen = coorEspana.getLongitud();
 							break;
 						case "Londres":
 							latitudOrigen = coorLondres.getLatitud();
 							longitudOrigen = coorLondres.getLongitud();
 							break;
-						case "Japón":
+						case "Japon":
 							latitudOrigen = coorJapon.getLatitud();
 							longitudOrigen = coorJapon.getLongitud();
 							break;
@@ -384,7 +436,7 @@ public class ReservarTicket extends JInternalFrame {
 							latitudDestino = coorNuevaYork.getLatitud();
 							longitudDestino = coorNuevaYork.getLongitud();
 							break;
-						case "Canadá":
+						case "Canada":
 							latitudDestino = coorCanada.getLatitud();
 							longitudDestino = coorCanada.getLongitud();
 							break;
@@ -392,15 +444,15 @@ public class ReservarTicket extends JInternalFrame {
 							latitudDestino = coorChina.getLatitud();
 							longitudDestino = coorChina.getLongitud();
 							break;
-						case "España":
-							latitudDestino = coorEspaña.getLatitud();
-							longitudDestino = coorEspaña.getLongitud();
+						case "Espana":
+							latitudDestino = coorEspana.getLatitud();
+							longitudDestino = coorEspana.getLongitud();
 							break;
 						case "Londres":
 							latitudDestino = coorLondres.getLatitud();
 							longitudDestino = coorLondres.getLongitud();
 							break;
-						case "Japón":
+						case "Japon":
 							latitudDestino = coorJapon.getLatitud();
 							longitudDestino = coorJapon.getLongitud();
 							break;
@@ -430,20 +482,35 @@ public class ReservarTicket extends JInternalFrame {
 
 						// si el pais de origen y el de destino son diferentes, se calcula el precio por
 						// lejania
-						if (latitudOrigen != latitudDestino) {
-							double distanciaEntre2Aeropuertos = CoordenadasAeropuerto
-									.calcularDistanciaPuntosSuperficieTierra(latitudOrigen, longitudOrigen,
-											latitudDestino, longitudDestino);
-							System.out.println("La distancia entre el aeropuerto origen y destino es: "
-									+ distanciaEntre2Aeropuertos);
-							int primeros3digitos = Integer
-									.parseInt(String.valueOf(distanciaEntre2Aeropuertos).substring(0, 3));
+						if (!destino.equals(origen)) {
+							double distanciaEntre2Aeropuertos = CoordenadasAeropuerto.calcularDistanciaPuntosSuperficieTierra(latitudOrigen, longitudOrigen,latitudDestino, longitudDestino);
+							System.out.println("La distancia entre el aeropuerto origen y destino es: "+ distanciaEntre2Aeropuertos);
+							int primeros3digitos = Integer.parseInt(String.valueOf(distanciaEntre2Aeropuertos).substring(0, 3));
 							System.out.println("PRECIO A PAGAR: " + precioViaje + " * (" + primeros3digitos + " /10)");
 							precioViaje = precioViaje * (primeros3digitos / 10);
 							System.out.println("PRECIO A PAGAR: " + precioViaje);
 							txtPrecioTotalaMostrar.setText(String.valueOf(precioViaje));
+							try {
+								/*revisar insertarTicket : id primarykey no autoincrementa, y pone precio incorrecto*/
+								con=BD.initBD("Aeropuerto.db");
+								BD.insertarTicket(con, 0,txtDni.getText(), lblIdVuelo.getText(), Clase.valueOf(opcionesClase.getSelectedItem().toString()), Double.parseDouble(txtPrecioTotalaMostrar.getText()), asientosComprados, editor.getText());
+								BD.closeBD(con);
+							} catch (DBException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
 						} else {
 							System.out.println("No se cobra extra porque no se viaja al extranjero");
+							txtPrecioTotalaMostrar.setText(String.valueOf(precioViaje));
+							try {
+								/*revisar insertarTicket : id primarykey no autoincrementa, y pone precio incorrecto*/
+								con=BD.initBD("Aeropuerto.db");
+								BD.insertarTicket(con, 0,txtDni.getText(), lblIdVuelo.getText(), Clase.valueOf(opcionesClase.getSelectedItem().toString()), Double.parseDouble(txtPrecioTotalaMostrar.getText()), asientosComprados, editor.getText());
+								BD.closeBD(con);
+							} catch (DBException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
 						}
 					} else {
 						JOptionPane.showMessageDialog(null, "Selecciona un vuelo de la tabla", "Faltan datos",
@@ -483,10 +550,10 @@ public class ReservarTicket extends JInternalFrame {
 				TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, new Font("Tahoma", 1, 12)));
 
 		txtOrigen.setModel(new DefaultComboBoxModel<>(new String[] { "Italia", "Srilanka", "Brasilia", "Nueva York",
-				"Canadá", "China", "España", "Londres", "Japón", "Marruecos", "Sydney", "Francia" }));
+				"Canada", "China", "Espana", "Londres", "Japon", "Marruecos", "Sydney", "Francia" }));
 
 		txtDestino.setModel(new DefaultComboBoxModel<>(new String[] { "Italia", "Srilanka", "Brasilia", "Nueva York",
-				"Canadá", "China", "España", "Londres", "Japón", "Marruecos", "Sydney", "Francia" }));
+				"Canada", "China", "Espana", "Londres", "Japon", "Marruecos", "Sydney", "Francia" }));
 
 		lblOrigen.setText("Origen");
 

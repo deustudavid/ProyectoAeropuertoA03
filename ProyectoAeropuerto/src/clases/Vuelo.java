@@ -119,10 +119,10 @@ public class Vuelo {
 
 
 	public static int CalcularAsientosRestantes(Vuelo v, int asientosAreservar) {
-	 int asientosRestantes= v.getAsientosMax();
-	 if(asientosRestantes>=asientosAreservar) {
-		asientosRestantes= asientosRestantes-asientosAreservar;
-		v.setAsientosRestantes(asientosRestantes);
+		int asientosRestantesActualmente=v.getAsientosRestantes();
+	 if(v.getAsientosRestantes()>=asientosAreservar) {
+		asientosRestantesActualmente= v.getAsientosRestantes()-asientosAreservar;
+		v.setAsientosRestantes(asientosRestantesActualmente);
 		return v.getAsientosRestantes();
 	} else {
 		 return -1;

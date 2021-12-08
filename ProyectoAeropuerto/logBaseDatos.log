@@ -347,3 +347,1115 @@ dic. 08, 2021 3:02:44 P. M. main.VentanaInicio$2 actionPerformed
 INFO: Conexion con la base de datos cerrada
 dic. 08, 2021 3:02:46 P. M. bd.BD obtenerVuelos
 INFO: Statement: select * from Vuelo;
+dic. 08, 2021 5:40:27 P. M. main.VentanaInicio$1 run
+INFO: Se ejecuta la ventana de inicio
+dic. 08, 2021 5:40:27 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Azafato (usuario String, contrasenya String)
+dic. 08, 2021 5:40:27 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Administrador (usuario String, contrasenya String)
+dic. 08, 2021 5:40:27 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Vuelo (ID String, origen String, destino String, fecha String, horaSalida String, horaLlegada String, asientosMax int, asientosDisponibles int)
+dic. 08, 2021 5:40:27 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Pasajero(dni String , nombre String ,apellido String, edad int, telefono int, direccion String)
+dic. 08, 2021 5:40:27 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Ticket(ticketNum INTEGER PRIMARY KEY AUTOINCREMENT, dniPasajero String ,idVuelo String , clase String,  precio double, numAsientos int, fecha String)
+dic. 08, 2021 5:40:34 P. M. main.VentanaInicio$2 actionPerformed
+INFO: Conexion con la base de datos abierta
+dic. 08, 2021 5:40:35 P. M. main.VentanaInicio$2 actionPerformed
+INFO: Conexion con la base de datos cerrada
+dic. 08, 2021 5:40:45 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Statement: SELECT * FROM Vuelo WHERE origen = 'Italia' AND destino = 'Italia'
+dic. 08, 2021 5:41:01 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Statement: SELECT * FROM Vuelo WHERE origen = 'Italia' AND destino = 'Italia'
+dic. 08, 2021 5:41:11 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Statement: SELECT * FROM Vuelo WHERE origen = 'China' AND destino = 'China'
+dic. 08, 2021 5:41:11 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: China y destino: China
+dic. 08, 2021 5:49:56 P. M. main.VentanaInicio$1 run
+INFO: Se ejecuta la ventana de inicio
+dic. 08, 2021 5:49:57 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Azafato (usuario String, contrasenya String)
+dic. 08, 2021 5:49:57 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Administrador (usuario String, contrasenya String)
+dic. 08, 2021 5:49:57 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Vuelo (ID String, origen String, destino String, fecha String, horaSalida String, horaLlegada String, asientosMax int, asientosDisponibles int)
+dic. 08, 2021 5:49:57 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Pasajero(dni String , nombre String ,apellido String, edad int, telefono int, direccion String)
+dic. 08, 2021 5:49:57 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Ticket(ticketNum INTEGER PRIMARY KEY AUTOINCREMENT, dniPasajero String ,idVuelo String , clase String,  precio double, numAsientos int, fecha String)
+dic. 08, 2021 5:50:03 P. M. main.VentanaInicio$2 actionPerformed
+INFO: Conexion con la base de datos abierta
+dic. 08, 2021 5:50:03 P. M. main.VentanaInicio$2 actionPerformed
+INFO: Conexion con la base de datos cerrada
+dic. 08, 2021 5:50:08 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Statement: SELECT * FROM Vuelo WHERE origen = 'China' AND destino = 'China'
+dic. 08, 2021 5:50:08 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: China y destino: China
+dic. 08, 2021 5:50:22 P. M. bd.BD buscarPasajero
+INFO: Se ha encontrado el pasajero de dni: 00000000Q
+dic. 08, 2021 5:50:22 P. M. bd.BD buscarPasajero
+INFO: Se ha encontrado el pasajero de dni: 00000000Q
+dic. 08, 2021 5:50:26 P. M. bd.BD actualizarAsientosDeVuelo
+INFO: Se ha actualizado el numero de asientos restantes en el vuelo: V1
+dic. 08, 2021 6:57:24 P. M. main.VentanaInicio$1 run
+INFO: Se ejecuta la ventana de inicio
+dic. 08, 2021 6:57:24 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Azafato (usuario String, contrasenya String)
+dic. 08, 2021 6:57:24 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Administrador (usuario String, contrasenya String)
+dic. 08, 2021 6:57:24 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Vuelo (ID String, origen String, destino String, fecha String, horaSalida String, horaLlegada String, asientosMax int, asientosDisponibles int)
+dic. 08, 2021 6:57:24 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Pasajero(dni String , nombre String ,apellido String, edad int, telefono int, direccion String)
+dic. 08, 2021 6:57:24 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Ticket(ticketNum INTEGER PRIMARY KEY AUTOINCREMENT, dniPasajero String ,idVuelo String , clase String,  precio double, numAsientos int, fecha String)
+dic. 08, 2021 6:57:34 P. M. main.VentanaInicio$2 actionPerformed
+INFO: Conexion con la base de datos abierta
+dic. 08, 2021 6:57:34 P. M. main.VentanaInicio$2 actionPerformed
+INFO: Conexion con la base de datos cerrada
+dic. 08, 2021 6:57:43 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Statement: SELECT * FROM Vuelo WHERE origen = 'China' AND destino = 'China'
+dic. 08, 2021 6:57:43 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: China y destino: China
+dic. 08, 2021 6:57:52 P. M. bd.BD buscarPasajero
+INFO: Se ha encontrado el pasajero de dni: 00000000Q
+dic. 08, 2021 6:57:52 P. M. bd.BD buscarPasajero
+INFO: Se ha encontrado el pasajero de dni: 00000000Q
+dic. 08, 2021 6:58:11 P. M. bd.BD actualizarAsientosDeVuelo
+INFO: Se ha actualizado el numero de asientos restantes en el vuelo: V1
+dic. 08, 2021 7:09:13 P. M. main.VentanaInicio$1 run
+INFO: Se ejecuta la ventana de inicio
+dic. 08, 2021 7:09:14 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Azafato (usuario String, contrasenya String)
+dic. 08, 2021 7:09:14 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Administrador (usuario String, contrasenya String)
+dic. 08, 2021 7:09:14 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Vuelo (ID String, origen String, destino String, fecha String, horaSalida String, horaLlegada String, asientosMax int, asientosDisponibles int)
+dic. 08, 2021 7:09:14 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Pasajero(dni String , nombre String ,apellido String, edad int, telefono int, direccion String)
+dic. 08, 2021 7:09:14 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Ticket(ticketNum INTEGER PRIMARY KEY AUTOINCREMENT, dniPasajero String ,idVuelo String , clase String,  precio double, numAsientos int, fecha String)
+dic. 08, 2021 7:09:19 P. M. main.VentanaInicio$2 actionPerformed
+INFO: Conexion con la base de datos abierta
+dic. 08, 2021 7:09:19 P. M. main.VentanaInicio$2 actionPerformed
+INFO: Conexion con la base de datos cerrada
+dic. 08, 2021 7:09:25 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Statement: SELECT * FROM Vuelo WHERE origen = 'China' AND destino = 'China'
+dic. 08, 2021 7:09:25 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: China y destino: China
+dic. 08, 2021 7:09:40 P. M. bd.BD buscarPasajero
+INFO: Se ha encontrado el pasajero de dni: 00000000Q
+dic. 08, 2021 7:09:40 P. M. bd.BD buscarPasajero
+INFO: Se ha encontrado el pasajero de dni: 00000000Q
+dic. 08, 2021 7:09:49 P. M. bd.BD actualizarAsientosDeVuelo
+INFO: Se ha actualizado el numero de asientos restantes en el vuelo: V1
+dic. 08, 2021 7:13:33 P. M. main.VentanaInicio$1 run
+INFO: Se ejecuta la ventana de inicio
+dic. 08, 2021 7:13:33 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Azafato (usuario String, contrasenya String)
+dic. 08, 2021 7:13:33 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Administrador (usuario String, contrasenya String)
+dic. 08, 2021 7:13:33 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Vuelo (ID String, origen String, destino String, fecha String, horaSalida String, horaLlegada String, asientosMax int, asientosDisponibles int)
+dic. 08, 2021 7:13:33 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Pasajero(dni String , nombre String ,apellido String, edad int, telefono int, direccion String)
+dic. 08, 2021 7:13:33 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Ticket(ticketNum INTEGER PRIMARY KEY AUTOINCREMENT, dniPasajero String ,idVuelo String , clase String,  precio double, numAsientos int, fecha String)
+dic. 08, 2021 7:13:41 P. M. main.VentanaInicio$2 actionPerformed
+INFO: Conexion con la base de datos abierta
+dic. 08, 2021 7:13:41 P. M. main.VentanaInicio$2 actionPerformed
+INFO: Conexion con la base de datos cerrada
+dic. 08, 2021 7:13:47 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Statement: SELECT * FROM Vuelo WHERE origen = 'China' AND destino = 'China'
+dic. 08, 2021 7:13:47 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: China y destino: China
+dic. 08, 2021 7:14:04 P. M. bd.BD buscarPasajero
+INFO: Se ha encontrado el pasajero de dni: 00000000Q
+dic. 08, 2021 7:14:04 P. M. bd.BD buscarPasajero
+INFO: Se ha encontrado el pasajero de dni: 00000000Q
+dic. 08, 2021 7:14:20 P. M. bd.BD actualizarAsientosDeVuelo
+INFO: Se ha actualizado el numero de asientos restantes en el vuelo: V1
+dic. 08, 2021 7:29:50 P. M. main.VentanaInicio$1 run
+INFO: Se ejecuta la ventana de inicio
+dic. 08, 2021 7:29:51 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Azafato (usuario String, contrasenya String)
+dic. 08, 2021 7:29:51 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Administrador (usuario String, contrasenya String)
+dic. 08, 2021 7:29:51 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Vuelo (ID String, origen String, destino String, fecha String, horaSalida String, horaLlegada String, asientosMax int, asientosDisponibles int)
+dic. 08, 2021 7:29:51 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Pasajero(dni String , nombre String ,apellido String, edad int, telefono int, direccion String)
+dic. 08, 2021 7:29:51 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Ticket(ticketNum INTEGER PRIMARY KEY AUTOINCREMENT, dniPasajero String ,idVuelo String , clase String,  precio double, numAsientos int, fecha String)
+dic. 08, 2021 7:29:59 P. M. main.VentanaInicio$2 actionPerformed
+INFO: Conexion con la base de datos abierta
+dic. 08, 2021 7:29:59 P. M. main.VentanaInicio$2 actionPerformed
+INFO: Conexion con la base de datos cerrada
+dic. 08, 2021 7:30:54 P. M. bd.BD insertarVuelo
+INFO: Se ha añadido un vuelo
+dic. 08, 2021 7:31:53 P. M. bd.BD obtenerVuelos
+INFO: Statement: select * from Vuelo;
+dic. 08, 2021 7:32:06 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Statement: SELECT * FROM Vuelo WHERE origen = 'Srilanka' AND destino = 'Brasilia'
+dic. 08, 2021 7:32:06 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Srilanka y destino: Brasilia
+dic. 08, 2021 7:32:23 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Statement: SELECT * FROM Vuelo WHERE origen = 'Italia' AND destino = 'Italia'
+dic. 08, 2021 7:32:57 P. M. bd.BD insertarVuelo
+INFO: Se ha añadido un vuelo
+dic. 08, 2021 7:33:06 P. M. bd.BD insertarVuelo
+INFO: Se ha añadido un vuelo
+dic. 08, 2021 7:33:21 P. M. bd.BD insertarVuelo
+INFO: Se ha añadido un vuelo
+dic. 08, 2021 7:33:35 P. M. bd.BD insertarVuelo
+INFO: Se ha añadido un vuelo
+dic. 08, 2021 7:33:50 P. M. bd.BD insertarVuelo
+INFO: Se ha añadido un vuelo
+dic. 08, 2021 7:33:55 P. M. bd.BD obtenerVuelos
+INFO: Statement: select * from Vuelo;
+dic. 08, 2021 7:34:25 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Statement: SELECT * FROM Vuelo WHERE origen = 'Italia' AND destino = 'Francia'
+dic. 08, 2021 7:34:56 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Statement: SELECT * FROM Vuelo WHERE origen = 'Francia' AND destino = 'Italia'
+dic. 08, 2021 7:35:12 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Statement: SELECT * FROM Vuelo WHERE origen = 'Marruecos' AND destino = 'Londres'
+dic. 08, 2021 7:35:12 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Marruecos y destino: Londres
+dic. 08, 2021 7:35:33 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Statement: SELECT * FROM Vuelo WHERE origen = 'Japón' AND destino = 'Francia'
+dic. 08, 2021 7:35:33 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Japón y destino: Francia
+dic. 08, 2021 7:35:40 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Statement: SELECT * FROM Vuelo WHERE origen = 'Canadá' AND destino = 'España'
+dic. 08, 2021 7:35:40 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Canadá y destino: España
+dic. 08, 2021 7:37:06 P. M. main.VentanaInicio$1 run
+INFO: Se ejecuta la ventana de inicio
+dic. 08, 2021 7:37:07 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Azafato (usuario String, contrasenya String)
+dic. 08, 2021 7:37:07 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Administrador (usuario String, contrasenya String)
+dic. 08, 2021 7:37:07 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Vuelo (ID String, origen String, destino String, fecha String, horaSalida String, horaLlegada String, asientosMax int, asientosDisponibles int)
+dic. 08, 2021 7:37:07 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Pasajero(dni String , nombre String ,apellido String, edad int, telefono int, direccion String)
+dic. 08, 2021 7:37:07 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Ticket(ticketNum INTEGER PRIMARY KEY AUTOINCREMENT, dniPasajero String ,idVuelo String , clase String,  precio double, numAsientos int, fecha String)
+dic. 08, 2021 7:37:12 P. M. main.VentanaInicio$2 actionPerformed
+INFO: Conexion con la base de datos abierta
+dic. 08, 2021 7:37:12 P. M. main.VentanaInicio$2 actionPerformed
+INFO: Conexion con la base de datos cerrada
+dic. 08, 2021 7:37:15 P. M. bd.BD obtenerVuelos
+INFO: Statement: select * from Vuelo;
+dic. 08, 2021 7:37:33 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Statement: SELECT * FROM Vuelo WHERE origen = 'Italia' AND destino = 'Francia'
+dic. 08, 2021 7:37:34 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Statement: SELECT * FROM Vuelo WHERE origen = 'Italia' AND destino = 'Francia'
+dic. 08, 2021 7:37:36 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Statement: SELECT * FROM Vuelo WHERE origen = 'Italia' AND destino = 'Francia'
+dic. 08, 2021 7:37:46 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Statement: SELECT * FROM Vuelo WHERE origen = 'Srilanka' AND destino = 'Brasilia'
+dic. 08, 2021 7:37:46 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Srilanka y destino: Brasilia
+dic. 08, 2021 7:38:52 P. M. main.VentanaInicio$1 run
+INFO: Se ejecuta la ventana de inicio
+dic. 08, 2021 7:38:52 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Azafato (usuario String, contrasenya String)
+dic. 08, 2021 7:38:52 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Administrador (usuario String, contrasenya String)
+dic. 08, 2021 7:38:52 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Vuelo (ID String, origen String, destino String, fecha String, horaSalida String, horaLlegada String, asientosMax int, asientosDisponibles int)
+dic. 08, 2021 7:38:52 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Pasajero(dni String , nombre String ,apellido String, edad int, telefono int, direccion String)
+dic. 08, 2021 7:38:52 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Ticket(ticketNum INTEGER PRIMARY KEY AUTOINCREMENT, dniPasajero String ,idVuelo String , clase String,  precio double, numAsientos int, fecha String)
+dic. 08, 2021 7:39:01 P. M. main.VentanaInicio$2 actionPerformed
+INFO: Conexion con la base de datos abierta
+dic. 08, 2021 7:39:01 P. M. main.VentanaInicio$2 actionPerformed
+INFO: Conexion con la base de datos cerrada
+dic. 08, 2021 7:39:13 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Statement: SELECT * FROM Vuelo WHERE origen = 'Srilanka' AND destino = 'Brasilia'
+dic. 08, 2021 7:39:13 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Srilanka y destino: Brasilia
+dic. 08, 2021 7:41:31 P. M. main.VentanaInicio$1 run
+INFO: Se ejecuta la ventana de inicio
+dic. 08, 2021 7:41:31 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Azafato (usuario String, contrasenya String)
+dic. 08, 2021 7:41:31 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Administrador (usuario String, contrasenya String)
+dic. 08, 2021 7:41:31 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Vuelo (ID String, origen String, destino String, fecha String, horaSalida String, horaLlegada String, asientosMax int, asientosDisponibles int)
+dic. 08, 2021 7:41:31 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Pasajero(dni String , nombre String ,apellido String, edad int, telefono int, direccion String)
+dic. 08, 2021 7:41:31 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Ticket(ticketNum INTEGER PRIMARY KEY AUTOINCREMENT, dniPasajero String ,idVuelo String , clase String,  precio double, numAsientos int, fecha String)
+dic. 08, 2021 7:41:39 P. M. main.VentanaInicio$2 actionPerformed
+INFO: Conexion con la base de datos abierta
+dic. 08, 2021 7:41:39 P. M. main.VentanaInicio$2 actionPerformed
+INFO: Conexion con la base de datos cerrada
+dic. 08, 2021 7:41:49 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Statement: SELECT * FROM Vuelo WHERE origen = 'Italia	' AND destino = 'Italia	'
+dic. 08, 2021 7:41:49 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia	 y destino: Italia	
+dic. 08, 2021 7:55:00 P. M. main.VentanaInicio$1 run
+INFO: Se ejecuta la ventana de inicio
+dic. 08, 2021 7:55:00 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Azafato (usuario String, contrasenya String)
+dic. 08, 2021 7:55:00 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Administrador (usuario String, contrasenya String)
+dic. 08, 2021 7:55:00 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Vuelo (ID String, origen String, destino String, fecha String, horaSalida String, horaLlegada String, asientosMax int, asientosDisponibles int)
+dic. 08, 2021 7:55:00 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Pasajero(dni String , nombre String ,apellido String, edad int, telefono int, direccion String)
+dic. 08, 2021 7:55:00 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Ticket(ticketNum INTEGER PRIMARY KEY AUTOINCREMENT, dniPasajero String ,idVuelo String , clase String,  precio double, numAsientos int, fecha String)
+dic. 08, 2021 7:55:06 P. M. main.VentanaInicio$2 actionPerformed
+INFO: Conexion con la base de datos abierta
+dic. 08, 2021 7:55:06 P. M. main.VentanaInicio$2 actionPerformed
+INFO: Conexion con la base de datos cerrada
+dic. 08, 2021 7:55:13 P. M. bd.BD buscarPasajero
+INFO: Se ha encontrado el pasajero de dni: 00000000Q
+dic. 08, 2021 7:55:13 P. M. bd.BD buscarPasajero
+INFO: Se ha encontrado el pasajero de dni: 00000000Q
+dic. 08, 2021 7:55:18 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Statement: SELECT * FROM Vuelo WHERE origen = 'Italia' AND destino = 'Italia'
+dic. 08, 2021 7:55:18 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 7:55:18 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 7:55:18 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 7:55:18 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 7:55:18 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 7:55:18 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 7:55:18 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 7:55:18 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:13:43 P. M. main.VentanaInicio$1 run
+INFO: Se ejecuta la ventana de inicio
+dic. 08, 2021 8:13:44 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Azafato (usuario String, contrasenya String)
+dic. 08, 2021 8:13:44 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Administrador (usuario String, contrasenya String)
+dic. 08, 2021 8:13:44 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Vuelo (ID String, origen String, destino String, fecha String, horaSalida String, horaLlegada String, asientosMax int, asientosDisponibles int)
+dic. 08, 2021 8:13:44 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Pasajero(dni String , nombre String ,apellido String, edad int, telefono int, direccion String)
+dic. 08, 2021 8:13:44 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Ticket(ticketNum INTEGER PRIMARY KEY AUTOINCREMENT, dniPasajero String ,idVuelo String , clase String,  precio double, numAsientos int, fecha String)
+dic. 08, 2021 8:13:50 P. M. main.VentanaInicio$2 actionPerformed
+INFO: Conexion con la base de datos abierta
+dic. 08, 2021 8:13:50 P. M. main.VentanaInicio$2 actionPerformed
+INFO: Conexion con la base de datos cerrada
+dic. 08, 2021 8:14:52 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Statement: SELECT * FROM Vuelo WHERE origen = 'Italia' AND destino = 'Italia'
+dic. 08, 2021 8:14:52 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:14:52 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:14:52 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:14:52 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:14:52 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:14:52 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:14:52 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:14:52 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:15:45 P. M. bd.BD buscarPasajero
+INFO: Se ha encontrado el pasajero de dni: 00000000Q
+dic. 08, 2021 8:15:45 P. M. bd.BD buscarPasajero
+INFO: Se ha encontrado el pasajero de dni: 00000000Q
+dic. 08, 2021 8:15:47 P. M. bd.BD actualizarAsientosDeVuelo
+INFO: Se ha actualizado el numero de asientos restantes en el vuelo: dfbfsdvf
+dic. 08, 2021 8:15:47 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Statement: SELECT * FROM Vuelo WHERE origen = 'Italia' AND destino = 'Italia'
+dic. 08, 2021 8:15:47 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:15:47 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:15:47 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:15:47 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:15:47 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:15:47 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:15:47 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:15:47 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:21:41 P. M. main.VentanaInicio$1 run
+INFO: Se ejecuta la ventana de inicio
+dic. 08, 2021 8:21:41 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Azafato (usuario String, contrasenya String)
+dic. 08, 2021 8:21:41 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Administrador (usuario String, contrasenya String)
+dic. 08, 2021 8:21:41 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Vuelo (ID String, origen String, destino String, fecha String, horaSalida String, horaLlegada String, asientosMax int, asientosDisponibles int)
+dic. 08, 2021 8:21:41 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Pasajero(dni String , nombre String ,apellido String, edad int, telefono int, direccion String)
+dic. 08, 2021 8:21:41 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Ticket(ticketNum INTEGER PRIMARY KEY AUTOINCREMENT, dniPasajero String ,idVuelo String , clase String,  precio double, numAsientos int, fecha String)
+dic. 08, 2021 8:21:49 P. M. main.VentanaInicio$2 actionPerformed
+INFO: Conexion con la base de datos abierta
+dic. 08, 2021 8:21:49 P. M. main.VentanaInicio$2 actionPerformed
+INFO: Conexion con la base de datos cerrada
+dic. 08, 2021 8:21:52 P. M. bd.BD obtenerVuelos
+INFO: Statement: select * from Vuelo;
+dic. 08, 2021 8:22:29 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Statement: SELECT * FROM Vuelo WHERE origen = 'Italia' AND destino = 'Italia'
+dic. 08, 2021 8:22:29 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:22:29 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:22:29 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:22:29 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:22:29 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:22:29 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:22:29 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:22:29 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:23:15 P. M. bd.BD buscarPasajero
+INFO: Se ha encontrado el pasajero de dni: 00000000Q
+dic. 08, 2021 8:23:15 P. M. bd.BD buscarPasajero
+INFO: Se ha encontrado el pasajero de dni: 00000000Q
+dic. 08, 2021 8:26:32 P. M. main.VentanaInicio$1 run
+INFO: Se ejecuta la ventana de inicio
+dic. 08, 2021 8:26:32 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Azafato (usuario String, contrasenya String)
+dic. 08, 2021 8:26:32 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Administrador (usuario String, contrasenya String)
+dic. 08, 2021 8:26:32 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Vuelo (ID String, origen String, destino String, fecha String, horaSalida String, horaLlegada String, asientosMax int, asientosDisponibles int)
+dic. 08, 2021 8:26:32 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Pasajero(dni String , nombre String ,apellido String, edad int, telefono int, direccion String)
+dic. 08, 2021 8:26:32 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Ticket(ticketNum INTEGER PRIMARY KEY AUTOINCREMENT, dniPasajero String ,idVuelo String , clase String,  precio double, numAsientos int, fecha String)
+dic. 08, 2021 8:26:41 P. M. main.VentanaInicio$2 actionPerformed
+INFO: Conexion con la base de datos abierta
+dic. 08, 2021 8:26:41 P. M. main.VentanaInicio$2 actionPerformed
+INFO: Conexion con la base de datos cerrada
+dic. 08, 2021 8:26:51 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Statement: SELECT * FROM Vuelo WHERE origen = 'Italia' AND destino = 'Italia'
+dic. 08, 2021 8:26:51 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:26:51 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:26:51 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:26:51 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:26:51 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:26:51 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:26:51 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:26:51 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:27:14 P. M. bd.BD buscarPasajero
+INFO: Se ha encontrado el pasajero de dni: 00000000Q
+dic. 08, 2021 8:27:14 P. M. bd.BD buscarPasajero
+INFO: Se ha encontrado el pasajero de dni: 00000000Q
+dic. 08, 2021 8:27:22 P. M. bd.BD actualizarAsientosDeVuelo
+INFO: Se ha actualizado el numero de asientos restantes en el vuelo: Vuelo44
+dic. 08, 2021 8:27:22 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Statement: SELECT * FROM Vuelo WHERE origen = 'Italia' AND destino = 'Italia'
+dic. 08, 2021 8:27:22 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:27:22 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:27:22 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:27:22 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:27:22 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:27:22 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:27:22 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:27:22 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:31:37 P. M. main.VentanaInicio$1 run
+INFO: Se ejecuta la ventana de inicio
+dic. 08, 2021 8:31:37 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Azafato (usuario String, contrasenya String)
+dic. 08, 2021 8:31:37 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Administrador (usuario String, contrasenya String)
+dic. 08, 2021 8:31:37 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Vuelo (ID String, origen String, destino String, fecha String, horaSalida String, horaLlegada String, asientosMax int, asientosDisponibles int)
+dic. 08, 2021 8:31:37 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Pasajero(dni String , nombre String ,apellido String, edad int, telefono int, direccion String)
+dic. 08, 2021 8:31:37 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Ticket(ticketNum INTEGER PRIMARY KEY AUTOINCREMENT, dniPasajero String ,idVuelo String , clase String,  precio double, numAsientos int, fecha String)
+dic. 08, 2021 8:31:45 P. M. main.VentanaInicio$2 actionPerformed
+INFO: Conexion con la base de datos abierta
+dic. 08, 2021 8:31:45 P. M. main.VentanaInicio$2 actionPerformed
+INFO: Conexion con la base de datos cerrada
+dic. 08, 2021 8:31:48 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Statement: SELECT * FROM Vuelo WHERE origen = 'Italia' AND destino = 'Italia'
+dic. 08, 2021 8:31:48 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:31:48 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:31:48 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:31:48 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:31:48 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:31:48 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:31:48 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:31:48 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:36:01 P. M. main.VentanaInicio$1 run
+INFO: Se ejecuta la ventana de inicio
+dic. 08, 2021 8:36:01 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Azafato (usuario String, contrasenya String)
+dic. 08, 2021 8:36:01 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Administrador (usuario String, contrasenya String)
+dic. 08, 2021 8:36:01 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Vuelo (ID String, origen String, destino String, fecha String, horaSalida String, horaLlegada String, asientosMax int, asientosDisponibles int)
+dic. 08, 2021 8:36:01 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Pasajero(dni String , nombre String ,apellido String, edad int, telefono int, direccion String)
+dic. 08, 2021 8:36:01 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Ticket(ticketNum INTEGER PRIMARY KEY AUTOINCREMENT, dniPasajero String ,idVuelo String , clase String,  precio double, numAsientos int, fecha String)
+dic. 08, 2021 8:36:08 P. M. main.VentanaInicio$2 actionPerformed
+INFO: Conexion con la base de datos abierta
+dic. 08, 2021 8:36:08 P. M. main.VentanaInicio$2 actionPerformed
+INFO: Conexion con la base de datos cerrada
+dic. 08, 2021 8:36:14 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Statement: SELECT * FROM Vuelo WHERE origen = 'Italia' AND destino = 'Italia'
+dic. 08, 2021 8:36:14 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:36:14 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:36:14 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:36:14 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:36:14 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:36:14 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:36:14 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:36:14 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:41:58 P. M. bd.BD buscarPasajero
+INFO: Se ha encontrado el pasajero de dni: 00000000Q
+dic. 08, 2021 8:41:58 P. M. bd.BD buscarPasajero
+INFO: Se ha encontrado el pasajero de dni: 00000000Q
+dic. 08, 2021 8:42:10 P. M. bd.BD actualizarAsientosDeVuelo
+INFO: Se ha actualizado el numero de asientos restantes en el vuelo: dfbfsd
+dic. 08, 2021 8:42:10 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Statement: SELECT * FROM Vuelo WHERE origen = 'Italia' AND destino = 'Italia'
+dic. 08, 2021 8:42:10 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:42:10 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:42:10 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:42:10 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:42:10 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:42:10 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:42:10 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:42:10 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:46:29 P. M. main.VentanaInicio$1 run
+INFO: Se ejecuta la ventana de inicio
+dic. 08, 2021 8:46:29 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Azafato (usuario String, contrasenya String)
+dic. 08, 2021 8:46:29 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Administrador (usuario String, contrasenya String)
+dic. 08, 2021 8:46:29 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Vuelo (ID String, origen String, destino String, fecha String, horaSalida String, horaLlegada String, asientosMax int, asientosDisponibles int)
+dic. 08, 2021 8:46:29 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Pasajero(dni String , nombre String ,apellido String, edad int, telefono int, direccion String)
+dic. 08, 2021 8:46:29 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Ticket(ticketNum INTEGER PRIMARY KEY AUTOINCREMENT, dniPasajero String ,idVuelo String , clase String,  precio double, numAsientos int, fecha String)
+dic. 08, 2021 8:46:40 P. M. main.VentanaInicio$2 actionPerformed
+INFO: Conexion con la base de datos abierta
+dic. 08, 2021 8:46:40 P. M. main.VentanaInicio$2 actionPerformed
+INFO: Conexion con la base de datos cerrada
+dic. 08, 2021 8:46:46 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Statement: SELECT * FROM Vuelo WHERE origen = 'Italia' AND destino = 'Italia'
+dic. 08, 2021 8:46:46 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:46:46 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:46:46 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:46:46 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:46:46 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:46:46 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:46:46 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:46:46 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:47:04 P. M. bd.BD buscarPasajero
+INFO: Se ha encontrado el pasajero de dni: 00000000Q
+dic. 08, 2021 8:47:04 P. M. bd.BD buscarPasajero
+INFO: Se ha encontrado el pasajero de dni: 00000000Q
+dic. 08, 2021 8:49:32 P. M. bd.BD actualizarAsientosDeVuelo
+INFO: Se ha actualizado el numero de asientos restantes en el vuelo: dfbfsd
+dic. 08, 2021 8:49:32 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Statement: SELECT * FROM Vuelo WHERE origen = 'Italia' AND destino = 'Italia'
+dic. 08, 2021 8:49:32 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:49:32 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:49:32 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:49:32 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:49:32 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:49:32 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:49:32 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:49:32 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:51:30 P. M. bd.BD actualizarAsientosDeVuelo
+INFO: Se ha actualizado el numero de asientos restantes en el vuelo: dfbfsdv
+dic. 08, 2021 8:51:30 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Statement: SELECT * FROM Vuelo WHERE origen = 'Italia' AND destino = 'Italia'
+dic. 08, 2021 8:51:30 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:51:30 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:51:30 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:51:30 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:51:30 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:51:30 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:51:30 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:51:30 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:51:51 P. M. bd.BD actualizarAsientosDeVuelo
+INFO: Se ha actualizado el numero de asientos restantes en el vuelo: dfbfsdvf
+dic. 08, 2021 8:51:51 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Statement: SELECT * FROM Vuelo WHERE origen = 'Italia' AND destino = 'Italia'
+dic. 08, 2021 8:51:51 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:51:51 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:51:51 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:51:51 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:51:51 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:51:51 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:51:51 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:51:51 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:52:01 P. M. bd.BD actualizarAsientosDeVuelo
+INFO: Se ha actualizado el numero de asientos restantes en el vuelo: dfbfsdvfd
+dic. 08, 2021 8:52:01 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Statement: SELECT * FROM Vuelo WHERE origen = 'Italia' AND destino = 'Italia'
+dic. 08, 2021 8:52:01 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:52:01 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:52:01 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:52:01 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:52:01 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:52:01 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:52:01 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:52:01 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:52:26 P. M. bd.BD actualizarAsientosDeVuelo
+INFO: Se ha actualizado el numero de asientos restantes en el vuelo: dfbfsdvfd
+dic. 08, 2021 8:52:26 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Statement: SELECT * FROM Vuelo WHERE origen = 'Italia' AND destino = 'Italia'
+dic. 08, 2021 8:52:26 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:52:26 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:52:26 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:52:26 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:52:26 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:52:26 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:52:26 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:52:26 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:52:47 P. M. bd.BD actualizarAsientosDeVuelo
+INFO: Se ha actualizado el numero de asientos restantes en el vuelo: dfbfsdvfdd
+dic. 08, 2021 8:52:47 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Statement: SELECT * FROM Vuelo WHERE origen = 'Italia' AND destino = 'Italia'
+dic. 08, 2021 8:52:47 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:52:47 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:52:47 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:52:47 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:52:47 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:52:47 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:52:47 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 8:52:47 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 9:15:04 P. M. main.VentanaInicio$1 run
+INFO: Se ejecuta la ventana de inicio
+dic. 08, 2021 9:15:04 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Azafato (usuario String, contrasenya String)
+dic. 08, 2021 9:15:04 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Administrador (usuario String, contrasenya String)
+dic. 08, 2021 9:15:04 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Vuelo (ID String, origen String, destino String, fecha String, horaSalida String, horaLlegada String, asientosMax int, asientosDisponibles int)
+dic. 08, 2021 9:15:04 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Pasajero(dni String , nombre String ,apellido String, edad int, telefono int, direccion String)
+dic. 08, 2021 9:15:04 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Ticket(ticketNum INTEGER PRIMARY KEY AUTOINCREMENT, dniPasajero String ,idVuelo String , clase String,  precio double, numAsientos int, fecha String)
+dic. 08, 2021 9:15:10 P. M. main.VentanaInicio$2 actionPerformed
+INFO: Conexion con la base de datos abierta
+dic. 08, 2021 9:15:10 P. M. main.VentanaInicio$2 actionPerformed
+INFO: Conexion con la base de datos cerrada
+dic. 08, 2021 9:15:18 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Statement: SELECT * FROM Vuelo WHERE origen = 'Italia' AND destino = 'Italia'
+dic. 08, 2021 9:15:18 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 9:15:18 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 9:15:18 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 9:15:18 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 9:15:18 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 9:15:18 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 9:15:18 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 9:15:18 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 9:39:09 P. M. main.VentanaInicio$1 run
+INFO: Se ejecuta la ventana de inicio
+dic. 08, 2021 9:39:10 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Azafato (usuario String, contrasenya String)
+dic. 08, 2021 9:39:10 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Administrador (usuario String, contrasenya String)
+dic. 08, 2021 9:39:10 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Vuelo (ID String, origen String, destino String, fecha String, horaSalida String, horaLlegada String, asientosMax int, asientosDisponibles int)
+dic. 08, 2021 9:39:10 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Pasajero(dni String , nombre String ,apellido String, edad int, telefono int, direccion String)
+dic. 08, 2021 9:39:10 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Ticket(ticketNum INTEGER PRIMARY KEY AUTOINCREMENT, dniPasajero String ,idVuelo String , clase String,  precio double, numAsientos int, fecha String)
+dic. 08, 2021 9:39:18 P. M. main.VentanaInicio$2 actionPerformed
+INFO: Conexion con la base de datos abierta
+dic. 08, 2021 9:39:18 P. M. main.VentanaInicio$2 actionPerformed
+INFO: Conexion con la base de datos cerrada
+dic. 08, 2021 9:39:22 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Statement: SELECT * FROM Vuelo WHERE origen = 'Italia' AND destino = 'Italia'
+dic. 08, 2021 9:39:22 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 9:39:22 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 9:39:22 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 9:39:22 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 9:39:22 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 9:39:22 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 9:39:22 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 9:39:22 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 9:39:39 P. M. bd.BD buscarPasajero
+INFO: Se ha encontrado el pasajero de dni: 00000000Q
+dic. 08, 2021 9:39:39 P. M. bd.BD buscarPasajero
+INFO: Se ha encontrado el pasajero de dni: 00000000Q
+dic. 08, 2021 9:39:43 P. M. bd.BD actualizarAsientosDeVuelo
+INFO: Se ha actualizado el numero de asientos restantes en el vuelo: Vuelo44
+dic. 08, 2021 9:39:43 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Statement: SELECT * FROM Vuelo WHERE origen = 'Italia' AND destino = 'Italia'
+dic. 08, 2021 9:39:43 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 9:39:43 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 9:39:43 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 9:39:43 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 9:39:43 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 9:39:43 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 9:39:43 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 9:39:43 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 9:39:43 P. M. bd.BD insertarTicket
+INFO: Se ha añadido un vuelo
+dic. 08, 2021 9:41:56 P. M. main.VentanaInicio$1 run
+INFO: Se ejecuta la ventana de inicio
+dic. 08, 2021 9:41:56 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Azafato (usuario String, contrasenya String)
+dic. 08, 2021 9:41:56 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Administrador (usuario String, contrasenya String)
+dic. 08, 2021 9:41:56 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Vuelo (ID String, origen String, destino String, fecha String, horaSalida String, horaLlegada String, asientosMax int, asientosDisponibles int)
+dic. 08, 2021 9:41:56 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Pasajero(dni String , nombre String ,apellido String, edad int, telefono int, direccion String)
+dic. 08, 2021 9:41:56 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Ticket(ticketNum INTEGER PRIMARY KEY AUTOINCREMENT, dniPasajero String ,idVuelo String , clase String,  precio double, numAsientos int, fecha String)
+dic. 08, 2021 9:42:25 P. M. main.VentanaInicio$2 actionPerformed
+INFO: Conexion con la base de datos abierta
+dic. 08, 2021 9:42:25 P. M. main.VentanaInicio$2 actionPerformed
+INFO: Conexion con la base de datos cerrada
+dic. 08, 2021 9:42:52 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Statement: SELECT * FROM Vuelo WHERE origen = 'Italia' AND destino = 'Italia'
+dic. 08, 2021 9:42:52 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 9:42:52 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 9:42:52 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 9:42:52 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 9:42:52 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 9:42:52 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 9:42:52 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 9:42:52 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 9:43:06 P. M. bd.BD buscarPasajero
+INFO: Se ha encontrado el pasajero de dni: 00000000Q
+dic. 08, 2021 9:43:06 P. M. bd.BD buscarPasajero
+INFO: Se ha encontrado el pasajero de dni: 00000000Q
+dic. 08, 2021 9:43:17 P. M. bd.BD actualizarAsientosDeVuelo
+INFO: Se ha actualizado el numero de asientos restantes en el vuelo: dfbfsd
+dic. 08, 2021 9:43:17 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Statement: SELECT * FROM Vuelo WHERE origen = 'Italia' AND destino = 'Italia'
+dic. 08, 2021 9:43:17 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 9:43:17 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 9:43:17 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 9:43:17 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 9:43:17 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 9:43:17 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 9:43:17 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 9:43:17 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 9:43:17 P. M. bd.BD insertarTicket
+INFO: Se ha añadido un vuelo
+dic. 08, 2021 9:43:33 P. M. bd.BD actualizarAsientosDeVuelo
+INFO: Se ha actualizado el numero de asientos restantes en el vuelo: dfbfsd
+dic. 08, 2021 9:43:33 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Statement: SELECT * FROM Vuelo WHERE origen = 'Italia' AND destino = 'Italia'
+dic. 08, 2021 9:43:33 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 9:43:33 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 9:43:33 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 9:43:33 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 9:43:33 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 9:43:33 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 9:43:33 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 9:43:33 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 9:43:33 P. M. bd.BD insertarTicket
+INFO: Se ha añadido un vuelo
+dic. 08, 2021 9:59:08 P. M. main.VentanaInicio$1 run
+INFO: Se ejecuta la ventana de inicio
+dic. 08, 2021 9:59:08 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Azafato (usuario String, contrasenya String)
+dic. 08, 2021 9:59:08 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Administrador (usuario String, contrasenya String)
+dic. 08, 2021 9:59:08 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Vuelo (ID String, origen String, destino String, fecha String, horaSalida String, horaLlegada String, asientosMax int, asientosDisponibles int)
+dic. 08, 2021 9:59:08 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Pasajero(dni String , nombre String ,apellido String, edad int, telefono int, direccion String)
+dic. 08, 2021 9:59:08 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Ticket(ticketNum INTEGER PRIMARY KEY AUTOINCREMENT, dniPasajero String ,idVuelo String , clase String,  precio double, numAsientos int, fecha String)
+dic. 08, 2021 9:59:14 P. M. main.VentanaInicio$2 actionPerformed
+INFO: Conexion con la base de datos abierta
+dic. 08, 2021 9:59:14 P. M. main.VentanaInicio$2 actionPerformed
+INFO: Conexion con la base de datos cerrada
+dic. 08, 2021 9:59:17 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Statement: SELECT * FROM Vuelo WHERE origen = 'Italia' AND destino = 'Italia'
+dic. 08, 2021 9:59:17 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 9:59:17 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 9:59:17 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 9:59:17 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 9:59:17 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 9:59:17 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 9:59:17 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 9:59:17 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 9:59:29 P. M. bd.BD buscarPasajero
+INFO: Se ha encontrado el pasajero de dni: 00000000Q
+dic. 08, 2021 9:59:29 P. M. bd.BD buscarPasajero
+INFO: Se ha encontrado el pasajero de dni: 00000000Q
+dic. 08, 2021 9:59:34 P. M. bd.BD actualizarAsientosDeVuelo
+INFO: Se ha actualizado el numero de asientos restantes en el vuelo: fbfs
+dic. 08, 2021 9:59:34 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Statement: SELECT * FROM Vuelo WHERE origen = 'Italia' AND destino = 'Italia'
+dic. 08, 2021 9:59:34 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 9:59:34 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 9:59:34 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 9:59:34 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 9:59:34 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 9:59:34 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 9:59:34 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 9:59:34 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 10:14:17 P. M. main.VentanaInicio$1 run
+INFO: Se ejecuta la ventana de inicio
+dic. 08, 2021 10:14:18 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Azafato (usuario String, contrasenya String)
+dic. 08, 2021 10:14:18 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Administrador (usuario String, contrasenya String)
+dic. 08, 2021 10:14:18 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Vuelo (ID String, origen String, destino String, fecha String, horaSalida String, horaLlegada String, asientosMax int, asientosDisponibles int)
+dic. 08, 2021 10:14:18 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Pasajero(dni String , nombre String ,apellido String, edad int, telefono int, direccion String)
+dic. 08, 2021 10:14:18 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Ticket(ticketNum INTEGER PRIMARY KEY AUTOINCREMENT, dniPasajero String ,idVuelo String , clase String,  precio double, numAsientos int, fecha String)
+dic. 08, 2021 10:14:27 P. M. main.VentanaInicio$2 actionPerformed
+INFO: Conexion con la base de datos abierta
+dic. 08, 2021 10:14:29 P. M. main.VentanaInicio$2 actionPerformed
+INFO: Conexion con la base de datos cerrada
+dic. 08, 2021 10:14:34 P. M. main.VentanaInicio$2 actionPerformed
+INFO: Conexion con la base de datos abierta
+dic. 08, 2021 10:14:34 P. M. main.VentanaInicio$2 actionPerformed
+INFO: Conexion con la base de datos cerrada
+dic. 08, 2021 10:14:37 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Statement: SELECT * FROM Vuelo WHERE origen = 'Italia' AND destino = 'Italia'
+dic. 08, 2021 10:14:37 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 10:14:37 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 10:14:37 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 10:14:37 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 10:14:37 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 10:14:37 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 10:14:37 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 10:14:37 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 10:14:44 P. M. bd.BD buscarPasajero
+INFO: Se ha encontrado el pasajero de dni: 00000000Q
+dic. 08, 2021 10:14:44 P. M. bd.BD buscarPasajero
+INFO: Se ha encontrado el pasajero de dni: 00000000Q
+dic. 08, 2021 10:14:47 P. M. bd.BD actualizarAsientosDeVuelo
+INFO: Se ha actualizado el numero de asientos restantes en el vuelo: dfbfsd
+dic. 08, 2021 10:14:47 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Statement: SELECT * FROM Vuelo WHERE origen = 'Italia' AND destino = 'Italia'
+dic. 08, 2021 10:14:47 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 10:14:47 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 10:14:47 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 10:14:47 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 10:14:47 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 10:14:47 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 10:14:47 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 10:14:47 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 10:14:47 P. M. bd.BD insertarTicket
+SEVERE: ERROR al añadir un vuelo
+dic. 08, 2021 10:27:09 P. M. main.VentanaInicio$1 run
+INFO: Se ejecuta la ventana de inicio
+dic. 08, 2021 10:27:09 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Azafato (usuario String, contrasenya String)
+dic. 08, 2021 10:27:09 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Administrador (usuario String, contrasenya String)
+dic. 08, 2021 10:27:09 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Vuelo (ID String, origen String, destino String, fecha String, horaSalida String, horaLlegada String, asientosMax int, asientosDisponibles int)
+dic. 08, 2021 10:27:09 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Pasajero(dni String , nombre String ,apellido String, edad int, telefono int, direccion String)
+dic. 08, 2021 10:27:09 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Ticket(ticketNum INTEGER PRIMARY KEY AUTOINCREMENT, dniPasajero String ,idVuelo String , clase String,  precio double, numAsientos int, fecha String)
+dic. 08, 2021 10:27:16 P. M. main.VentanaInicio$2 actionPerformed
+INFO: Conexion con la base de datos abierta
+dic. 08, 2021 10:27:16 P. M. main.VentanaInicio$2 actionPerformed
+INFO: Conexion con la base de datos cerrada
+dic. 08, 2021 10:27:21 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Statement: SELECT * FROM Vuelo WHERE origen = 'Italia' AND destino = 'Italia'
+dic. 08, 2021 10:27:21 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 10:27:21 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 10:27:21 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 10:27:21 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 10:27:21 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 10:27:21 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 10:27:21 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 10:27:21 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 10:27:41 P. M. bd.BD buscarPasajero
+INFO: Se ha encontrado el pasajero de dni: 00000000Q
+dic. 08, 2021 10:27:41 P. M. bd.BD buscarPasajero
+INFO: Se ha encontrado el pasajero de dni: 00000000Q
+dic. 08, 2021 10:27:42 P. M. bd.BD actualizarAsientosDeVuelo
+INFO: Se ha actualizado el numero de asientos restantes en el vuelo: dfbfsdv
+dic. 08, 2021 10:27:42 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Statement: SELECT * FROM Vuelo WHERE origen = 'Italia' AND destino = 'Italia'
+dic. 08, 2021 10:27:42 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 10:27:42 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 10:27:42 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 10:27:42 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 10:27:42 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 10:27:42 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 10:27:42 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 10:27:42 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 10:27:42 P. M. bd.BD insertarTicket
+INFO: Se ha añadido un ticket
+dic. 08, 2021 10:57:05 P. M. main.VentanaInicio$1 run
+INFO: Se ejecuta la ventana de inicio
+dic. 08, 2021 10:57:06 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Azafato (usuario String, contrasenya String)
+dic. 08, 2021 10:57:06 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Administrador (usuario String, contrasenya String)
+dic. 08, 2021 10:57:06 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Vuelo (ID String, origen String, destino String, fecha String, horaSalida String, horaLlegada String, asientosMax int, asientosDisponibles int)
+dic. 08, 2021 10:57:06 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Pasajero(dni String , nombre String ,apellido String, edad int, telefono int, direccion String)
+dic. 08, 2021 10:57:06 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Ticket(ticketNum INTEGER PRIMARY KEY AUTOINCREMENT, dniPasajero String ,idVuelo String , clase String,  precio double, numAsientos int, fecha String)
+dic. 08, 2021 10:57:14 P. M. main.VentanaInicio$2 actionPerformed
+INFO: Conexion con la base de datos abierta
+dic. 08, 2021 10:57:14 P. M. main.VentanaInicio$2 actionPerformed
+INFO: Conexion con la base de datos cerrada
+dic. 08, 2021 10:57:17 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Statement: SELECT * FROM Vuelo WHERE origen = 'Italia' AND destino = 'Italia'
+dic. 08, 2021 10:57:17 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 10:57:17 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 10:57:17 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 10:57:17 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 10:57:17 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 10:57:17 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 10:57:17 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 10:57:17 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 10:57:32 P. M. bd.BD buscarPasajero
+INFO: Se ha encontrado el pasajero de dni: 00000000Q
+dic. 08, 2021 10:57:32 P. M. bd.BD buscarPasajero
+INFO: Se ha encontrado el pasajero de dni: 00000000Q
+dic. 08, 2021 10:57:34 P. M. bd.BD actualizarAsientosDeVuelo
+INFO: Se ha actualizado el numero de asientos restantes en el vuelo: dfbfsdvf
+dic. 08, 2021 10:57:34 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Statement: SELECT * FROM Vuelo WHERE origen = 'Italia' AND destino = 'Italia'
+dic. 08, 2021 10:57:34 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 10:57:34 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 10:57:34 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 10:57:34 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 10:57:34 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 10:57:34 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 10:57:34 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 10:57:34 P. M. bd.BD obtenerVuelosSegunOrigenDestino
+INFO: Se ha encontrado el vuelo de origen: Italia y destino: Italia
+dic. 08, 2021 10:57:34 P. M. bd.BD insertarTicket
+INFO: Se ha añadido un ticket
