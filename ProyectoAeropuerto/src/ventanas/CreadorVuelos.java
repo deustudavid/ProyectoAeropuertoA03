@@ -177,10 +177,10 @@ public class CreadorVuelos extends JInternalFrame {
 							    	String salidaStr = salida.toString();
 							    
 							    	int numAsientos = (Integer) spinnerAsientos.getValue();
-							    	
+							    	int asientosDisponibles=numAsientos;
 							    	
 									try {
-										BD.insertarVuelo(con, id,origenStr,destinoStr,fechaStr,salidaStr,llegadaStr,numAsientos);
+										BD.insertarVuelo(con, id,origenStr,destinoStr,fechaStr,salidaStr,llegadaStr,numAsientos,asientosDisponibles);
 									} catch (DBException e) {
 										// TODO Auto-generated catch block
 										e.printStackTrace();

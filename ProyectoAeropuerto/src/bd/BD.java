@@ -323,9 +323,9 @@ public class BD {
 		}
 	}
 	
-	public static void insertarVuelo(Connection con,String id, String origen, String destino, String fecha, String horaSalida, String horaLlegada, int asientosMax) throws DBException {
+	public static void insertarVuelo(Connection con,String id, String origen, String destino, String fecha, String horaSalida, String horaLlegada, int asientosMax, int asientosDisponibles) throws DBException {
 		
-		String sentencia = "INSERT INTO Vuelo VALUES('" + id + "','" + origen + "','" + destino + "','" + fecha + "','" + horaSalida + "','" + horaLlegada + "'," + asientosMax + ")";
+		String sentencia = "INSERT INTO Vuelo VALUES('" + id + "','" + origen + "','" + destino + "','" + fecha + "','" + horaSalida + "','" + horaLlegada + "'," + asientosMax + "," + asientosDisponibles + ")";
 		Statement st = null;
 		
 		try {

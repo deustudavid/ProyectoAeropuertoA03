@@ -94,9 +94,13 @@ public class Vuelo {
 		return asientosMax;
 	}
 
+	
+
 	public void setAsientosMax(int asientosMax) {
-		asientosMax = asientosMax;
+		this.asientosMax = asientosMax;
 	}
+
+	
 
 	public int getAsientosRestantes() {
 		return asientosRestantes;
@@ -109,8 +113,10 @@ public class Vuelo {
 	@Override
 	public String toString() {
 		return "Vuelo [ID=" + ID + ", origen=" + origen + ", destino=" + destino + ", fecha=" + fecha + ", horaSalida="
-				+ horaSalida + ", horaLlegada=" + horaLlegada + ", asientosMax=" + asientosMax + "]";
+				+ horaSalida + ", horaLlegada=" + horaLlegada + ", asientosMax=" + asientosMax + ", asientosRestantes="
+				+ asientosRestantes+ "]";
 	}
+
 
 	public static int CalcularAsientosRestantes(Vuelo v, int asientosAreservar) {
 	 int asientosRestantes= v.getAsientosMax();

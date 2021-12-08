@@ -147,8 +147,7 @@ public class ReservarTicket extends JInternalFrame {
 				vueloObtenido.setHoraSalida((String) modelo.getValueAt(i, 4));
 				vueloObtenido.setHoraLlegada((String) modelo.getValueAt(i, 5));
 				vueloObtenido.setAsientosMax(Integer.parseInt((String) modelo.getValueAt(i, 6)) );
-				vueloObtenido.setAsientosRestantes(Integer.parseInt((String) modelo.getValueAt(i, 7)) );
-				
+				vueloObtenido.setAsientosRestantes(Integer.parseInt((String) modelo.getValueAt(i, 7)) );				
 
 			}
 		});
@@ -168,8 +167,8 @@ public class ReservarTicket extends JInternalFrame {
 		tablaVuelos.getColumnModel().getColumn(6).setMaxWidth(100);
 		tablaVuelos.getColumnModel().getColumn(6).setMinWidth(120);
 		tablaVuelos.getColumnModel().getColumn(6).setMaxWidth(120);
-		tablaVuelos.getColumnModel().getColumn(7).setMinWidth(120);
-		tablaVuelos.getColumnModel().getColumn(7).setMaxWidth(120);
+		tablaVuelos.getColumnModel().getColumn(7).setMinWidth(130);
+		tablaVuelos.getColumnModel().getColumn(7).setMaxWidth(130);
 
 		JLabel txtPrecioTotalaMostrar = new JLabel();
 		txtPrecioTotalaMostrar.setEnabled(false);
@@ -687,7 +686,7 @@ public class ReservarTicket extends JInternalFrame {
 				// Cargamos el ArrayList de Vuelos en el modelo de la tabla
 				for (Vuelo vu : a) {
 					String[] fila = { vu.getID(), vu.getOrigen(), vu.getDestino(), vu.getFecha(), vu.getHoraSalida(),
-							vu.getHoraLlegada(), String.valueOf(vu.getAsientosMax()) };
+							vu.getHoraLlegada(), String.valueOf(vu.getAsientosMax()),String.valueOf(vu.getAsientosRestantes()) };
 					modeloTablaVuelos.addRow(fila);
 				}
 
@@ -825,8 +824,8 @@ public class ReservarTicket extends JInternalFrame {
 										.addComponent(txtPrecioTotal, GroupLayout.PREFERRED_SIZE, 226, GroupLayout.PREFERRED_SIZE))
 									.addGap(101))
 								.addGroup(layout.createSequentialGroup()
-									.addComponent(scrollTabla, GroupLayout.PREFERRED_SIZE, 800, GroupLayout.PREFERRED_SIZE)
-									.addPreferredGap(ComponentPlacement.RELATED)))
+									.addComponent(scrollTabla, GroupLayout.PREFERRED_SIZE, 795, GroupLayout.PREFERRED_SIZE)
+									.addGap(11)))
 							.addGroup(layout.createParallelGroup(Alignment.TRAILING)
 								.addGroup(layout.createSequentialGroup()
 									.addComponent(btnReservar, GroupLayout.PREFERRED_SIZE, 138, GroupLayout.PREFERRED_SIZE)
