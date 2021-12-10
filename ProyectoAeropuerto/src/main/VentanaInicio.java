@@ -50,7 +50,7 @@ public class VentanaInicio extends JFrame {
 	private JFrame ventanaActual;
 	private JPasswordField textContrasenia;
 	private JTextField textUsuario;
-
+	//prueba 
 	
 
 	private JProgressBar progressBarCerrar;
