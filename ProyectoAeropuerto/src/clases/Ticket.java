@@ -15,16 +15,8 @@ public class Ticket {
 		this.TicketNum = ticketNum;
 		this.IDVuelo = iDVuelo;
 		this.DNIPasajero = dNIPasajero;
-		if (Clase.BARATO != null) {
-			this.precio=20.0;
-		}else if (Clase.ESTANDAR != null) {
-			this.precio=30.0;
-		}else if (Clase.BUSINESS != null) {
-			this.precio=40.0;
-		}else if (Clase.LUJO != null) {
-			this.precio=50.0;
-		}
-		
+		this.clase=clase;
+		this.precio=precio;
 		this.asientos = asientos;
 		this.fecha = fecha;
 	}
@@ -39,26 +31,7 @@ public class Ticket {
 		this.asientos = 0;
 		
 	}
-// otro constructor pero con atributo clase como String
-	public Ticket(int ticketNum, String idVuelo, String dniPasajero, String clase, double precio,
-			int numAsientos, String fecha) {
-		super();
-		this.TicketNum = ticketNum;
-		this.IDVuelo = idVuelo;
-		this.DNIPasajero = dniPasajero;
-		if (Clase.BARATO != null) {
-			this.precio=20.0;
-		}else if (Clase.ESTANDAR != null) {
-			this.precio=30.0;
-		}else if (Clase.BUSINESS != null) {
-			this.precio=40.0;
-		}else if (Clase.LUJO != null) {
-			this.precio=50.0;
-		}
-		
-		this.asientos = asientos;
-		this.fecha = fecha;
-	}
+
 
 	public int getTicketNum() {
 		return TicketNum;

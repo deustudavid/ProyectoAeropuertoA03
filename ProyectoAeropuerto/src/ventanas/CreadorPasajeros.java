@@ -54,6 +54,7 @@ public class CreadorPasajeros extends JInternalFrame {
 	private static String nom;
 	private static String apellido;
 	private static String dir;
+	private static int edadNumerica;
 	private static int edad; 
 	private static int tfno;
 	private static boolean correctoTelefono ,correctoApellido , correctoDireccion, correctoDni ,correctoEdad , correctoNombre;
@@ -70,13 +71,13 @@ public class CreadorPasajeros extends JInternalFrame {
 		con =null;
 		
 		
-		
+		edadNumerica=999;
 		dni="";
 		nom="";
 		apellido="";
 		dir="";
-		edad=0;
-		tfno=0;
+		edad=1;
+		tfno=111111111;
 		correctoApellido=false;
 		correctoTelefono=false;
 		correctoDireccion=false;
@@ -127,7 +128,7 @@ public class CreadorPasajeros extends JInternalFrame {
 					lblMensajeApellido.setText("*");
 					 apellido = txtApellido.getText();
 				}else {
-					lblMensajeApellido.setText("Empieza por mayúscula");
+					lblMensajeApellido.setText("Empieza por mayuscula + minuscula");
 				}
 				
 			}
@@ -143,7 +144,7 @@ public class CreadorPasajeros extends JInternalFrame {
 					lblMensajeNombre.setText("*");
 					nom = txtNombre.getText();
 				} else {
-					lblMensajeNombre.setText("Empieza por mayúscula");
+					lblMensajeNombre.setText("Empieza por mayuscula + minuscula");
 				}
 				
 			}
@@ -270,34 +271,33 @@ public class CreadorPasajeros extends JInternalFrame {
 						.addGroup(glPanelIzquierda.createSequentialGroup()
 							.addComponent(lblApellido)
 							.addGap(46)
-							.addComponent(txtApellido, GroupLayout.PREFERRED_SIZE, 168, GroupLayout.PREFERRED_SIZE))
-						.addGroup(glPanelIzquierda.createParallelGroup(Alignment.LEADING)
-							.addGroup(glPanelIzquierda.createSequentialGroup()
-								.addGroup(glPanelIzquierda.createParallelGroup(Alignment.LEADING)
-									.addComponent(lblDireccion)
-									.addComponent(lblTelefono)
-									.addComponent(lblDni))
-								.addGap(38)
-								.addGroup(glPanelIzquierda.createParallelGroup(Alignment.LEADING)
-									.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-									.addGroup(glPanelIzquierda.createSequentialGroup()
-										.addGap(1)
-										.addGroup(glPanelIzquierda.createParallelGroup(Alignment.LEADING)
-											.addComponent(txtTelefono, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
-											.addComponent(txtDni, GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)))))
-							.addGroup(glPanelIzquierda.createSequentialGroup()
-								.addComponent(lblNombre)
-								.addGap(47)
-								.addComponent(txtNombre, GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE))))
+							.addComponent(txtApellido, GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE))
+						.addGroup(glPanelIzquierda.createSequentialGroup()
+							.addGroup(glPanelIzquierda.createParallelGroup(Alignment.LEADING)
+								.addComponent(lblDireccion)
+								.addComponent(lblTelefono)
+								.addComponent(lblDni))
+							.addGap(38)
+							.addGroup(glPanelIzquierda.createParallelGroup(Alignment.LEADING)
+								.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addGroup(glPanelIzquierda.createSequentialGroup()
+									.addGap(1)
+									.addGroup(glPanelIzquierda.createParallelGroup(Alignment.LEADING)
+										.addComponent(txtTelefono, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
+										.addComponent(txtDni, GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)))))
+						.addGroup(glPanelIzquierda.createSequentialGroup()
+							.addComponent(lblNombre)
+							.addGap(47)
+							.addComponent(txtNombre, GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)))
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(glPanelIzquierda.createParallelGroup(Alignment.LEADING)
 						.addGroup(glPanelIzquierda.createSequentialGroup()
 							.addGroup(glPanelIzquierda.createParallelGroup(Alignment.LEADING)
 								.addComponent(lblMensajeDireccion, GroupLayout.PREFERRED_SIZE, 235, GroupLayout.PREFERRED_SIZE)
 								.addGroup(glPanelIzquierda.createParallelGroup(Alignment.LEADING)
-									.addComponent(lblMensajeTfno, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
-									.addComponent(lblMensajeDNI, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
-									.addComponent(lblMensajeApellido, GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)))
+									.addComponent(lblMensajeTfno, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
+									.addComponent(lblMensajeDNI, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
+									.addComponent(lblMensajeApellido, GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)))
 							.addGap(22))
 						.addGroup(glPanelIzquierda.createSequentialGroup()
 							.addComponent(lblMensajeNombre, GroupLayout.PREFERRED_SIZE, 257, GroupLayout.PREFERRED_SIZE)
@@ -362,12 +362,13 @@ public class CreadorPasajeros extends JInternalFrame {
 				
 				String erEdad = "^[1-9]{1}[0-9]{0,2}$";//3 digitos como mucho, sin empezar por 0
 				String edadIntroducida= txtEdad.getText();
+				edadNumerica=Integer.parseInt(txtEdad.getText());
 				correctoEdad = edadIntroducida.matches(erEdad);
-				if (correctoEdad) {
+				if (correctoEdad && edadNumerica<=130) {
 					lblMensajeEdad.setText("*");
 					 edad= Integer.parseInt(txtEdad.getText());
 				} else{
-					lblMensajeEdad.setText("No comienza en 0. 3 dígitos máx.");
+					lblMensajeEdad.setText("No comienza en 0; 3 dígitos; Edad max=130.");
 				}
 			}
 		});
@@ -471,7 +472,7 @@ public class CreadorPasajeros extends JInternalFrame {
 			btnGuardar.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent evt) {
 									
-					if (correctoTelefono && correctoApellido && correctoDireccion && correctoDni && correctoEdad && correctoNombre) {
+					if (correctoTelefono && correctoApellido && correctoDireccion && correctoDni && correctoEdad && edadNumerica<=130 && correctoNombre) {
 						
 							try {
 								con = BD.initBD("Aeropuerto.db");
@@ -527,7 +528,7 @@ public class CreadorPasajeros extends JInternalFrame {
 							.addComponent(lblTituloVentana))
 						.addGroup(layout.createSequentialGroup()
 							.addContainerGap()
-							.addComponent(panelIzquierda, GroupLayout.PREFERRED_SIZE, 571, GroupLayout.PREFERRED_SIZE)
+							.addComponent(panelIzquierda, GroupLayout.PREFERRED_SIZE, 607, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addGroup(layout.createParallelGroup(Alignment.LEADING)
 								.addGroup(layout.createSequentialGroup()
@@ -535,8 +536,9 @@ public class CreadorPasajeros extends JInternalFrame {
 									.addPreferredGap(ComponentPlacement.RELATED)
 									.addComponent(btnCancelar, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE))
 								.addGroup(layout.createSequentialGroup()
+									.addGap(12)
 									.addComponent(panelCentral, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-									.addGap(18)
+									.addPreferredGap(ComponentPlacement.RELATED)
 									.addGroup(layout.createParallelGroup(Alignment.LEADING)
 										.addComponent(btnBuscarFoto, GroupLayout.PREFERRED_SIZE, 139, GroupLayout.PREFERRED_SIZE)
 										.addComponent(txtFoto, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE))))))
@@ -545,21 +547,21 @@ public class CreadorPasajeros extends JInternalFrame {
 		layout.setVerticalGroup(
 			layout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(layout.createSequentialGroup()
-					.addContainerGap(45, Short.MAX_VALUE)
+					.addContainerGap(47, Short.MAX_VALUE)
 					.addComponent(lblTituloVentana)
 					.addGap(50)
 					.addGroup(layout.createParallelGroup(Alignment.LEADING)
 						.addGroup(layout.createSequentialGroup()
-							.addComponent(panelIzquierda, GroupLayout.DEFAULT_SIZE, 437, Short.MAX_VALUE)
+							.addComponent(panelIzquierda, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 							.addContainerGap())
 						.addGroup(layout.createSequentialGroup()
 							.addComponent(txtFoto, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(btnBuscarFoto, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
 							.addContainerGap())
-						.addGroup(layout.createSequentialGroup()
+						.addGroup(Alignment.TRAILING, layout.createSequentialGroup()
 							.addComponent(panelCentral, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
+							.addPreferredGap(ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
 							.addGroup(layout.createParallelGroup(Alignment.BASELINE)
 								.addComponent(btnGuardar, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
 								.addComponent(btnCancelar, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE))

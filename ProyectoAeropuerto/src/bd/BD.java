@@ -353,33 +353,32 @@ public class BD {
 	}
 	
 	/* revisar , hay que informarse sobre como hacer que la primary key se cree sola*/
-	public static void insertarTicket(Connection con , int ticketNum, String dniPasajero  ,String idVuelo  ,Clase clase , double precio , int numAsientos ,String fecha ) throws DBException {
-		
-		
-		
-		switch (clase) {
-		case BARATO :
+	
+	public static int getMaxTicketNum(Connection con) {
+		String sent = "select MAX(ticketNum) from Ticket";
+		Statement st = null;
+		int ultimoTicketNum=0;
+		try {
+			st = con.createStatement();
+			ResultSet rs=st.executeQuery(sent);
 			
-			precio=20.0;
-			
-			break;
-		case ESTANDAR:
-			precio=30.0;
-			break;
-		case BUSINESS:
-			
-			precio=40.0;
-			break;
-		case LUJO:
-			precio=50.0;
-			break;
-
-		default :
-			precio=0.0;
-			break;
+			if (rs.next()) {
+				ultimoTicketNum=rs.getInt(1);
+				ultimoTicketNum++;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+		return ultimoTicketNum;
+
 		
-		String sentencia = "INSERT INTO Ticket VALUES(" + ticketNum + ",'" + dniPasajero + "','" + idVuelo + "','" + clase + "'," + precio + "," + numAsientos + ",'" + fecha + "')";
+	}
+	public static void insertarTicket(Connection con , int ticketNum, String dniPasajero  ,String idVuelo  ,Clase clase , double precio , int numAsientos ,String fecha ) throws DBException {
+		int numeroTicketAInsertar= getMaxTicketNum(con);
+		
+		String sentencia = "INSERT INTO Ticket VALUES(" + numeroTicketAInsertar + ",'" + dniPasajero + "','" + idVuelo + "','" + clase + "'," + precio + "," + numAsientos + ",'" + fecha + "')";
+		
 		Statement st = null;
 		
 		try {
@@ -457,9 +456,13 @@ public class BD {
 					String nom = datos[1];
 					String apellido = datos[2];
 					int edad = Integer.parseInt(datos[3]);
+					boolean rangoCorrectoEdad=false;
+					if (edad>=1 && edad<=130) {
+						rangoCorrectoEdad=true;
+					}
 					int tfno = Integer.parseInt(datos[4]);
 					String dir = datos[5];
-					if (!existePasajero(con, dni)) {
+					if (!existePasajero(con, dni) && rangoCorrectoEdad) {
 						String sentencia = "insert into Pasajero (dni, nombre, apellido, edad, telefono, direccion) values ('" + dni + "','" + nom + "','" + apellido + "'," + edad + "," + tfno + ",'" + dir + "');";
 						VentanaInicio.logger.log( Level.INFO, "Statement: " + sentencia );
 						st.executeUpdate( sentencia );
@@ -526,14 +529,14 @@ public class BD {
 		String sent = "update Pasajero set  nombre='"+nombre+"',apellido='"+apellido+"',edad="+edad+",telefono="+telefono+",direccion='"+direccion+"' where dni='"+dni+"'";
 		statement.executeUpdate(sent);
 		VentanaInicio.logger.log(Level.INFO, "Se ha modificado el pasajero de dni: " + dni);
-	}
+	}// rellenar con ?, ?
 	
 	public static Pasajero buscarPasajero(Connection con,String dni) throws SQLException {
 		String sentencia = "SELECT * FROM Pasajero WHERE dni = '"+dni+"'";
 		Statement st = null;
 		Pasajero p=null;
 		
-			st = con.createStatement();
+		st = con.createStatement();
 
 			ResultSet rs = st.executeQuery(sentencia);
 			//Si la sentencia nos ha devuelto al menos un valor, rs estar� apuntando a una tupla
@@ -586,15 +589,18 @@ public class BD {
             VentanaInicio.logger.log( Level.INFO, "Statement: " + sent );
             ResultSet rs = statement.executeQuery( sent );
             while( rs.next() ) { // Leer el resultset
-            	int ticketNum = rs.getInt("ticketNum");
-            	 String idVuelo= rs.getString("idVuelo");
-                String dniPasajero= rs.getString("dniPasajero");
-                String claseStr = rs.getString("clase");
-                double precio=rs.getDouble("precio");
-                int numAsientos=rs.getInt("numAsientos");
-                String fecha=rs.getString("fecha");
+            	
+            	
+			int ticketNum = rs.getInt("ticketNum");
+			String idVuelo= rs.getString("idVuelo");
+			String dniPasajero= rs.getString("dniPasajero");
+			String claseStr = rs.getString("clase");
+			Clase c=Clase.valueOf(claseStr);
+			double precio=rs.getDouble("precio");
+			int numAsientos=rs.getInt("numAsientos");
+			String fecha=rs.getString("fecha");
 
-                ret.add( new Ticket ( ticketNum, idVuelo, dniPasajero, claseStr, precio, numAsientos, fecha) );
+                ret.add( new Ticket ( ticketNum, idVuelo, dniPasajero, c, precio, numAsientos, fecha) );
             }
             return ret;
         } catch (Exception e) {

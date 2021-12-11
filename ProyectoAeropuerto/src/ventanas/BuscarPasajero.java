@@ -55,11 +55,7 @@ public class BuscarPasajero extends javax.swing.JInternalFrame {
 	
 	private static Connection con;
 	private static String dniAbuscar;
-	private static String nom;
-	private static String apellido;
-	private static String dir;
-	private static int edad; 
-	private static int tfno;
+	private static int edadNumerica;
 	private static boolean correctoTelefono ,correctoApellido , correctoDireccion, correctoDni ,correctoEdad , correctoNombre;
 	private JLabel lblMensajeNombre;
 	private JLabel lblMensajeApellido;
@@ -73,11 +69,7 @@ public class BuscarPasajero extends javax.swing.JInternalFrame {
 		
 		con=null;
 		dniAbuscar="";
-		nom="";
-		apellido="";
-		dir="";
-		edad=0;
-		tfno=0;
+		edadNumerica=1;
 		correctoApellido=true;
 		correctoTelefono=true;
 		correctoDireccion=true;
@@ -103,7 +95,7 @@ public class BuscarPasajero extends javax.swing.JInternalFrame {
 				 correctoApellido = apellidoIntroducido.matches(erApellido);
 				if (correctoApellido) {
 					lblMensajeApellido.setText("*");
-					 apellido = txtApellido.getText();
+					 txtApellido.getText();
 				}else {
 					correctoApellido=false;
 					lblMensajeApellido.setText("Empieza por mayúscula");
@@ -124,7 +116,7 @@ public class BuscarPasajero extends javax.swing.JInternalFrame {
 				 correctoNombre = nombreIntroducido.matches(erNombre);
 				if (correctoNombre) {
 					lblMensajeNombre.setText("*");
-					nom = txtNombre.getText();
+					txtNombre.getText();
 				} else {
 					correctoNombre=false;
 					lblMensajeNombre.setText("Empieza por mayúscula");
@@ -145,7 +137,7 @@ public class BuscarPasajero extends javax.swing.JInternalFrame {
 				correctoTelefono = telefonoIntroducido.matches(erTelefono);
 				if (correctoTelefono) {
 					lblMensajeTfno.setText("*");
-					 tfno= Integer.parseInt(txtTelefono.getText());
+					 Integer.parseInt(txtTelefono.getText());
 				}else {
 					correctoTelefono=false;
 					lblMensajeTfno.setText("9 dígitos");
@@ -164,7 +156,7 @@ public class BuscarPasajero extends javax.swing.JInternalFrame {
 				correctoDireccion = dirIntroducida.matches(erDireccion);
 				if (correctoDireccion) {
 					lblMensajeDireccion.setText("*");
-					 dir= txtDireccion.getText();
+					 txtDireccion.getText();
 				}else {
 					correctoDireccion=false;
 					lblMensajeDireccion.setText("Empieza por mayúscula");
@@ -379,13 +371,14 @@ public class BuscarPasajero extends javax.swing.JInternalFrame {
 			public void keyReleased(KeyEvent e) {
 				String erEdad = "^[1-9]{1}[0-9]{0,2}$";//3 digitos como mucho, sin empezar por 0
 				String edadIntroducida= txtEdad.getText();
+				edadNumerica=Integer.parseInt(txtEdad.getText());
 				correctoEdad = edadIntroducida.matches(erEdad);
-				if (correctoEdad) {
+				if (correctoEdad && edadNumerica>=1 && edadNumerica<=130) {
 					lblMensajeEdad.setText("*");
-					 edad= Integer.parseInt(txtEdad.getText());
+					 Integer.parseInt(txtEdad.getText());
 				} else{
 					correctoEdad=false;
-					lblMensajeEdad.setText("No comienza en 0. 3 dígitos máx.");
+					lblMensajeEdad.setText("No comienza en 0; 3 dígitos; Edad max=130.");
 				}
 			}
 		});
@@ -394,7 +387,7 @@ public class BuscarPasajero extends javax.swing.JInternalFrame {
 		btnActualizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				
-				if (correctoTelefono && correctoApellido && correctoDireccion && correctoDni && correctoEdad && correctoNombre) {
+				if (correctoTelefono && correctoApellido && correctoDireccion && correctoDni && correctoEdad && edadNumerica>=1 && edadNumerica<=130 && correctoNombre && !txtDni.getText().isBlank()&& !txtNombre.getText().isBlank() && !txtApellido.getText().isBlank() && !txtEdad.getText().isBlank() && !txtTelefono.getText().isBlank() && !txtDireccion.getText().isBlank()) {
 					
 					
 							try {
@@ -406,7 +399,7 @@ public class BuscarPasajero extends javax.swing.JInternalFrame {
 						
 						
 								try {
-									BD.modificarPasajero(con, dniAbuscar, nom, apellido, edad, tfno, dir);
+									BD.modificarPasajero(con, dniAbuscar, txtNombre.getText(), txtApellido.getText(), Integer.parseInt(txtEdad.getText()), Integer.parseInt(txtTelefono.getText()), txtDireccion.getText());
 									JOptionPane.showMessageDialog(null, "Pasajero actualizado correctamente");
 								} catch (SQLException e) {
 									// TODO Auto-generated catch block

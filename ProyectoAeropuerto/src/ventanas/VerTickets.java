@@ -58,8 +58,8 @@ public class VerTickets extends JInternalFrame {
 		
 		
 		  for (Ticket ticket : t) {
-		 
-			modeloTablaTickets.addRow(new Object[]   {ticket.getTicketNum(), ticket.getIDVuelo(),  ticket.getDNIPasajero(),ticket.getClase(),ticket.getAsientos() ,ticket.getFecha() }
+		 System.out.println(ticket.getClase());
+			modeloTablaTickets.addRow(new Object[]   {ticket.getTicketNum(), ticket.getIDVuelo(),  ticket.getDNIPasajero(),ticket.getClase().toString(),ticket.getPrecio(),ticket.getAsientos(),ticket.getFecha() }
 );
 			}
 			

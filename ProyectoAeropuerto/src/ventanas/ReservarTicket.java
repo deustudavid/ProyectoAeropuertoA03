@@ -24,10 +24,20 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeEvent;
+import javax.swing.event.ChangeListener;
+import javax.swing.event.ChangeEvent;
 
 public class ReservarTicket extends JInternalFrame {
 
 	private Connection con;
+	
+	private static double latitudOrigen ;
+	private static double longitudOrigen;
+	private static double latitudDestino ;
+	private static double longitudDestino ;
+
 
 	private JLabel lblIdVuelo;
 	private JButton btnReservar;
@@ -61,7 +71,7 @@ public class ReservarTicket extends JInternalFrame {
 	private JLabel txtTelefono;
 	private JSpinner txtAsientos;
 	private JComboBox<String> txtOrigen;
-	private JLabel txtPrecioTotal;
+	private JLabel txtPrecioBase;
 	private JComboBox<Clase> opcionesClase;
 	private ArrayList<Vuelo> a;
 
@@ -78,10 +88,31 @@ public class ReservarTicket extends JInternalFrame {
 	private JLabel txtOrigenMostrado;
 	private JLabel txtDestinoMostrado;
 	private JLabel txtPrecio;
+	private static double precioIndividual;
+	private static double precioViaje;
 
 	private Vuelo vueloObtenido;
+	private JLabel txtImpuestos;
+	private JLabel txtImpuestosaMostrar;
+	private JLabel txtPrecioTotal;
+	private JLabel txtPrecioFinalaMostrar;
 
 	public ReservarTicket() {
+		
+		latitudOrigen = 0.0;
+		longitudOrigen = 0.0;
+		latitudDestino = 0.0;
+		longitudDestino = 0.0;
+
+
+		JLabel txtPrecioBaseaMostrar = new JLabel();
+		txtPrecioBaseaMostrar.setEnabled(false);
+		txtPrecioBaseaMostrar.setText("30.0");
+		txtPrecioBaseaMostrar.setForeground(Color.RED);
+		txtPrecioBaseaMostrar.setFont(new Font("Tahoma", Font.BOLD, 24));
+		
+		precioIndividual=0.0;
+		precioViaje=0.0;
 
 		// HACER QUE EL TEXTFIELD DONDE APARECE LA FECHA TRAS SELECCIONARLA CON
 		// JFILECHOOSER NO SE PUEDA EDITAR
@@ -101,10 +132,105 @@ public class ReservarTicket extends JInternalFrame {
 		txtDireccion.setRows(5);
 		txtDireccion.setColumns(20);
 		scrollDireccion.setViewportView(txtDireccion);
+		
+		txtImpuestosaMostrar = new JLabel();
+		txtImpuestosaMostrar.setText("0.0");
+		txtImpuestosaMostrar.setForeground(Color.RED);
+		txtImpuestosaMostrar.setFont(new Font("Tahoma", Font.BOLD, 24));
+		txtImpuestosaMostrar.setEnabled(false);
+		
+		txtPrecioFinalaMostrar = new JLabel();
+		txtPrecioFinalaMostrar.setText("0.0");
+		txtPrecioFinalaMostrar.setForeground(Color.RED);
+		txtPrecioFinalaMostrar.setFont(new Font("Tahoma", Font.BOLD, 24));
+		txtPrecioFinalaMostrar.setEnabled(false);
+		
 
 		txtPrecio = new JLabel();
 		txtPrecio.setEnabled(false);
 		txtPrecio.setText("30.0");
+		
+		/*HILOS*/
+		Runnable r1 = new Runnable() {
+			public void run() {
+				while(true) {
+					txtPrecioFinalaMostrar.setForeground(Color.GREEN);
+					double impuestos=Double.parseDouble(txtImpuestosaMostrar.getText());
+					double precioBase=Double.parseDouble(txtPrecioBaseaMostrar.getText());
+					double resultado=precioBase+impuestos;
+					txtPrecioFinalaMostrar.setText(String.valueOf(resultado));
+					
+					try {
+						Thread.sleep(150);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					}
+				
+				}
+			
+		};
+		Thread t1 = new Thread(r1);
+		t1.start();
+		
+		opcionesClase = new JComboBox<Clase>();
+		opcionesClase.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				txtAsientos.setValue(1);
+				switch (Clase.valueOf(opcionesClase.getSelectedItem().toString())) {
+				case BARATO:
+
+					txtPrecio.setText("20.0");
+
+					break;
+				case ESTANDAR:
+					txtPrecio.setText("30.0");
+					break;
+				case BUSINESS:
+
+					txtPrecio.setText("40.0");
+					break;
+				case LUJO:
+					txtPrecio.setText("50.0");
+					break;
+
+				default:
+					txtPrecio.setText("30.0");
+					break;
+				}
+				txtPrecioBaseaMostrar.setText(txtPrecio.getText());
+				
+			}
+		});
+		opcionesClase.setBackground(SystemColor.info);
+		opcionesClase.setModel(new DefaultComboBoxModel(new Object[] { "ESTANDAR", "BARATO", "BUSINESS", "LUJO" }));
+		opcionesClase.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				switch (Clase.valueOf(opcionesClase.getSelectedItem().toString())) {
+				case BARATO:
+
+					txtPrecio.setText("20.0");
+
+					break;
+				case ESTANDAR:
+					txtPrecio.setText("30.0");
+					break;
+				case BUSINESS:
+
+					txtPrecio.setText("40.0");
+					break;
+				case LUJO:
+					txtPrecio.setText("50.0");
+					break;
+
+				default:
+					txtPrecio.setText("30.0");
+					break;
+				}
+			}
+		});
+
 
 		panelBusquedaVuelo = new JPanel();
 		txtOrigen = new JComboBox<>();
@@ -124,6 +250,89 @@ public class ReservarTicket extends JInternalFrame {
 		String[] nombresColumnas = { "ID Vuelo", "Origen", "Destino", "Fecha", "HoraSalida", "HoraLlegada",
 				"AsientosTotales","AsientosDisponibles" };
 		modeloTablaVuelos.setColumnIdentifiers(nombresColumnas);
+		
+		txtAsientos = new JSpinner();
+		txtAsientos.setModel(new SpinnerNumberModel(new Integer(1), new Integer(1), null, new Integer(1)));
+		txtAsientos.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				int asientosComprados = (int) txtAsientos.getValue();
+				precioIndividual = Double.parseDouble(txtPrecio.getText());
+				precioViaje = asientosComprados * precioIndividual;
+				double precioEnPantalla= Double.parseDouble(txtPrecioBaseaMostrar.getText());
+				// Ahora veremos si se aplica algun descuento
+				if(asientosComprados >= 2 && asientosComprados <= 5 ) {
+					// 10 % de descuento
+				
+					precioViaje = precioViaje * 0.9;
+					txtPrecioBaseaMostrar.setText(String.valueOf(precioViaje));
+					
+
+				
+				} else if (asientosComprados >= 6 && asientosComprados <= 10 ) {
+					// 15 % de descuento
+
+					precioViaje=precioViaje * 0.85;
+					txtPrecioBaseaMostrar.setText(String.valueOf(precioViaje));
+				} else if(asientosComprados >= 11 && asientosComprados <= 14  ) {
+					// 20 % de descuento
+					precioViaje = precioViaje * 0.8;
+					txtPrecioBaseaMostrar.setText(String.valueOf(precioViaje));
+				} else if(asientosComprados > 14  ) {
+					// 45 % de descuento
+					precioViaje = precioViaje * 0.55;
+					txtPrecioBaseaMostrar.setText(String.valueOf(precioViaje));
+					
+				} else if(asientosComprados==1){
+				txtPrecioBaseaMostrar.setText(String.valueOf(precioIndividual));
+		}
+					}
+			
+		});
+		
+		
+		
+		
+		btnBuscadorDestinos.setText("Buscar para estos lugares");
+		btnBuscadorDestinos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				origen = txtOrigen.getSelectedItem().toString();
+				destino = txtDestino.getSelectedItem().toString();
+
+				try {
+					con = BD.initBD("Aeropuerto.db");
+				} catch (DBException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				a = BD.obtenerVuelosSegunOrigenDestino(con, origen, destino);
+
+				try {
+					BD.closeBD(con);
+				} catch (DBException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+
+				// vaciar la tabla cuando se selecciona un nuevo origen-destino
+				while (modeloTablaVuelos.getRowCount() > 0) {
+					int filas = tablaVuelos.getRowCount();
+					if (0 < filas) {
+						modeloTablaVuelos.removeRow(0);
+					}
+
+				}
+
+				// Cargamos el ArrayList de Vuelos en el modelo de la tabla
+				for (Vuelo vu : a) {
+					String[] fila = { vu.getID(), vu.getOrigen(), vu.getDestino(), vu.getFecha(), vu.getHoraSalida(),
+							vu.getHoraLlegada(), String.valueOf(vu.getAsientosMax()),String.valueOf(vu.getAsientosRestantes()) };
+					modeloTablaVuelos.addRow(fila);
+				}
+				
+				
+				
+			}
+		});
 
 		tablaVuelos = new JTable(modeloTablaVuelos);
 		tablaVuelos.addMouseListener(new MouseAdapter() {
@@ -145,7 +354,150 @@ public class ReservarTicket extends JInternalFrame {
 				vueloObtenido.setHoraSalida((String) modelo.getValueAt(i, 4));
 				vueloObtenido.setHoraLlegada((String) modelo.getValueAt(i, 5));
 				vueloObtenido.setAsientosMax(Integer.parseInt((String) modelo.getValueAt(i, 6)) );
-				vueloObtenido.setAsientosRestantes(Integer.parseInt((String) modelo.getValueAt(i, 7)) );				
+				vueloObtenido.setAsientosRestantes(Integer.parseInt((String) modelo.getValueAt(i, 7)) );	
+				
+				//mirar encarecimiento del precio segun el origen y destino
+				String origen = txtOrigenMostrado.getText();
+				String destino = txtDestinoMostrado.getText();
+				/* Calcular distancia entre el origen y destino */
+				CoordenadasAeropuerto coorItalia = new CoordenadasAeropuerto(42.76698, 12.493823);
+				CoordenadasAeropuerto coorSrilanka = new CoordenadasAeropuerto(7.7891335, 80.680725);
+				CoordenadasAeropuerto coorBrasilia = new CoordenadasAeropuerto(-15.77843, -47.92865);
+				CoordenadasAeropuerto coorNuevaYork = new CoordenadasAeropuerto(40.71455, -74.00712);
+				CoordenadasAeropuerto coorCanada = new CoordenadasAeropuerto(56.130366, -106.346771);
+				CoordenadasAeropuerto coorChina = new CoordenadasAeropuerto(36.553085, 103.97543);
+				CoordenadasAeropuerto coorEspana = new CoordenadasAeropuerto(40.463667, -3.74922);
+				CoordenadasAeropuerto coorLondres = new CoordenadasAeropuerto(51.500153, -0.1262362);
+				CoordenadasAeropuerto coorJapon = new CoordenadasAeropuerto(36.281647, 139.07727);
+				CoordenadasAeropuerto coorMarruecos = new CoordenadasAeropuerto(31.925692, -6.229583);
+				CoordenadasAeropuerto coorSydney = new CoordenadasAeropuerto(-33.8696, 151.20695);
+				CoordenadasAeropuerto coorFrancia = new CoordenadasAeropuerto(46.63728, 2.3382623);
+
+				
+
+				switch (origen) {
+				case "Italia":
+					latitudOrigen = coorItalia.getLatitud();
+					longitudOrigen = coorItalia.getLongitud();
+					break;
+				case "Srilanka":
+					latitudOrigen = coorSrilanka.getLatitud();
+					longitudOrigen = coorSrilanka.getLongitud();
+					break;
+				case "Brasilia":
+					latitudOrigen = coorBrasilia.getLatitud();
+					longitudOrigen = coorBrasilia.getLongitud();
+					break;
+				case "Nueva York":
+					latitudOrigen = coorNuevaYork.getLatitud();
+					longitudOrigen = coorNuevaYork.getLongitud();
+					break;
+				case "Canada":
+					latitudOrigen = coorCanada.getLatitud();
+					longitudOrigen = coorCanada.getLongitud();
+					break;
+				case "China":
+					latitudOrigen = coorChina.getLatitud();
+					longitudOrigen = coorChina.getLongitud();
+					break;
+				case "Espana":
+					latitudOrigen = coorEspana.getLatitud();
+					longitudOrigen = coorEspana.getLongitud();
+					break;
+				case "Londres":
+					latitudOrigen = coorLondres.getLatitud();
+					longitudOrigen = coorLondres.getLongitud();
+					break;
+				case "Japon":
+					latitudOrigen = coorJapon.getLatitud();
+					longitudOrigen = coorJapon.getLongitud();
+					break;
+				case "Marruecos":
+					latitudOrigen = coorMarruecos.getLatitud();
+					longitudOrigen = coorMarruecos.getLongitud();
+					break;
+				case "Sydney":
+					latitudOrigen = coorSydney.getLatitud();
+					longitudOrigen = coorSydney.getLongitud();
+					break;
+				case "Francia":
+					latitudOrigen = coorFrancia.getLatitud();
+					longitudOrigen = coorFrancia.getLongitud();
+					break;
+				default:
+					latitudOrigen = 0.0;
+					longitudOrigen = 0.0;
+					break;
+				}
+
+				switch (destino) {
+				case "Italia":
+					latitudDestino = coorItalia.getLatitud();
+					longitudDestino = coorItalia.getLongitud();
+					break;
+				case "Srilanka":
+					latitudDestino = coorSrilanka.getLatitud();
+					longitudDestino = coorSrilanka.getLongitud();
+					break;
+				case "Brasilia":
+					latitudDestino = coorBrasilia.getLatitud();
+					longitudDestino = coorBrasilia.getLongitud();
+					break;
+				case "Nueva York":
+					latitudDestino = coorNuevaYork.getLatitud();
+					longitudDestino = coorNuevaYork.getLongitud();
+					break;
+				case "Canada":
+					latitudDestino = coorCanada.getLatitud();
+					longitudDestino = coorCanada.getLongitud();
+					break;
+				case "China":
+					latitudDestino = coorChina.getLatitud();
+					longitudDestino = coorChina.getLongitud();
+					break;
+				case "Espana":
+					latitudDestino = coorEspana.getLatitud();
+					longitudDestino = coorEspana.getLongitud();
+					break;
+				case "Londres":
+					latitudDestino = coorLondres.getLatitud();
+					longitudDestino = coorLondres.getLongitud();
+					break;
+				case "Japon":
+					latitudDestino = coorJapon.getLatitud();
+					longitudDestino = coorJapon.getLongitud();
+					break;
+				case "Marruecos":
+					latitudDestino = coorMarruecos.getLatitud();
+					longitudDestino = coorMarruecos.getLongitud();
+					break;
+				case "Sydney":
+					latitudDestino = coorSydney.getLatitud();
+					longitudDestino = coorSydney.getLongitud();
+					break;
+				case "Francia":
+					latitudDestino = coorFrancia.getLatitud();
+					longitudDestino = coorFrancia.getLongitud();
+					break;
+				default:
+					latitudDestino = 0.0;
+					longitudDestino = 0.0;
+					break;
+				}	
+					
+					
+			// si el pais de origen y el de destino son diferentes, se calcula el precio por
+			// lejania
+			if (!destino.equals(origen)) {
+						double distanciaEntre2Aeropuertos = CoordenadasAeropuerto.calcularDistanciaPuntosSuperficieTierra(latitudOrigen, longitudOrigen,latitudDestino, longitudDestino);
+						int primeros3digitos = Integer.parseInt(String.valueOf(distanciaEntre2Aeropuertos).substring(0, 3));
+						//precioViaje = precioViaje * (primeros3digitos / 10);
+						txtImpuestosaMostrar.setText(String.valueOf((primeros3digitos / 10)));
+						
+				} 
+			else {
+				txtImpuestosaMostrar.setText("0.0");
+				}
 
 			}
 		});
@@ -168,11 +520,6 @@ public class ReservarTicket extends JInternalFrame {
 		tablaVuelos.getColumnModel().getColumn(7).setMinWidth(130);
 		tablaVuelos.getColumnModel().getColumn(7).setMaxWidth(130);
 
-		JLabel txtPrecioTotalaMostrar = new JLabel();
-		txtPrecioTotalaMostrar.setEnabled(false);
-		txtPrecioTotalaMostrar.setText(" ");
-		txtPrecioTotalaMostrar.setForeground(Color.RED);
-		txtPrecioTotalaMostrar.setFont(new Font("Tahoma", Font.BOLD, 24));
 
 		scrollTabla.setViewportView(tablaVuelos);
 		panelBusquedaPasajero = new JPanel();
@@ -233,27 +580,17 @@ public class ReservarTicket extends JInternalFrame {
 		lblIdVuelo.setEnabled(false);
 		txtHoraSalida = new JLabel();
 		txtHoraSalida.setEnabled(false);
-		txtAsientos = new JSpinner();
-		txtAsientos.setModel(new SpinnerNumberModel(new Integer(1), new Integer(1), null, new Integer(1)));
+	
 
 		txtFecha.getCalendarButton().setEnabled(false);
 		btnReservar = new JButton();
+		btnReservar.setText("Reservar");
 		btnReservar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
 				if (!txtTelefono.getText().isBlank()) {
 
 					int asientosComprados = (int) txtAsientos.getValue();
-
-					
-					double precioIndividual = Double.parseDouble(txtPrecio.getText());
-					System.out.println("Esa cantidad de asientos cuesta :" + asientosComprados + " * " + precioIndividual);
-					double precioViaje = asientosComprados * precioIndividual;
-					System.out.println("Esa cantidad de asientos cuesta :" + precioViaje);
-					
-					
-
-					
 					String origen = txtOrigenMostrado.getText();
 					String destino = txtDestinoMostrado.getText();
 
@@ -276,8 +613,7 @@ public class ReservarTicket extends JInternalFrame {
 								// actualizar la tabla con la nueva informacion del vuelo, con un numero nuevo de asientos disponibles
 								
 								a = BD.obtenerVuelosSegunOrigenDestino(con, origen, destino);
-								
-
+			
 								// vaciar la tabla cuando se selecciona un nuevo origen-destino
 								while (modeloTablaVuelos.getRowCount() > 0) {
 									int filas = tablaVuelos.getRowCount();
@@ -293,10 +629,6 @@ public class ReservarTicket extends JInternalFrame {
 											vu.getHoraLlegada(), String.valueOf(vu.getAsientosMax()),String.valueOf(vu.getAsientosRestantes()) };
 									modeloTablaVuelos.addRow(fila);
 								}
-								
-								
-								
-								/////
 								try {
 									BD.closeBD(con);
 								} catch (DBException e1) {
@@ -322,190 +654,24 @@ public class ReservarTicket extends JInternalFrame {
 							
 						}
 						
-						// Ahora veremos si se aplica algun descuento
-						if (asientosComprados >= 2 && asientosComprados <= 5) {
-							// 10 % de descuento
-							System.out.println(precioViaje + " * 0.9");
-							precioViaje = precioViaje * 0.9;
-							System.out.println("Con descuento, el precio del viaje es :" + precioViaje);
-
-						} else if (asientosComprados >= 6 && asientosComprados <= 10) {
-							// 15 % de descuento
-							System.out.println(precioViaje + " * 0.85");
-							precioViaje = precioViaje * 0.85;
-							System.out.println("Con descuento, el precio del viaje es :" + precioViaje);
-						} else if (asientosComprados >= 11 && asientosComprados <= 14) {
-							// 20 % de descuento
-							System.out.println(precioViaje + " * 0.8");
-							precioViaje = precioViaje * 0.8;
-							System.out.println("Con descuento, el precio del viaje es :" + precioViaje);
-						} else if (asientosComprados > 14) {
-							System.out.println(precioViaje + " * 0.55");
-							// 45 % de descuento
-							precioViaje = precioViaje * 0.55;
-							System.out.println("Con descuento, el precio del viaje es :" + precioViaje);
-						}
-						/* Calcular distancia entre el origen y destino */
-						CoordenadasAeropuerto coorItalia = new CoordenadasAeropuerto(42.76698, 12.493823);
-						CoordenadasAeropuerto coorSrilanka = new CoordenadasAeropuerto(7.7891335, 80.680725);
-						CoordenadasAeropuerto coorBrasilia = new CoordenadasAeropuerto(-15.77843, -47.92865);
-						CoordenadasAeropuerto coorNuevaYork = new CoordenadasAeropuerto(40.71455, -74.00712);
-						CoordenadasAeropuerto coorCanada = new CoordenadasAeropuerto(56.130366, -106.346771);
-						CoordenadasAeropuerto coorChina = new CoordenadasAeropuerto(36.553085, 103.97543);
-						CoordenadasAeropuerto coorEspana = new CoordenadasAeropuerto(40.463667, -3.74922);
-						CoordenadasAeropuerto coorLondres = new CoordenadasAeropuerto(51.500153, -0.1262362);
-						CoordenadasAeropuerto coorJapon = new CoordenadasAeropuerto(36.281647, 139.07727);
-						CoordenadasAeropuerto coorMarruecos = new CoordenadasAeropuerto(31.925692, -6.229583);
-						CoordenadasAeropuerto coorSydney = new CoordenadasAeropuerto(-33.8696, 151.20695);
-						CoordenadasAeropuerto coorFrancia = new CoordenadasAeropuerto(46.63728, 2.3382623);
-
-						double latitudOrigen = 0.0;
-						double longitudOrigen = 0.0;
-						double latitudDestino = 0.0;
-						double longitudDestino = 0.0;
-
-						switch (origen) {
-						case "Italia":
-							latitudOrigen = coorItalia.getLatitud();
-							longitudOrigen = coorItalia.getLongitud();
-							break;
-						case "Srilanka":
-							latitudOrigen = coorSrilanka.getLatitud();
-							longitudOrigen = coorSrilanka.getLongitud();
-							break;
-						case "Brasilia":
-							latitudOrigen = coorBrasilia.getLatitud();
-							longitudOrigen = coorBrasilia.getLongitud();
-							break;
-						case "Nueva York":
-							latitudOrigen = coorNuevaYork.getLatitud();
-							longitudOrigen = coorNuevaYork.getLongitud();
-							break;
-						case "Canada":
-							latitudOrigen = coorCanada.getLatitud();
-							longitudOrigen = coorCanada.getLongitud();
-							break;
-						case "China":
-							latitudOrigen = coorChina.getLatitud();
-							longitudOrigen = coorChina.getLongitud();
-							break;
-						case "Espana":
-							latitudOrigen = coorEspana.getLatitud();
-							longitudOrigen = coorEspana.getLongitud();
-							break;
-						case "Londres":
-							latitudOrigen = coorLondres.getLatitud();
-							longitudOrigen = coorLondres.getLongitud();
-							break;
-						case "Japon":
-							latitudOrigen = coorJapon.getLatitud();
-							longitudOrigen = coorJapon.getLongitud();
-							break;
-						case "Marruecos":
-							latitudOrigen = coorMarruecos.getLatitud();
-							longitudOrigen = coorMarruecos.getLongitud();
-							break;
-						case "Sydney":
-							latitudOrigen = coorSydney.getLatitud();
-							longitudOrigen = coorSydney.getLongitud();
-							break;
-						case "Francia":
-							latitudOrigen = coorFrancia.getLatitud();
-							longitudOrigen = coorFrancia.getLongitud();
-							break;
-						default:
-							latitudOrigen = 0.0;
-							longitudOrigen = 0.0;
-							break;
-						}
-
-						switch (destino) {
-						case "Italia":
-							latitudDestino = coorItalia.getLatitud();
-							longitudDestino = coorItalia.getLongitud();
-							break;
-						case "Srilanka":
-							latitudDestino = coorSrilanka.getLatitud();
-							longitudDestino = coorSrilanka.getLongitud();
-							break;
-						case "Brasilia":
-							latitudDestino = coorBrasilia.getLatitud();
-							longitudDestino = coorBrasilia.getLongitud();
-							break;
-						case "Nueva York":
-							latitudDestino = coorNuevaYork.getLatitud();
-							longitudDestino = coorNuevaYork.getLongitud();
-							break;
-						case "Canada":
-							latitudDestino = coorCanada.getLatitud();
-							longitudDestino = coorCanada.getLongitud();
-							break;
-						case "China":
-							latitudDestino = coorChina.getLatitud();
-							longitudDestino = coorChina.getLongitud();
-							break;
-						case "Espana":
-							latitudDestino = coorEspana.getLatitud();
-							longitudDestino = coorEspana.getLongitud();
-							break;
-						case "Londres":
-							latitudDestino = coorLondres.getLatitud();
-							longitudDestino = coorLondres.getLongitud();
-							break;
-						case "Japon":
-							latitudDestino = coorJapon.getLatitud();
-							longitudDestino = coorJapon.getLongitud();
-							break;
-						case "Marruecos":
-							latitudDestino = coorMarruecos.getLatitud();
-							longitudDestino = coorMarruecos.getLongitud();
-							break;
-						case "Sydney":
-							latitudDestino = coorSydney.getLatitud();
-							longitudDestino = coorSydney.getLongitud();
-							break;
-						case "Francia":
-							latitudDestino = coorFrancia.getLatitud();
-							longitudDestino = coorFrancia.getLongitud();
-							break;
-						default:
-							latitudDestino = 0.0;
-							longitudDestino = 0.0;
-							break;
-						}
-						System.out.println("-----------------------------");
-						System.out.println("latitudOrigen:" + latitudOrigen);
-						System.out.println("longitudOrigen:" + longitudOrigen);
-						System.out.println("latitudDestino:" + latitudDestino);
-						System.out.println("longitudOrigen:" + longitudDestino);
-						System.out.println("-----------------------------");
+						
 
 						// si el pais de origen y el de destino son diferentes, se calcula el precio por
 						// lejania
 						if (!destino.equals(origen)) {
-							double distanciaEntre2Aeropuertos = CoordenadasAeropuerto.calcularDistanciaPuntosSuperficieTierra(latitudOrigen, longitudOrigen,latitudDestino, longitudDestino);
-							System.out.println("La distancia entre el aeropuerto origen y destino es: "+ distanciaEntre2Aeropuertos);
-							int primeros3digitos = Integer.parseInt(String.valueOf(distanciaEntre2Aeropuertos).substring(0, 3));
-							System.out.println("PRECIO A PAGAR: " + precioViaje + " * (" + primeros3digitos + " /10)");
-							precioViaje = precioViaje * (primeros3digitos / 10);
-							System.out.println("PRECIO A PAGAR: " + precioViaje);
-							txtPrecioTotalaMostrar.setText(String.valueOf(precioViaje));
+							
 							try {
-								/*revisar insertarTicket : id primarykey no autoincrementa, y pone precio incorrecto*/
 								con=BD.initBD("Aeropuerto.db");
-								BD.insertarTicket(con, 0,txtDni.getText(), lblIdVuelo.getText(), Clase.valueOf(opcionesClase.getSelectedItem().toString()), Double.parseDouble(txtPrecioTotalaMostrar.getText()), asientosComprados, editor.getText());
+								BD.insertarTicket(con, 0,txtDni.getText(), lblIdVuelo.getText(), Clase.valueOf(opcionesClase.getSelectedItem().toString()), Double.parseDouble(txtPrecioFinalaMostrar.getText()), asientosComprados, editor.getText());
 								BD.closeBD(con);
 							} catch (DBException e1) {
 								// TODO Auto-generated catch block
 								e1.printStackTrace();
 							}
 						} else {
-							System.out.println("No se cobra extra porque no se viaja al extranjero");
-							txtPrecioTotalaMostrar.setText(String.valueOf(precioViaje));
 							try {
-								/*revisar insertarTicket : id primarykey no autoincrementa, y pone precio incorrecto*/
 								con=BD.initBD("Aeropuerto.db");
-								BD.insertarTicket(con, 0,txtDni.getText(), lblIdVuelo.getText(), Clase.valueOf(opcionesClase.getSelectedItem().toString()), Double.parseDouble(txtPrecioTotalaMostrar.getText()), asientosComprados, editor.getText());
+								BD.insertarTicket(con, 0,txtDni.getText(), lblIdVuelo.getText(), Clase.valueOf(opcionesClase.getSelectedItem().toString()), Double.parseDouble(txtPrecioFinalaMostrar.getText()), asientosComprados, editor.getText());
 								BD.closeBD(con);
 							} catch (DBException e1) {
 								// TODO Auto-generated catch block
@@ -543,8 +709,8 @@ public class ReservarTicket extends JInternalFrame {
 
 			}
 		});
-		txtPrecioTotal = new JLabel();
-		txtPrecioTotal.setEnabled(false);
+		txtPrecioBase = new JLabel();
+		txtPrecioBase.setEnabled(false);
 
 		panelBusquedaVuelo.setBorder(BorderFactory.createTitledBorder(null, "Selecciona pais",
 				TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, new Font("Tahoma", 1, 12)));
@@ -559,7 +725,7 @@ public class ReservarTicket extends JInternalFrame {
 
 		lblDestino.setText("Destino");
 
-		btnBuscadorDestinos.setText("Buscar para estos lugares");
+		
 
 		GroupLayout glPanelBusquedaVuelo = new GroupLayout(panelBusquedaVuelo);
 		panelBusquedaVuelo.setLayout(glPanelBusquedaVuelo);
@@ -692,73 +858,8 @@ public class ReservarTicket extends JInternalFrame {
 		txtHoraSalida.setForeground(new Color(255, 0, 0));
 		txtHoraSalida.setText(" ");
 
-		opcionesClase = new JComboBox<Clase>();
-		opcionesClase.setBackground(SystemColor.info);
-		opcionesClase.setModel(new DefaultComboBoxModel(new Object[] { "ESTANDAR", "BARATO", "BUSINESS", "LUJO" }));
-		opcionesClase.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				switch (Clase.valueOf(opcionesClase.getSelectedItem().toString())) {
-				case BARATO:
-
-					txtPrecio.setText("20.0");
-
-					break;
-				case ESTANDAR:
-					txtPrecio.setText("30.0");
-					break;
-				case BUSINESS:
-
-					txtPrecio.setText("40.0");
-					break;
-				case LUJO:
-					txtPrecio.setText("50.0");
-					break;
-
-				default:
-					txtPrecio.setText("30.0");
-					break;
-				}
-			}
-		});
-
-		btnBuscadorDestinos.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				origen = txtOrigen.getSelectedItem().toString();
-				destino = txtDestino.getSelectedItem().toString();
-
-				try {
-					con = BD.initBD("Aeropuerto.db");
-				} catch (DBException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				a = BD.obtenerVuelosSegunOrigenDestino(con, origen, destino);
-
-				try {
-					BD.closeBD(con);
-				} catch (DBException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-
-				// vaciar la tabla cuando se selecciona un nuevo origen-destino
-				while (modeloTablaVuelos.getRowCount() > 0) {
-					int filas = tablaVuelos.getRowCount();
-					if (0 < filas) {
-						modeloTablaVuelos.removeRow(0);
-					}
-
-				}
-
-				// Cargamos el ArrayList de Vuelos en el modelo de la tabla
-				for (Vuelo vu : a) {
-					String[] fila = { vu.getID(), vu.getOrigen(), vu.getDestino(), vu.getFecha(), vu.getHoraSalida(),
-							vu.getHoraLlegada(), String.valueOf(vu.getAsientosMax()),String.valueOf(vu.getAsientosRestantes()) };
-					modeloTablaVuelos.addRow(fila);
-				}
-
-			}
-		});
+	
+	
 
 		lblHoraLlegada = new JLabel();
 		lblHoraLlegada.setText("Hora llegada");
@@ -868,67 +969,100 @@ public class ReservarTicket extends JInternalFrame {
 						.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
 		panelVuelo.setLayout(glPanelVuelo);
 
-		btnReservar.setText("Reservar");
+		
 
 		btnCancelar.setText("Cancelar");
 
-		txtPrecioTotal.setFont(new Font("Tahoma", 1, 24));
-		txtPrecioTotal.setForeground(new Color(255, 0, 0));
-		txtPrecioTotal.setText("PrecioTotal");
+		txtPrecioBase.setFont(new Font("Tahoma", Font.BOLD, 20));
+		txtPrecioBase.setForeground(new Color(255, 0, 0));
+		txtPrecioBase.setText("Precio con descuento:");
+		
+		txtImpuestos = new JLabel();
+		txtImpuestos.setText("Impuestos (en vuelos internacionales):");
+		txtImpuestos.setForeground(Color.RED);
+		txtImpuestos.setFont(new Font("Tahoma", Font.BOLD, 20));
+		txtImpuestos.setEnabled(false);
+		
+	
+		txtPrecioTotal = new JLabel();
+		txtPrecioTotal.setText("Total:");
+		txtPrecioTotal.setForeground(Color.RED);
+		txtPrecioTotal.setFont(new Font("Tahoma", Font.BOLD, 20));
+		txtPrecioTotal.setEnabled(false);
+		
+
 
 		GroupLayout layout = new GroupLayout(getContentPane());
 		layout.setHorizontalGroup(
 			layout.createParallelGroup(Alignment.LEADING)
 				.addGroup(layout.createSequentialGroup()
 					.addGap(32)
-					.addGroup(layout.createParallelGroup(Alignment.LEADING)
-						.addComponent(panelBusquedaVuelo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addGroup(layout.createParallelGroup(Alignment.LEADING, false)
+						.addComponent(scrollTabla, GroupLayout.PREFERRED_SIZE, 795, GroupLayout.PREFERRED_SIZE)
 						.addGroup(layout.createSequentialGroup()
-							.addGroup(layout.createParallelGroup(Alignment.TRAILING)
-								.addGroup(layout.createSequentialGroup()
-									.addGroup(layout.createParallelGroup(Alignment.LEADING)
-										.addComponent(txtPrecioTotalaMostrar, GroupLayout.PREFERRED_SIZE, 226, GroupLayout.PREFERRED_SIZE)
-										.addComponent(txtPrecioTotal, GroupLayout.PREFERRED_SIZE, 226, GroupLayout.PREFERRED_SIZE))
-									.addGap(101))
-								.addGroup(layout.createSequentialGroup()
-									.addComponent(scrollTabla, GroupLayout.PREFERRED_SIZE, 795, GroupLayout.PREFERRED_SIZE)
-									.addGap(11)))
-							.addGroup(layout.createParallelGroup(Alignment.TRAILING)
-								.addGroup(layout.createSequentialGroup()
-									.addComponent(btnReservar, GroupLayout.PREFERRED_SIZE, 138, GroupLayout.PREFERRED_SIZE)
-									.addGap(18)
-									.addComponent(btnCancelar, GroupLayout.PREFERRED_SIZE, 134, GroupLayout.PREFERRED_SIZE)
-									.addGap(93))
-								.addGroup(layout.createParallelGroup(Alignment.LEADING, false)
-									.addComponent(panelBusquedaPasajero, Alignment.TRAILING, 0, 0, Short.MAX_VALUE)
-									.addComponent(panelVuelo, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 502, Short.MAX_VALUE)))))
+							.addGroup(layout.createParallelGroup(Alignment.LEADING)
+								.addComponent(txtPrecioBaseaMostrar, GroupLayout.PREFERRED_SIZE, 226, GroupLayout.PREFERRED_SIZE)
+								.addComponent(txtPrecioBase, GroupLayout.PREFERRED_SIZE, 226, GroupLayout.PREFERRED_SIZE))
+							.addGap(25)
+							.addGroup(layout.createParallelGroup(Alignment.LEADING)
+								.addComponent(txtImpuestos, GroupLayout.PREFERRED_SIZE, 405, GroupLayout.PREFERRED_SIZE)
+								.addComponent(txtImpuestosaMostrar, GroupLayout.PREFERRED_SIZE, 226, GroupLayout.PREFERRED_SIZE))
+							.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addGroup(layout.createParallelGroup(Alignment.LEADING)
+								.addComponent(txtPrecioFinalaMostrar, GroupLayout.PREFERRED_SIZE, 185, GroupLayout.PREFERRED_SIZE)
+								.addComponent(txtPrecioTotal, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE)))
+						.addComponent(panelBusquedaVuelo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(layout.createParallelGroup(Alignment.TRAILING)
+						.addComponent(panelBusquedaPasajero, 0, 0, Short.MAX_VALUE)
+						.addComponent(panelVuelo, GroupLayout.DEFAULT_SIZE, 543, Short.MAX_VALUE)
+						.addGroup(layout.createSequentialGroup()
+							.addComponent(btnReservar, GroupLayout.PREFERRED_SIZE, 138, GroupLayout.PREFERRED_SIZE)
+							.addGap(18)
+							.addComponent(btnCancelar, GroupLayout.PREFERRED_SIZE, 134, GroupLayout.PREFERRED_SIZE)
+							.addGap(93)))
 					.addContainerGap())
 		);
 		layout.setVerticalGroup(
 			layout.createParallelGroup(Alignment.LEADING)
 				.addGroup(layout.createSequentialGroup()
 					.addGap(31)
-					.addGroup(layout.createParallelGroup(Alignment.TRAILING)
-						.addComponent(panelBusquedaVuelo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addGroup(layout.createSequentialGroup()
+					.addGroup(layout.createParallelGroup(Alignment.LEADING)
+						.addComponent(panelBusquedaVuelo, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addGroup(Alignment.TRAILING, layout.createSequentialGroup()
 							.addComponent(panelBusquedaPasajero, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 							.addGap(11)))
 					.addGroup(layout.createParallelGroup(Alignment.LEADING)
 						.addGroup(layout.createSequentialGroup()
 							.addGap(18)
 							.addComponent(scrollTabla, GroupLayout.PREFERRED_SIZE, 213, GroupLayout.PREFERRED_SIZE)
-							.addGap(34)
-							.addComponent(txtPrecioTotal, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(txtPrecioTotalaMostrar, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE))
+							.addGroup(layout.createParallelGroup(Alignment.LEADING)
+								.addGroup(layout.createSequentialGroup()
+									.addGap(18)
+									.addComponent(txtPrecioBase, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE))
+								.addGroup(Alignment.TRAILING, layout.createSequentialGroup()
+									.addPreferredGap(ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+									.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+										.addComponent(txtImpuestos, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
+										.addComponent(txtPrecioTotal, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)))))
 						.addGroup(layout.createSequentialGroup()
 							.addGap(11)
-							.addComponent(panelVuelo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(panelVuelo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(layout.createParallelGroup(Alignment.LEADING)
+						.addGroup(layout.createSequentialGroup()
+							.addGap(6)
 							.addGroup(layout.createParallelGroup(Alignment.BASELINE)
 								.addComponent(btnReservar, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE)
-								.addComponent(btnCancelar, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE))))
-					.addContainerGap(19, Short.MAX_VALUE))
+								.addComponent(btnCancelar, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE)))
+						.addGroup(layout.createSequentialGroup()
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(layout.createParallelGroup(Alignment.LEADING)
+								.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+									.addComponent(txtImpuestosaMostrar, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
+									.addComponent(txtPrecioFinalaMostrar, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE))
+								.addComponent(txtPrecioBaseaMostrar, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE))))
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		getContentPane().setLayout(layout);
 

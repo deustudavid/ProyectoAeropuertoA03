@@ -1,2 +1,6 @@
 11111111A	Lucas	Vazquez	65	987987987	Campos Eliseos Madrid
 32131313S	Pasajero	Pasajero	12	290202020	Deusto Bilbao,48000
+12345678A	Raul	Fernandez	45	660660660	Barrio Alamos, 43453  (Madrid)
+87654321A	Elvira	Nieto	132	666666666	Nadie lo sabe
+42444234Q	Aa	An	130	933883893	H
+42444234A	Bb	Bb	100	933883893	H
