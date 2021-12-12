@@ -8,19 +8,19 @@ public class Ticket {
 	private double precio;
 	private int asientos;
 	private String fecha;
-	
+
 	public Ticket(int ticketNum, String iDVuelo, String dNIPasajero, Clase clase, double precio, int asientos,
 			String fecha) {
 		super();
 		this.TicketNum = ticketNum;
 		this.IDVuelo = iDVuelo;
 		this.DNIPasajero = dNIPasajero;
-		this.clase=clase;
-		this.precio=precio;
+		this.clase = clase;
+		this.precio = precio;
 		this.asientos = asientos;
 		this.fecha = fecha;
 	}
-	
+
 	public Ticket() {
 		super();
 		this.TicketNum = 0;
@@ -29,9 +29,8 @@ public class Ticket {
 		this.clase = Clase.ESTANDAR;
 		this.precio = 0.0;
 		this.asientos = 0;
-		
-	}
 
+	}
 
 	public int getTicketNum() {
 		return TicketNum;
@@ -94,10 +93,5 @@ public class Ticket {
 		return "Ticket [TicketNum=" + TicketNum + ", IDVuelo=" + IDVuelo + ", DNIPasajero=" + DNIPasajero + ", clase="
 				+ clase + ", precio=" + precio + ", asientos=" + asientos + ", fecha=" + fecha + "]";
 	}
-	
-	
-	
-	
-	
 
 }
