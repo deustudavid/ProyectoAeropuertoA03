@@ -9,7 +9,7 @@ import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
 
 import main.VentanaInicio;
-import javax.swing.KeyStroke;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.InputEvent;
 
@@ -34,6 +34,7 @@ public class VentanaAdministrador extends JFrame {
 	private JMenuItem menuItemEliminarVuelo;
 	private JMenuItem menuItemGestionarEquipajes;
 	private JMenuItem menuItemDarPermisos;
+	private JMenuItem menuItemVentanaAzafato;
 
 	private ImageIcon imagenAzafato;
 	private ImageIcon imagenCerrarSesion;
@@ -48,6 +49,7 @@ public class VentanaAdministrador extends JFrame {
 	private ImageIcon imagenListar;
 	private ImageIcon imagenBorrar;
 	private ImageIcon imagenUsuario;
+	private ImageIcon imagenIrAzafato;
 	
 	public static JFrame ventanaActual;
 
@@ -68,6 +70,7 @@ public class VentanaAdministrador extends JFrame {
 		imagenBorrar = new ImageIcon("img/papelera.png");
 		imagenUsuario = new ImageIcon("img/usuario.png");
 		imagenLlave = new ImageIcon("img/llave.png");
+		imagenIrAzafato = new ImageIcon();
 
 		panelEscritorio = new JDesktopPane();
 		panelEscritorio.setBackground(new Color(0, 255, 255));
@@ -210,10 +213,10 @@ public class VentanaAdministrador extends JFrame {
 		menuVuelo.add(menuItemVerVuelos);
 		menuItemVerVuelos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
+				dispose();
 				VerVuelos v = new VerVuelos();
 				panelEscritorio.add(v);
 				v.setVisible(true);
-				bloquearBotones();
 			}
 		});
 
@@ -257,6 +260,20 @@ public class VentanaAdministrador extends JFrame {
 
 			}
 
+		});
+		
+		menuItemVentanaAzafato = new JMenuItem();
+		menuItemVentanaAzafato.setText("Ventana Azafato");
+		menuItemVentanaAzafato.setIcon(imagenIrAzafato);
+		menuUsuario.add(menuItemVentanaAzafato);
+		menuItemVentanaAzafato.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				dispose();
+				VentanaAzafato v = new VentanaAzafato();
+				v.setVisible(true);
+				bloquearBotones();
+			
+		}
 		});
 
 		setJMenuBar(menuPrincipal);
