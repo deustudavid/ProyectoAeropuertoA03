@@ -1,68 +1,148 @@
-dic. 13, 2021 6:42:53 P. M. main.VentanaInicio$1 run
+dic 13, 2021 7:32:01 P. M. main.VentanaInicio$1 run
 INFO: Se ejecuta la ventana de inicio
-dic. 13, 2021 6:42:54 P. M. bd.BD crearTablas
+dic 13, 2021 7:32:02 P. M. bd.BD crearTablas
 INFO: Statement: CREATE TABLE IF NOT EXISTS Azafato (usuario String, contrasenya String)
-dic. 13, 2021 6:42:54 P. M. bd.BD crearTablas
+dic 13, 2021 7:32:02 P. M. bd.BD crearTablas
 INFO: Statement: CREATE TABLE IF NOT EXISTS Administrador (usuario String, contrasenya String)
-dic. 13, 2021 6:42:54 P. M. bd.BD crearTablas
+dic 13, 2021 7:32:02 P. M. bd.BD crearTablas
 INFO: Statement: CREATE TABLE IF NOT EXISTS Vuelo (ID String, origen String, destino String, fecha String, horaSalida String, horaLlegada String, asientosMax int, asientosDisponibles int)
-dic. 13, 2021 6:42:54 P. M. bd.BD crearTablas
+dic 13, 2021 7:32:02 P. M. bd.BD crearTablas
 INFO: Statement: CREATE TABLE IF NOT EXISTS Pasajero(dni String , nombre String ,apellido String, edad int, telefono int, direccion String)
-dic. 13, 2021 6:42:54 P. M. bd.BD crearTablas
+dic 13, 2021 7:32:02 P. M. bd.BD crearTablas
 INFO: Statement: CREATE TABLE IF NOT EXISTS Ticket(ticketNum INTEGER PRIMARY KEY AUTOINCREMENT, dniPasajero String ,idVuelo String , clase String,  precio double, numAsientos int, fecha String)
-dic. 13, 2021 6:42:58 P. M. main.VentanaInicio$2 actionPerformed
+dic 13, 2021 7:32:07 P. M. main.VentanaInicio$2 actionPerformed
 INFO: Conexion con la base de datos abierta
-dic. 13, 2021 6:42:58 P. M. main.VentanaInicio$2 actionPerformed
+dic 13, 2021 7:32:08 P. M. main.VentanaInicio$2 actionPerformed
 INFO: Conexion con la base de datos cerrada
-dic. 13, 2021 6:47:02 P. M. main.VentanaInicio$1 run
+dic 13, 2021 7:32:25 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Azafato (usuario String, contrasenya String)
+dic 13, 2021 7:32:25 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Administrador (usuario String, contrasenya String)
+dic 13, 2021 7:32:25 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Vuelo (ID String, origen String, destino String, fecha String, horaSalida String, horaLlegada String, asientosMax int, asientosDisponibles int)
+dic 13, 2021 7:32:25 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Pasajero(dni String , nombre String ,apellido String, edad int, telefono int, direccion String)
+dic 13, 2021 7:32:25 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Ticket(ticketNum INTEGER PRIMARY KEY AUTOINCREMENT, dniPasajero String ,idVuelo String , clase String,  precio double, numAsientos int, fecha String)
+dic 13, 2021 7:42:16 P. M. main.VentanaInicio$1 run
 INFO: Se ejecuta la ventana de inicio
-dic. 13, 2021 6:47:03 P. M. bd.BD crearTablas
+dic 13, 2021 7:42:17 P. M. bd.BD crearTablas
 INFO: Statement: CREATE TABLE IF NOT EXISTS Azafato (usuario String, contrasenya String)
-dic. 13, 2021 6:47:03 P. M. bd.BD crearTablas
+dic 13, 2021 7:42:17 P. M. bd.BD crearTablas
 INFO: Statement: CREATE TABLE IF NOT EXISTS Administrador (usuario String, contrasenya String)
-dic. 13, 2021 6:47:03 P. M. bd.BD crearTablas
+dic 13, 2021 7:42:17 P. M. bd.BD crearTablas
 INFO: Statement: CREATE TABLE IF NOT EXISTS Vuelo (ID String, origen String, destino String, fecha String, horaSalida String, horaLlegada String, asientosMax int, asientosDisponibles int)
-dic. 13, 2021 6:47:03 P. M. bd.BD crearTablas
+dic 13, 2021 7:42:17 P. M. bd.BD crearTablas
 INFO: Statement: CREATE TABLE IF NOT EXISTS Pasajero(dni String , nombre String ,apellido String, edad int, telefono int, direccion String)
-dic. 13, 2021 6:47:03 P. M. bd.BD crearTablas
+dic 13, 2021 7:42:17 P. M. bd.BD crearTablas
 INFO: Statement: CREATE TABLE IF NOT EXISTS Ticket(ticketNum INTEGER PRIMARY KEY AUTOINCREMENT, dniPasajero String ,idVuelo String , clase String,  precio double, numAsientos int, fecha String)
-dic. 13, 2021 6:47:08 P. M. main.VentanaInicio$2 actionPerformed
+dic 13, 2021 7:42:24 P. M. main.VentanaInicio$2 actionPerformed
 INFO: Conexion con la base de datos abierta
-dic. 13, 2021 6:47:08 P. M. main.VentanaInicio$2 actionPerformed
+dic 13, 2021 7:42:24 P. M. main.VentanaInicio$2 actionPerformed
 INFO: Conexion con la base de datos cerrada
-dic. 13, 2021 6:47:14 P. M. bd.BD crearTablas
+dic 13, 2021 7:42:35 P. M. bd.BD crearTablas
 INFO: Statement: CREATE TABLE IF NOT EXISTS Azafato (usuario String, contrasenya String)
-dic. 13, 2021 6:47:14 P. M. bd.BD crearTablas
+dic 13, 2021 7:42:35 P. M. bd.BD crearTablas
 INFO: Statement: CREATE TABLE IF NOT EXISTS Administrador (usuario String, contrasenya String)
-dic. 13, 2021 6:47:14 P. M. bd.BD crearTablas
+dic 13, 2021 7:42:35 P. M. bd.BD crearTablas
 INFO: Statement: CREATE TABLE IF NOT EXISTS Vuelo (ID String, origen String, destino String, fecha String, horaSalida String, horaLlegada String, asientosMax int, asientosDisponibles int)
-dic. 13, 2021 6:47:14 P. M. bd.BD crearTablas
+dic 13, 2021 7:42:35 P. M. bd.BD crearTablas
 INFO: Statement: CREATE TABLE IF NOT EXISTS Pasajero(dni String , nombre String ,apellido String, edad int, telefono int, direccion String)
-dic. 13, 2021 6:47:14 P. M. bd.BD crearTablas
+dic 13, 2021 7:42:35 P. M. bd.BD crearTablas
 INFO: Statement: CREATE TABLE IF NOT EXISTS Ticket(ticketNum INTEGER PRIMARY KEY AUTOINCREMENT, dniPasajero String ,idVuelo String , clase String,  precio double, numAsientos int, fecha String)
-dic. 13, 2021 6:52:25 P. M. main.VentanaInicio$1 run
+dic 13, 2021 7:42:43 P. M. main.VentanaInicio$2 actionPerformed
+INFO: Conexion con la base de datos abierta
+dic 13, 2021 7:42:43 P. M. main.VentanaInicio$2 actionPerformed
+INFO: Conexion con la base de datos cerrada
+dic 13, 2021 7:44:23 P. M. main.VentanaInicio$1 run
 INFO: Se ejecuta la ventana de inicio
-dic. 13, 2021 6:52:25 P. M. bd.BD crearTablas
+dic 13, 2021 7:44:23 P. M. bd.BD crearTablas
 INFO: Statement: CREATE TABLE IF NOT EXISTS Azafato (usuario String, contrasenya String)
-dic. 13, 2021 6:52:25 P. M. bd.BD crearTablas
+dic 13, 2021 7:44:23 P. M. bd.BD crearTablas
 INFO: Statement: CREATE TABLE IF NOT EXISTS Administrador (usuario String, contrasenya String)
-dic. 13, 2021 6:52:25 P. M. bd.BD crearTablas
+dic 13, 2021 7:44:23 P. M. bd.BD crearTablas
 INFO: Statement: CREATE TABLE IF NOT EXISTS Vuelo (ID String, origen String, destino String, fecha String, horaSalida String, horaLlegada String, asientosMax int, asientosDisponibles int)
-dic. 13, 2021 6:52:25 P. M. bd.BD crearTablas
+dic 13, 2021 7:44:23 P. M. bd.BD crearTablas
 INFO: Statement: CREATE TABLE IF NOT EXISTS Pasajero(dni String , nombre String ,apellido String, edad int, telefono int, direccion String)
-dic. 13, 2021 6:52:25 P. M. bd.BD crearTablas
+dic 13, 2021 7:44:23 P. M. bd.BD crearTablas
 INFO: Statement: CREATE TABLE IF NOT EXISTS Ticket(ticketNum INTEGER PRIMARY KEY AUTOINCREMENT, dniPasajero String ,idVuelo String , clase String,  precio double, numAsientos int, fecha String)
-dic. 13, 2021 6:52:31 P. M. main.VentanaInicio$2 actionPerformed
+dic 13, 2021 7:44:28 P. M. main.VentanaInicio$2 actionPerformed
 INFO: Conexion con la base de datos abierta
-dic. 13, 2021 6:52:31 P. M. main.VentanaInicio$2 actionPerformed
+dic 13, 2021 7:44:28 P. M. main.VentanaInicio$2 actionPerformed
 INFO: Conexion con la base de datos cerrada
-dic. 13, 2021 6:52:37 P. M. bd.BD crearTablas
+dic 13, 2021 7:44:30 P. M. bd.BD obtenerVuelos
+INFO: Statement: select * from Vuelo;
+dic 13, 2021 7:45:29 P. M. main.VentanaInicio$1 run
+INFO: Se ejecuta la ventana de inicio
+dic 13, 2021 7:45:30 P. M. bd.BD crearTablas
 INFO: Statement: CREATE TABLE IF NOT EXISTS Azafato (usuario String, contrasenya String)
-dic. 13, 2021 6:52:37 P. M. bd.BD crearTablas
+dic 13, 2021 7:45:30 P. M. bd.BD crearTablas
 INFO: Statement: CREATE TABLE IF NOT EXISTS Administrador (usuario String, contrasenya String)
-dic. 13, 2021 6:52:37 P. M. bd.BD crearTablas
+dic 13, 2021 7:45:30 P. M. bd.BD crearTablas
 INFO: Statement: CREATE TABLE IF NOT EXISTS Vuelo (ID String, origen String, destino String, fecha String, horaSalida String, horaLlegada String, asientosMax int, asientosDisponibles int)
-dic. 13, 2021 6:52:37 P. M. bd.BD crearTablas
+dic 13, 2021 7:45:30 P. M. bd.BD crearTablas
 INFO: Statement: CREATE TABLE IF NOT EXISTS Pasajero(dni String , nombre String ,apellido String, edad int, telefono int, direccion String)
-dic. 13, 2021 6:52:37 P. M. bd.BD crearTablas
+dic 13, 2021 7:45:30 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Ticket(ticketNum INTEGER PRIMARY KEY AUTOINCREMENT, dniPasajero String ,idVuelo String , clase String,  precio double, numAsientos int, fecha String)
+dic 13, 2021 7:45:36 P. M. main.VentanaInicio$3 actionPerformed
+INFO: Conexion con la base de datos abierta
+dic 13, 2021 7:45:36 P. M. main.VentanaInicio$3 actionPerformed
+INFO: Conexion con la base de datos cerrada
+dic 13, 2021 7:45:38 P. M. bd.BD obtenerVuelos
+INFO: Statement: select * from Vuelo;
+dic 13, 2021 7:45:47 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Azafato (usuario String, contrasenya String)
+dic 13, 2021 7:45:47 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Administrador (usuario String, contrasenya String)
+dic 13, 2021 7:45:47 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Vuelo (ID String, origen String, destino String, fecha String, horaSalida String, horaLlegada String, asientosMax int, asientosDisponibles int)
+dic 13, 2021 7:45:47 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Pasajero(dni String , nombre String ,apellido String, edad int, telefono int, direccion String)
+dic 13, 2021 7:45:47 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Ticket(ticketNum INTEGER PRIMARY KEY AUTOINCREMENT, dniPasajero String ,idVuelo String , clase String,  precio double, numAsientos int, fecha String)
+dic 13, 2021 7:45:52 P. M. main.VentanaInicio$2 actionPerformed
+INFO: Conexion con la base de datos abierta
+dic 13, 2021 7:45:52 P. M. main.VentanaInicio$2 actionPerformed
+INFO: Conexion con la base de datos cerrada
+dic 13, 2021 7:45:54 P. M. bd.BD obtenerVuelos
+INFO: Statement: select * from Vuelo;
+dic 13, 2021 7:46:05 P. M. main.VentanaInicio$1 run
+INFO: Se ejecuta la ventana de inicio
+dic 13, 2021 7:46:06 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Azafato (usuario String, contrasenya String)
+dic 13, 2021 7:46:06 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Administrador (usuario String, contrasenya String)
+dic 13, 2021 7:46:06 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Vuelo (ID String, origen String, destino String, fecha String, horaSalida String, horaLlegada String, asientosMax int, asientosDisponibles int)
+dic 13, 2021 7:46:06 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Pasajero(dni String , nombre String ,apellido String, edad int, telefono int, direccion String)
+dic 13, 2021 7:46:06 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Ticket(ticketNum INTEGER PRIMARY KEY AUTOINCREMENT, dniPasajero String ,idVuelo String , clase String,  precio double, numAsientos int, fecha String)
+dic 13, 2021 8:06:08 P. M. main.VentanaInicio$1 run
+INFO: Se ejecuta la ventana de inicio
+dic 13, 2021 8:06:08 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Azafato (usuario String, contrasenya String)
+dic 13, 2021 8:06:08 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Administrador (usuario String, contrasenya String)
+dic 13, 2021 8:06:08 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Vuelo (ID String, origen String, destino String, fecha String, horaSalida String, horaLlegada String, asientosMax int, asientosDisponibles int)
+dic 13, 2021 8:06:08 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Pasajero(dni String , nombre String ,apellido String, edad int, telefono int, direccion String)
+dic 13, 2021 8:06:08 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Ticket(ticketNum INTEGER PRIMARY KEY AUTOINCREMENT, dniPasajero String ,idVuelo String , clase String,  precio double, numAsientos int, fecha String)
+dic 13, 2021 8:06:15 P. M. main.VentanaInicio$2 actionPerformed
+INFO: Conexion con la base de datos abierta
+dic 13, 2021 8:06:15 P. M. main.VentanaInicio$2 actionPerformed
+INFO: Conexion con la base de datos cerrada
+dic 13, 2021 8:06:17 P. M. bd.BD obtenerVuelos
+INFO: Statement: select * from Vuelo;
+dic 13, 2021 8:06:39 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Azafato (usuario String, contrasenya String)
+dic 13, 2021 8:06:39 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Administrador (usuario String, contrasenya String)
+dic 13, 2021 8:06:39 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Vuelo (ID String, origen String, destino String, fecha String, horaSalida String, horaLlegada String, asientosMax int, asientosDisponibles int)
+dic 13, 2021 8:06:39 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Pasajero(dni String , nombre String ,apellido String, edad int, telefono int, direccion String)
+dic 13, 2021 8:06:39 P. M. bd.BD crearTablas
 INFO: Statement: CREATE TABLE IF NOT EXISTS Ticket(ticketNum INTEGER PRIMARY KEY AUTOINCREMENT, dniPasajero String ,idVuelo String , clase String,  precio double, numAsientos int, fecha String)

@@ -173,7 +173,6 @@ public class VentanaAzafato extends JFrame {
 		menuItemVerVuelos.setIcon(imagenListar);
 		menuItemVerVuelos.setText("Ver vuelos");
 		menuVuelo.add(menuItemVerVuelos);
-		
 		menuItemVerVuelos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				VerVuelos v = new VerVuelos();

@@ -19,9 +19,11 @@ public class VerVuelos extends JInternalFrame {
 	private JButton btnCancelar;
 	private JScrollPane panelScroll;
 	private JTable tabla;
-	private DefaultTableModel modeloTablaVuelos;
+	private static DefaultTableModel modeloTablaVuelos;
 	private ArrayList<Vuelo> v;
 	private static Connection con;
+	
+
 
 	public VerVuelos() {
 
@@ -56,12 +58,12 @@ public class VerVuelos extends JInternalFrame {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-		for (Vuelo vuelo : v) {
+		cargarVuelosRecursivamente(v, 0);
+		/*for (Vuelo vuelo : v) {
 			String[] fila = { vuelo.getID(), vuelo.getOrigen(), vuelo.getDestino(), vuelo.getFecha(),
 					vuelo.getHoraSalida(), vuelo.getHoraLlegada() ,String.valueOf(vuelo.getAsientosMax()),String.valueOf(vuelo.getAsientosRestantes()) };
 			modeloTablaVuelos.addRow(fila);
-		}
+		}*/
 
 		tabla = new JTable(modeloTablaVuelos);
 		tabla.getColumnModel().getColumn(0).setMinWidth(110);
@@ -128,5 +130,13 @@ public class VerVuelos extends JInternalFrame {
 		getContentPane().setLayout(layout);
 
 		pack();
+	}
+	private static void cargarVuelosRecursivamente(ArrayList<Vuelo> v, int i) {
+		if (i<v.size()) {
+			String[] fila = { v.get(i).getID(), v.get(i).getOrigen(), v.get(i).getDestino(), v.get(i).getFecha(),
+					v.get(i).getHoraSalida(), v.get(i).getHoraLlegada(),String.valueOf(v.get(i).getAsientosMax()),String.valueOf(v.get(i).getAsientosRestantes()) };
+			modeloTablaVuelos.addRow(fila);
+			cargarVuelosRecursivamente(v, i+1);
+		}
 	}
 }

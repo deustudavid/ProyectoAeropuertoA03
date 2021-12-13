@@ -50,7 +50,6 @@ public class VentanaAdministrador extends JFrame {
 	private ImageIcon imagenBorrar;
 	private ImageIcon imagenUsuario;
 	private ImageIcon imagenIrAzafato;
-	
 	public static JFrame ventanaActual;
 
 	public VentanaAdministrador() {
@@ -70,7 +69,7 @@ public class VentanaAdministrador extends JFrame {
 		imagenBorrar = new ImageIcon("img/papelera.png");
 		imagenUsuario = new ImageIcon("img/usuario.png");
 		imagenLlave = new ImageIcon("img/llave.png");
-		imagenIrAzafato = new ImageIcon();
+		imagenIrAzafato = new ImageIcon("img/flecha.png");
 
 		panelEscritorio = new JDesktopPane();
 		panelEscritorio.setBackground(new Color(0, 255, 255));
@@ -213,10 +212,10 @@ public class VentanaAdministrador extends JFrame {
 		menuVuelo.add(menuItemVerVuelos);
 		menuItemVerVuelos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				dispose();
 				VerVuelos v = new VerVuelos();
 				panelEscritorio.add(v);
 				v.setVisible(true);
+				bloquearBotones();
 			}
 		});
 
