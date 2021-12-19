@@ -96,8 +96,12 @@ public class ReservarTicket extends JInternalFrame {
 	private JLabel txtImpuestosaMostrar;
 	private JLabel txtPrecioTotal;
 	private JLabel txtPrecioFinalaMostrar;
+	
+	private ImageIcon imagenCancelar;
 
 	public ReservarTicket() {
+		
+		imagenCancelar = new ImageIcon("img/Cancelar.png");
 		
 		latitudOrigen = 0.0;
 		longitudOrigen = 0.0;
@@ -663,6 +667,7 @@ public class ReservarTicket extends JInternalFrame {
 							try {
 								con=BD.initBD("Aeropuerto.db");
 								BD.insertarTicket(con, 0,txtDni.getText(), lblIdVuelo.getText(), Clase.valueOf(opcionesClase.getSelectedItem().toString()), Double.parseDouble(txtPrecioFinalaMostrar.getText()), asientosComprados, editor.getText());
+								JOptionPane.showMessageDialog (null, "Reserva realizada", "Correcto", JOptionPane.INFORMATION_MESSAGE);
 								BD.closeBD(con);
 							} catch (DBException e1) {
 								// TODO Auto-generated catch block
@@ -672,6 +677,7 @@ public class ReservarTicket extends JInternalFrame {
 							try {
 								con=BD.initBD("Aeropuerto.db");
 								BD.insertarTicket(con, 0,txtDni.getText(), lblIdVuelo.getText(), Clase.valueOf(opcionesClase.getSelectedItem().toString()), Double.parseDouble(txtPrecioFinalaMostrar.getText()), asientosComprados, editor.getText());
+								JOptionPane.showMessageDialog (null, "Reserva realizada", "Correcto", JOptionPane.INFORMATION_MESSAGE);
 								BD.closeBD(con);
 							} catch (DBException e1) {
 								// TODO Auto-generated catch block
@@ -692,7 +698,7 @@ public class ReservarTicket extends JInternalFrame {
 		});
 
 		btnCancelar = new JButton();
-
+		btnCancelar.setIcon(imagenCancelar);
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
@@ -791,52 +797,74 @@ public class ReservarTicket extends JInternalFrame {
 		txtEdad.setFont(new Font("Tahoma", Font.BOLD, 14));
 
 		GroupLayout glPanelBusquedaPasajero = new GroupLayout(panelBusquedaPasajero);
-		glPanelBusquedaPasajero.setHorizontalGroup(glPanelBusquedaPasajero.createParallelGroup(Alignment.LEADING)
-				.addGroup(glPanelBusquedaPasajero.createSequentialGroup().addGap(57).addGroup(glPanelBusquedaPasajero
-						.createParallelGroup(Alignment.LEADING)
-						.addGroup(glPanelBusquedaPasajero.createSequentialGroup().addComponent(lblDni).addGap(34)
-								.addComponent(
-										txtDni, GroupLayout.PREFERRED_SIZE, 151, GroupLayout.PREFERRED_SIZE)
-								.addGap(39).addComponent(btnBuscarPasajero))
+		glPanelBusquedaPasajero.setHorizontalGroup(
+			glPanelBusquedaPasajero.createParallelGroup(Alignment.LEADING)
+				.addGroup(glPanelBusquedaPasajero.createSequentialGroup()
+					.addGap(19)
+					.addGroup(glPanelBusquedaPasajero.createParallelGroup(Alignment.LEADING)
+						.addComponent(lblDni)
 						.addGroup(glPanelBusquedaPasajero.createSequentialGroup()
-								.addGroup(glPanelBusquedaPasajero.createParallelGroup(Alignment.LEADING)
-										.addComponent(lblNombre).addComponent(lblApellido).addComponent(lblTelefono))
-								.addGap(56)
-								.addGroup(glPanelBusquedaPasajero.createParallelGroup(Alignment.LEADING)
-										.addComponent(txtNombre).addComponent(txtApellido).addComponent(txtTelefono))
-								.addGap(63)
-								.addGroup(glPanelBusquedaPasajero.createParallelGroup(Alignment.LEADING)
-										.addComponent(scrollDireccion, GroupLayout.PREFERRED_SIZE, 166,
-												GroupLayout.PREFERRED_SIZE)
-										.addComponent(lblDireccion, GroupLayout.PREFERRED_SIZE, 68,
-												GroupLayout.PREFERRED_SIZE)
-										.addGroup(glPanelBusquedaPasajero.createSequentialGroup()
-												.addComponent(lblEdad, GroupLayout.PREFERRED_SIZE, 37,
-														GroupLayout.PREFERRED_SIZE)
-												.addGap(18).addComponent(txtEdad, GroupLayout.PREFERRED_SIZE, 71,
-														GroupLayout.PREFERRED_SIZE)))))
-						.addContainerGap(60, Short.MAX_VALUE)));
-		glPanelBusquedaPasajero.setVerticalGroup(glPanelBusquedaPasajero.createParallelGroup(Alignment.LEADING)
-				.addGroup(glPanelBusquedaPasajero.createSequentialGroup().addGap(20)
-						.addGroup(glPanelBusquedaPasajero.createParallelGroup(Alignment.BASELINE).addComponent(lblDni)
-								.addComponent(txtDni, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-										GroupLayout.PREFERRED_SIZE)
-								.addComponent(btnBuscarPasajero))
-						.addGap(26)
-						.addGroup(glPanelBusquedaPasajero.createParallelGroup(Alignment.BASELINE)
-								.addComponent(lblNombre).addComponent(txtNombre).addComponent(lblEdad)
-								.addComponent(txtEdad, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE))
-						.addGap(31)
-						.addGroup(glPanelBusquedaPasajero.createParallelGroup(Alignment.BASELINE)
-								.addComponent(lblApellido).addComponent(txtApellido).addComponent(lblDireccion))
-						.addGroup(glPanelBusquedaPasajero.createParallelGroup(Alignment.LEADING)
-								.addGroup(glPanelBusquedaPasajero.createSequentialGroup().addGap(36)
-										.addGroup(glPanelBusquedaPasajero.createParallelGroup(Alignment.BASELINE)
-												.addComponent(lblTelefono).addComponent(txtTelefono)))
+							.addComponent(lblNombre)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(txtNombre, GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE))
+						.addGroup(glPanelBusquedaPasajero.createSequentialGroup()
+							.addComponent(lblApellido)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(txtApellido, GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE))
+						.addGroup(glPanelBusquedaPasajero.createSequentialGroup()
+							.addComponent(lblTelefono)
+							.addGap(18)
+							.addComponent(txtTelefono, GroupLayout.PREFERRED_SIZE, 85, GroupLayout.PREFERRED_SIZE)))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(glPanelBusquedaPasajero.createParallelGroup(Alignment.LEADING)
+						.addGroup(glPanelBusquedaPasajero.createSequentialGroup()
+							.addComponent(txtDni, GroupLayout.PREFERRED_SIZE, 151, GroupLayout.PREFERRED_SIZE)
+							.addGap(33)
+							.addComponent(btnBuscarPasajero))
+						.addGroup(glPanelBusquedaPasajero.createSequentialGroup()
+							.addGap(84)
+							.addGroup(glPanelBusquedaPasajero.createParallelGroup(Alignment.LEADING)
 								.addGroup(glPanelBusquedaPasajero.createSequentialGroup()
-										.addPreferredGap(ComponentPlacement.UNRELATED).addComponent(scrollDireccion,
-												GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)))
-						.addContainerGap(17, Short.MAX_VALUE)));
+									.addComponent(lblEdad, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
+									.addGap(8)
+									.addGroup(glPanelBusquedaPasajero.createParallelGroup(Alignment.LEADING)
+										.addComponent(scrollDireccion, GroupLayout.PREFERRED_SIZE, 166, GroupLayout.PREFERRED_SIZE)
+										.addGroup(glPanelBusquedaPasajero.createSequentialGroup()
+											.addGap(55)
+											.addComponent(txtEdad, GroupLayout.PREFERRED_SIZE, 71, GroupLayout.PREFERRED_SIZE))))
+								.addComponent(lblDireccion, GroupLayout.PREFERRED_SIZE, 68, GroupLayout.PREFERRED_SIZE))))
+					.addGap(80))
+		);
+		glPanelBusquedaPasajero.setVerticalGroup(
+			glPanelBusquedaPasajero.createParallelGroup(Alignment.LEADING)
+				.addGroup(glPanelBusquedaPasajero.createSequentialGroup()
+					.addGap(20)
+					.addGroup(glPanelBusquedaPasajero.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblDni)
+						.addComponent(txtDni, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnBuscarPasajero))
+					.addGap(26)
+					.addGroup(glPanelBusquedaPasajero.createParallelGroup(Alignment.BASELINE)
+						.addComponent(txtEdad, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblNombre)
+						.addComponent(lblEdad)
+						.addComponent(txtNombre))
+					.addGap(31)
+					.addGroup(glPanelBusquedaPasajero.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblDireccion)
+						.addComponent(lblApellido)
+						.addComponent(txtApellido))
+					.addGroup(glPanelBusquedaPasajero.createParallelGroup(Alignment.LEADING)
+						.addGroup(glPanelBusquedaPasajero.createSequentialGroup()
+							.addGap(36)
+							.addGroup(glPanelBusquedaPasajero.createParallelGroup(Alignment.BASELINE)
+								.addComponent(lblTelefono)
+								.addComponent(txtTelefono)))
+						.addGroup(glPanelBusquedaPasajero.createSequentialGroup()
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(scrollDireccion, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)))
+					.addContainerGap(17, Short.MAX_VALUE))
+		);
 
 		panelBusquedaPasajero.setLayout(glPanelBusquedaPasajero);
 
@@ -997,7 +1025,7 @@ public class ReservarTicket extends JInternalFrame {
 			layout.createParallelGroup(Alignment.LEADING)
 				.addGroup(layout.createSequentialGroup()
 					.addGap(32)
-					.addGroup(layout.createParallelGroup(Alignment.LEADING, false)
+					.addGroup(layout.createParallelGroup(Alignment.LEADING)
 						.addComponent(scrollTabla, GroupLayout.PREFERRED_SIZE, 795, GroupLayout.PREFERRED_SIZE)
 						.addGroup(layout.createSequentialGroup()
 							.addGroup(layout.createParallelGroup(Alignment.LEADING)
@@ -1009,60 +1037,51 @@ public class ReservarTicket extends JInternalFrame {
 								.addComponent(txtImpuestosaMostrar, GroupLayout.PREFERRED_SIZE, 226, GroupLayout.PREFERRED_SIZE))
 							.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 							.addGroup(layout.createParallelGroup(Alignment.LEADING)
-								.addComponent(txtPrecioFinalaMostrar, GroupLayout.PREFERRED_SIZE, 185, GroupLayout.PREFERRED_SIZE)
-								.addComponent(txtPrecioTotal, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE)))
-						.addComponent(panelBusquedaVuelo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(layout.createParallelGroup(Alignment.TRAILING)
-						.addComponent(panelBusquedaPasajero, 0, 0, Short.MAX_VALUE)
-						.addComponent(panelVuelo, GroupLayout.DEFAULT_SIZE, 543, Short.MAX_VALUE)
+								.addGroup(layout.createSequentialGroup()
+									.addComponent(txtPrecioFinalaMostrar, GroupLayout.PREFERRED_SIZE, 185, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(btnReservar, GroupLayout.PREFERRED_SIZE, 138, GroupLayout.PREFERRED_SIZE)
+									.addGap(48)
+									.addComponent(btnCancelar, GroupLayout.PREFERRED_SIZE, 134, GroupLayout.PREFERRED_SIZE))
+								.addGroup(layout.createSequentialGroup()
+									.addComponent(txtPrecioTotal, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE)
+									.addGap(24)
+									.addComponent(panelVuelo, GroupLayout.DEFAULT_SIZE, 543, Short.MAX_VALUE))))
 						.addGroup(layout.createSequentialGroup()
-							.addComponent(btnReservar, GroupLayout.PREFERRED_SIZE, 138, GroupLayout.PREFERRED_SIZE)
-							.addGap(18)
-							.addComponent(btnCancelar, GroupLayout.PREFERRED_SIZE, 134, GroupLayout.PREFERRED_SIZE)
-							.addGap(93)))
-					.addContainerGap())
+							.addComponent(panelBusquedaVuelo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED, 445, Short.MAX_VALUE)
+							.addComponent(panelBusquedaPasajero, GroupLayout.PREFERRED_SIZE, 543, GroupLayout.PREFERRED_SIZE)))
+					.addGap(559))
 		);
 		layout.setVerticalGroup(
 			layout.createParallelGroup(Alignment.LEADING)
 				.addGroup(layout.createSequentialGroup()
-					.addGap(31)
-					.addGroup(layout.createParallelGroup(Alignment.LEADING)
-						.addComponent(panelBusquedaVuelo, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addGroup(Alignment.TRAILING, layout.createSequentialGroup()
-							.addComponent(panelBusquedaPasajero, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addGap(11)))
+					.addContainerGap(17, Short.MAX_VALUE)
+					.addGroup(layout.createParallelGroup(Alignment.TRAILING)
+						.addComponent(panelBusquedaVuelo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(panelBusquedaPasajero, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGroup(layout.createParallelGroup(Alignment.LEADING)
 						.addGroup(layout.createSequentialGroup()
 							.addGap(18)
 							.addComponent(scrollTabla, GroupLayout.PREFERRED_SIZE, 213, GroupLayout.PREFERRED_SIZE)
-							.addGroup(layout.createParallelGroup(Alignment.LEADING)
-								.addGroup(layout.createSequentialGroup()
-									.addGap(18)
-									.addComponent(txtPrecioBase, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE))
-								.addGroup(Alignment.TRAILING, layout.createSequentialGroup()
-									.addPreferredGap(ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
-									.addGroup(layout.createParallelGroup(Alignment.BASELINE)
-										.addComponent(txtImpuestos, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
-										.addComponent(txtPrecioTotal, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)))))
+							.addPreferredGap(ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+							.addGroup(layout.createParallelGroup(Alignment.TRAILING)
+								.addComponent(txtPrecioBase, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
+								.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+									.addComponent(txtImpuestos, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
+									.addComponent(txtPrecioTotal, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE))))
 						.addGroup(layout.createSequentialGroup()
-							.addGap(11)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
 							.addComponent(panelVuelo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(layout.createParallelGroup(Alignment.LEADING)
-						.addGroup(layout.createSequentialGroup()
-							.addGap(6)
-							.addGroup(layout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(btnReservar, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE)
-								.addComponent(btnCancelar, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE)))
-						.addGroup(layout.createSequentialGroup()
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addGroup(layout.createParallelGroup(Alignment.LEADING)
-								.addGroup(layout.createParallelGroup(Alignment.BASELINE)
-									.addComponent(txtImpuestosaMostrar, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
-									.addComponent(txtPrecioFinalaMostrar, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE))
-								.addComponent(txtPrecioBaseaMostrar, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE))))
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+						.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+							.addComponent(txtImpuestosaMostrar, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
+							.addComponent(txtPrecioFinalaMostrar, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
+							.addComponent(btnReservar, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE)
+							.addComponent(btnCancelar, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE))
+						.addComponent(txtPrecioBaseaMostrar, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap(21, Short.MAX_VALUE))
 		);
 		getContentPane().setLayout(layout);
 

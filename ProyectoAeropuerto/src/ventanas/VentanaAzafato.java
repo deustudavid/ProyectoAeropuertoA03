@@ -25,7 +25,6 @@ public class VentanaAzafato extends JFrame {
 	private JMenuItem menuItemReservarTicket;
 	private JMenuItem menuItemVerTickets;
 	private JMenuItem menuItemCerrarSesion;
-	private JMenuItem menuItemEliminarReserva;
 	private JMenuItem menuItemVerVuelos;
 	private JMenuItem menuItemGestionarEquipajes;
 
@@ -158,11 +157,6 @@ public class VentanaAzafato extends JFrame {
 		menuTickets.add(menuItemVerTickets);
 
 		menuPrincipal.add(menuTickets);
-
-		menuItemEliminarReserva = new JMenuItem();
-		menuItemEliminarReserva.setIcon(imagenBorrar);
-		menuItemEliminarReserva.setText("Eliminar reserva");
-		menuTickets.add(menuItemEliminarReserva);
 
 		menuVuelo.setText("Vuelo");
 		menuVuelo.setIcon(imagenAvion);

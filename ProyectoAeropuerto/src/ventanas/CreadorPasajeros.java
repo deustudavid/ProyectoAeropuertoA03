@@ -47,6 +47,8 @@ public class CreadorPasajeros extends JInternalFrame {
 	private JTextField txtEdad;
 	private JScrollPane jScrollPane1;
     private JTextArea txtDireccion ;
+    
+    private ImageIcon imagenCancelar;
 
 	private ImageIcon imagenGuardar;
 	
@@ -70,6 +72,7 @@ public class CreadorPasajeros extends JInternalFrame {
 	public CreadorPasajeros() {
 		con =null;
 		
+		imagenCancelar = new ImageIcon("img/Cancelar.png");
 		
 		edadNumerica=999;
 		dni="";
@@ -191,7 +194,7 @@ public class CreadorPasajeros extends JInternalFrame {
 		btnBuscarFoto = new JButton();
 		btnGuardar = new JButton();
 		btnCancelar = new JButton();
-
+		btnCancelar.setIcon(imagenCancelar);
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
@@ -534,34 +537,34 @@ public class CreadorPasajeros extends JInternalFrame {
 								.addGroup(layout.createSequentialGroup()
 									.addComponent(btnGuardar, GroupLayout.PREFERRED_SIZE, 126, GroupLayout.PREFERRED_SIZE)
 									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(btnCancelar, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE))
+									.addComponent(btnCancelar, GroupLayout.PREFERRED_SIZE, 134, GroupLayout.PREFERRED_SIZE))
 								.addGroup(layout.createSequentialGroup()
 									.addGap(12)
 									.addComponent(panelCentral, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-									.addPreferredGap(ComponentPlacement.RELATED)
+									.addPreferredGap(ComponentPlacement.UNRELATED)
 									.addGroup(layout.createParallelGroup(Alignment.LEADING)
 										.addComponent(btnBuscarFoto, GroupLayout.PREFERRED_SIZE, 139, GroupLayout.PREFERRED_SIZE)
 										.addComponent(txtFoto, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE))))))
-					.addContainerGap(24, Short.MAX_VALUE))
+					.addContainerGap(20, Short.MAX_VALUE))
 		);
 		layout.setVerticalGroup(
 			layout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(layout.createSequentialGroup()
-					.addContainerGap(47, Short.MAX_VALUE)
+					.addContainerGap(51, Short.MAX_VALUE)
 					.addComponent(lblTituloVentana)
 					.addGap(50)
 					.addGroup(layout.createParallelGroup(Alignment.LEADING)
 						.addGroup(layout.createSequentialGroup()
-							.addComponent(panelIzquierda, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addComponent(panelIzquierda, GroupLayout.DEFAULT_SIZE, 445, Short.MAX_VALUE)
 							.addContainerGap())
 						.addGroup(layout.createSequentialGroup()
 							.addComponent(txtFoto, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGap(44)
 							.addComponent(btnBuscarFoto, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
 							.addContainerGap())
-						.addGroup(Alignment.TRAILING, layout.createSequentialGroup()
+						.addGroup(layout.createSequentialGroup()
 							.addComponent(panelCentral, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
+							.addPreferredGap(ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
 							.addGroup(layout.createParallelGroup(Alignment.BASELINE)
 								.addComponent(btnGuardar, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
 								.addComponent(btnCancelar, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE))

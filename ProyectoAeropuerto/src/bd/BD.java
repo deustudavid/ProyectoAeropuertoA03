@@ -25,6 +25,9 @@ import clases.Vuelo;
 import main.VentanaInicio;
 
 public class BD {
+	
+	private static Connection con;
+	
 	/**
 	 * Método que crea la conexión con la BBD
 	 * @param nombreBD El nombre de la BBDD
@@ -643,5 +646,16 @@ public class BD {
 			VentanaInicio.logger.log(Level.INFO, "Se ha actualizado el numero de asientos restantes en el vuelo: " + v.getID());
 		
 		}
+	public static void eliminarVuelo(Connection con, String id) throws SQLException {
+		Statement stm = con.createStatement();
+		String sent = "delete from Vuelo where id ='" + id+"'";
+		stm.executeUpdate(sent);
+		
+	}
+	public static void eliminarTickets(Connection con, int ticketNum) throws SQLException {
+		Statement stm = con.createStatement();
+		String sent = "delete from Ticket where ticketNum =" + ticketNum;
+		stm.executeUpdate(sent);
+	}
 	
 }

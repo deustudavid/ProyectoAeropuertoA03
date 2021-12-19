@@ -28,10 +28,8 @@ public class VentanaAdministrador extends JFrame {
 	private JMenuItem menuItemVerTickets;
 	private JMenuItem menuItemAnadirVuelo;
 	private JMenuItem menuItemCerrarSesion;
-	private JMenuItem menuItemEliminarReserva;
 	private JMenuItem menuItemVerVuelos;
 	private JMenuItem menuItemGestionarAzafatos;
-	private JMenuItem menuItemEliminarVuelo;
 	private JMenuItem menuItemGestionarEquipajes;
 	private JMenuItem menuItemDarPermisos;
 	private JMenuItem menuItemVentanaAzafato;
@@ -180,11 +178,6 @@ public class VentanaAdministrador extends JFrame {
 
 		menuPrincipal.add(menuTickets);
 
-		menuItemEliminarReserva = new JMenuItem();
-		menuItemEliminarReserva.setIcon(imagenBorrar);
-		menuItemEliminarReserva.setText("Eliminar reserva");
-		menuTickets.add(menuItemEliminarReserva);
-
 		menuVuelo.setText("Vuelo");
 		menuVuelo.setIcon(imagenAvion);
 
@@ -218,11 +211,6 @@ public class VentanaAdministrador extends JFrame {
 				bloquearBotones();
 			}
 		});
-
-		menuItemEliminarVuelo = new JMenuItem();
-		menuItemEliminarVuelo.setIcon(imagenBorrar);
-		menuItemEliminarVuelo.setText("Eliminar vuelo");
-		menuVuelo.add(menuItemEliminarVuelo);
 
 		menuUsuario.setText("Usuario");
 		menuUsuario.setIcon(imagenUsuario);

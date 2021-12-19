@@ -46,10 +46,13 @@ public class CreadorVuelos extends JInternalFrame {
     private static String id;
     private static String fechaStr;
     private JLabel lblMensajeID;
+    private ImageIcon imagenCancelar;
 
     public static Connection con;
     
     public CreadorVuelos() {
+    	imagenCancelar = new ImageIcon("img/Cancelar.png");
+    	
     	 spinnerAsientos = new JSpinner();
          spinnerAsientos.setModel(new SpinnerNumberModel(1, 1, 50, 1));
          fechaStr="";
@@ -93,6 +96,7 @@ public class CreadorVuelos extends JInternalFrame {
         btnGuardar.setIcon(imagenGuardar);
  
         btnCancelar = new JButton();
+        btnCancelar.setIcon(imagenCancelar);
         txtOrigen = new JComboBox<>();
         txtDestino = new JComboBox<>();
 
@@ -269,8 +273,8 @@ public class CreadorVuelos extends JInternalFrame {
         	glPanelCreacionVuelo.createParallelGroup(Alignment.TRAILING)
         		.addGroup(glPanelCreacionVuelo.createSequentialGroup()
         			.addGap(34)
-        			.addGroup(glPanelCreacionVuelo.createParallelGroup(Alignment.LEADING)
-        				.addGroup(Alignment.TRAILING, glPanelCreacionVuelo.createSequentialGroup()
+        			.addGroup(glPanelCreacionVuelo.createParallelGroup(Alignment.TRAILING)
+        				.addGroup(glPanelCreacionVuelo.createSequentialGroup()
         					.addGroup(glPanelCreacionVuelo.createParallelGroup(Alignment.LEADING)
         						.addComponent(lblTituloVentana)
         						.addComponent(lbIIDVuelo))
@@ -299,8 +303,8 @@ public class CreadorVuelos extends JInternalFrame {
         			.addContainerGap(470, Short.MAX_VALUE)
         			.addComponent(btnGuardar, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
         			.addGap(29)
-        			.addComponent(btnCancelar, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
-        			.addGap(39))
+        			.addComponent(btnCancelar, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
+        			.addGap(22))
         );
         glPanelCreacionVuelo.setVerticalGroup(
         	glPanelCreacionVuelo.createParallelGroup(Alignment.LEADING)
