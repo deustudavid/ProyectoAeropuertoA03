@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 import bd.BD;
@@ -71,8 +72,32 @@ public class VerTickets extends JInternalFrame {
 		}
 
 		tabla = new JTable(modeloTablaTickets);
+		tabla.setEnabled(false);
 		tabla.setBackground(SystemColor.info);
 		panelScroll.setViewportView(tabla);
+		
+		//Añadimos el Renderer a la tabla
+		tabla.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
+			
+			@Override
+			public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus,
+					int row, int column) {
+				Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+				
+
+				double precio = (double)modeloTablaTickets.getValueAt(row, 4);
+					if(precio <= 50) {
+						c.setBackground(Color.GREEN);
+					}else if (precio >50 && precio <=300) {
+						c.setBackground(Color.CYAN);
+					}else {
+						c.setBackground(Color.BLACK);
+						c.setForeground(Color.ORANGE);
+					}
+				
+				return c;
+			}
+		});
 
 		btnCancelar.setText("Cancelar");
 		btnCancelar.setIcon(imagenCancelar);

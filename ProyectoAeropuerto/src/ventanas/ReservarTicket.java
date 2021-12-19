@@ -262,7 +262,6 @@ public class ReservarTicket extends JInternalFrame {
 				int asientosComprados = (int) txtAsientos.getValue();
 				precioIndividual = Double.parseDouble(txtPrecio.getText());
 				precioViaje = asientosComprados * precioIndividual;
-				double precioEnPantalla= Double.parseDouble(txtPrecioBaseaMostrar.getText());
 				// Ahora veremos si se aplica algun descuento
 				if(asientosComprados >= 2 && asientosComprados <= 5 ) {
 					// 10 % de descuento
@@ -284,6 +283,8 @@ public class ReservarTicket extends JInternalFrame {
 				} else if(asientosComprados > 14  ) {
 					// 45 % de descuento
 					precioViaje = precioViaje * 0.55;
+					// redondear a dos decimales
+					precioViaje = Math.round(precioViaje * 100d) / 100d;
 					txtPrecioBaseaMostrar.setText(String.valueOf(precioViaje));
 					
 				} else if(asientosComprados==1){
@@ -645,6 +646,34 @@ public class ReservarTicket extends JInternalFrame {
 								e1.printStackTrace();
 							
 							}
+							// proceso de reserva
+
+							// si el pais de origen y el de destino son diferentes, se calcula el precio por
+							// lejania
+							if (!destino.equals(origen)) {
+								
+								try {
+									con=BD.initBD("Aeropuerto.db");
+									BD.insertarTicket(con, 0,txtDni.getText(), lblIdVuelo.getText(), Clase.valueOf(opcionesClase.getSelectedItem().toString()), Double.parseDouble(txtPrecioFinalaMostrar.getText()), asientosComprados, editor.getText());
+									JOptionPane.showMessageDialog (null, "Reserva realizada", "Correcto", JOptionPane.INFORMATION_MESSAGE);
+									BD.closeBD(con);
+								} catch (DBException e1) {
+									// TODO Auto-generated catch block
+									e1.printStackTrace();
+								}
+							} else {
+								try {
+									con=BD.initBD("Aeropuerto.db");
+									BD.insertarTicket(con, 0,txtDni.getText(), lblIdVuelo.getText(), Clase.valueOf(opcionesClase.getSelectedItem().toString()), Double.parseDouble(txtPrecioFinalaMostrar.getText()), asientosComprados, editor.getText());
+									JOptionPane.showMessageDialog (null, "Reserva realizada", "Correcto", JOptionPane.INFORMATION_MESSAGE);
+									BD.closeBD(con);
+								} catch (DBException e1) {
+									// TODO Auto-generated catch block
+									e1.printStackTrace();
+								}
+							}
+							
+						// no hay asientos suficientes
 						} else {
 							try {
 								BD.closeBD(con);
@@ -660,30 +689,6 @@ public class ReservarTicket extends JInternalFrame {
 						
 						
 
-						// si el pais de origen y el de destino son diferentes, se calcula el precio por
-						// lejania
-						if (!destino.equals(origen)) {
-							
-							try {
-								con=BD.initBD("Aeropuerto.db");
-								BD.insertarTicket(con, 0,txtDni.getText(), lblIdVuelo.getText(), Clase.valueOf(opcionesClase.getSelectedItem().toString()), Double.parseDouble(txtPrecioFinalaMostrar.getText()), asientosComprados, editor.getText());
-								JOptionPane.showMessageDialog (null, "Reserva realizada", "Correcto", JOptionPane.INFORMATION_MESSAGE);
-								BD.closeBD(con);
-							} catch (DBException e1) {
-								// TODO Auto-generated catch block
-								e1.printStackTrace();
-							}
-						} else {
-							try {
-								con=BD.initBD("Aeropuerto.db");
-								BD.insertarTicket(con, 0,txtDni.getText(), lblIdVuelo.getText(), Clase.valueOf(opcionesClase.getSelectedItem().toString()), Double.parseDouble(txtPrecioFinalaMostrar.getText()), asientosComprados, editor.getText());
-								JOptionPane.showMessageDialog (null, "Reserva realizada", "Correcto", JOptionPane.INFORMATION_MESSAGE);
-								BD.closeBD(con);
-							} catch (DBException e1) {
-								// TODO Auto-generated catch block
-								e1.printStackTrace();
-							}
-						}
 					} else {
 						JOptionPane.showMessageDialog(null, "Selecciona un vuelo de la tabla", "Faltan datos",
 								JOptionPane.WARNING_MESSAGE);
@@ -702,15 +707,18 @@ public class ReservarTicket extends JInternalFrame {
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
+				
+
 				boolean resultadoAdministradorActivo = ventanas.VentanaAdministrador.VentanaAdminEstaActiva();
 				boolean resultadoAzafatoActivo = ventanas.VentanaAzafato.VentanaAzafatoEstaActiva();
 
 				if (resultadoAdministradorActivo == true && resultadoAzafatoActivo == false) {
 					VentanaAdministrador.desbloquearBotones();
+					VentanaAdministrador.lblDeustoFly.setVisible(true);
 
 				} else {
 					VentanaAzafato.desbloquearBotones();
-
+					VentanaAzafato.lblDeustoFly.setVisible(true);
 				}
 
 			}

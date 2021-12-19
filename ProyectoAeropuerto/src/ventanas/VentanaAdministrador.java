@@ -12,11 +12,14 @@ import main.VentanaInicio;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.InputEvent;
+import java.awt.SystemColor;
+import java.awt.Font;
 
 
 public class VentanaAdministrador extends JFrame {
 
 	private JDesktopPane panelEscritorio;
+	public static JLabel lblDeustoFly;
 	private static JMenu menuPasajero;
 	private static JMenu menuTickets;
 	private static JMenu menuVuelo;
@@ -45,7 +48,6 @@ public class VentanaAdministrador extends JFrame {
 	private ImageIcon imagenActualizar;
 	private ImageIcon imagenReservar;
 	private ImageIcon imagenListar;
-	private ImageIcon imagenBorrar;
 	private ImageIcon imagenUsuario;
 	private ImageIcon imagenIrAzafato;
 	public static JFrame ventanaActual;
@@ -64,18 +66,21 @@ public class VentanaAdministrador extends JFrame {
 		imagenActualizar = new ImageIcon("img/actualizar.png");
 		imagenReservar = new ImageIcon("img/escribir.png");
 		imagenListar = new ImageIcon("img/blocnotas.png");
-		imagenBorrar = new ImageIcon("img/papelera.png");
 		imagenUsuario = new ImageIcon("img/usuario.png");
 		imagenLlave = new ImageIcon("img/llave.png");
 		imagenIrAzafato = new ImageIcon("img/flecha.png");
 
 		panelEscritorio = new JDesktopPane();
-		panelEscritorio.setBackground(new Color(0, 255, 255));
+		panelEscritorio.setBackground(new Color(0, 0, 128));
 		menuPrincipal = new JMenuBar();
 		menuPrincipal.setBackground(Color.LIGHT_GRAY);
 		menuPasajero = new JMenu();
 		menuPasajero.setIcon(imagenPasajero);
 		menuPasajero.setMnemonic('P');
+		
+		 lblDeustoFly = new JLabel("DEUSTOFLY");
+		lblDeustoFly.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 36));
+		lblDeustoFly.setForeground(new Color(255, 255, 0));
 
 		menuItemAniadirPasajero = new JMenuItem();
 		menuItemAniadirPasajero.setIcon(imagenAniadir);
@@ -98,8 +103,10 @@ public class VentanaAdministrador extends JFrame {
 		menuItemReservarTicket = new JMenuItem();
 		menuItemReservarTicket.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				lblDeustoFly.setVisible(false);
 				ReservarTicket r = new ReservarTicket();
 				panelEscritorio.add(r);
+				r.setVisible(true);
 				bloquearBotones();
 			}
 		});
@@ -112,15 +119,23 @@ public class VentanaAdministrador extends JFrame {
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setPreferredSize(new Dimension(1366, 768));
 		setVisible(true);
+		
+		
 
 		GroupLayout gl_panelEscritorio = new GroupLayout(panelEscritorio);
 		gl_panelEscritorio.setHorizontalGroup(
 			gl_panelEscritorio.createParallelGroup(Alignment.LEADING)
-				.addGap(0, 1350, Short.MAX_VALUE)
+				.addGroup(Alignment.TRAILING, gl_panelEscritorio.createSequentialGroup()
+					.addContainerGap(570, Short.MAX_VALUE)
+					.addComponent(lblDeustoFly, GroupLayout.PREFERRED_SIZE, 330, GroupLayout.PREFERRED_SIZE)
+					.addGap(450))
 		);
 		gl_panelEscritorio.setVerticalGroup(
 			gl_panelEscritorio.createParallelGroup(Alignment.LEADING)
-				.addGap(0, 707, Short.MAX_VALUE)
+				.addGroup(gl_panelEscritorio.createSequentialGroup()
+					.addGap(221)
+					.addComponent(lblDeustoFly, GroupLayout.PREFERRED_SIZE, 172, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(314, Short.MAX_VALUE))
 		);
 		
 		

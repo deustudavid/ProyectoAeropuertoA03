@@ -7,6 +7,7 @@ import java.beans.PropertyChangeListener;
 import javax.swing.*;
 
 import main.VentanaInicio;
+import javax.swing.GroupLayout.Alignment;
 
 public class VentanaAzafato extends JFrame {
 
@@ -37,10 +38,10 @@ public class VentanaAzafato extends JFrame {
 	private ImageIcon imagenActualizar;
 	private ImageIcon imagenReservar;
 	private ImageIcon imagenListar;
-	private ImageIcon imagenBorrar;
 	private ImageIcon imagenUsuario;
 
 	public static JFrame ventanaActual;
+	public static JLabel lblDeustoFly;
 
 	public VentanaAzafato() {
 
@@ -55,16 +56,21 @@ public class VentanaAzafato extends JFrame {
 		imagenActualizar = new ImageIcon("img/actualizar.png");
 		imagenReservar = new ImageIcon("img/escribir.png");
 		imagenListar = new ImageIcon("img/blocnotas.png");
-		imagenBorrar = new ImageIcon("img/papelera.png");
+		new ImageIcon("img/papelera.png");
 		imagenUsuario = new ImageIcon("img/usuario.png");
 
 		panelEscritorio = new JDesktopPane();
-		panelEscritorio.setBackground(new Color(240, 248, 255));
+		panelEscritorio.setBackground(new Color(0, 250, 154));
 		menuPrincipal = new JMenuBar();
 		menuPrincipal.setBackground(SystemColor.info);
 		menuPasajero = new JMenu();
 		menuPasajero.setIcon(imagenPasajero);
 		menuPasajero.setMnemonic('P');
+		
+
+		lblDeustoFly = new JLabel("DEUSTOFLY");
+		lblDeustoFly.setForeground(new Color(72, 61, 139));
+		lblDeustoFly.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 36));
 
 		menuItemAniadirPasajero = new JMenuItem();
 		menuItemAniadirPasajero.setIcon(imagenAniadir);
@@ -85,8 +91,10 @@ public class VentanaAzafato extends JFrame {
 		menuItemReservarTicket = new JMenuItem();
 		menuItemReservarTicket.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				lblDeustoFly.setVisible(false);
 				ReservarTicket r = new ReservarTicket();
 				panelEscritorio.add(r);
+				r.setVisible(true);
 				bloquearBotones();
 			}
 		});
@@ -99,13 +107,24 @@ public class VentanaAzafato extends JFrame {
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setPreferredSize(new Dimension(1366, 768));
 		setVisible(true);
+		
 
 		GroupLayout gl_panelEscritorio = new GroupLayout(panelEscritorio);
+		gl_panelEscritorio.setHorizontalGroup(
+			gl_panelEscritorio.createParallelGroup(Alignment.LEADING)
+				.addGroup(Alignment.TRAILING, gl_panelEscritorio.createSequentialGroup()
+					.addContainerGap(574, Short.MAX_VALUE)
+					.addComponent(lblDeustoFly, GroupLayout.PREFERRED_SIZE, 330, GroupLayout.PREFERRED_SIZE)
+					.addGap(446))
+		);
+		gl_panelEscritorio.setVerticalGroup(
+			gl_panelEscritorio.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panelEscritorio.createSequentialGroup()
+					.addGap(262)
+					.addComponent(lblDeustoFly, GroupLayout.PREFERRED_SIZE, 172, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(273, Short.MAX_VALUE))
+		);
 		panelEscritorio.setLayout(gl_panelEscritorio);
-		gl_panelEscritorio.setHorizontalGroup(gl_panelEscritorio
-				.createParallelGroup(GroupLayout.Alignment.LEADING).addGap(0, 400, Short.MAX_VALUE));
-		gl_panelEscritorio.setVerticalGroup(gl_panelEscritorio
-				.createParallelGroup(GroupLayout.Alignment.LEADING).addGap(0, 279, Short.MAX_VALUE));
 
 		menuPasajero.setText("Pasajero");
 

@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 
@@ -30,6 +31,8 @@ public class VerVuelos extends JInternalFrame {
 	
 
 	public VerVuelos() {
+		
+		
 
 		v = null;
 		con = null;
@@ -74,6 +77,7 @@ public class VerVuelos extends JInternalFrame {
 		 */
 
 		tabla = new JTable(modeloTablaVuelos);
+		tabla.setEnabled(false);
 		tabla.getColumnModel().getColumn(0).setMinWidth(110);
 		tabla.getColumnModel().getColumn(0).setMaxWidth(110);
 		tabla.getColumnModel().getColumn(1).setMinWidth(100);
@@ -90,11 +94,44 @@ public class VerVuelos extends JInternalFrame {
 		tabla.getColumnModel().getColumn(6).setMaxWidth(120);
 		tabla.getColumnModel().getColumn(7).setMinWidth(120);
 		tabla.getColumnModel().getColumn(7).setMaxWidth(120);
+		
+		//Añadimos el Renderer a la tabla
+		tabla.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
+			
+			@Override
+			public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus,
+					int row, int column) {
+				Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+				if(column == 0) {
+					c.setBackground(Color.LIGHT_GRAY);
+				}else {
+					c.setBackground(Color.WHITE);
+				}
 
+				if(column == 7) {
+					int cant = Integer.parseInt(String.valueOf(value));
+					if(cant <=10) {
+						c.setBackground(Color.YELLOW);
+						
+					}else if(cant >10 && cant<=30) {
+						c.setBackground(Color.cyan);
+						
+					}
+					else {
+						c.setBackground(Color.green);
+					}
+				}
+				
+				return c;
+			}
+		});
+
+		
+		panelScroll.setViewportView(tabla);
 		tabla.setBackground(SystemColor.info);
 
-		panelScroll.setViewportView(tabla);
-
+		
+		
 		btnCancelar.setText("Cancelar");
 		btnCancelar.setIcon(imagenCancelar);
 		btnCancelar.addActionListener(new ActionListener() {
@@ -185,4 +222,5 @@ public class VerVuelos extends JInternalFrame {
 			cargarVuelosRecursivamente(v, i + 1);
 		}
 	}
+	
 }

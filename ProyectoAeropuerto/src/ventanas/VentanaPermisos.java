@@ -20,7 +20,7 @@ public class VentanaPermisos extends JInternalFrame {
 	private JLabel lblUsuario;
 	private JLabel lblContrasenia;
 	private JLabel labelCerrar;
-
+	private static Connection con;
 	private JPasswordField textContrasenia;
 	private JTextField textUsuario;
 
@@ -31,7 +31,7 @@ public class VentanaPermisos extends JInternalFrame {
 
 	public VentanaPermisos() {
 
-		Connection con = null;
+		 con = null;
 		try {
 			con = BD.initBD("Aeropuerto.db");
 
@@ -148,7 +148,7 @@ public class VentanaPermisos extends JInternalFrame {
 
 					String n = textUsuario.getText();
 					String c = textContrasenia.getText();
-					Connection con = null;
+					
 					try {
 						con = BD.initBD("Aeropuerto.db");
 						VentanaInicio.logger.log(Level.INFO, "Conexion con la base de datos abierta");
@@ -171,7 +171,6 @@ public class VentanaPermisos extends JInternalFrame {
 
 						try {
 							BD.insertarAdministrador(con, n, c);
-							BD.insertarAzafato(con, n, c);
 						} catch (DBException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
@@ -206,7 +205,7 @@ public class VentanaPermisos extends JInternalFrame {
 
 					String n = textUsuario.getText();
 					String c = textContrasenia.getText();
-					Connection con = null;
+					
 					try {
 						con = BD.initBD("Aeropuerto.db");
 						VentanaInicio.logger.log(Level.INFO, "Conexion con la base de datos abierta");
@@ -255,6 +254,9 @@ public class VentanaPermisos extends JInternalFrame {
 
 		});
 
+		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+		this.setLocation(0,0);
+	
 		setVisible(true);
 	}
 }
