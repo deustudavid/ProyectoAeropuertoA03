@@ -242,10 +242,10 @@ public class VentanaInicio extends JFrame {
 					try {
 						switch (BD.obtenerAdministrador(con,n,c)) {
 							case 0:
-								JOptionPane.showMessageDialog(null, "Ese administrador no est� registrado", "Error", JOptionPane.ERROR_MESSAGE);
+								JOptionPane.showMessageDialog(null, "Ese administrador no se encuentra registrado", "Error", JOptionPane.ERROR_MESSAGE);
 								break;
 							case 1:
-								JOptionPane.showMessageDialog(null, "Contrase�a incorrecta", "Error", JOptionPane.ERROR_MESSAGE);
+								JOptionPane.showMessageDialog(null, "Contrasenia incorrecta", "Error", JOptionPane.ERROR_MESSAGE);
 								break;
 							case 2:
 								ventanaActual.dispose();
@@ -300,10 +300,10 @@ public class VentanaInicio extends JFrame {
 				try {
 					switch (BD.obtenerAzafato(con,n,c)) {
 						case 0:
-							JOptionPane.showMessageDialog(null, "Ese azafato no est� registrado", "Error", JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(null, "Ese azafato no se encuentra registrado", "Error", JOptionPane.ERROR_MESSAGE);
 							break;
 						case 1:
-							JOptionPane.showMessageDialog(null, "Contrase�a incorrecta", "Error", JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(null, "Contrasenia incorrecta", "Error", JOptionPane.ERROR_MESSAGE);
 							break;
 						case 2:
 							ventanaActual.dispose();

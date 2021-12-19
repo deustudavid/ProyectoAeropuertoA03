@@ -214,22 +214,26 @@ public class BD {
 	 */
 	public static void insertarAzafato(Connection con, String usuario, String contra) throws DBException {
 	
-		String sentencia = "INSERT INTO Azafato VALUES('"+usuario+"','"+contra+"')";
-		Statement st = null;
+		try (PreparedStatement stmt = con.prepareStatement("INSERT INTO Azafato (usuario,contrasenya) VALUES (?, ?)"); 
+				Statement stmtForId = con.createStatement()) {
+				
+				stmt.setString(1, usuario);
+				stmt.setString(2, contra);
+				
+
 		
-		try {
-			st = con.createStatement();
-			st.executeUpdate(sentencia);
-			VentanaInicio.logger.log(Level.INFO, "Se ha añadido un azafato");
-			st.close();
-		} catch (SQLException e) {
+				stmt.executeUpdate();
+				VentanaInicio.logger.log(Level.INFO, "Se ha añadido un azafato a la BBDD");
+				stmt.close();
+				 
+			} catch (SQLException e) {
 			
 			e.printStackTrace();
 			throw new DBException("No se ha podido insertar azafato de vuelo");
 		} finally {
-			if(st!=null) {
+			if(con!=null) {
 				try {
-					st.close();
+					con.close();
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -270,24 +274,26 @@ public class BD {
 	 */
 	public static void insertarAdministrador(Connection con, String usuario, String contra) throws DBException {
 	
-		String sentencia = "INSERT INTO Administrador VALUES('"+usuario+"','"+contra+"')";
-		Statement st = null;
-		
-		try {
-			st = con.createStatement();
-			st.executeUpdate(sentencia);
+		try (PreparedStatement stmt = con.prepareStatement("INSERT INTO Administrador (usuario, contrasenya) VALUES (?, ?)"); 
+				Statement stmtForId = con.createStatement()) {
+				
+				stmt.setString(1, usuario);
+				stmt.setString(2, contra);
+				
+				
+			 stmt.executeUpdate();
 			VentanaInicio.logger.log(Level.INFO, "Se ha añadido un administrador");
-			st.close();
+			stmt.close();
 		} catch (SQLException e) {
 			VentanaInicio.logger.log(Level.SEVERE, "ERROR al añadir un administrador");
 			e.printStackTrace();
-			throw new DBException("No se ha podido insertar administrador");
+			throw new DBException("No se ha podido insertar el administrador en la BBDD");
 			
 			
 		} finally {
-			if(st!=null) {
+			if(con!=null) {
 				try {
-					st.close();
+					con.close();
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -299,24 +305,29 @@ public class BD {
 	
 	public static void insertarPasajero(Connection con,String dni, String nombre, String apellido, int edad, int telefono, String direccion) throws DBException {
 		
-		String sentencia = "INSERT INTO Pasajero VALUES('" + dni + "','" + nombre + "','" + apellido + "'," + edad + "," + telefono + ",'" + direccion + "')";
-		Statement st = null;
-		
-		try {
-			st = con.createStatement();
-			st.executeUpdate(sentencia);
+		try (PreparedStatement stmt = con.prepareStatement("INSERT INTO Pasajero (dni, nombre ,apellido , edad , telefono , direccion ) VALUES (?, ?, ?, ?, ?, ?)"); 
+				Statement stmtForId = con.createStatement()) {
+				
+				stmt.setString(1, dni);
+				stmt.setString(2, nombre);
+				stmt.setString(3, apellido);
+				stmt.setInt(4, edad);
+				stmt.setInt(5, telefono);
+				stmt.setString(6, direccion);
+				
+			 stmt.executeUpdate();
 			VentanaInicio.logger.log(Level.INFO, "Se ha añadido un pasajero");
-			st.close();
+			stmt.close();
 		} catch (SQLException e) {
 			VentanaInicio.logger.log(Level.SEVERE, "ERROR al añadir un pasajero");
 			e.printStackTrace();
-			throw new DBException("No se ha podido insertar el pasajero en la BBDDr");
+			throw new DBException("No se ha podido insertar el pasajero en la BBDD");
 			
 			
 		} finally {
-			if(st!=null) {
+			if(con!=null) {
 				try {
-					st.close();
+					con.close();
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -328,24 +339,30 @@ public class BD {
 	
 	public static void insertarVuelo(Connection con,String id, String origen, String destino, String fecha, String horaSalida, String horaLlegada, int asientosMax, int asientosDisponibles) throws DBException {
 		
-		String sentencia = "INSERT INTO Vuelo VALUES('" + id + "','" + origen + "','" + destino + "','" + fecha + "','" + horaSalida + "','" + horaLlegada + "'," + asientosMax + "," + asientosDisponibles + ")";
-		Statement st = null;
-		
-		try {
-			st = con.createStatement();
-			st.executeUpdate(sentencia);
+		try (PreparedStatement stmt = con.prepareStatement("INSERT INTO vuelo (id, origen, destino, fecha, horaSalida, horaLlegada, asientosMax, asientosDisponibles) VALUES (?, ?, ?, ?, ?, ?, ?, ?)"); 
+				Statement stmtForId = con.createStatement()) {
+				
+				stmt.setString(1, id);
+				stmt.setString(2, origen);
+				stmt.setString(3, destino);
+				stmt.setString(4, fecha);
+				stmt.setString(5, horaSalida);
+				stmt.setString(6, horaLlegada);
+				stmt.setInt(7, asientosMax);
+				stmt.setInt(8, asientosMax);
+			 stmt.executeUpdate();
 			VentanaInicio.logger.log(Level.INFO, "Se ha añadido un vuelo");
-			st.close();
+			stmt.close();
 		} catch (SQLException e) {
 			VentanaInicio.logger.log(Level.SEVERE, "ERROR al añadir un vuelo");
 			e.printStackTrace();
-			throw new DBException("No se ha podido insertar el vuelo en la BBDDr");
+			throw new DBException("No se ha podido insertar el vuelo en la BBDD");
 			
 			
 		} finally {
-			if(st!=null) {
+			if(con!=null) {
 				try {
-					st.close();
+					con.close();
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -355,7 +372,6 @@ public class BD {
 		}
 	}
 	
-	/* revisar , hay que informarse sobre como hacer que la primary key se cree sola*/
 	
 	public static int getMaxTicketNum(Connection con) {
 		String sent = "select MAX(ticketNum) from Ticket";
@@ -380,25 +396,31 @@ public class BD {
 	public static void insertarTicket(Connection con , int ticketNum, String dniPasajero  ,String idVuelo  ,Clase clase , double precio , int numAsientos ,String fecha ) throws DBException {
 		int numeroTicketAInsertar= getMaxTicketNum(con);
 		
-		String sentencia = "INSERT INTO Ticket VALUES(" + numeroTicketAInsertar + ",'" + dniPasajero + "','" + idVuelo + "','" + clase + "'," + precio + "," + numAsientos + ",'" + fecha + "')";
-		
-		Statement st = null;
-		
-		try {
-			st = con.createStatement();
-			st.executeUpdate(sentencia);
-			VentanaInicio.logger.log(Level.INFO, "Se ha añadido un ticket");
-			st.close();
+		try (PreparedStatement stmt = con.prepareStatement("INSERT INTO Ticket (ticketNum , dniPasajero  ,idVuelo  , clase ,  precio , numAsientos , fecha ) VALUES (?, ?, ?, ?, ?, ?, ?)"); 
+				Statement stmtForId = con.createStatement()) {
+				
+				stmt.setInt(1, numeroTicketAInsertar);
+				stmt.setString(2, dniPasajero);
+				stmt.setString(3, idVuelo);
+				String claseStr=clase.toString();
+				stmt.setString(4, claseStr);
+				stmt.setDouble(5, precio);
+				stmt.setInt(6, numAsientos);
+				stmt.setString(7, fecha);
+				
+			 stmt.executeUpdate();
+			VentanaInicio.logger.log(Level.INFO, "Se ha reservado un ticket");
+			stmt.close();
 		} catch (SQLException e) {
-			VentanaInicio.logger.log(Level.SEVERE, "ERROR al añadir ticket");
+			VentanaInicio.logger.log(Level.SEVERE, "ERROR al reservar un ticket");
 			e.printStackTrace();
-			throw new DBException("No se ha podido insertar el ticket en la BBDDr");
+			throw new DBException("No se ha podido insertar el ticket en la BBDD");
 			
 			
 		} finally {
-			if(st!=null) {
+			if(con!=null) {
 				try {
-					st.close();
+					con.close();
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -532,7 +554,7 @@ public class BD {
 		String sent = "update Pasajero set  nombre='"+nombre+"',apellido='"+apellido+"',edad="+edad+",telefono="+telefono+",direccion='"+direccion+"' where dni='"+dni+"'";
 		statement.executeUpdate(sent);
 		VentanaInicio.logger.log(Level.INFO, "Se ha modificado el pasajero de dni: " + dni);
-	}// rellenar con ?, ?
+	}
 	
 	public static Pasajero buscarPasajero(Connection con,String dni) throws SQLException {
 		String sentencia = "SELECT * FROM Pasajero WHERE dni = '"+dni+"'";
@@ -542,7 +564,7 @@ public class BD {
 		st = con.createStatement();
 
 			ResultSet rs = st.executeQuery(sentencia);
-			//Si la sentencia nos ha devuelto al menos un valor, rs estar� apuntando a una tupla
+			//Si la sentencia nos ha devuelto al menos un valor, rs apunta a una tupla
 			if(rs.next()) {
 					String dniPasajero= rs.getString("dni");
 					String nombrePasajero=rs.getString("nombre");

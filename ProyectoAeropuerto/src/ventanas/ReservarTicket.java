@@ -813,7 +813,7 @@ public class ReservarTicket extends JInternalFrame {
 							.addComponent(txtApellido, GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE))
 						.addGroup(glPanelBusquedaPasajero.createSequentialGroup()
 							.addComponent(lblTelefono)
-							.addGap(18)
+							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(txtTelefono, GroupLayout.PREFERRED_SIZE, 85, GroupLayout.PREFERRED_SIZE)))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(glPanelBusquedaPasajero.createParallelGroup(Alignment.LEADING)

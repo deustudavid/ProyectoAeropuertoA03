@@ -82,10 +82,10 @@ public class VerVuelos extends JInternalFrame {
 		tabla.getColumnModel().getColumn(2).setMaxWidth(100);
 		tabla.getColumnModel().getColumn(3).setMinWidth(80);
 		tabla.getColumnModel().getColumn(3).setMaxWidth(80);
-		tabla.getColumnModel().getColumn(4).setMinWidth(90);
-		tabla.getColumnModel().getColumn(4).setMaxWidth(90);
-		tabla.getColumnModel().getColumn(5).setMinWidth(90);
-		tabla.getColumnModel().getColumn(5).setMaxWidth(90);
+		tabla.getColumnModel().getColumn(4).setMinWidth(80);
+		tabla.getColumnModel().getColumn(4).setMaxWidth(80);
+		tabla.getColumnModel().getColumn(5).setMinWidth(83);
+		tabla.getColumnModel().getColumn(5).setMaxWidth(83);
 		tabla.getColumnModel().getColumn(6).setMinWidth(120);
 		tabla.getColumnModel().getColumn(6).setMaxWidth(120);
 		tabla.getColumnModel().getColumn(7).setMinWidth(120);
