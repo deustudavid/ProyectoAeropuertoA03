@@ -1,5 +1,14 @@
 package ventanas;
 
+import com.itextpdf.text.*;
+import com.itextpdf.text.pdf.PdfWriter;
+
+
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.Date;
+import java.text.SimpleDateFormat;
 import javax.swing.GroupLayout.Alignment;
 
 import javax.swing.*;
@@ -7,7 +16,6 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
-
 import com.toedter.calendar.JDateChooser;
 import com.toedter.calendar.JTextFieldDateEditor;
 
@@ -18,13 +26,15 @@ import clases.CoordenadasAeropuerto;
 import clases.Pasajero;
 import clases.Vuelo;
 
+
 import java.awt.*;
+import java.awt.Font;
 import java.awt.event.*;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.beans.PropertyChangeListener;
+import java.io.PrintWriter;
 import java.beans.PropertyChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
@@ -39,7 +49,7 @@ public class ReservarTicket extends JInternalFrame {
 	private static double longitudDestino ;
 
 
-	private JLabel lblIdVuelo;
+	private static JLabel lblIdVuelo;
 	private JButton btnReservar;
 	private JButton btnCancelar;
 	private JButton btnBuscadorDestinos;
@@ -61,18 +71,18 @@ public class ReservarTicket extends JInternalFrame {
 	private JScrollPane scrollTabla;
 	private JTable tablaVuelos;
 	private DefaultTableModel modeloTablaVuelos;
-	private JTextField txtDni;
+	private static JTextField txtDni;
 	private JDateChooser txtFecha;
 
 	private JComboBox<String> txtDestino;
 	private JLabel txtHoraSalida;
-	private JLabel txtNombre;
-	private JLabel txtApellido;
+	private static JLabel txtNombre;
+	private static JLabel txtApellido;
 	private JLabel txtTelefono;
-	private JSpinner txtAsientos;
+	private static JSpinner txtAsientos;
 	private JComboBox<String> txtOrigen;
 	private JLabel txtPrecioBase;
-	private JComboBox<Clase> opcionesClase;
+	private static JComboBox<Clase> opcionesClase;
 	private ArrayList<Vuelo> a;
 
 	private static String origen;
@@ -85,18 +95,17 @@ public class ReservarTicket extends JInternalFrame {
 	private JLabel txtHoraLlegada;
 	private JLabel lblOrigenMostrado;
 	private JLabel lblDestinoMostrado;
-	private JLabel txtOrigenMostrado;
-	private JLabel txtDestinoMostrado;
+	private static JLabel txtOrigenMostrado;
+	private static JLabel txtDestinoMostrado;
 	private JLabel txtPrecio;
 	private static double precioIndividual;
 	private static double precioViaje;
-
 	private Vuelo vueloObtenido;
 	private JLabel txtImpuestos;
 	private JLabel txtImpuestosaMostrar;
 	private JLabel txtPrecioTotal;
-	private JLabel txtPrecioFinalaMostrar;
-	
+	private static JLabel txtPrecioFinalaMostrar;
+	private static JTextFieldDateEditor editor;
 	private ImageIcon imagenCancelar;
 
 	public ReservarTicket() {
@@ -121,7 +130,7 @@ public class ReservarTicket extends JInternalFrame {
 		// HACER QUE EL TEXTFIELD DONDE APARECE LA FECHA TRAS SELECCIONARLA CON
 		// JFILECHOOSER NO SE PUEDA EDITAR
 		txtFecha = new com.toedter.calendar.JDateChooser();
-		JTextFieldDateEditor editor = (JTextFieldDateEditor) txtFecha.getDateEditor();
+		editor = (JTextFieldDateEditor) txtFecha.getDateEditor();
 		editor.setEditable(false);
 
 		vueloObtenido = new Vuelo();
@@ -136,7 +145,6 @@ public class ReservarTicket extends JInternalFrame {
 		txtDireccion.setRows(5);
 		txtDireccion.setColumns(20);
 		scrollDireccion.setViewportView(txtDireccion);
-		
 		txtImpuestosaMostrar = new JLabel();
 		txtImpuestosaMostrar.setText("0.0");
 		txtImpuestosaMostrar.setForeground(Color.RED);
@@ -655,7 +663,12 @@ public class ReservarTicket extends JInternalFrame {
 								try {
 									con=BD.initBD("Aeropuerto.db");
 									BD.insertarTicket(con, 0,txtDni.getText(), lblIdVuelo.getText(), Clase.valueOf(opcionesClase.getSelectedItem().toString()), Double.parseDouble(txtPrecioFinalaMostrar.getText()), asientosComprados, editor.getText());
-									JOptionPane.showMessageDialog (null, "Reserva realizada", "Correcto", JOptionPane.INFORMATION_MESSAGE);
+									int opcion = JOptionPane.showConfirmDialog(null, "¿Quieres imprimir el ticket?");
+									if(opcion == JOptionPane.YES_OPTION) { 
+										
+										generarPDF();
+										
+									}
 									BD.closeBD(con);
 								} catch (DBException e1) {
 									// TODO Auto-generated catch block
@@ -665,7 +678,12 @@ public class ReservarTicket extends JInternalFrame {
 								try {
 									con=BD.initBD("Aeropuerto.db");
 									BD.insertarTicket(con, 0,txtDni.getText(), lblIdVuelo.getText(), Clase.valueOf(opcionesClase.getSelectedItem().toString()), Double.parseDouble(txtPrecioFinalaMostrar.getText()), asientosComprados, editor.getText());
-									JOptionPane.showMessageDialog (null, "Reserva realizada", "Correcto", JOptionPane.INFORMATION_MESSAGE);
+									int opcion = JOptionPane.showConfirmDialog(null, "¿Quieres imprimir el ticket?");
+									if(opcion == JOptionPane.YES_OPTION) { 
+										
+										generarPDF();
+										
+									}									
 									BD.closeBD(con);
 								} catch (DBException e1) {
 									// TODO Auto-generated catch block
@@ -1026,6 +1044,7 @@ public class ReservarTicket extends JInternalFrame {
 		txtPrecioTotal.setFont(new Font("Tahoma", Font.BOLD, 20));
 		txtPrecioTotal.setEnabled(false);
 		
+		
 
 
 		GroupLayout layout = new GroupLayout(getContentPane());
@@ -1054,17 +1073,17 @@ public class ReservarTicket extends JInternalFrame {
 								.addGroup(layout.createSequentialGroup()
 									.addComponent(txtPrecioTotal, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE)
 									.addGap(24)
-									.addComponent(panelVuelo, GroupLayout.DEFAULT_SIZE, 543, Short.MAX_VALUE))))
+									.addComponent(panelVuelo, GroupLayout.DEFAULT_SIZE, 516, Short.MAX_VALUE))))
 						.addGroup(layout.createSequentialGroup()
 							.addComponent(panelBusquedaVuelo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED, 445, Short.MAX_VALUE)
+							.addPreferredGap(ComponentPlacement.RELATED, 418, Short.MAX_VALUE)
 							.addComponent(panelBusquedaPasajero, GroupLayout.PREFERRED_SIZE, 543, GroupLayout.PREFERRED_SIZE)))
 					.addGap(559))
 		);
 		layout.setVerticalGroup(
 			layout.createParallelGroup(Alignment.LEADING)
 				.addGroup(layout.createSequentialGroup()
-					.addContainerGap(17, Short.MAX_VALUE)
+					.addContainerGap(21, Short.MAX_VALUE)
 					.addGroup(layout.createParallelGroup(Alignment.TRAILING)
 						.addComponent(panelBusquedaVuelo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(panelBusquedaPasajero, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
@@ -1072,7 +1091,7 @@ public class ReservarTicket extends JInternalFrame {
 						.addGroup(layout.createSequentialGroup()
 							.addGap(18)
 							.addComponent(scrollTabla, GroupLayout.PREFERRED_SIZE, 213, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+							.addPreferredGap(ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
 							.addGroup(layout.createParallelGroup(Alignment.TRAILING)
 								.addComponent(txtPrecioBase, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
 								.addGroup(layout.createParallelGroup(Alignment.BASELINE)
@@ -1089,13 +1108,87 @@ public class ReservarTicket extends JInternalFrame {
 							.addComponent(btnReservar, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE)
 							.addComponent(btnCancelar, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE))
 						.addComponent(txtPrecioBaseaMostrar, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap(21, Short.MAX_VALUE))
+					.addContainerGap(23, Short.MAX_VALUE))
 		);
 		getContentPane().setLayout(layout);
 
 		pack();
 
 		setVisible(true);
+		
+	}
+	public static void generarPDF(){
+		String dniImpreso=txtDni.getText();
+		String nombreImpreso = txtNombre.getText();
+		String apellidoImpreso = txtApellido.getText();
+		String idVueloImpreso= lblIdVuelo.getText();
+		String asientosComprados= txtAsientos.getValue().toString();
+		String origenImpreso=txtOrigenMostrado.getText();
+		String destinoImpreso=txtDestinoMostrado.getText();
+		String claseImpresa=opcionesClase.getSelectedItem().toString();
+		String fechaImpresa=editor.getText();
+		String precioImpreso= txtPrecioFinalaMostrar.getText();
+		
+		//generar PDF
+		
+		try {
+			long milis=System.currentTimeMillis();
+			SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH_mm_ss");
+			Date fecha = new Date(milis);
+			String f = sdf.format(fecha);
+			String pw = System.getProperty("user.dir") +"/" +f + ".pdf";
+			Document documento = new Document();
+			PdfWriter writer = null;
+			try {
+				writer = PdfWriter.getInstance(documento, new FileOutputStream(pw));
+			} catch (DocumentException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			documento.open();
+			
+			Paragraph marcaDeAgua=new Paragraph();
+			marcaDeAgua.setAlignment(marcaDeAgua.ALIGN_TOP);
+			marcaDeAgua.setFont(FontFactory.getFont("Sans", 30, Font.ITALIC, BaseColor.ORANGE));
+			marcaDeAgua.add("DeustoFly");
+			Paragraph parrafo=new Paragraph();
+			parrafo.setAlignment(Paragraph.ALIGN_CENTER);
+			parrafo.setFont(FontFactory.getFont("Sans", 20, Font.BOLD, BaseColor.BLUE));
+			parrafo.add("Dni: "+dniImpreso+"\n"+"Nombre: "+nombreImpreso+"\n"+"Apellido: "+apellidoImpreso+"\n"+"Vuelo: "+idVueloImpreso+"\n"+"Asientos comprados: "+asientosComprados+"\n"+"Origen: "+origenImpreso+"\n"+"Destino: "+destinoImpreso+"\n"+"Clase: "+claseImpresa+"\n"+"Fecha: "+fechaImpresa+"\n"+"Precio: "+precioImpreso);
+			try {
+				documento.add(marcaDeAgua);
+				documento.add(parrafo);
+			} catch (DocumentException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			documento.close();
+			writer.close();
+		
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		// Ahora genera csv
+		try {
+			long milis=System.currentTimeMillis();
+			SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH_mm_ss");
+			Date fecha = new Date(milis);
+			String f = sdf.format(fecha);
+			PrintWriter pw = new PrintWriter(dniImpreso+"-"+f+".csv");
+			
+			pw.println("Dni: "+dniImpreso+"\n"+"Nombre: "+nombreImpreso+"\n"+"Apellido: "+apellidoImpreso+"\n"+"Vuelo: "+idVueloImpreso+"\n"+"Asientos comprados: "+asientosComprados+"\n"+"Origen: "+origenImpreso+"\n"+"Destino: "+destinoImpreso+"\n"+"Clase: "+claseImpresa+"\n"+"Fecha: "+fechaImpresa+"\n"+"Precio: "+precioImpreso);
+			pw.flush();
+			pw.close();
+			JOptionPane.showMessageDialog (null, "Ticket descargado", "Correcto", JOptionPane.INFORMATION_MESSAGE);
 
+			
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		
 	}
 }
