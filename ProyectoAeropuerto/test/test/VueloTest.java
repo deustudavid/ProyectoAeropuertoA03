@@ -16,7 +16,7 @@ public class VueloTest {
 	SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss:SSS");
 	String f = sdf.format(fecha);
 
-	Vuelo v = new Vuelo("1", "Bilbao", "Madrid", f, "2:00", "3:00", 0, 0);
+	Vuelo v = new Vuelo("1", "Bilbao", "Madrid", f, "2:00", "3:00", 0, 10);
 	Vuelo b = new Vuelo();
 
 	@Test
@@ -56,7 +56,7 @@ public class VueloTest {
 
 	@Test
 	public void testGetAsientosRestantes() {
-		assertEquals(0, v.getAsientosRestantes());
+		assertEquals(10, v.getAsientosRestantes());
 	}
 
 	@Test
@@ -113,6 +113,16 @@ public class VueloTest {
 				+ v.getFecha() + ", horaSalida=" + v.getHoraSalida() + ", horaLlegada=" + v.getHoraLlegada()
 				+ ", asientosMax=" + v.getAsientosMax() + ", asientosRestantes=" + v.getAsientosRestantes() + "]",
 				v.toString());
+	}
+	
+	@Test
+	public void CalcularAsientosRestantesTest() {
+		assertEquals(v.CalcularAsientosRestantes(v, 3), 7);
+	}
+	
+	@Test
+	public void CalcularAsientosRestantesTest2() {
+		assertEquals(v.CalcularAsientosRestantes(v, 20), -1);
 	}
 
 }
