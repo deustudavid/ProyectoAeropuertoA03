@@ -40,9 +40,7 @@ public class Pasajero extends Persona {
 
 	@Override
 	public String toString() {
-		return "Pasajero [telefono=" + telefono + ", direccion=" + direccion + ", getDni()=" + getDni()
-				+ ", getNombre()=" + getNombre() + ", getApellido()=" + getApellido() + ", getEdad()=" + getEdad()
-				+ "]";
+		return getDni();
 	}
 
 	

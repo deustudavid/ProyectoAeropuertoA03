@@ -671,6 +671,7 @@ public class BD {
     }
 	
 	public static ArrayList<Pasajero> obtenerPasajeros(Connection con) {
+	
         try (Statement statement = con.createStatement()) {
             ArrayList<Pasajero> ret = new ArrayList<>();
             String sent = "select * from Pasajero;";
@@ -683,7 +684,6 @@ public class BD {
                 int edad=rs.getInt("edad");
                 int telefono=rs.getInt("telefono");
                 String direccion = rs.getString("direccion");
-               
                
                 ret.add( new Pasajero ( dni, nombre, apellido, edad, telefono,direccion) );
             }
@@ -747,55 +747,31 @@ public class BD {
             return null;
         }
     }
-	public static ArrayList<Equipaje> obtenerEquipajes(Connection con, String dniPasajero) {
-        try (Statement statement = con.createStatement()) {
-            ArrayList<Equipaje> ret = new ArrayList<>();
-            String sent = "SELECT * FROM Equipaje WHERE dniPasajero = '"+dniPasajero+"' ";
-            VentanaInicio.logger.log( Level.INFO, "Statement: " + sent );
-            ResultSet rs = statement.executeQuery( sent );
-            while( rs.next() ) { // Leer el resultset
-            	int equipajeNum = rs.getInt("equipajeNum");
-    			String dni= rs.getString("dniPasajero");
-    			String descripcion= rs.getString("descripcion");
-    			double peso=rs.getDouble("peso");
-    			double largo=rs.getDouble("largo");
-    			double altura=rs.getDouble("altura");
-    			double anchura=rs.getDouble("anchura");
-    			
-    			
-                ret.add( new Equipaje (equipajeNum, dni, descripcion, peso,largo,altura,anchura) );
-                VentanaInicio.logger.log(Level.INFO, "Se han encontrado los equipajes asociados al pasajero de dni: " + dniPasajero);
-            }
-           
-            return ret;
-        } catch (Exception e) {
-            VentanaInicio.logger.log( Level.SEVERE, "Excepción", e );
-            return null;
-        }
-    }
-	public static List<Equipaje> obtenerEquipajesDePasajero(Connection con, Pasajero p) throws DBException {
-		try (PreparedStatement stmt = con.prepareStatement("SELECT descripcion, peso, largo, altura, anchura FROM Equipaje WHERE dniPasajero == ?  ORDER BY peso")) {
+	
+	public static ArrayList<Equipaje> obtenerEquipajesDePasajero(Connection con, String dni) throws DBException {
+		try (PreparedStatement stmt = con.prepareStatement("SELECT descripcion, peso, largo, altura, anchura FROM Equipaje WHERE dniPasajero == '"+dni+"'  ORDER BY peso")) {
 			
-			List<Equipaje> equipajes = new ArrayList<>();
+			ArrayList<Equipaje> equipajes = new ArrayList<>();
 			try (ResultSet rs = stmt.executeQuery()) {
 				while(rs.next()) {
 					Equipaje eq = new Equipaje(
 						rs.getString("descripcion"),
 						rs.getFloat("peso"),
 						rs.getFloat("largo"),
-						
 						rs.getFloat("altura"),
 						rs.getFloat("anchura")
 					);
 					
 					equipajes.add(eq);
+	                VentanaInicio.logger.log(Level.INFO, "Se han encontrado los equipajes asociados al pasajero de dni: " + dni);
+
 				}
 			}
 			
 			return equipajes;
 		} catch (SQLException e) {
-			e.printStackTrace();
-			throw new DBException("No se pudo conseguir el listado de equipajes asociados al pasajero", e);
+            VentanaInicio.logger.log( Level.SEVERE, "Excepción", e );
+            throw new DBException("No se pudo conseguir el listado de equipajes asociados al pasajero", e);
 		}
 	}
 	

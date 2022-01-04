@@ -114,3 +114,435 @@ ene. 04, 2022 4:44:29 P. M. main.VentanaInicio initLogger
 SEVERE: No se pudo leer el fichero de configuraci�n del logger
 ene. 04, 2022 4:44:30 P. M. bd.BD obtenerPasajeros
 INFO: Statement: select * from Pasajero;
+ene. 04, 2022 5:42:49 P. M. main.VentanaInicio initLogger
+SEVERE: No se pudo leer el fichero de configuraci�n del logger
+ene. 04, 2022 5:42:49 P. M. bd.BD obtenerPasajeros
+INFO: Statement: select * from Pasajero;
+ene. 04, 2022 5:48:24 P. M. main.VentanaInicio initLogger
+SEVERE: No se pudo leer el fichero de configuraci�n del logger
+ene. 04, 2022 5:48:24 P. M. bd.BD obtenerPasajeros
+INFO: Statement: select * from Pasajero;
+ene. 04, 2022 5:54:46 P. M. main.VentanaInicio initLogger
+SEVERE: No se pudo leer el fichero de configuraci�n del logger
+ene. 04, 2022 5:54:46 P. M. bd.BD obtenerPasajeros
+INFO: Statement: select * from Pasajero;
+ene. 04, 2022 5:54:46 P. M. bd.BD obtenerPasajeros
+INFO: Statement: select * from Pasajero;
+ene. 04, 2022 6:47:42 P. M. main.VentanaInicio initLogger
+SEVERE: No se pudo leer el fichero de configuraci�n del logger
+ene. 04, 2022 6:47:42 P. M. bd.BD obtenerPasajeros
+INFO: Statement: select * from Pasajero;
+ene. 04, 2022 6:47:42 P. M. bd.BD obtenerPasajeros
+INFO: Statement: select * from Pasajero;
+ene. 04, 2022 6:56:50 P. M. main.VentanaInicio initLogger
+SEVERE: No se pudo leer el fichero de configuraci�n del logger
+ene. 04, 2022 6:56:50 P. M. bd.BD obtenerPasajeros
+INFO: Statement: select * from Pasajero;
+ene. 04, 2022 6:56:50 P. M. bd.BD obtenerPasajeros
+INFO: Statement: select * from Pasajero;
+ene. 04, 2022 7:00:41 P. M. main.VentanaInicio initLogger
+SEVERE: No se pudo leer el fichero de configuraci�n del logger
+ene. 04, 2022 7:00:41 P. M. bd.BD obtenerPasajeros
+INFO: Statement: select * from Pasajero;
+ene. 04, 2022 7:00:41 P. M. bd.BD obtenerPasajeros
+INFO: Statement: select * from Pasajero;
+ene. 04, 2022 7:16:12 P. M. main.VentanaInicio initLogger
+SEVERE: No se pudo leer el fichero de configuraci�n del logger
+ene. 04, 2022 7:16:12 P. M. bd.BD obtenerPasajeros
+INFO: Statement: select * from Pasajero;
+ene. 04, 2022 7:18:56 P. M. main.VentanaInicio initLogger
+SEVERE: No se pudo leer el fichero de configuraci�n del logger
+ene. 04, 2022 7:18:56 P. M. bd.BD obtenerPasajeros
+INFO: Statement: select * from Pasajero;
+ene. 04, 2022 7:19:59 P. M. main.VentanaInicio initLogger
+SEVERE: No se pudo leer el fichero de configuraci�n del logger
+ene. 04, 2022 7:19:59 P. M. main.VentanaInicio$1 run
+INFO: Se ejecuta la ventana de inicio
+ene. 04, 2022 7:20:00 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Azafato (usuario String, contrasenya String)
+ene. 04, 2022 7:20:00 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Administrador (usuario String, contrasenya String)
+ene. 04, 2022 7:20:00 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Vuelo (ID String, origen String, destino String, fecha String, horaSalida String, horaLlegada String, asientosMax int, asientosDisponibles int)
+ene. 04, 2022 7:20:00 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Pasajero(dni String , nombre String ,apellido String, edad int, telefono int, direccion String)
+ene. 04, 2022 7:20:00 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Ticket(ticketNum INTEGER PRIMARY KEY AUTOINCREMENT, dniPasajero String ,idVuelo String , clase String,  precio double, numAsientos int, fecha String)
+ene. 04, 2022 7:20:00 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Ticket(ticketNum INTEGER PRIMARY KEY AUTOINCREMENT, dniPasajero String ,idVuelo String , clase String,  precio double, numAsientos int, fecha String)
+ene. 04, 2022 7:20:05 P. M. main.VentanaInicio initLogger
+SEVERE: No se pudo leer el fichero de configuraci�n del logger
+ene. 04, 2022 7:20:05 P. M. bd.BD obtenerPasajeros
+INFO: Statement: select * from Pasajero;
+ene. 04, 2022 7:24:08 P. M. main.VentanaInicio initLogger
+SEVERE: No se pudo leer el fichero de configuraci�n del logger
+ene. 04, 2022 7:24:08 P. M. bd.BD obtenerPasajeros
+INFO: Statement: select * from Pasajero;
+ene. 04, 2022 7:39:07 P. M. main.VentanaInicio initLogger
+SEVERE: No se pudo leer el fichero de configuraci�n del logger
+ene. 04, 2022 7:39:07 P. M. bd.BD obtenerPasajeros
+INFO: Statement: select * from Pasajero;
+ene. 04, 2022 7:40:25 P. M. main.VentanaInicio initLogger
+SEVERE: No se pudo leer el fichero de configuraci�n del logger
+ene. 04, 2022 7:40:25 P. M. bd.BD obtenerPasajeros
+INFO: Statement: select * from Pasajero;
+ene. 04, 2022 7:41:23 P. M. main.VentanaInicio initLogger
+SEVERE: No se pudo leer el fichero de configuraci�n del logger
+ene. 04, 2022 7:41:23 P. M. bd.BD obtenerPasajeros
+INFO: Statement: select * from Pasajero;
+ene. 04, 2022 7:41:41 P. M. main.VentanaInicio initLogger
+SEVERE: No se pudo leer el fichero de configuraci�n del logger
+ene. 04, 2022 7:41:41 P. M. bd.BD obtenerPasajeros
+INFO: Statement: select * from Pasajero;
+ene. 04, 2022 7:57:15 P. M. main.VentanaInicio initLogger
+SEVERE: No se pudo leer el fichero de configuraci�n del logger
+ene. 04, 2022 7:57:15 P. M. bd.BD obtenerPasajeros
+INFO: Statement: select * from Pasajero;
+ene. 04, 2022 7:57:19 P. M. bd.BD obtenerEquipajesDePasajero
+INFO: Se han encontrado los equipajes asociados al pasajero de dni: 00000000Q
+ene. 04, 2022 7:57:19 P. M. bd.BD obtenerEquipajesDePasajero
+INFO: Se han encontrado los equipajes asociados al pasajero de dni: 00000000Q
+ene. 04, 2022 7:57:19 P. M. bd.BD obtenerEquipajesDePasajero
+INFO: Se han encontrado los equipajes asociados al pasajero de dni: 00000000Q
+ene. 04, 2022 7:57:19 P. M. bd.BD obtenerEquipajesDePasajero
+INFO: Se han encontrado los equipajes asociados al pasajero de dni: 00000000Q
+ene. 04, 2022 7:57:19 P. M. bd.BD obtenerEquipajesDePasajero
+INFO: Se han encontrado los equipajes asociados al pasajero de dni: 00000000Q
+ene. 04, 2022 7:57:19 P. M. bd.BD obtenerEquipajesDePasajero
+INFO: Se han encontrado los equipajes asociados al pasajero de dni: 00000000Q
+ene. 04, 2022 7:57:21 P. M. bd.BD obtenerEquipajesDePasajero
+INFO: Se han encontrado los equipajes asociados al pasajero de dni: 12345678A
+ene. 04, 2022 7:57:21 P. M. bd.BD obtenerEquipajesDePasajero
+INFO: Se han encontrado los equipajes asociados al pasajero de dni: 12345678A
+ene. 04, 2022 7:57:21 P. M. bd.BD obtenerEquipajesDePasajero
+INFO: Se han encontrado los equipajes asociados al pasajero de dni: 12345678A
+ene. 04, 2022 7:57:21 P. M. bd.BD obtenerEquipajesDePasajero
+INFO: Se han encontrado los equipajes asociados al pasajero de dni: 12345678A
+ene. 04, 2022 7:57:24 P. M. bd.BD obtenerEquipajesDePasajero
+INFO: Se han encontrado los equipajes asociados al pasajero de dni: 00000000Q
+ene. 04, 2022 7:57:24 P. M. bd.BD obtenerEquipajesDePasajero
+INFO: Se han encontrado los equipajes asociados al pasajero de dni: 00000000Q
+ene. 04, 2022 7:57:24 P. M. bd.BD obtenerEquipajesDePasajero
+INFO: Se han encontrado los equipajes asociados al pasajero de dni: 00000000Q
+ene. 04, 2022 7:57:24 P. M. bd.BD obtenerEquipajesDePasajero
+INFO: Se han encontrado los equipajes asociados al pasajero de dni: 00000000Q
+ene. 04, 2022 7:57:24 P. M. bd.BD obtenerEquipajesDePasajero
+INFO: Se han encontrado los equipajes asociados al pasajero de dni: 00000000Q
+ene. 04, 2022 7:57:24 P. M. bd.BD obtenerEquipajesDePasajero
+INFO: Se han encontrado los equipajes asociados al pasajero de dni: 00000000Q
+ene. 04, 2022 7:57:26 P. M. bd.BD obtenerEquipajesDePasajero
+INFO: Se han encontrado los equipajes asociados al pasajero de dni: 12345678A
+ene. 04, 2022 7:57:26 P. M. bd.BD obtenerEquipajesDePasajero
+INFO: Se han encontrado los equipajes asociados al pasajero de dni: 12345678A
+ene. 04, 2022 7:57:26 P. M. bd.BD obtenerEquipajesDePasajero
+INFO: Se han encontrado los equipajes asociados al pasajero de dni: 12345678A
+ene. 04, 2022 7:57:26 P. M. bd.BD obtenerEquipajesDePasajero
+INFO: Se han encontrado los equipajes asociados al pasajero de dni: 12345678A
+ene. 04, 2022 8:04:41 P. M. main.VentanaInicio initLogger
+SEVERE: No se pudo leer el fichero de configuraci�n del logger
+ene. 04, 2022 8:04:41 P. M. bd.BD obtenerPasajeros
+INFO: Statement: select * from Pasajero;
+ene. 04, 2022 8:04:46 P. M. bd.BD obtenerEquipajesDePasajero
+INFO: Se han encontrado los equipajes asociados al pasajero de dni: 00000000Q
+ene. 04, 2022 8:04:46 P. M. bd.BD obtenerEquipajesDePasajero
+INFO: Se han encontrado los equipajes asociados al pasajero de dni: 00000000Q
+ene. 04, 2022 8:04:46 P. M. bd.BD obtenerEquipajesDePasajero
+INFO: Se han encontrado los equipajes asociados al pasajero de dni: 00000000Q
+ene. 04, 2022 8:04:46 P. M. bd.BD obtenerEquipajesDePasajero
+INFO: Se han encontrado los equipajes asociados al pasajero de dni: 00000000Q
+ene. 04, 2022 8:04:46 P. M. bd.BD obtenerEquipajesDePasajero
+INFO: Se han encontrado los equipajes asociados al pasajero de dni: 00000000Q
+ene. 04, 2022 8:04:46 P. M. bd.BD obtenerEquipajesDePasajero
+INFO: Se han encontrado los equipajes asociados al pasajero de dni: 00000000Q
+ene. 04, 2022 8:04:50 P. M. bd.BD obtenerEquipajesDePasajero
+INFO: Se han encontrado los equipajes asociados al pasajero de dni: 12345678A
+ene. 04, 2022 8:04:50 P. M. bd.BD obtenerEquipajesDePasajero
+INFO: Se han encontrado los equipajes asociados al pasajero de dni: 12345678A
+ene. 04, 2022 8:04:50 P. M. bd.BD obtenerEquipajesDePasajero
+INFO: Se han encontrado los equipajes asociados al pasajero de dni: 12345678A
+ene. 04, 2022 8:04:50 P. M. bd.BD obtenerEquipajesDePasajero
+INFO: Se han encontrado los equipajes asociados al pasajero de dni: 12345678A
+ene. 04, 2022 8:04:59 P. M. main.VentanaInicio initLogger
+SEVERE: No se pudo leer el fichero de configuraci�n del logger
+ene. 04, 2022 8:04:59 P. M. main.VentanaInicio$1 run
+INFO: Se ejecuta la ventana de inicio
+ene. 04, 2022 8:04:59 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Azafato (usuario String, contrasenya String)
+ene. 04, 2022 8:04:59 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Administrador (usuario String, contrasenya String)
+ene. 04, 2022 8:04:59 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Vuelo (ID String, origen String, destino String, fecha String, horaSalida String, horaLlegada String, asientosMax int, asientosDisponibles int)
+ene. 04, 2022 8:04:59 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Pasajero(dni String , nombre String ,apellido String, edad int, telefono int, direccion String)
+ene. 04, 2022 8:04:59 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Ticket(ticketNum INTEGER PRIMARY KEY AUTOINCREMENT, dniPasajero String ,idVuelo String , clase String,  precio double, numAsientos int, fecha String)
+ene. 04, 2022 8:04:59 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Ticket(ticketNum INTEGER PRIMARY KEY AUTOINCREMENT, dniPasajero String ,idVuelo String , clase String,  precio double, numAsientos int, fecha String)
+ene. 04, 2022 8:05:04 P. M. main.VentanaInicio$2 actionPerformed
+INFO: Conexion con la base de datos abierta
+ene. 04, 2022 8:05:04 P. M. main.VentanaInicio$2 actionPerformed
+INFO: Conexion con la base de datos cerrada
+ene. 04, 2022 8:39:11 P. M. main.VentanaInicio initLogger
+SEVERE: No se pudo leer el fichero de configuraci�n del logger
+ene. 04, 2022 8:39:12 P. M. main.VentanaInicio$1 run
+INFO: Se ejecuta la ventana de inicio
+ene. 04, 2022 8:39:12 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Azafato (usuario String, contrasenya String)
+ene. 04, 2022 8:39:12 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Administrador (usuario String, contrasenya String)
+ene. 04, 2022 8:39:12 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Vuelo (ID String, origen String, destino String, fecha String, horaSalida String, horaLlegada String, asientosMax int, asientosDisponibles int)
+ene. 04, 2022 8:39:12 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Pasajero(dni String , nombre String ,apellido String, edad int, telefono int, direccion String)
+ene. 04, 2022 8:39:12 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Ticket(ticketNum INTEGER PRIMARY KEY AUTOINCREMENT, dniPasajero String ,idVuelo String , clase String,  precio double, numAsientos int, fecha String)
+ene. 04, 2022 8:39:12 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Ticket(ticketNum INTEGER PRIMARY KEY AUTOINCREMENT, dniPasajero String ,idVuelo String , clase String,  precio double, numAsientos int, fecha String)
+ene. 04, 2022 8:39:14 P. M. main.VentanaInicio$2 actionPerformed
+INFO: Conexion con la base de datos abierta
+ene. 04, 2022 8:39:15 P. M. main.VentanaInicio$2 actionPerformed
+INFO: Conexion con la base de datos cerrada
+ene. 04, 2022 8:39:18 P. M. bd.BD obtenerPasajeros
+INFO: Statement: select * from Pasajero;
+ene. 04, 2022 8:39:27 P. M. bd.BD obtenerEquipajesDePasajero
+INFO: Se han encontrado los equipajes asociados al pasajero de dni: 00000000Q
+ene. 04, 2022 8:39:27 P. M. bd.BD obtenerEquipajesDePasajero
+INFO: Se han encontrado los equipajes asociados al pasajero de dni: 00000000Q
+ene. 04, 2022 8:39:27 P. M. bd.BD obtenerEquipajesDePasajero
+INFO: Se han encontrado los equipajes asociados al pasajero de dni: 00000000Q
+ene. 04, 2022 8:39:28 P. M. bd.BD obtenerEquipajesDePasajero
+INFO: Se han encontrado los equipajes asociados al pasajero de dni: 00000000Q
+ene. 04, 2022 8:39:28 P. M. bd.BD obtenerEquipajesDePasajero
+INFO: Se han encontrado los equipajes asociados al pasajero de dni: 00000000Q
+ene. 04, 2022 8:39:28 P. M. bd.BD obtenerEquipajesDePasajero
+INFO: Se han encontrado los equipajes asociados al pasajero de dni: 00000000Q
+ene. 04, 2022 8:39:41 P. M. bd.BD obtenerEquipajesDePasajero
+INFO: Se han encontrado los equipajes asociados al pasajero de dni: 00000000Q
+ene. 04, 2022 8:39:41 P. M. bd.BD obtenerEquipajesDePasajero
+INFO: Se han encontrado los equipajes asociados al pasajero de dni: 00000000Q
+ene. 04, 2022 8:39:41 P. M. bd.BD obtenerEquipajesDePasajero
+INFO: Se han encontrado los equipajes asociados al pasajero de dni: 00000000Q
+ene. 04, 2022 8:40:10 P. M. bd.BD insertarEquipaje
+INFO: Se ha insertado un nuevo equipaje
+ene. 04, 2022 8:40:16 P. M. bd.BD obtenerEquipajesDePasajero
+INFO: Se han encontrado los equipajes asociados al pasajero de dni: 00000000Q
+ene. 04, 2022 8:40:16 P. M. bd.BD obtenerEquipajesDePasajero
+INFO: Se han encontrado los equipajes asociados al pasajero de dni: 00000000Q
+ene. 04, 2022 8:40:16 P. M. bd.BD obtenerEquipajesDePasajero
+INFO: Se han encontrado los equipajes asociados al pasajero de dni: 00000000Q
+ene. 04, 2022 8:40:16 P. M. bd.BD obtenerEquipajesDePasajero
+INFO: Se han encontrado los equipajes asociados al pasajero de dni: 00000000Q
+ene. 04, 2022 8:40:16 P. M. bd.BD obtenerEquipajesDePasajero
+INFO: Se han encontrado los equipajes asociados al pasajero de dni: 00000000Q
+ene. 04, 2022 8:40:16 P. M. bd.BD obtenerEquipajesDePasajero
+INFO: Se han encontrado los equipajes asociados al pasajero de dni: 00000000Q
+ene. 04, 2022 8:40:16 P. M. bd.BD obtenerEquipajesDePasajero
+INFO: Se han encontrado los equipajes asociados al pasajero de dni: 00000000Q
+ene. 04, 2022 8:40:16 P. M. bd.BD obtenerEquipajesDePasajero
+INFO: Se han encontrado los equipajes asociados al pasajero de dni: 00000000Q
+ene. 04, 2022 8:41:13 P. M. main.VentanaInicio initLogger
+SEVERE: No se pudo leer el fichero de configuraci�n del logger
+ene. 04, 2022 8:41:13 P. M. main.VentanaInicio$1 run
+INFO: Se ejecuta la ventana de inicio
+ene. 04, 2022 8:41:14 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Azafato (usuario String, contrasenya String)
+ene. 04, 2022 8:41:14 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Administrador (usuario String, contrasenya String)
+ene. 04, 2022 8:41:14 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Vuelo (ID String, origen String, destino String, fecha String, horaSalida String, horaLlegada String, asientosMax int, asientosDisponibles int)
+ene. 04, 2022 8:41:14 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Pasajero(dni String , nombre String ,apellido String, edad int, telefono int, direccion String)
+ene. 04, 2022 8:41:14 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Ticket(ticketNum INTEGER PRIMARY KEY AUTOINCREMENT, dniPasajero String ,idVuelo String , clase String,  precio double, numAsientos int, fecha String)
+ene. 04, 2022 8:41:14 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Ticket(ticketNum INTEGER PRIMARY KEY AUTOINCREMENT, dniPasajero String ,idVuelo String , clase String,  precio double, numAsientos int, fecha String)
+ene. 04, 2022 8:41:16 P. M. main.VentanaInicio$2 actionPerformed
+INFO: Conexion con la base de datos abierta
+ene. 04, 2022 8:41:16 P. M. main.VentanaInicio$2 actionPerformed
+INFO: Conexion con la base de datos cerrada
+ene. 04, 2022 8:41:19 P. M. bd.BD obtenerPasajeros
+INFO: Statement: select * from Pasajero;
+ene. 04, 2022 8:41:33 P. M. main.VentanaInicio initLogger
+SEVERE: No se pudo leer el fichero de configuraci�n del logger
+ene. 04, 2022 8:41:34 P. M. main.VentanaInicio$1 run
+INFO: Se ejecuta la ventana de inicio
+ene. 04, 2022 8:41:34 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Azafato (usuario String, contrasenya String)
+ene. 04, 2022 8:41:34 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Administrador (usuario String, contrasenya String)
+ene. 04, 2022 8:41:34 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Vuelo (ID String, origen String, destino String, fecha String, horaSalida String, horaLlegada String, asientosMax int, asientosDisponibles int)
+ene. 04, 2022 8:41:34 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Pasajero(dni String , nombre String ,apellido String, edad int, telefono int, direccion String)
+ene. 04, 2022 8:41:34 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Ticket(ticketNum INTEGER PRIMARY KEY AUTOINCREMENT, dniPasajero String ,idVuelo String , clase String,  precio double, numAsientos int, fecha String)
+ene. 04, 2022 8:41:34 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Ticket(ticketNum INTEGER PRIMARY KEY AUTOINCREMENT, dniPasajero String ,idVuelo String , clase String,  precio double, numAsientos int, fecha String)
+ene. 04, 2022 8:41:36 P. M. main.VentanaInicio$2 actionPerformed
+INFO: Conexion con la base de datos abierta
+ene. 04, 2022 8:41:36 P. M. main.VentanaInicio$2 actionPerformed
+INFO: Conexion con la base de datos cerrada
+ene. 04, 2022 8:41:38 P. M. bd.BD obtenerPasajeros
+INFO: Statement: select * from Pasajero;
+ene. 04, 2022 8:49:17 P. M. main.VentanaInicio initLogger
+SEVERE: No se pudo leer el fichero de configuraci�n del logger
+ene. 04, 2022 8:49:17 P. M. main.VentanaInicio$1 run
+INFO: Se ejecuta la ventana de inicio
+ene. 04, 2022 8:49:18 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Azafato (usuario String, contrasenya String)
+ene. 04, 2022 8:49:18 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Administrador (usuario String, contrasenya String)
+ene. 04, 2022 8:49:18 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Vuelo (ID String, origen String, destino String, fecha String, horaSalida String, horaLlegada String, asientosMax int, asientosDisponibles int)
+ene. 04, 2022 8:49:18 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Pasajero(dni String , nombre String ,apellido String, edad int, telefono int, direccion String)
+ene. 04, 2022 8:49:18 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Ticket(ticketNum INTEGER PRIMARY KEY AUTOINCREMENT, dniPasajero String ,idVuelo String , clase String,  precio double, numAsientos int, fecha String)
+ene. 04, 2022 8:49:18 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Ticket(ticketNum INTEGER PRIMARY KEY AUTOINCREMENT, dniPasajero String ,idVuelo String , clase String,  precio double, numAsientos int, fecha String)
+ene. 04, 2022 8:49:20 P. M. main.VentanaInicio$2 actionPerformed
+INFO: Conexion con la base de datos abierta
+ene. 04, 2022 8:49:20 P. M. main.VentanaInicio$2 actionPerformed
+INFO: Conexion con la base de datos cerrada
+ene. 04, 2022 8:49:23 P. M. bd.BD obtenerPasajeros
+INFO: Statement: select * from Pasajero;
+ene. 04, 2022 8:55:21 P. M. main.VentanaInicio initLogger
+SEVERE: No se pudo leer el fichero de configuraci�n del logger
+ene. 04, 2022 8:55:21 P. M. main.VentanaInicio$1 run
+INFO: Se ejecuta la ventana de inicio
+ene. 04, 2022 8:55:21 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Azafato (usuario String, contrasenya String)
+ene. 04, 2022 8:55:21 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Administrador (usuario String, contrasenya String)
+ene. 04, 2022 8:55:21 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Vuelo (ID String, origen String, destino String, fecha String, horaSalida String, horaLlegada String, asientosMax int, asientosDisponibles int)
+ene. 04, 2022 8:55:21 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Pasajero(dni String , nombre String ,apellido String, edad int, telefono int, direccion String)
+ene. 04, 2022 8:55:21 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Ticket(ticketNum INTEGER PRIMARY KEY AUTOINCREMENT, dniPasajero String ,idVuelo String , clase String,  precio double, numAsientos int, fecha String)
+ene. 04, 2022 8:55:21 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Ticket(ticketNum INTEGER PRIMARY KEY AUTOINCREMENT, dniPasajero String ,idVuelo String , clase String,  precio double, numAsientos int, fecha String)
+ene. 04, 2022 8:55:24 P. M. main.VentanaInicio$2 actionPerformed
+INFO: Conexion con la base de datos abierta
+ene. 04, 2022 8:55:24 P. M. main.VentanaInicio$2 actionPerformed
+INFO: Conexion con la base de datos cerrada
+ene. 04, 2022 9:16:04 P. M. main.VentanaInicio initLogger
+SEVERE: No se pudo leer el fichero de configuraci�n del logger
+ene. 04, 2022 9:16:04 P. M. main.VentanaInicio$1 run
+INFO: Se ejecuta la ventana de inicio
+ene. 04, 2022 9:16:05 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Azafato (usuario String, contrasenya String)
+ene. 04, 2022 9:16:05 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Administrador (usuario String, contrasenya String)
+ene. 04, 2022 9:16:05 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Vuelo (ID String, origen String, destino String, fecha String, horaSalida String, horaLlegada String, asientosMax int, asientosDisponibles int)
+ene. 04, 2022 9:16:05 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Pasajero(dni String , nombre String ,apellido String, edad int, telefono int, direccion String)
+ene. 04, 2022 9:16:05 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Ticket(ticketNum INTEGER PRIMARY KEY AUTOINCREMENT, dniPasajero String ,idVuelo String , clase String,  precio double, numAsientos int, fecha String)
+ene. 04, 2022 9:16:05 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Ticket(ticketNum INTEGER PRIMARY KEY AUTOINCREMENT, dniPasajero String ,idVuelo String , clase String,  precio double, numAsientos int, fecha String)
+ene. 04, 2022 9:16:07 P. M. main.VentanaInicio$2 actionPerformed
+INFO: Conexion con la base de datos abierta
+ene. 04, 2022 9:16:07 P. M. main.VentanaInicio$2 actionPerformed
+INFO: Conexion con la base de datos cerrada
+ene. 04, 2022 9:16:56 P. M. bd.BD insertarEquipaje
+INFO: Se ha insertado un nuevo equipaje
+ene. 04, 2022 9:17:22 P. M. bd.BD insertarEquipaje
+INFO: Se ha insertado un nuevo equipaje
+ene. 04, 2022 9:17:56 P. M. bd.BD insertarEquipaje
+INFO: Se ha insertado un nuevo equipaje
+ene. 04, 2022 9:18:23 P. M. bd.BD insertarEquipaje
+INFO: Se ha insertado un nuevo equipaje
+ene. 04, 2022 9:19:01 P. M. bd.BD insertarEquipaje
+INFO: Se ha insertado un nuevo equipaje
+ene. 04, 2022 9:19:11 P. M. bd.BD obtenerEquipajesDePasajero
+INFO: Se han encontrado los equipajes asociados al pasajero de dni: 12345678A
+ene. 04, 2022 9:19:11 P. M. bd.BD obtenerEquipajesDePasajero
+INFO: Se han encontrado los equipajes asociados al pasajero de dni: 12345678A
+ene. 04, 2022 9:19:24 P. M. bd.BD insertarEquipaje
+INFO: Se ha insertado un nuevo equipaje
+ene. 04, 2022 9:19:43 P. M. bd.BD insertarEquipaje
+INFO: Se ha insertado un nuevo equipaje
+ene. 04, 2022 9:20:10 P. M. bd.BD insertarEquipaje
+INFO: Se ha insertado un nuevo equipaje
+ene. 04, 2022 9:20:48 P. M. bd.BD insertarEquipaje
+INFO: Se ha insertado un nuevo equipaje
+ene. 04, 2022 9:20:52 P. M. bd.BD obtenerPasajeros
+INFO: Statement: select * from Pasajero;
+ene. 04, 2022 9:20:57 P. M. bd.BD obtenerEquipajesDePasajero
+INFO: Se han encontrado los equipajes asociados al pasajero de dni: 00000000Q
+ene. 04, 2022 9:20:57 P. M. bd.BD obtenerEquipajesDePasajero
+INFO: Se han encontrado los equipajes asociados al pasajero de dni: 00000000Q
+ene. 04, 2022 9:20:57 P. M. bd.BD obtenerEquipajesDePasajero
+INFO: Se han encontrado los equipajes asociados al pasajero de dni: 00000000Q
+ene. 04, 2022 9:20:57 P. M. bd.BD obtenerEquipajesDePasajero
+INFO: Se han encontrado los equipajes asociados al pasajero de dni: 00000000Q
+ene. 04, 2022 9:20:57 P. M. bd.BD obtenerEquipajesDePasajero
+INFO: Se han encontrado los equipajes asociados al pasajero de dni: 00000000Q
+ene. 04, 2022 9:20:57 P. M. bd.BD obtenerEquipajesDePasajero
+INFO: Se han encontrado los equipajes asociados al pasajero de dni: 00000000Q
+ene. 04, 2022 9:20:57 P. M. bd.BD obtenerEquipajesDePasajero
+INFO: Se han encontrado los equipajes asociados al pasajero de dni: 00000000Q
+ene. 04, 2022 9:20:57 P. M. bd.BD obtenerEquipajesDePasajero
+INFO: Se han encontrado los equipajes asociados al pasajero de dni: 00000000Q
+ene. 04, 2022 9:20:58 P. M. bd.BD obtenerEquipajesDePasajero
+INFO: Se han encontrado los equipajes asociados al pasajero de dni: 87654321B
+ene. 04, 2022 9:20:58 P. M. bd.BD obtenerEquipajesDePasajero
+INFO: Se han encontrado los equipajes asociados al pasajero de dni: 87654321B
+ene. 04, 2022 9:20:59 P. M. bd.BD obtenerEquipajesDePasajero
+INFO: Se han encontrado los equipajes asociados al pasajero de dni: 12344321C
+ene. 04, 2022 9:20:59 P. M. bd.BD obtenerEquipajesDePasajero
+INFO: Se han encontrado los equipajes asociados al pasajero de dni: 12344321C
+ene. 04, 2022 9:21:00 P. M. bd.BD obtenerEquipajesDePasajero
+INFO: Se han encontrado los equipajes asociados al pasajero de dni: 99988877D
+ene. 04, 2022 9:21:00 P. M. bd.BD obtenerEquipajesDePasajero
+INFO: Se han encontrado los equipajes asociados al pasajero de dni: 99988877D
+ene. 04, 2022 9:21:01 P. M. bd.BD obtenerEquipajesDePasajero
+INFO: Se han encontrado los equipajes asociados al pasajero de dni: 11111111A
+ene. 04, 2022 9:21:01 P. M. bd.BD obtenerEquipajesDePasajero
+INFO: Se han encontrado los equipajes asociados al pasajero de dni: 11111111A
+ene. 04, 2022 9:21:02 P. M. bd.BD obtenerEquipajesDePasajero
+INFO: Se han encontrado los equipajes asociados al pasajero de dni: 12345678A
+ene. 04, 2022 9:21:02 P. M. bd.BD obtenerEquipajesDePasajero
+INFO: Se han encontrado los equipajes asociados al pasajero de dni: 12345678A
+ene. 04, 2022 9:21:02 P. M. bd.BD obtenerEquipajesDePasajero
+INFO: Se han encontrado los equipajes asociados al pasajero de dni: 12345678A
+ene. 04, 2022 9:21:02 P. M. bd.BD obtenerEquipajesDePasajero
+INFO: Se han encontrado los equipajes asociados al pasajero de dni: 12345678A
+ene. 04, 2022 9:21:02 P. M. bd.BD obtenerEquipajesDePasajero
+INFO: Se han encontrado los equipajes asociados al pasajero de dni: 12345678A
+ene. 04, 2022 9:21:02 P. M. bd.BD obtenerEquipajesDePasajero
+INFO: Se han encontrado los equipajes asociados al pasajero de dni: 12345678A
+ene. 04, 2022 9:21:02 P. M. bd.BD obtenerEquipajesDePasajero
+INFO: Se han encontrado los equipajes asociados al pasajero de dni: 42444234Q
+ene. 04, 2022 9:21:02 P. M. bd.BD obtenerEquipajesDePasajero
+INFO: Se han encontrado los equipajes asociados al pasajero de dni: 42444234Q
+ene. 04, 2022 9:21:03 P. M. bd.BD obtenerEquipajesDePasajero
+INFO: Se han encontrado los equipajes asociados al pasajero de dni: 42444234A
+ene. 04, 2022 9:21:03 P. M. bd.BD obtenerEquipajesDePasajero
+INFO: Se han encontrado los equipajes asociados al pasajero de dni: 42444234A
+ene. 04, 2022 9:21:05 P. M. bd.BD obtenerEquipajesDePasajero
+INFO: Se han encontrado los equipajes asociados al pasajero de dni: 42444234A
+ene. 04, 2022 9:21:05 P. M. bd.BD obtenerEquipajesDePasajero
+INFO: Se han encontrado los equipajes asociados al pasajero de dni: 42444234A
+ene. 04, 2022 9:21:06 P. M. bd.BD obtenerEquipajesDePasajero
+INFO: Se han encontrado los equipajes asociados al pasajero de dni: 42444234Q
+ene. 04, 2022 9:21:06 P. M. bd.BD obtenerEquipajesDePasajero
+INFO: Se han encontrado los equipajes asociados al pasajero de dni: 42444234Q
+ene. 04, 2022 9:21:07 P. M. bd.BD obtenerEquipajesDePasajero
+INFO: Se han encontrado los equipajes asociados al pasajero de dni: 42444234A
+ene. 04, 2022 9:21:07 P. M. bd.BD obtenerEquipajesDePasajero
+INFO: Se han encontrado los equipajes asociados al pasajero de dni: 42444234A
+ene. 04, 2022 9:21:19 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Azafato (usuario String, contrasenya String)
+ene. 04, 2022 9:21:19 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Administrador (usuario String, contrasenya String)
+ene. 04, 2022 9:21:19 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Vuelo (ID String, origen String, destino String, fecha String, horaSalida String, horaLlegada String, asientosMax int, asientosDisponibles int)
+ene. 04, 2022 9:21:19 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Pasajero(dni String , nombre String ,apellido String, edad int, telefono int, direccion String)
+ene. 04, 2022 9:21:19 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Ticket(ticketNum INTEGER PRIMARY KEY AUTOINCREMENT, dniPasajero String ,idVuelo String , clase String,  precio double, numAsientos int, fecha String)
+ene. 04, 2022 9:21:19 P. M. bd.BD crearTablas
+INFO: Statement: CREATE TABLE IF NOT EXISTS Ticket(ticketNum INTEGER PRIMARY KEY AUTOINCREMENT, dniPasajero String ,idVuelo String , clase String,  precio double, numAsientos int, fecha String)

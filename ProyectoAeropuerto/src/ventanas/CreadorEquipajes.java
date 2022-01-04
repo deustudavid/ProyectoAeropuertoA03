@@ -108,20 +108,28 @@ public class CreadorEquipajes extends javax.swing.JInternalFrame {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				if (BD.obtenerEquipajes(con, dniAbuscar) != null) {
-					seHaPulsadoBuscar = true;
-					JOptionPane.showMessageDialog(null, "Pasajero encontrado. Registra su equipaje.");
+				try {
+					if (BD.obtenerEquipajesDePasajero(con, dniAbuscar) != null) {
+						seHaPulsadoBuscar = true;
+						JOptionPane.showMessageDialog(null, "Pasajero encontrado. Registra su equipaje.");
 
-					txtDescripcion.setEnabled(true);
-					txtPeso.setEnabled(true);
-					txtAltura.setEnabled(true);
-					txtAnchura.setEnabled(true);
-					txtLargo.setEnabled(true);
-					
-				} else {
-					JOptionPane.showMessageDialog(null, "No se ha encontrado el pasajero con ese dni", "Error",
-							JOptionPane.WARNING_MESSAGE);
+						txtDescripcion.setEnabled(true);
+						txtPeso.setEnabled(true);
+						txtAltura.setEnabled(true);
+						txtAnchura.setEnabled(true);
+						txtLargo.setEnabled(true);
+						
+					} else {
+						JOptionPane.showMessageDialog(null, "No se ha encontrado el pasajero con ese dni", "Error",
+								JOptionPane.WARNING_MESSAGE);
 
+					}
+				} catch (HeadlessException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (DBException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
 				}
 
 			}
@@ -295,43 +303,54 @@ public class CreadorEquipajes extends javax.swing.JInternalFrame {
 		t2.start();
 
 		btnBuscar.setText("Buscar");
+		
+		JButton btnVisorEquipajes = new JButton();
+		btnVisorEquipajes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				VisorEquipajes v = new VisorEquipajes();
+				v.setVisible(true);
+				
+				
+			}
+		});
+		btnVisorEquipajes.setText("Visor equipajes");
 
 		GroupLayout layout = new GroupLayout(getContentPane());
 		layout.setHorizontalGroup(
 			layout.createParallelGroup(Alignment.LEADING)
 				.addGroup(layout.createSequentialGroup()
-					.addGroup(layout.createParallelGroup(Alignment.LEADING)
+					.addContainerGap()
+					.addGroup(layout.createParallelGroup(Alignment.LEADING, false)
 						.addGroup(layout.createSequentialGroup()
-							.addContainerGap()
-							.addGroup(layout.createParallelGroup(Alignment.LEADING)
-								.addGroup(layout.createSequentialGroup()
-									.addComponent(lblDNIPasajero)
-									.addGap(29)
-									.addComponent(txtDNI, GroupLayout.PREFERRED_SIZE, 147, GroupLayout.PREFERRED_SIZE)
-									.addGap(34)
-									.addComponent(btnBuscar, GroupLayout.PREFERRED_SIZE, 137, GroupLayout.PREFERRED_SIZE))
-								.addComponent(panelIzquierda, GroupLayout.PREFERRED_SIZE, 555, GroupLayout.PREFERRED_SIZE)))
+							.addComponent(lblDNIPasajero)
+							.addGap(29)
+							.addComponent(txtDNI, GroupLayout.PREFERRED_SIZE, 147, GroupLayout.PREFERRED_SIZE)
+							.addGap(34)
+							.addComponent(btnBuscar, GroupLayout.PREFERRED_SIZE, 137, GroupLayout.PREFERRED_SIZE))
+						.addComponent(panelIzquierda, GroupLayout.PREFERRED_SIZE, 555, GroupLayout.PREFERRED_SIZE)
 						.addGroup(layout.createSequentialGroup()
-							.addGap(28)
 							.addComponent(btnRegistrarEquipaje, GroupLayout.PREFERRED_SIZE, 214, GroupLayout.PREFERRED_SIZE)
-							.addGap(26)
-							.addComponent(btnCancelar, GroupLayout.PREFERRED_SIZE, 140, GroupLayout.PREFERRED_SIZE)))
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(btnCancelar, GroupLayout.PREFERRED_SIZE, 140, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(btnVisorEquipajes, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
 					.addContainerGap(342, Short.MAX_VALUE))
 		);
 		layout.setVerticalGroup(
 			layout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(layout.createSequentialGroup()
-					.addContainerGap(41, Short.MAX_VALUE)
+					.addContainerGap(43, Short.MAX_VALUE)
 					.addGroup(layout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblDNIPasajero)
 						.addComponent(txtDNI, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(btnBuscar))
 					.addGap(38)
 					.addComponent(panelIzquierda, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
 					.addGroup(layout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnRegistrarEquipaje, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnCancelar, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE))
+						.addComponent(btnCancelar, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnVisorEquipajes, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE))
 					.addGap(34))
 		);
 		getContentPane().setLayout(layout);
