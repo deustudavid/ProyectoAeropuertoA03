@@ -10,9 +10,21 @@ import clases.Equipaje;
 
 public class EquipajeTest {
 
-	Equipaje e = new Equipaje("Descripcion", 22.0, 10.4, 40.3, 30.2);
+	Equipaje e = new Equipaje(2, "00000000Q","Descripcion", 22.0, 10.4, 40.3, 30.2);
 	Equipaje b = new Equipaje();
+	Equipaje e2 = new Equipaje("Descripcion", 22.0, 10.4, 40.3, 30.2);
+	
 
+	@Test
+	public void testGetEquipajeNum() {
+		assertEquals(2, e.getEquipajeNum());
+	}
+	
+	@Test
+	public void testGetDniPasajero() {
+		assertEquals("00000000Q", e.getDniPasajero());
+	}
+	
 	@Test
 	public void testGetDescripcion() {
 		assertEquals("Descripcion", e.getDescripcion());
@@ -37,7 +49,44 @@ public class EquipajeTest {
 	public void testGetAnchura() {
 		assertEquals(30.2 ,e.getAnchura(),0.00f);
 	}
+	
+	@Test
+	public void testGetDescripcion2() {
+		assertEquals("Descripcion", e2.getDescripcion());
+	}
 
+	@Test
+	public void testGetPeso2() {
+		assertEquals(22.0 ,e2.getPeso(),0.00f);
+	}
+
+	@Test
+	public void testGetLargo2() {
+		assertEquals(10.4 , e2.getLargo(),0.00f);
+	}
+
+	@Test
+	public void testGetAltura2() {
+		assertEquals(40.3,e2.getAltura(),0.00f);
+	}
+
+	@Test
+	public void testGetAnchura2() {
+		assertEquals(30.2 ,e2.getAnchura(),0.00f);
+	}
+
+	@Test
+	public void testSetDniPasajero() {
+		b.setDniPasajero("00000000Q");
+		assertEquals("00000000Q", b.getDniPasajero());
+	}
+	
+	@Test
+	public void testSetEquipajeNum() {
+		b.setEquipajeNum(2);
+		assertEquals(2, b.getEquipajeNum());
+	}
+	
 	@Test
 	public void testSetDescripcion() {
 		b.setDescripcion("Descripcion");
@@ -70,7 +119,7 @@ public class EquipajeTest {
 
 	@Test
 	public void testToString() {
-		assertEquals("Equipaje [descripcion=" + e.getDescripcion() + ", peso=" + e.getPeso() + ", largo=" + e.getLargo()
-				+ ", altura=" + e.getAltura() + ", anchura=" + e.getAnchura() + "]", e.toString());
+		assertEquals("Equipaje [equipajeNum=" + e.getEquipajeNum() + ", dniPasajero=" + e.getDniPasajero() + ", descripcion=" + e.getDescripcion()
+				+ ", peso=" + e.getPeso() + ", largo=" + e.getLargo() + ", altura=" + e.getAltura() + ", anchura=" + e.getAnchura() + "]", e.toString());
 	}
 }
