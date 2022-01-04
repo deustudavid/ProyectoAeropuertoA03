@@ -1,14 +1,18 @@
 package clases;
 
 public class Equipaje {
-	String descripcion;
-	double peso;
-	double largo;
-	double altura;
-	double anchura;
+	private int equipajeNum;
+	private String dniPasajero;
+	private String descripcion;
+	private double peso;
+	private double largo;
+	private double altura;
+	private double anchura;
 
-	public Equipaje(String descripcion, double peso, double largo, double altura, double anchura) {
+	public Equipaje(int equipajeNum, String dniPasajero,String descripcion, double peso, double largo, double altura, double anchura) {
 		super();
+		this.equipajeNum=equipajeNum;
+		this.dniPasajero=dniPasajero;
 		this.descripcion = descripcion;
 		this.peso = peso;
 		this.largo = largo;
@@ -18,11 +22,37 @@ public class Equipaje {
 
 	public Equipaje() {
 		super();
+		this.equipajeNum=0;
+		this.dniPasajero="";
 		this.descripcion = "";
 		this.peso = 0.0;
 		this.largo = 0.0;
 		this.altura = 0.0;
 		this.anchura = 0.0;
+	}
+
+	public Equipaje(String descripcion, double peso, double largo, double altura, double anchura) {
+		this.descripcion = descripcion;
+		this.peso = peso;
+		this.largo = largo;
+		this.altura = altura;
+		this.anchura = anchura;	
+		}
+
+	public int getEquipajeNum() {
+		return equipajeNum;
+	}
+
+	public void setEquipajeNum(int equipajeNum) {
+		this.equipajeNum = equipajeNum;
+	}
+
+	public String getDniPasajero() {
+		return dniPasajero;
+	}
+
+	public void setDniPasajero(String dniPasajero) {
+		this.dniPasajero = dniPasajero;
 	}
 
 	public String getDescripcion() {
@@ -67,8 +97,10 @@ public class Equipaje {
 
 	@Override
 	public String toString() {
-		return "Equipaje [descripcion=" + descripcion + ", peso=" + peso + ", largo=" + largo + ", altura=" + altura
-				+ ", anchura=" + anchura + "]";
+		return "Equipaje [equipajeNum=" + equipajeNum + ", dniPasajero=" + dniPasajero + ", descripcion=" + descripcion
+				+ ", peso=" + peso + ", largo=" + largo + ", altura=" + altura + ", anchura=" + anchura + "]";
 	}
+
+	
 
 }

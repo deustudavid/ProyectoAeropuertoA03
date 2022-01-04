@@ -151,6 +151,15 @@ public class VentanaAzafato extends JFrame {
 		menuItemGestionarEquipajes = new JMenuItem();
 		menuItemGestionarEquipajes.setIcon(imagenMaleta);
 		menuItemGestionarEquipajes.setText("Gestionar equipajes");
+		menuItemGestionarEquipajes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				CreadorEquipajes b = new CreadorEquipajes();
+				panelEscritorio.add(b);
+				b.setVisible(true);
+				bloquearBotones();
+
+			}
+		});
 		menuPasajero.add(menuItemGestionarEquipajes);
 
 		menuTickets.setText("Tickets");

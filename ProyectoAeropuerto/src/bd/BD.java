@@ -16,9 +16,12 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 
+
 import clases.Clase;
+import clases.Equipaje;
 import clases.Pasajero;
 import clases.Ticket;
 import clases.Vuelo;
@@ -172,6 +175,8 @@ public class BD {
 		VentanaInicio.logger.log( Level.INFO, "Statement: " + sentencia4 );
 		String sentencia5 = "CREATE TABLE IF NOT EXISTS Ticket(ticketNum INTEGER PRIMARY KEY AUTOINCREMENT, dniPasajero String ,idVuelo String , clase String,  precio double, numAsientos int, fecha String)";
 		VentanaInicio.logger.log( Level.INFO, "Statement: " + sentencia5 );
+		String sentencia6 = "CREATE TABLE IF NOT EXISTS Equipaje(equipajeNum INTEGER PRIMARY KEY AUTOINCREMENT, dniPasajero String, descripcion String ,peso double, largo double, altura double, anchura double)";
+		VentanaInicio.logger.log( Level.INFO, "Statement: " + sentencia5 );
 
 		Statement st = null;
 		try {
@@ -181,6 +186,7 @@ public class BD {
 			st.executeUpdate(sentencia3);
 			st.executeUpdate(sentencia4);
 			st.executeUpdate(sentencia5);
+			st.executeUpdate(sentencia6);
 			
 		
 			st.close();
@@ -337,6 +343,43 @@ public class BD {
 		}
 	}
 	
+	public static void insertarEquipaje(Connection con , int equipajeNum, String dniPasajero , String descripcion ,double peso , double largo ,double altura , double anchura ) throws DBException {
+		int numeroEquipajeAInsertar= getMaxEquipajeNum(con);
+		
+		try (PreparedStatement stmt = con.prepareStatement("INSERT INTO Equipaje (equipajeNum,dniPasajero,descripcion,peso,largo,altura,anchura ) VALUES (?, ?, ?, ?, ?, ?, ?)"); 
+				Statement stmtForId = con.createStatement()) {
+				
+				stmt.setInt(1, numeroEquipajeAInsertar);
+				stmt.setString(2, dniPasajero);
+				stmt.setString(3, descripcion);
+				stmt.setDouble(4, peso);
+				stmt.setDouble(5, largo);
+				stmt.setDouble(6, altura);
+				stmt.setDouble(7, anchura);
+				
+				
+				stmt.executeUpdate();
+			VentanaInicio.logger.log(Level.INFO, "Se ha insertado un nuevo equipaje");
+			stmt.close();
+		} catch (SQLException e) {
+			VentanaInicio.logger.log(Level.SEVERE, "ERROR al registrar equipaje");
+			e.printStackTrace();
+			throw new DBException("No se ha podido registrar el equipaje en la BBDD");
+			
+			
+		} finally {
+			if(con!=null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+					
+				}
+			}
+		}
+	}
+	
 	public static void insertarVuelo(Connection con,String id, String origen, String destino, String fecha, String horaSalida, String horaLlegada, int asientosMax, int asientosDisponibles) throws DBException {
 		
 		try (PreparedStatement stmt = con.prepareStatement("INSERT INTO vuelo (id, origen, destino, fecha, horaSalida, horaLlegada, asientosMax, asientosDisponibles) VALUES (?, ?, ?, ?, ?, ?, ?, ?)"); 
@@ -373,26 +416,7 @@ public class BD {
 	}
 	
 	
-	public static int getMaxTicketNum(Connection con) {
-		String sent = "select MAX(ticketNum) from Ticket";
-		Statement st = null;
-		int ultimoTicketNum=0;
-		try {
-			st = con.createStatement();
-			ResultSet rs=st.executeQuery(sent);
-			
-			if (rs.next()) {
-				ultimoTicketNum=rs.getInt(1);
-				ultimoTicketNum++;
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return ultimoTicketNum;
 
-		
-	}
 	public static void insertarTicket(Connection con , int ticketNum, String dniPasajero  ,String idVuelo  ,Clase clase , double precio , int numAsientos ,String fecha ) throws DBException {
 		int numeroTicketAInsertar= getMaxTicketNum(con);
 		
@@ -430,7 +454,47 @@ public class BD {
 		}
 	}
 	
+	public static int getMaxTicketNum(Connection con) {
+		String sent = "select MAX(ticketNum) from Ticket";
+		Statement st = null;
+		int ultimoTicketNum=0;
+		try {
+			st = con.createStatement();
+			ResultSet rs=st.executeQuery(sent);
+			
+			if (rs.next()) {
+				ultimoTicketNum=rs.getInt(1);
+				ultimoTicketNum++;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return ultimoTicketNum;
+
+		
+	}
 	
+	public static int getMaxEquipajeNum(Connection con) {
+		String sent = "select MAX(equipajeNum) from Equipaje";
+		Statement st = null;
+		int ultimoEquipajeNum=0;
+		try {
+			st = con.createStatement();
+			ResultSet rs=st.executeQuery(sent);
+			
+			if (rs.next()) {
+				ultimoEquipajeNum=rs.getInt(1);
+				ultimoEquipajeNum++;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return ultimoEquipajeNum;
+
+		
+	}
 	
 	 //Comprueba si existe un pasajero de un determinado dni
 	public static boolean existePasajero(Connection con, String dni) throws SQLException {
@@ -605,6 +669,30 @@ public class BD {
             return null;
         }
     }
+	
+	public static ArrayList<Pasajero> obtenerPasajeros(Connection con) {
+        try (Statement statement = con.createStatement()) {
+            ArrayList<Pasajero> ret = new ArrayList<>();
+            String sent = "select * from Pasajero;";
+            VentanaInicio.logger.log( Level.INFO, "Statement: " + sent );
+            ResultSet rs = statement.executeQuery( sent );
+            while( rs.next() ) { // Leer el resultset
+                String dni = rs.getString("dni");
+                String nombre= rs.getString("nombre");
+                String apellido= rs.getString("apellido");
+                int edad=rs.getInt("edad");
+                int telefono=rs.getInt("telefono");
+                String direccion = rs.getString("direccion");
+               
+               
+                ret.add( new Pasajero ( dni, nombre, apellido, edad, telefono,direccion) );
+            }
+            return ret;
+        } catch (Exception e) {
+            VentanaInicio.logger.log( Level.SEVERE, "Excepción", e );
+            return null;
+        }
+    }
 
 
 	public static ArrayList<Ticket> obtenerTickets(Connection con) {
@@ -659,6 +747,57 @@ public class BD {
             return null;
         }
     }
+	public static ArrayList<Equipaje> obtenerEquipajes(Connection con, String dniPasajero) {
+        try (Statement statement = con.createStatement()) {
+            ArrayList<Equipaje> ret = new ArrayList<>();
+            String sent = "SELECT * FROM Equipaje WHERE dniPasajero = '"+dniPasajero+"' ";
+            VentanaInicio.logger.log( Level.INFO, "Statement: " + sent );
+            ResultSet rs = statement.executeQuery( sent );
+            while( rs.next() ) { // Leer el resultset
+            	int equipajeNum = rs.getInt("equipajeNum");
+    			String dni= rs.getString("dniPasajero");
+    			String descripcion= rs.getString("descripcion");
+    			double peso=rs.getDouble("peso");
+    			double largo=rs.getDouble("largo");
+    			double altura=rs.getDouble("altura");
+    			double anchura=rs.getDouble("anchura");
+    			
+    			
+                ret.add( new Equipaje (equipajeNum, dni, descripcion, peso,largo,altura,anchura) );
+                VentanaInicio.logger.log(Level.INFO, "Se han encontrado los equipajes asociados al pasajero de dni: " + dniPasajero);
+            }
+           
+            return ret;
+        } catch (Exception e) {
+            VentanaInicio.logger.log( Level.SEVERE, "Excepción", e );
+            return null;
+        }
+    }
+	public static List<Equipaje> obtenerEquipajesDePasajero(Connection con, Pasajero p) throws DBException {
+		try (PreparedStatement stmt = con.prepareStatement("SELECT descripcion, peso, largo, altura, anchura FROM Equipaje WHERE dniPasajero == ?  ORDER BY peso")) {
+			
+			List<Equipaje> equipajes = new ArrayList<>();
+			try (ResultSet rs = stmt.executeQuery()) {
+				while(rs.next()) {
+					Equipaje eq = new Equipaje(
+						rs.getString("descripcion"),
+						rs.getFloat("peso"),
+						rs.getFloat("largo"),
+						
+						rs.getFloat("altura"),
+						rs.getFloat("anchura")
+					);
+					
+					equipajes.add(eq);
+				}
+			}
+			
+			return equipajes;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DBException("No se pudo conseguir el listado de equipajes asociados al pasajero", e);
+		}
+	}
 	
 	public static void actualizarAsientosDeVuelo(Connection con,Vuelo v, int asientosAreservar) throws SQLException  {
 		Statement statement = con.createStatement();
