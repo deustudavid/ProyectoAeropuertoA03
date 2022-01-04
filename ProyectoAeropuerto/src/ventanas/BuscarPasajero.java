@@ -23,7 +23,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.event.*;
 
 public class BuscarPasajero extends javax.swing.JInternalFrame {
-
+//
 	private JButton btnBuscarFoto;
 	private JButton btnActualizar;
 	private JButton btnCancelar;
