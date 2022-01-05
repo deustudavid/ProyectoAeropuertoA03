@@ -81,8 +81,6 @@ public class PasajeroTest {
 
 	@Test
 	public void testToString() {
-		assertEquals("Pasajero [telefono=" + pa.getTelefono() + ", direccion=" + pa.getDireccion() + ", getDni()="
-				+ pa.getDni() + ", getNombre()=" + pa.getNombre() + ", getApellido()=" + pa.getApellido()
-				+ ", getEdad()=" + pa.getEdad() + "]", pa.toString());
+		assertEquals("11111111A", pa.toString());
 	}
 }

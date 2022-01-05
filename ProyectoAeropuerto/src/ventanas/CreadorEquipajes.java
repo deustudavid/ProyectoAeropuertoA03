@@ -26,6 +26,7 @@ public class CreadorEquipajes extends javax.swing.JInternalFrame {
 	private JButton btnRegistrarEquipaje;
 	private JButton btnCancelar;
 	private JButton btnBuscar;
+	private JButton btnVisorEquipajes;
 	private JLabel lblDescripcion;
 	private JLabel lblPeso;
 	private JLabel lblLargo;
@@ -42,7 +43,7 @@ public class CreadorEquipajes extends javax.swing.JInternalFrame {
 
 
 	private ImageIcon imagenCancelar;
-
+	private ImageIcon imagenVisorEquipajes;
 	private ImageIcon imagenGuardar;
 	private ImageIcon imagenBuscar;
 
@@ -61,6 +62,7 @@ public class CreadorEquipajes extends javax.swing.JInternalFrame {
 		seHaPulsadoBuscar = false;
 		imagenGuardar = new ImageIcon("img/guardar.png");
 		imagenBuscar = new ImageIcon("img/lupa.png");
+		imagenVisorEquipajes = new ImageIcon("img/maleta.png");
 
 		panelIzquierda = new JPanel();
 		lblDescripcion = new JLabel();
@@ -304,7 +306,8 @@ public class CreadorEquipajes extends javax.swing.JInternalFrame {
 
 		btnBuscar.setText("Buscar");
 		
-		JButton btnVisorEquipajes = new JButton();
+		btnVisorEquipajes = new JButton();
+		btnVisorEquipajes.setIcon(imagenVisorEquipajes);
 		btnVisorEquipajes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				VisorEquipajes v = new VisorEquipajes();
