@@ -67,10 +67,13 @@ public class BuscarPasajero extends javax.swing.JInternalFrame {
 	private JLabel lblMensajeDireccion;
 	private JLabel lblMensajeEdad;
 	private boolean seHaPulsadoBuscar;
-
+	private static String rutaFotoACargar;
+	private static String rutaNuevaFoto;
 	public BuscarPasajero() {
 
 		imagenCancelar = new ImageIcon("img/Cancelar.png");
+		rutaFotoACargar = "fotos/empty.png";
+		rutaNuevaFoto= "fotos/empty.png";
 		con = null;
 		dniAbuscar = "";
 		edadNumerica = 1;
@@ -214,6 +217,33 @@ public class BuscarPasajero extends javax.swing.JInternalFrame {
 						txtDireccion.setText(p.getDireccion());
 						int edad = p.getEdad();
 						txtEdad.setText(String.valueOf(edad));
+						
+						try {
+							rutaFotoACargar = BD.obtenerFotoPasajero(con, dniAbuscar);
+						} catch (DBException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						/* CARGAR LA FOTO Y MOSTRARLA */
+						
+						
+						File image = new File(rutaFotoACargar);
+						
+						BufferedImage img = null;
+						try {
+							img = ImageIO.read(image);
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						ImageIcon imageIcon = new ImageIcon(
+								new ImageIcon(img).getImage().getScaledInstance(250, 250, Image.SCALE_DEFAULT));
+						txtFoto.setIcon(imageIcon);
+						
+					
+						
+						
+						
 					} else {
 						JOptionPane.showMessageDialog(null, "No se ha encontrado el pasajero con ese dni", "Error",
 								JOptionPane.WARNING_MESSAGE);
@@ -280,72 +310,76 @@ public class BuscarPasajero extends javax.swing.JInternalFrame {
 		lblMensajeDireccion.setFont(new Font("Tahoma", Font.BOLD, 11));
 
 		GroupLayout glPanelIzquierda = new GroupLayout(panelIzquierda);
-		glPanelIzquierda.setHorizontalGroup(glPanelIzquierda.createParallelGroup(Alignment.LEADING)
-				.addGroup(glPanelIzquierda.createSequentialGroup().addGap(26).addGroup(glPanelIzquierda
-						.createParallelGroup(Alignment.TRAILING)
-						.addGroup(Alignment.LEADING, glPanelIzquierda.createSequentialGroup().addGroup(glPanelIzquierda
-								.createParallelGroup(Alignment.LEADING, false)
-								.addGroup(glPanelIzquierda.createSequentialGroup().addComponent(lblNombre).addGap(47)
-										.addComponent(txtNombre))
+		glPanelIzquierda.setHorizontalGroup(
+			glPanelIzquierda.createParallelGroup(Alignment.LEADING)
+				.addGroup(glPanelIzquierda.createSequentialGroup()
+					.addGap(26)
+					.addGroup(glPanelIzquierda.createParallelGroup(Alignment.LEADING)
+						.addGroup(glPanelIzquierda.createSequentialGroup()
+							.addGroup(glPanelIzquierda.createParallelGroup(Alignment.LEADING, false)
 								.addGroup(glPanelIzquierda.createSequentialGroup()
-										.addGroup(glPanelIzquierda.createParallelGroup(Alignment.LEADING)
-												.addComponent(lblDireccion).addComponent(lblTelefono)
-												.addComponent(lblDni))
-										.addGap(38)
+									.addGroup(glPanelIzquierda.createParallelGroup(Alignment.LEADING)
+										.addComponent(lblDireccion)
+										.addComponent(lblTelefono)
+										.addComponent(lblDni))
+									.addGap(38)
+									.addGroup(glPanelIzquierda.createParallelGroup(Alignment.LEADING, false)
+										.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+										.addComponent(txtTelefono)
+										.addComponent(txtDni, GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
+										.addComponent(txtApellido)))
+								.addGroup(glPanelIzquierda.createSequentialGroup()
+									.addComponent(lblNombre)
+									.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+									.addComponent(txtNombre, GroupLayout.PREFERRED_SIZE, 224, GroupLayout.PREFERRED_SIZE)))
+							.addGap(14)
+							.addGroup(glPanelIzquierda.createParallelGroup(Alignment.LEADING)
+								.addGroup(glPanelIzquierda.createSequentialGroup()
+									.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+									.addGroup(glPanelIzquierda.createParallelGroup(Alignment.TRAILING)
+										.addComponent(lblMensajeNombre, GroupLayout.PREFERRED_SIZE, 257, GroupLayout.PREFERRED_SIZE)
 										.addGroup(glPanelIzquierda.createParallelGroup(Alignment.LEADING, false)
-												.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE,
-														GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-												.addComponent(txtTelefono).addComponent(txtDni))))
-								.addGroup(glPanelIzquierda.createParallelGroup(Alignment.LEADING)
-										.addGroup(glPanelIzquierda.createSequentialGroup()
-												.addPreferredGap(ComponentPlacement.RELATED, 6, Short.MAX_VALUE)
-												.addGroup(glPanelIzquierda.createParallelGroup(Alignment.TRAILING)
-														.addComponent(lblMensajeNombre, GroupLayout.PREFERRED_SIZE, 257,
-																GroupLayout.PREFERRED_SIZE)
-														.addComponent(lblMensajeDNI, GroupLayout.PREFERRED_SIZE, 254,
-																GroupLayout.PREFERRED_SIZE)))
-										.addGroup(glPanelIzquierda.createSequentialGroup()
-												.addPreferredGap(ComponentPlacement.UNRELATED)
-												.addGroup(glPanelIzquierda.createParallelGroup(Alignment.LEADING)
-														.addComponent(lblMensajeDireccion, GroupLayout.PREFERRED_SIZE,
-																235, GroupLayout.PREFERRED_SIZE)
-														.addComponent(lblMensajeTfno, GroupLayout.PREFERRED_SIZE, 254,
-																GroupLayout.PREFERRED_SIZE)))))
-						.addGroup(Alignment.LEADING,
-								glPanelIzquierda.createSequentialGroup().addComponent(lblApellido).addGap(48)
-										.addComponent(txtApellido, GroupLayout.PREFERRED_SIZE, 166,
-												GroupLayout.PREFERRED_SIZE)
-										.addPreferredGap(ComponentPlacement.RELATED).addComponent(lblMensajeApellido,
-												GroupLayout.PREFERRED_SIZE, 254, GroupLayout.PREFERRED_SIZE)))
-						.addContainerGap()));
-		glPanelIzquierda.setVerticalGroup(glPanelIzquierda.createParallelGroup(Alignment.LEADING)
-				.addGroup(glPanelIzquierda.createSequentialGroup().addGap(37)
-						.addGroup(glPanelIzquierda.createParallelGroup(Alignment.BASELINE).addComponent(lblNombre)
-								.addComponent(txtNombre, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-										GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblMensajeNombre))
-						.addGap(22)
-						.addGroup(glPanelIzquierda.createParallelGroup(Alignment.BASELINE).addComponent(lblApellido)
-								.addComponent(txtApellido, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-										GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblMensajeApellido))
-						.addGap(18)
-						.addGroup(glPanelIzquierda.createParallelGroup(Alignment.BASELINE).addComponent(lblDni)
-								.addComponent(txtDni, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-										GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblMensajeDNI))
-						.addGap(18)
-						.addGroup(glPanelIzquierda.createParallelGroup(Alignment.BASELINE).addComponent(lblTelefono)
-								.addComponent(txtTelefono, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-										GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblMensajeTfno))
-						.addGap(18)
-						.addGroup(glPanelIzquierda.createParallelGroup(Alignment.LEADING).addComponent(lblDireccion)
-								.addGroup(glPanelIzquierda.createParallelGroup(Alignment.BASELINE)
-										.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 62,
-												GroupLayout.PREFERRED_SIZE)
-										.addComponent(lblMensajeDireccion)))
-						.addGap(34)));
+											.addComponent(lblMensajeApellido, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+											.addComponent(lblMensajeDNI, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE))))
+								.addGroup(glPanelIzquierda.createSequentialGroup()
+									.addPreferredGap(ComponentPlacement.UNRELATED)
+									.addGroup(glPanelIzquierda.createParallelGroup(Alignment.LEADING)
+										.addComponent(lblMensajeDireccion, GroupLayout.PREFERRED_SIZE, 235, GroupLayout.PREFERRED_SIZE)
+										.addComponent(lblMensajeTfno, GroupLayout.PREFERRED_SIZE, 254, GroupLayout.PREFERRED_SIZE)))))
+						.addComponent(lblApellido))
+					.addContainerGap())
+		);
+		glPanelIzquierda.setVerticalGroup(
+			glPanelIzquierda.createParallelGroup(Alignment.LEADING)
+				.addGroup(glPanelIzquierda.createSequentialGroup()
+					.addGap(37)
+					.addGroup(glPanelIzquierda.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblNombre)
+						.addComponent(txtNombre, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblMensajeNombre))
+					.addGap(22)
+					.addGroup(glPanelIzquierda.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblApellido)
+						.addComponent(lblMensajeApellido)
+						.addComponent(txtApellido, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(18)
+					.addGroup(glPanelIzquierda.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblDni)
+						.addComponent(txtDni, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblMensajeDNI))
+					.addGap(18)
+					.addGroup(glPanelIzquierda.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblTelefono)
+						.addComponent(txtTelefono, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblMensajeTfno))
+					.addGap(18)
+					.addGroup(glPanelIzquierda.createParallelGroup(Alignment.LEADING)
+						.addComponent(lblDireccion)
+						.addGroup(glPanelIzquierda.createParallelGroup(Alignment.BASELINE)
+							.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
+							.addComponent(lblMensajeDireccion)))
+					.addGap(34))
+		);
 		panelIzquierda.setLayout(glPanelIzquierda);
 
 		lblDNIPasajero.setFont(new Font("Tahoma", 1, 18));
@@ -398,17 +432,32 @@ public class BuscarPasajero extends javax.swing.JInternalFrame {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
+					if(!rutaFotoACargar.equals(rutaNuevaFoto)) {
+						try {
+							BD.modificarPasajero(con, dniAbuscar, txtNombre.getText(), txtApellido.getText(),
+									Integer.parseInt(txtEdad.getText()), Integer.parseInt(txtTelefono.getText()),
+									txtDireccion.getText());
+							BD.actualizarFotoDePasajero(con, dniAbuscar, rutaNuevaFoto);
+							JOptionPane.showMessageDialog(null, "Pasajero actualizado correctamente");
+						} catch (SQLException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}else {
+						try {
+							BD.modificarPasajero(con, dniAbuscar, txtNombre.getText(), txtApellido.getText(),
+									Integer.parseInt(txtEdad.getText()), Integer.parseInt(txtTelefono.getText()),
+									txtDireccion.getText());
+							JOptionPane.showMessageDialog(null, "Pasajero actualizado correctamente");
 
-					try {
-						BD.modificarPasajero(con, dniAbuscar, txtNombre.getText(), txtApellido.getText(),
-								Integer.parseInt(txtEdad.getText()), Integer.parseInt(txtTelefono.getText()),
-								txtDireccion.getText());
-						JOptionPane.showMessageDialog(null, "Pasajero actualizado correctamente");
-					} catch (SQLException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
+						} catch (NumberFormatException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						} catch (SQLException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 					}
-
 					try {
 						BD.closeBD(con);
 					} catch (DBException e) {
@@ -460,23 +509,23 @@ public class BuscarPasajero extends javax.swing.JInternalFrame {
 			public void actionPerformed(ActionEvent evt) {
 
 				try {
-					JFileChooser picchooser = new JFileChooser();
+					JFileChooser picchooser = new JFileChooser("fotos");
 					picchooser.showOpenDialog(null);
 
 					if (picchooser.getSelectedFile() != null) {
 
 						File pic = picchooser.getSelectedFile();
-						FileNameExtensionFilter filter = new FileNameExtensionFilter("*.images", "png", "jpg");
+						FileNameExtensionFilter filter = new FileNameExtensionFilter("*.images", "png", "jpg", "JPG & JFIF", "jpg", "jfif");
 						picchooser.addChoosableFileFilter(filter);
 
-						String path = pic.getAbsolutePath();
+						rutaNuevaFoto = pic.getAbsolutePath();
 						BufferedImage img;
 						img = ImageIO.read(picchooser.getSelectedFile());
 						ImageIcon imageIcon = new ImageIcon(
 								new ImageIcon(img).getImage().getScaledInstance(250, 250, Image.SCALE_DEFAULT));
 						txtFoto.setIcon(imageIcon);
 
-						File image = new File(path);
+						File image = new File(rutaNuevaFoto);
 						FileInputStream fis = new FileInputStream(image);
 						ByteArrayOutputStream baos = new ByteArrayOutputStream();
 						byte[] buff = new byte[1024];

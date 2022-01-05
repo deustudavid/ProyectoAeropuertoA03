@@ -42,7 +42,7 @@ public class CoordenadasAeropuertoTest {
 		double longitud2 = 0.0;
 
 		assertEquals(10008.559105973554,
-				c.calcularDistanciaPuntosSuperficieTierra(latitud, latitud2, longitud, longitud2), 0.0f);
+				CoordenadasAeropuerto.calcularDistanciaPuntosSuperficieTierra(latitud, latitud2, longitud, longitud2), 0.0f);
 	}
 
 }

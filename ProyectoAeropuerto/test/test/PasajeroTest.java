@@ -10,7 +10,7 @@ import clases.Persona;
 
 public class PasajeroTest {
 
-	Pasajero pa = new Pasajero("11111111A", "Diego", "Burzaco", 3, 0, "aaa");
+	Pasajero pa = new Pasajero("11111111A", "Diego", "Burzaco", 3, 0, "aaa","fotos/1");
 	Pasajero b = new Pasajero();
 
 	@Test
@@ -41,6 +41,10 @@ public class PasajeroTest {
 	@Test
 	public void testGetDireccion() {
 		assertEquals("aaa", pa.getDireccion());
+	}
+	@Test
+	public void testGetRutaFoto() {
+		assertEquals("fotos/1", pa.getRutaFoto());
 	}
 
 	@Test
@@ -77,6 +81,11 @@ public class PasajeroTest {
 	public void testSetDireccion() {
 		b.setDireccion("aaa");
 		assertEquals("aaa", b.getDireccion());
+	}
+	@Test
+	public void testSetRutaFoto() {
+		b.setRutaFoto("b/1");
+		assertEquals("b/1", b.getRutaFoto());
 	}
 
 	@Test

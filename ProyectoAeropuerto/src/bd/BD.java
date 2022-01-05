@@ -171,7 +171,7 @@ public class BD {
 		VentanaInicio.logger.log( Level.INFO, "Statement: " + sentencia2 );
 		String sentencia3 = "CREATE TABLE IF NOT EXISTS Vuelo (ID String, origen String, destino String, fecha String, horaSalida String, horaLlegada String, asientosMax int, asientosDisponibles int)";
 		VentanaInicio.logger.log( Level.INFO, "Statement: " + sentencia3 );
-		String sentencia4 = "CREATE TABLE IF NOT EXISTS Pasajero(dni String , nombre String ,apellido String, edad int, telefono int, direccion String)";
+		String sentencia4 = "CREATE TABLE IF NOT EXISTS Pasajero(dni String , nombre String ,apellido String, edad int, telefono int, direccion String, rutaFoto String)";
 		VentanaInicio.logger.log( Level.INFO, "Statement: " + sentencia4 );
 		String sentencia5 = "CREATE TABLE IF NOT EXISTS Ticket(ticketNum INTEGER PRIMARY KEY AUTOINCREMENT, dniPasajero String ,idVuelo String , clase String,  precio double, numAsientos int, fecha String)";
 		VentanaInicio.logger.log( Level.INFO, "Statement: " + sentencia5 );
@@ -309,9 +309,9 @@ public class BD {
 		}
 	}
 	
-	public static void insertarPasajero(Connection con,String dni, String nombre, String apellido, int edad, int telefono, String direccion) throws DBException {
+	public static void insertarPasajero(Connection con,String dni, String nombre, String apellido, int edad, int telefono, String direccion, String rutaFoto) throws DBException {
 		
-		try (PreparedStatement stmt = con.prepareStatement("INSERT INTO Pasajero (dni, nombre ,apellido , edad , telefono , direccion ) VALUES (?, ?, ?, ?, ?, ?)"); 
+		try (PreparedStatement stmt = con.prepareStatement("INSERT INTO Pasajero (dni, nombre ,apellido , edad , telefono , direccion, rutaFoto ) VALUES (?, ?, ?, ?, ?, ?, ?)"); 
 				Statement stmtForId = con.createStatement()) {
 				
 				stmt.setString(1, dni);
@@ -320,6 +320,7 @@ public class BD {
 				stmt.setInt(4, edad);
 				stmt.setInt(5, telefono);
 				stmt.setString(6, direccion);
+				stmt.setString(7, rutaFoto);
 				
 			 stmt.executeUpdate();
 			VentanaInicio.logger.log(Level.INFO, "Se ha añadido un pasajero");
@@ -551,8 +552,9 @@ public class BD {
 					}
 					int tfno = Integer.parseInt(datos[4]);
 					String dir = datos[5];
+					String rutaFoto = datos[6];
 					if (!existePasajero(con, dni) && rangoCorrectoEdad) {
-						String sentencia = "insert into Pasajero (dni, nombre, apellido, edad, telefono, direccion) values ('" + dni + "','" + nom + "','" + apellido + "'," + edad + "," + tfno + ",'" + dir + "');";
+						String sentencia = "insert into Pasajero (dni, nombre, apellido, edad, telefono, direccion, rutaFoto) values ('" + dni + "','" + nom + "','" + apellido + "'," + edad + "," + tfno + ",'" + dir + "','" + rutaFoto + "');";
 						VentanaInicio.logger.log( Level.INFO, "Statement: " + sentencia );
 						st.executeUpdate( sentencia );
 						linea = br.readLine();
@@ -581,7 +583,7 @@ public class BD {
 			
 	
 	}	
-	public static void InsertarPasajeroEnFichero(Connection con,String dni, String nombre, String apellido, int edad, int telefono, String direccion) {
+	public static void InsertarPasajeroEnFichero(Connection con,String dni, String nombre, String apellido, int edad, int telefono, String direccion, String rutaFoto) {
 		
 		
 		
@@ -604,8 +606,9 @@ public class BD {
 			String TelefonoParaFichero= String.valueOf(telefono) ;
 			String direccionParaFichero= direccion;
 			String direccionParaFicheroSinTabuladores=direccionParaFichero.replace("\t", " ");
+			String rutafotoParaFichero= rutaFoto;
 			
-			pw.println(dniParaFichero + "\t" + nombreParaFichero + "\t" + apellidoParaFichero + "\t" + edadParaFichero + "\t" + TelefonoParaFichero + "\t" + direccionParaFicheroSinTabuladores);
+			pw.println(dniParaFichero + "\t" + nombreParaFichero + "\t" + apellidoParaFichero + "\t" + edadParaFichero + "\t" + TelefonoParaFichero + "\t" + direccionParaFicheroSinTabuladores+ "\t" + rutafotoParaFichero);
 		} finally {
 			pw.flush();
 			pw.close();
@@ -636,8 +639,9 @@ public class BD {
 					int edadPasajero=rs.getInt("edad");
 					int tfnoPasajero=rs.getInt("telefono");
 					String direccionPasajero=rs.getString("direccion");
+					String rutafotoPasajero=rs.getString("rutaFoto");
 					
-					p= new Pasajero(dniPasajero,nombrePasajero,apellidoPasajero,edadPasajero, tfnoPasajero, direccionPasajero);
+					p= new Pasajero(dniPasajero,nombrePasajero,apellidoPasajero,edadPasajero, tfnoPasajero, direccionPasajero,rutafotoPasajero);
 					VentanaInicio.logger.log(Level.INFO, "Se ha encontrado el pasajero de dni: " + dni);
 			
 			
@@ -684,8 +688,9 @@ public class BD {
                 int edad=rs.getInt("edad");
                 int telefono=rs.getInt("telefono");
                 String direccion = rs.getString("direccion");
+                String rutaFoto = rs.getString("rutaFoto");
                
-                ret.add( new Pasajero ( dni, nombre, apellido, edad, telefono,direccion) );
+                ret.add( new Pasajero ( dni, nombre, apellido, edad, telefono,direccion,rutaFoto) );
             }
             return ret;
         } catch (Exception e) {
@@ -774,6 +779,23 @@ public class BD {
             throw new DBException("No se pudo conseguir el listado de equipajes asociados al pasajero", e);
 		}
 	}
+	public static String obtenerFotoPasajero(Connection con, String dni) throws DBException {
+		try (PreparedStatement stmt = con.prepareStatement("SELECT rutaFoto FROM Pasajero WHERE dni== '"+dni+"' ")) {
+			String ruta="fotos/empty.png";
+			try (ResultSet rs = stmt.executeQuery()) {
+				while(rs.next()) {
+					
+					ruta=rs.getString("rutaFoto");
+					VentanaInicio.logger.log(Level.INFO, "Cargando foto del pasajero de dni: " + dni);
+				}
+			}
+			
+			return ruta;
+		} catch (SQLException e) {
+            VentanaInicio.logger.log( Level.SEVERE, "Excepción", e );
+            throw new DBException("No se pudo conseguir la fotografia del pasajero", e);
+		}
+	}
 	
 	public static void actualizarAsientosDeVuelo(Connection con,Vuelo v, int asientosAreservar) throws SQLException  {
 		Statement statement = con.createStatement();
@@ -781,6 +803,14 @@ public class BD {
 			String sent = "update Vuelo set  asientosDisponibles="+asientosAreservar+" where ID='"+v.getID()+"'";
 			statement.executeUpdate(sent);
 			VentanaInicio.logger.log(Level.INFO, "Se ha actualizado el numero de asientos restantes en el vuelo: " + v.getID());
+		
+		}
+	public static void actualizarFotoDePasajero(Connection con, String dni, String rutaNuevaFoto) throws SQLException  {
+		Statement statement = con.createStatement();
+		
+			String sent = "update Pasajero set rutaFoto='"+rutaNuevaFoto+"' where dni='"+dni+"'";
+			statement.executeUpdate(sent);
+			VentanaInicio.logger.log(Level.INFO, "Se ha actualizado la fotografia del pasajero: " + dni);
 		
 		}
 	public static void eliminarVuelo(Connection con, String id) throws SQLException {

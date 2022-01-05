@@ -49,13 +49,13 @@ public class CreadorPasajeros extends JInternalFrame {
     private JTextArea txtDireccion ;
     
     private ImageIcon imagenCancelar;
-
 	private ImageIcon imagenGuardar;
 	
 	private static String dni;
 	private static String nom;
 	private static String apellido;
 	private static String dir;
+	private static String rutaFotoElegida;
 	private static int edadNumerica;
 	private static int edad; 
 	private static int tfno;
@@ -74,6 +74,7 @@ public class CreadorPasajeros extends JInternalFrame {
 		
 		imagenCancelar = new ImageIcon("img/Cancelar.png");
 		
+		rutaFotoElegida="fotos/empty.png";
 		edadNumerica=999;
 		dni="";
 		nom="";
@@ -430,31 +431,23 @@ public class CreadorPasajeros extends JInternalFrame {
 			public void actionPerformed(ActionEvent evt) {
 
 				try {
-					JFileChooser picchooser = new JFileChooser();
+					JFileChooser picchooser = new JFileChooser("fotos");
 					picchooser.showOpenDialog(null);
 
 					if (picchooser.getSelectedFile() != null) {
 
 						File pic = picchooser.getSelectedFile();
-						FileNameExtensionFilter filter = new FileNameExtensionFilter("*.images", "png", "jpg");
+						FileNameExtensionFilter filter = new FileNameExtensionFilter("*.images", "png", "jpg", "JPG & JFIF", "jpg", "jfif");
 						picchooser.addChoosableFileFilter(filter);
 
-						String path = pic.getAbsolutePath();
+						rutaFotoElegida = pic.getAbsolutePath();
 						BufferedImage img;
 						img = ImageIO.read(picchooser.getSelectedFile());
 						ImageIcon imageIcon = new ImageIcon(
 								new ImageIcon(img).getImage().getScaledInstance(250, 250, Image.SCALE_DEFAULT));
 						txtFoto.setIcon(imageIcon);
 
-						File image = new File(path);
-						FileInputStream fis = new FileInputStream(image);
-						ByteArrayOutputStream baos = new ByteArrayOutputStream();
-						byte[] buff = new byte[1024];
-						for (int readNum; (readNum = fis.read(buff)) != -1;) {
-							baos.write(buff, 0, readNum);
-						}
-						byte[] userimage = baos.toByteArray();
-
+						
 					} else {
 						JOptionPane.showMessageDialog(picchooser, "Ninguna foto fue seleccionada");
 					}
@@ -485,9 +478,9 @@ public class CreadorPasajeros extends JInternalFrame {
 							}
 							
 								try {
-									if (!BD.existePasajero(con, dni)) {
-										BD.insertarPasajero(con, dni, nom, apellido, edad, tfno, dir);
-										BD.InsertarPasajeroEnFichero(con, dni, nom, apellido, edad, tfno, dir);
+									if (!BD.existePasajero(con, dni) ) {
+										BD.insertarPasajero(con, dni, nom, apellido, edad, tfno, dir, rutaFotoElegida);
+										BD.InsertarPasajeroEnFichero(con, dni, nom, apellido, edad, tfno, dir, rutaFotoElegida);
 										JOptionPane.showMessageDialog(null, "Pasajero creado correctamente");
 										BD.closeBD(con);
 									}else {

@@ -49,6 +49,7 @@ public class CreadorEquipajes extends javax.swing.JInternalFrame {
 
 	private static Connection con;
 	private static String dniAbuscar;
+	private static String dniAguardar;
 	private static boolean correctaDescripcion;
 	private boolean seHaPulsadoBuscar;
 
@@ -57,6 +58,7 @@ public class CreadorEquipajes extends javax.swing.JInternalFrame {
 		imagenCancelar = new ImageIcon("img/Cancelar.png");
 		con = null;
 		dniAbuscar = "";
+		dniAguardar="";
 		correctaDescripcion = false;
 		
 		seHaPulsadoBuscar = false;
@@ -111,25 +113,27 @@ public class CreadorEquipajes extends javax.swing.JInternalFrame {
 					e1.printStackTrace();
 				}
 				try {
-					if (BD.obtenerEquipajesDePasajero(con, dniAbuscar) != null) {
-						seHaPulsadoBuscar = true;
-						JOptionPane.showMessageDialog(null, "Pasajero encontrado. Registra su equipaje.");
+					try {
+						if (BD.existePasajero(con, dniAbuscar)) {
+							
+							seHaPulsadoBuscar = true;
+							txtDescripcion.setEnabled(true);
+							txtPeso.setEnabled(true);
+							txtAltura.setEnabled(true);
+							txtAnchura.setEnabled(true);
+							txtLargo.setEnabled(true);
+							dniAguardar=txtDNI.getText();
+							
+						} else {
+							JOptionPane.showMessageDialog(null, "No se ha encontrado el pasajero con ese dni", "Error",
+									JOptionPane.WARNING_MESSAGE);
 
-						txtDescripcion.setEnabled(true);
-						txtPeso.setEnabled(true);
-						txtAltura.setEnabled(true);
-						txtAnchura.setEnabled(true);
-						txtLargo.setEnabled(true);
-						
-					} else {
-						JOptionPane.showMessageDialog(null, "No se ha encontrado el pasajero con ese dni", "Error",
-								JOptionPane.WARNING_MESSAGE);
-
+						}
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
 					}
 				} catch (HeadlessException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} catch (DBException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
@@ -239,7 +243,7 @@ public class CreadorEquipajes extends javax.swing.JInternalFrame {
 					}
 
 					try {
-						BD.insertarEquipaje(con, 0, txtDNI.getText(), txtDescripcion.getText(), Double.parseDouble(txtPeso.getValue().toString()), Double.parseDouble(txtLargo.getValue().toString()),Double.parseDouble(txtAltura.getValue().toString()),Double.parseDouble(txtAnchura.getValue().toString()));
+						BD.insertarEquipaje(con, 0, dniAguardar, txtDescripcion.getText(), Double.parseDouble(txtPeso.getValue().toString()), Double.parseDouble(txtLargo.getValue().toString()),Double.parseDouble(txtAltura.getValue().toString()),Double.parseDouble(txtAnchura.getValue().toString()));
 					} catch (NumberFormatException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
