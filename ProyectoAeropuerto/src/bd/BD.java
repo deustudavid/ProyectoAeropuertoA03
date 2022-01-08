@@ -249,30 +249,10 @@ public class BD {
 	}
 	
 	
-	public static void insertarVuelo(Connection con, Vuelo vuelo) throws DBException {
-		try (PreparedStatement stmt = con.prepareStatement("INSERT INTO vuelo (id, origen, destino, fecha, horaSalida, horaLlegada) VALUES (?, ?, ?, ?, ?, ?, ?)"); 
-			Statement stmtForId = con.createStatement()) {
-			
-			stmt.setString(1, vuelo.getID());
-			stmt.setString(2, vuelo.getOrigen());
-			stmt.setString(3, vuelo.getDestino());
-			stmt.setString(4, vuelo.getFecha());
-			stmt.setString(5, vuelo.getHoraSalida());
-			stmt.setString(6, vuelo.getHoraLlegada());
-			stmt.setInt(7, vuelo.getAsientosMax());
 
 	
-			stmt.executeUpdate();
-			VentanaInicio.logger.log(Level.INFO, "Se ha añadido un vuelo");
-			stmt.close();
-			 
-		} catch (SQLException | DateTimeParseException e) {
-			throw new DBException("Error al insertar vuelo'", e);
-		}
-	}
-	
 	/**
-	 * M�todo que inserta los datos de un Administrador (si no est� repetido) en la BBDD 
+	 * M�todo que inserta los datos de un Administrador (si no esta  repetido) en la BBDD 
 	 * @param con Conexión con la BBDD
 	 * @param usuario Nombre de usuario del administrador
 	 * @param contra Contraseña del administrador
@@ -743,8 +723,9 @@ public class BD {
                 int asientosMax=rs.getInt("asientosMax");
                 int asientosDisponibles=rs.getInt("asientosDisponibles");
                 ret.add( new Vuelo ( id, origenAbuscar, destinoAbuscar, fecha,horaSalida, horaLlegada,asientosMax,asientosDisponibles) );
-                VentanaInicio.logger.log(Level.INFO, "Se ha encontrado el vuelo de origen: " + origen + " y destino: "+ destino);
+                
             }
+            VentanaInicio.logger.log(Level.INFO, "Se han encontrado "+ ret.size()+" vuelos de origen: " + origen + " y destino: "+ destino);
            
             return ret;
         } catch (Exception e) {
@@ -768,9 +749,10 @@ public class BD {
 					);
 					
 					equipajes.add(eq);
-	                VentanaInicio.logger.log(Level.INFO, "Se han encontrado los equipajes asociados al pasajero de dni: " + dni);
 
 				}
+	            VentanaInicio.logger.log(Level.INFO, "Se han encontrado "+ equipajes.size()+" equipajes del pasajero con dni:" + dni);
+
 			}
 			
 			return equipajes;
@@ -786,8 +768,9 @@ public class BD {
 				while(rs.next()) {
 					
 					ruta=rs.getString("rutaFoto");
-					VentanaInicio.logger.log(Level.INFO, "Cargando foto del pasajero de dni: " + dni);
 				}
+				VentanaInicio.logger.log(Level.INFO, "Se ha encontrado foto del pasajero de dni: " + dni);
+
 			}
 			
 			return ruta;
@@ -817,12 +800,70 @@ public class BD {
 		Statement stm = con.createStatement();
 		String sent = "delete from Vuelo where id ='" + id+"'";
 		stm.executeUpdate(sent);
+		VentanaInicio.logger.log(Level.INFO, "Se ha eliminado de la BD el vuelo: " + id);
 		
 	}
 	public static void eliminarTickets(Connection con, int ticketNum) throws SQLException {
 		Statement stm = con.createStatement();
-		String sent = "delete from Ticket where ticketNum =" + ticketNum;
+		String sent = "delete from Ticket where ticketNum = "+ticketNum+"";
 		stm.executeUpdate(sent);
+		VentanaInicio.logger.log(Level.INFO, "Se ha eliminado de la BD el ticket: " + ticketNum);
+
+	}
+	
+	//Contar el número de azafatos
+	public static int contarAzafatos(Connection con) throws SQLException {
+		Statement statement = con.createStatement();
+		String sent = "select count(*) from Azafato";
+		ResultSet rs = statement.executeQuery(sent);
+		int resul = rs.getInt(1);
+		rs.close();
+		return resul;
+	}
+	//Contar el número de administradores
+	public static int contarAdministradores(Connection con) throws SQLException {
+		Statement statement = con.createStatement();
+		String sent = "select count(*) from Administrador";
+		ResultSet rs = statement.executeQuery(sent);
+		int resul = rs.getInt(1);
+		rs.close();
+		return resul;
+	}
+	//Contar el número de vuelos
+	public static int contarVuelos(Connection con) throws SQLException {
+		Statement statement = con.createStatement();
+		String sent = "select count(*) from Vuelo";
+		ResultSet rs = statement.executeQuery(sent);
+		int resul = rs.getInt(1);
+		rs.close();
+		return resul;
+	}
+	//Contar el número de pasajeros
+	public static int contarPasajeros(Connection con) throws SQLException {
+		Statement statement = con.createStatement();
+		String sent = "select count(*) from Pasajero";
+		ResultSet rs = statement.executeQuery(sent);
+		int resul = rs.getInt(1);
+		rs.close();
+		return resul;
+	}
+	//Contar el número de tickets
+	public static int contarTickets(Connection con) throws SQLException {
+		Statement statement = con.createStatement();
+		String sent = "select count(*) from Ticket";
+		ResultSet rs = statement.executeQuery(sent);
+		int resul = rs.getInt(1);
+		rs.close();
+		return resul;
+	}
+	//Contar el número de equipajes 
+	public static int contarEquipajes(Connection con) throws SQLException {
+		Statement statement = con.createStatement();
+		String sent = "select count(*) from Equipaje";
+		ResultSet rs = statement.executeQuery(sent);
+		int resul = rs.getInt(1);
+		rs.close();
+		return resul;
 	}
 	
 }

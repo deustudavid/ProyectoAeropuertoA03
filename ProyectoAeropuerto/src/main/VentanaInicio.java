@@ -4,14 +4,18 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.util.Properties;
 import java.util.logging.FileHandler;
 import java.util.logging.Handler;
 import java.util.logging.Level;
@@ -53,7 +57,11 @@ public class VentanaInicio extends JFrame {
 	private JPasswordField textContrasenia;
 	private JTextField textUsuario;
 	
-	
+	public static String database;
+	public static String milisegundos;
+	public static String columnas;
+	public static String imagenes;
+
 
 	private JProgressBar progressBarCerrar;
 	private JProgressBar progressBarRegistarAdmin;
@@ -96,11 +104,7 @@ public class VentanaInicio extends JFrame {
 						"Error al crear fichero", JOptionPane.ERROR_MESSAGE );
 			}
 		}
-		try (FileInputStream fis = new FileInputStream("logger.properties")) {
-			LogManager.getLogManager().readConfiguration(fis);
-			} catch (IOException e) {
-			logger.log(Level.SEVERE, "No se pudo leer el fichero de configuración del logger");
-			}
+		
 		return logger;
 	}
 
@@ -108,6 +112,71 @@ public class VentanaInicio extends JFrame {
 	
 	/* MAIN */
 	public static void main(String[] args) {
+		File directory = new File("");
+
+		directory = new File("logs");
+		if (!directory.exists()) {
+			directory.mkdir();
+
+		}
+		directory = new File("config");
+		if (!directory.exists()) {
+			directory.mkdir();
+			BufferedWriter buffWriter;
+			try {
+				buffWriter = new BufferedWriter(new FileWriter("config/config.properties"));
+				buffWriter.write("database=jdbc:sqlite:Aeropuerto.db");
+				buffWriter.newLine();
+				buffWriter.write("milisegundos=8000");
+				buffWriter.newLine();
+				buffWriter.write("columnas=7");
+				buffWriter.newLine();
+				buffWriter.write("imagenes=/fotos");
+				
+				buffWriter.close();
+
+				buffWriter = new BufferedWriter(new FileWriter("config/logger.properties"));
+				buffWriter.write("handlers = java.util.logging.FileHandler, java.util.logging.ConsoleHandler");
+				buffWriter.newLine();
+				buffWriter.write(".level = ALL");
+				buffWriter.newLine();
+				buffWriter.write("java.util.logging.ConsoleHandler.level = INFO");
+				buffWriter.newLine();
+				buffWriter.write("java.util.logging.ConsoleHandler.formatter = java.util.logging.SimpleFormatter");
+				buffWriter.newLine();
+				buffWriter.write("java.util.logging.FileHandler.pattern = logs/"+logger.getName());
+				buffWriter.newLine();
+				buffWriter.write("java.util.logging.FileHandler.level = INFO");
+				buffWriter.newLine();
+				buffWriter.write("java.util.logging.FileHandler.formatter = java.util.logging.SimpleFormatter");
+				buffWriter.newLine();
+				buffWriter.write("java.util.logging.FileHandler.append = true");
+				buffWriter.close();
+
+			} catch (IOException e) {
+			}
+
+		}
+		
+		try (FileInputStream fis = new FileInputStream("config/logger.properties")) {
+			LogManager.getLogManager().readConfiguration(fis);
+		} catch (IOException e) {
+			logger.log(Level.SEVERE, "Error al leer el fichero de configuracion del logger.");
+		}
+		 
+		try (FileReader reader = new FileReader("config/config.properties")) {
+			Properties properties = new Properties();
+			properties.load(reader);
+
+			database = properties.getProperty("database");
+			milisegundos = properties.getProperty("milisegundos");
+			columnas = properties.getProperty("columnas");
+			imagenes = properties.getProperty("imagenes");
+
+		} catch (IOException e) {
+			logger.log(Level.SEVERE, "Error al leer el fichero de configuracion.");
+		}
+		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
