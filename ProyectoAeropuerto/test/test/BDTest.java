@@ -109,7 +109,7 @@ public class BDTest {
 			try {
 				con=BD.initBD("Aeropuerto.db");
 				contAntesDeIEliminar = BD.contarAzafatos(con);
-				BD.insertarAzafato(con,"A", "1");
+				BD.insertarAzafato(con,"A", "1",3,"Supervisor");
 				con=BD.initBD("Aeropuerto.db");
 				contDespuesDeInsertar = BD.contarAzafatos(con);
 				assertTrue(contAntesDeIEliminar == contDespuesDeInsertar - 1);
@@ -134,7 +134,7 @@ public class BDTest {
 			try {
 				con=BD.initBD("Aeropuerto.db");
 				contAntesDeIEliminar = BD.contarAdministradores(con);
-				BD.insertarAdministrador(con,"A", "1");
+				BD.insertarAdministrador(con,"A", "1","Administrador de la plantilla del aeropuerto");
 				con=BD.initBD("Aeropuerto.db");
 				contDespuesDeInsertar = BD.contarAdministradores(con);
 				assertTrue(contAntesDeIEliminar == contDespuesDeInsertar - 1);

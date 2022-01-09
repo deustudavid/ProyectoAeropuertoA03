@@ -13,6 +13,7 @@ import main.VentanaInicio;
 
 
 public class VentanaPermisos extends JInternalFrame {
+	private JInternalFrame ventanaActual;
 
 	private JPanel contentPane;
 	private JPanel panelCentral;
@@ -21,15 +22,20 @@ public class VentanaPermisos extends JInternalFrame {
 	private JLabel lblContrasenia;
 	private JLabel labelCerrar;
 	private static Connection con;
-	private JPasswordField textContrasenia;
-	private JTextField textUsuario;
+	public static JPasswordField textContrasenia;
+	public static JTextField textUsuario;
+	public static boolean siguienteVentanaAzafato;
+	public static boolean siguienteVentanaAdministrador;
 
 	private JProgressBar progressBarCerrar;
 	private JProgressBar progressBarRegistarAdmin;
-	private JButton btnRegistrarAdministrador;
-	private JButton btnRegistrarAzafato;
+	public static JButton btnRegistrarAdministrador;
+	public static JButton btnRegistrarAzafato;
 
 	public VentanaPermisos() {
+		siguienteVentanaAzafato=false;
+		siguienteVentanaAdministrador=false;
+		ventanaActual = this;
 
 		 con = null;
 		try {
@@ -76,12 +82,12 @@ public class VentanaPermisos extends JInternalFrame {
 		panelOpciones.setBackground(Color.WHITE);
 		panelCentral.add(panelOpciones);
 
-		btnRegistrarAdministrador = new JButton("DAR PERMISOS ADMIN");
+		btnRegistrarAdministrador = new JButton("VALIDAR ADMIN");
 		btnRegistrarAdministrador.setBackground(new Color(255, 218, 185));
 		btnRegistrarAdministrador.setBounds(10, 30, 235, 23);
 		panelOpciones.add(btnRegistrarAdministrador);
 
-		btnRegistrarAzafato = new JButton("DAR PERMISOS AZAFATO");
+		btnRegistrarAzafato = new JButton("VALIDAR AZAFATO");
 		btnRegistrarAzafato.setBackground(new Color(255, 218, 185));
 		btnRegistrarAzafato.setBounds(250, 30, 218, 23);
 		panelOpciones.add(btnRegistrarAzafato);
@@ -165,38 +171,44 @@ public class VentanaPermisos extends JInternalFrame {
 						e2.printStackTrace();
 					}
 					if (resul != 0) {
-						JOptionPane.showMessageDialog(null, "Ese nombre de usuario ya existe", "Error",
+						JOptionPane.showMessageDialog(null, "Ya existe un administrador con ese nombre de usuario", "Error",
 								JOptionPane.ERROR_MESSAGE);
 					} else {
-
+						
 						try {
-							BD.insertarAdministrador(con, n, c);
+							BD.closeBD(con);
+							VentanaInicio.logger.log(Level.INFO, "Conexion con la base de datos cerrada");
 						} catch (DBException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
+						
+						siguienteVentanaAdministrador=true;
+						CreacionAdminAzafato cr=new CreacionAdminAzafato(ventanaActual, siguienteVentanaAdministrador,siguienteVentanaAzafato);
+						VentanaAdministrador.getPanelEscritorio().add(cr);
+						cr.toFront();
+						cr.setVisible(true);
+						
+						ventanaActual.setVisible(false);
 
-						JOptionPane.showMessageDialog(null, "Te has registrado correctamente", "Correcto",
-								JOptionPane.INFORMATION_MESSAGE);
+						
+						
 					}
-					try {
-						BD.closeBD(con);
-						VentanaInicio.logger.log(Level.INFO, "Conexion con la base de datos cerrada");
-					} catch (DBException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-					textUsuario.setText("");
-					textContrasenia.setText("");
 
+						
+					
+					
+				
+			
+		
 				} else {
 					JOptionPane.showMessageDialog(null, "Hay campos vacios", "Error", JOptionPane.ERROR_MESSAGE);
 				}
+		
+			
 
-			}
-
-		});
-
+			}});
+		
 		btnRegistrarAzafato.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -222,29 +234,30 @@ public class VentanaPermisos extends JInternalFrame {
 						e2.printStackTrace();
 					}
 					if (resul != 0) {
-						JOptionPane.showMessageDialog(null, "Ese nombre de usuario ya existe", "Error",
+						JOptionPane.showMessageDialog(null, "Ya existe un azafato con ese nombre de usuario", "Error",
 								JOptionPane.ERROR_MESSAGE);
 					} else {
-
+						
 						try {
-							BD.insertarAzafato(con, n, c);
+							BD.closeBD(con);
+							VentanaInicio.logger.log(Level.INFO, "Conexion con la base de datos cerrada");
 						} catch (DBException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
+						
+						siguienteVentanaAzafato=true;
+						CreacionAdminAzafato cr=new CreacionAdminAzafato(ventanaActual,siguienteVentanaAdministrador,siguienteVentanaAzafato);
+						VentanaAdministrador.getPanelEscritorio().add(cr);
+						cr.toFront();
+						cr.setVisible(true);
+						ventanaActual.setVisible(false);
 
-						JOptionPane.showMessageDialog(null, "Te has registrado correctamente", "Correcto",
-								JOptionPane.INFORMATION_MESSAGE);
+						
+
+						
 					}
-					try {
-						BD.closeBD(con);
-						VentanaInicio.logger.log(Level.INFO, "Conexion con la base de datos cerrada");
-					} catch (DBException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-					textUsuario.setText("");
-					textContrasenia.setText("");
+					
 
 				} else {
 					JOptionPane.showMessageDialog(null, "Hay campos vacios", "Error", JOptionPane.ERROR_MESSAGE);
@@ -254,9 +267,14 @@ public class VentanaPermisos extends JInternalFrame {
 
 		});
 
-		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		this.setLocation(0,0);
 	
 		setVisible(true);
 	}
+
+	
+
+	
 }
+
+

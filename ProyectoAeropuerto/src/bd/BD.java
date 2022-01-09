@@ -90,7 +90,6 @@ public class BD {
 		try {
 			st = con.createStatement();
 			ResultSet rs = st.executeQuery(sentencia);
-			//Si la sentencia nos ha devuelto al menos un valor, rs estar� apuntando a una tupla
 			if(rs.next()) {
 				if(rs.getString("contrasenya").equals(contra)) {
 					resul = 2;
@@ -165,9 +164,9 @@ public class BD {
 
 	 */
 	public static void crearTablas(Connection con) throws DBException {
-		String sentencia1 = "CREATE TABLE IF NOT EXISTS Azafato (usuario String, contrasenya String)";
+		String sentencia1 = "CREATE TABLE IF NOT EXISTS Azafato (usuario String, contrasenya String, anyosExperiencia int, funcion String)";
 		VentanaInicio.logger.log( Level.INFO, "Statement: " + sentencia1 );
-		String sentencia2 = "CREATE TABLE IF NOT EXISTS Administrador (usuario String, contrasenya String)";
+		String sentencia2 = "CREATE TABLE IF NOT EXISTS Administrador (usuario String, contrasenya String, cargo String)";
 		VentanaInicio.logger.log( Level.INFO, "Statement: " + sentencia2 );
 		String sentencia3 = "CREATE TABLE IF NOT EXISTS Vuelo (ID String, origen String, destino String, fecha String, horaSalida String, horaLlegada String, asientosMax int, asientosDisponibles int)";
 		VentanaInicio.logger.log( Level.INFO, "Statement: " + sentencia3 );
@@ -218,13 +217,15 @@ public class BD {
 	 * @param contra Contraseña del azafato
 	 * @throws DBException 
 	 */
-	public static void insertarAzafato(Connection con, String usuario, String contra) throws DBException {
+	public static void insertarAzafato(Connection con, String usuario, String contra, int anyosExperiencia , String funcion ) throws DBException {
 	
-		try (PreparedStatement stmt = con.prepareStatement("INSERT INTO Azafato (usuario,contrasenya) VALUES (?, ?)"); 
+		try (PreparedStatement stmt = con.prepareStatement("INSERT INTO Azafato (usuario,contrasenya,anyosExperiencia,funcion) VALUES (?,?,?,?)"); 
 				Statement stmtForId = con.createStatement()) {
 				
 				stmt.setString(1, usuario);
 				stmt.setString(2, contra);
+				stmt.setInt(3, anyosExperiencia);
+				stmt.setString(4, funcion);
 				
 
 		
@@ -258,14 +259,14 @@ public class BD {
 	 * @param contra Contraseña del administrador
 	 * @throws DBException 
 	 */
-	public static void insertarAdministrador(Connection con, String usuario, String contra) throws DBException {
+	public static void insertarAdministrador(Connection con, String usuario, String contra, String cargo) throws DBException {
 	
-		try (PreparedStatement stmt = con.prepareStatement("INSERT INTO Administrador (usuario, contrasenya) VALUES (?, ?)"); 
+		try (PreparedStatement stmt = con.prepareStatement("INSERT INTO Administrador (usuario, contrasenya,cargo) VALUES (?,?, ?)"); 
 				Statement stmtForId = con.createStatement()) {
 				
 				stmt.setString(1, usuario);
 				stmt.setString(2, contra);
-				
+				stmt.setString(3, cargo);
 				
 			 stmt.executeUpdate();
 			VentanaInicio.logger.log(Level.INFO, "Se ha añadido un administrador");
