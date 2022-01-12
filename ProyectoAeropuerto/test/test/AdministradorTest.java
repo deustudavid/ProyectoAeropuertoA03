@@ -1,6 +1,5 @@
 package test;
 
-
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
@@ -9,32 +8,22 @@ import clases.Administrador;
 
 public class AdministradorTest {
 
-	Administrador a = new Administrador("11111111A", "Diego", "Burzaco", 3, "Admin");
+	Administrador a = new Administrador("Usuario", "Contraseña", "Jefe");
 	Administrador b = new Administrador();
 
 	@Test
-	public void testGetDni() {
-		assertEquals("11111111A", a.getDni());
+	public void testGetUsuario() {
+		assertEquals("Usuario", a.getUsuario());
 	}
 
 	@Test
-	public void testGetNombre() {
-		assertEquals("Diego", a.getNombre());
-	}
-
-	@Test
-	public void testGetApellido() {
-		assertEquals("Burzaco", a.getApellido());
-	}
-
-	@Test
-	public void testGetEdad() {
-		assertEquals(3, a.getEdad());
+	public void testGetContraseña() {
+		assertEquals("Contraseña", a.getContrasenya());
 	}
 
 	@Test
 	public void testGetCargo() {
-		assertEquals("Admin", a.getCargo());
+		assertEquals("Jefe", a.getCargo());
 	}
 
 	@Test
@@ -44,33 +33,14 @@ public class AdministradorTest {
 	}
 
 	@Test
-	public void testSetDni() {
-		b.setDni("11111111A");
-		assertEquals("11111111A", b.getDni());
+	public void testSetUsuario() {
+		b.setUsuario("Usuario");
+		assertEquals("Usuario", b.getUsuario());
 	}
 
 	@Test
-	public void testSetNombre() {
-		b.setNombre("Diego");
-		assertEquals("Diego", b.getNombre());
+	public void testSetContraseña() {
+		b.setContrasenya("Diego");
+		assertEquals("Diego", b.getContrasenya());
 	}
-
-	@Test
-	public void testSetApellido() {
-		b.setApellido("Burzaco");
-		assertEquals("Burzaco", b.getApellido());
-	}
-
-	@Test
-	public void testSetEdad() {
-		b.setEdad(10);
-		assertEquals(10, b.getEdad());
-	}
-
-	@Test
-	public void testSetToString() {
-		assertEquals("Administrador [cargo=" + a.getCargo() + ", getDni()=" + a.getDni() + ", getNombre()="
-				+ a.getNombre() + ", getEdad()=" + a.getEdad() + "]", a.toString());
-	}
-
 }

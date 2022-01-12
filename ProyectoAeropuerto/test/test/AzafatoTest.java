@@ -1,6 +1,5 @@
 package test;
 
-
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
@@ -9,32 +8,17 @@ import clases.Azafato;
 
 public class AzafatoTest {
 
-	Azafato a = new Azafato("11111111A", "Diego", "Burzaco", 3, 10, "Trabajar");
+	Azafato a = new Azafato("11111111A", "Diego", 10, "Trabajar");
 	Azafato b = new Azafato();
 
 	@Test
-	public void testGetDni() {
-		assertEquals("11111111A", a.getDni());
+	public void testGetUsuario() {
+		assertEquals("11111111A", a.getUsuario());
 	}
 
 	@Test
-	public void testGetNombre() {
-		assertEquals("Diego", a.getNombre());
-	}
-
-	@Test
-	public void testGetApellido() {
-		assertEquals("Burzaco", a.getApellido());
-	}
-
-	@Test
-	public void testGetEdad() {
-		assertEquals(3, a.getEdad());
-	}
-
-	@Test
-	public void testGetAniosExpe() {
-		assertEquals(10, a.getAnyosExperiencia());
+	public void testGetContraseña() {
+		assertEquals("Diego", a.getContrasenya());
 	}
 
 	@Test
@@ -43,27 +27,20 @@ public class AzafatoTest {
 	}
 
 	@Test
-	public void testSetDni() {
-		b.setDni("11111111A");
-		assertEquals("11111111A", b.getDni());
+	public void testGetAniosExpe() {
+		assertEquals(10, a.getAnyosExperiencia());
 	}
 
 	@Test
-	public void testSetNombre() {
-		b.setNombre("Diego");
-		assertEquals("Diego", b.getNombre());
+	public void testSetUsuario() {
+		b.setUsuario("11111111A");
+		assertEquals("11111111A", b.getUsuario());
 	}
 
 	@Test
-	public void testSetApellido() {
-		b.setApellido("Burzaco");
-		assertEquals("Burzaco", b.getApellido());
-	}
-
-	@Test
-	public void testSetEdad() {
-		b.setEdad(3);
-		assertEquals(3, b.getEdad());
+	public void testSetContraseña() {
+		b.setContrasenya("Diego");
+		assertEquals("Diego", b.getContrasenya());
 	}
 
 	@Test
@@ -76,13 +53,6 @@ public class AzafatoTest {
 	public void testSetFuncion() {
 		b.setFuncion("Trabajar");
 		assertEquals("Trabajar", b.getFuncion());
-	}
-
-	@Test
-	public void testToString() {
-		assertEquals("Azafato [anyosExperiencia=" + a.getAnyosExperiencia() + ", funcion=" + a.getFuncion()
-				+ ", getDni()=" + a.getDni() + ", getNombre()=" + a.getNombre() + ", getApellido()=" + a.getApellido()
-				+ ", getEdad()=" + a.getEdad() + "]", a.toString());
 	}
 
 }
