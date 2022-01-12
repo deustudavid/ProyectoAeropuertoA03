@@ -245,6 +245,16 @@ public class VentanaAdministrador extends JFrame {
 		menuItemGestionarAzafatos.setIcon(imagenAzafato);
 		menuItemGestionarAzafatos.setText("Gestionar azafatos");
 		menuUsuario.add(menuItemGestionarAzafatos);
+		menuItemGestionarAzafatos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				VisorAzafatos v = new VisorAzafatos();
+				
+				v.setVisible(true);
+				
+
+			}
+
+		});
 
 		menuItemCerrarSesion = new JMenuItem();
 		menuItemCerrarSesion.setIcon(imagenCerrarSesion);

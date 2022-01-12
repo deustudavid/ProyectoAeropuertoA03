@@ -1,10 +1,12 @@
 package clases;
 
-public class Administrador extends Persona {
+public class Administrador extends Usuario {
 	String cargo;
 
-	public Administrador(String dni, String nombre, String apellido, int edad, String cargo) {
-		super(dni, nombre, apellido, edad);
+	
+
+	public Administrador(String usuario, String contrasenya, String cargo) {
+		super(usuario, contrasenya);
 		this.cargo = cargo;
 	}
 
@@ -21,10 +23,8 @@ public class Administrador extends Persona {
 		this.cargo = cargo;
 	}
 
-	@Override
-	public String toString() {
-		return "Administrador [cargo=" + cargo + ", getDni()=" + getDni() + ", getNombre()=" + getNombre()
-				+ ", getEdad()=" + getEdad() + "]";
-	}
+	
+
+	
 
 }

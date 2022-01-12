@@ -1,20 +1,25 @@
 package clases;
 
-public class Azafato extends Persona {
+public class Azafato extends Usuario{
 	int anyosExperiencia;
 	String funcion;
 
-	public Azafato(String dni, String nombre, String apellido, int edad, int anyosExperiencia, String funcion) {
-		super(dni, nombre, apellido, edad);
+	
+	
+	
+	public Azafato(String usuario, String contrasenya, int anyosExperiencia, String funcion) {
+		super(usuario, contrasenya);
 		this.anyosExperiencia = anyosExperiencia;
 		this.funcion = funcion;
 	}
-
+	
 	public Azafato() {
 		super();
 		this.anyosExperiencia = 0;
 		this.funcion = "";
 	}
+
+	
 
 	public int getAnyosExperiencia() {
 		return anyosExperiencia;
@@ -32,11 +37,10 @@ public class Azafato extends Persona {
 		this.funcion = funcion;
 	}
 
-	@Override
-	public String toString() {
-		return "Azafato [anyosExperiencia=" + anyosExperiencia + ", funcion=" + funcion + ", getDni()=" + getDni()
-				+ ", getNombre()=" + getNombre() + ", getApellido()=" + getApellido() + ", getEdad()=" + getEdad()
-				+ "]";
-	}
+	
+
+	
+
+	
 
 }

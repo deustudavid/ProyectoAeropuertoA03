@@ -14,12 +14,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.TreeSet;
 import java.util.logging.Level;
 
-
+import clases.Azafato;
 import clases.Clase;
 import clases.Equipaje;
 import clases.Pasajero;
@@ -631,6 +634,107 @@ public class BD {
 			rs.close();
 			return p;
 	}
+	
+	public static List<Azafato> obtenerAzafatos(Connection con) throws SQLException {
+		List<Azafato> listaAzafatos = new ArrayList<>();
+		try (Statement stmt = con.createStatement()) {
+			try (ResultSet rs = stmt.executeQuery("SELECT * FROM Azafato")) {
+				while(rs.next()) {
+					Azafato a = new Azafato(
+						rs.getString("usuario"),
+						rs.getString("contrasenya"),
+						rs.getInt("anyosExperiencia"),
+						rs.getString("funcion")
+					);
+					
+					listaAzafatos.add(a);
+				}
+			}
+		}
+		
+		return listaAzafatos;
+	}
+	
+	public static TreeSet<Integer> obtenerTodosLosAnyosDeExperiencia(Connection con) throws SQLException{
+		String sent = "SELECT anyosExperiencia FROM Azafato ORDER BY anyosExperiencia ASC";
+		Statement st = con.createStatement();
+		TreeSet<Integer> anyos = new TreeSet<>();
+		ResultSet rs = st.executeQuery(sent);
+		while(rs.next()) {
+			int anyo = rs.getInt(1);
+			anyos.add(anyo);
+		
+		}
+
+		rs.close();
+		st.close();
+		
+		return anyos;
+		
+	}
+	
+	public static List<Azafato> ObtenerAzafatosSegunExperiencia(Connection con, int anyos) throws SQLException {
+		List<Azafato> azafatosObtenidos = new ArrayList<>();
+		try (Statement stmt = con.createStatement()) {
+			try (ResultSet rs = stmt.executeQuery("SELECT * FROM Azafato WHERE anyosExperiencia = "+anyos+"")) {
+				while(rs.next()) {
+					Azafato a = new Azafato(
+							rs.getString("usuario"),
+							rs.getString("contrasenya"),
+							rs.getInt("anyosExperiencia"),
+							rs.getString("funcion")
+					);
+					
+					azafatosObtenidos.add(a);
+				}
+			}
+		}
+		
+		return azafatosObtenidos;
+	}
+	
+	public static List<Azafato> obtenerFuncionAzafatoSegunTexto(Connection con, String funcion) throws SQLException {
+		List<Azafato> azafatosObtenidos = new ArrayList<>();
+		try (Statement stmt = con.createStatement()) {
+			try (ResultSet rs = stmt.executeQuery("SELECT * FROM Azafato WHERE funcion LIKE '%"+funcion+"%'")) {
+				while(rs.next()) {
+					Azafato launch = new Azafato(
+							rs.getString("usuario"),
+							rs.getString("contrasenya"),
+							rs.getInt("anyosExperiencia"),
+							rs.getString("funcion")
+					);
+					
+					azafatosObtenidos.add(launch);
+				}
+			}
+		}
+		
+		return azafatosObtenidos;
+	}
+	
+	public static boolean esAptoNuevoUsuarioAzafato (Connection con, String usuarioNuevo) throws SQLException{
+		boolean esAptoNuevoUsuario=true;
+		String sent = "SELECT usuario FROM Azafato";
+		Statement st = con.createStatement();
+		ArrayList<String> usuarios = new ArrayList<>();
+		ResultSet rs = st.executeQuery(sent);
+		while(rs.next()) {
+			String nombreUsuario = rs.getString(1);
+			usuarios.add(nombreUsuario);
+		
+		}
+		for (String string : usuarios) {
+			if (usuarioNuevo.equals(string)) {
+				esAptoNuevoUsuario=false;
+			}
+		}
+		rs.close();
+		st.close();
+		
+		return esAptoNuevoUsuario;
+		
+	}
 	public static ArrayList<Vuelo> obtenerVuelos(Connection con) {
         try (Statement statement = con.createStatement()) {
             ArrayList<Vuelo> ret = new ArrayList<>();
@@ -654,6 +758,8 @@ public class BD {
             return null;
         }
     }
+	
+	
 	
 	public static ArrayList<Pasajero> obtenerPasajeros(Connection con) {
 	
@@ -797,6 +903,15 @@ public class BD {
 			VentanaInicio.logger.log(Level.INFO, "Se ha actualizado la fotografia del pasajero: " + dni);
 		
 		}
+	
+	public static void actualizarAzafato(Connection con, String Usuario, String contrasenya, int experiencia, String funcion) throws SQLException  {
+		Statement statement = con.createStatement();
+		
+			String sent = "update Azafato set contrasenya='"+contrasenya+"',anyosExperiencia="+experiencia+",funcion='"+funcion+"' where usuario='"+Usuario+"'";
+			statement.executeUpdate(sent);
+			VentanaInicio.logger.log(Level.INFO, "Se ha actualizado el azafato ");
+		
+		}
 	public static void eliminarVuelo(Connection con, String id) throws SQLException {
 		Statement stm = con.createStatement();
 		String sent = "delete from Vuelo where id ='" + id+"'";
@@ -804,6 +919,14 @@ public class BD {
 		VentanaInicio.logger.log(Level.INFO, "Se ha eliminado de la BD el vuelo: " + id);
 		
 	}
+	public static void eliminarAzafato(Connection con, String usuario) throws SQLException {
+		Statement stm = con.createStatement();
+		String sent = "delete from Azafato where usuario ='" + usuario+"'";
+		stm.executeUpdate(sent);
+		VentanaInicio.logger.log(Level.INFO, "Se ha eliminado de la BD el azafato: " + usuario);
+		
+	}
+	
 	public static void eliminarTickets(Connection con, int ticketNum) throws SQLException {
 		Statement stm = con.createStatement();
 		String sent = "delete from Ticket where ticketNum = "+ticketNum+"";
