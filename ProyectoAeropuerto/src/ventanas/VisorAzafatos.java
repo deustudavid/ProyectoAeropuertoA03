@@ -19,6 +19,7 @@ import java.util.logging.Logger;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -43,8 +44,10 @@ import main.VentanaInicio;
 
 import java.awt.GridLayout;
 import java.awt.HeadlessException;
+import java.awt.Font;
+import java.awt.Color;
 
-public class VisorAzafatos extends JFrame implements WindowListener {
+public class VisorAzafatos extends JInternalFrame  {
 
 	/**
 	 * 
@@ -61,6 +64,8 @@ public class VisorAzafatos extends JFrame implements WindowListener {
 	
 	private JTree arbolExperiencia;
 	private DefaultTreeModel modeloArbol;
+	private JButton btnCancelar;
+	private JLabel lblInfo;
 	
 	public VisorAzafatos() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -99,6 +104,40 @@ public class VisorAzafatos extends JFrame implements WindowListener {
 		pNorte.add(txtFiltro);
 		pNorte.add(btnFiltro);
 		getContentPane().add(pNorte, BorderLayout.NORTH);
+		
+		lblInfo = new JLabel("Gestor de azafatos");
+		lblInfo.setForeground(Color.BLUE);
+		lblInfo.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
+		pNorte.add(lblInfo);
+		
+		btnCancelar = new JButton("Cancelar");
+		btnCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				boolean resultadoAdministradorActivo = ventanas.VentanaAdministrador.VentanaAdminEstaActiva();
+				boolean resultadoAzafatoActivo = ventanas.VentanaAzafato.VentanaAzafatoEstaActiva();
+
+				if (resultadoAdministradorActivo == true && resultadoAzafatoActivo == false) {
+					VentanaAdministrador.desbloquearBotones();
+
+				} else {
+					VentanaAzafato.desbloquearBotones();
+
+				}
+				
+				
+					try {
+						BD.closeBD(con);
+					} catch (DBException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					
+				
+				dispose();
+			}
+		});
+		pNorte.add(btnCancelar);
 		
 		updateUI(azafatosObtenidos);
 		azafatosJTable.putClientProperty("terminateEditOnFocusLost", Boolean.TRUE); 
@@ -288,73 +327,7 @@ public class VisorAzafatos extends JFrame implements WindowListener {
 	}
 	
 	
-	/*
-	public static void main(String[] args) {
-		SwingUtilities.invokeLater(new Runnable() {
-			
-			@Override
-			public void run() {
-				new VisorAzafatos();				
-			}
-		});
 
-	}
-	 */
-	
-	
-	@Override
-	public void windowOpened(WindowEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void windowClosing(WindowEvent e) {
-		
-		
-		
-			try {
-				BD.closeBD(con);
-			} catch (DBException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			};
-		
-	}
-
-	@Override
-	public void windowClosed(WindowEvent e) {
-
-
-		
-	}
-
-	@Override
-	public void windowIconified(WindowEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void windowDeiconified(WindowEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void windowActivated(WindowEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void windowDeactivated(WindowEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	
-	
 	
 	private void cargarArbol() {
 		try {

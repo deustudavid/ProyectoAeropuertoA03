@@ -247,8 +247,10 @@ public class VentanaAdministrador extends JFrame {
 		menuUsuario.add(menuItemGestionarAzafatos);
 		menuItemGestionarAzafatos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
+				bloquearBotones();
 				VisorAzafatos v = new VisorAzafatos();
-				
+				panelEscritorio.add(v);
+				v.toFront();
 				v.setVisible(true);
 				
 

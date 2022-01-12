@@ -786,7 +786,44 @@ public class BD {
         }
     }
 
+	public static String obtenerHoraSalidaDeVuelo(Connection con, String ID) throws DBException {
+		
+		try (PreparedStatement stmt = con.prepareStatement("SELECT horaSalida FROM Vuelo WHERE ID= '"+ID+"' ")) {
+			String salida="";
+			try (ResultSet rs = stmt.executeQuery()) {
+				while(rs.next()) {
+					
+					salida=rs.getString("horaSalida");
+				}
 
+			}
+			
+			return salida;
+		} catch (SQLException e) {
+            VentanaInicio.logger.log( Level.SEVERE, "Excepción", e );
+            throw new DBException("No se pudo conseguir la hora de salida del vuelo", e);
+		}
+	}
+	
+public static String obtenerHoraLlegadaDeVuelo(Connection con, String ID) throws DBException {
+		
+		try (PreparedStatement stmt = con.prepareStatement("SELECT horaLlegada FROM Vuelo WHERE ID= '"+ID+"' ")) {
+			String llegada="";
+			try (ResultSet rs = stmt.executeQuery()) {
+				while(rs.next()) {
+					
+					llegada=rs.getString("horaLlegada");
+				}
+
+			}
+			
+			return llegada;
+		} catch (SQLException e) {
+            VentanaInicio.logger.log( Level.SEVERE, "Excepción", e );
+            throw new DBException("No se pudo conseguir la hora de llegada del vuelo", e);
+		}
+	}
+	
 	public static ArrayList<Ticket> obtenerTickets(Connection con) {
         try (Statement statement = con.createStatement()) {
             ArrayList<Ticket> ret = new ArrayList<>();
@@ -910,6 +947,13 @@ public class BD {
 			String sent = "update Azafato set contrasenya='"+contrasenya+"',anyosExperiencia="+experiencia+",funcion='"+funcion+"' where usuario='"+Usuario+"'";
 			statement.executeUpdate(sent);
 			VentanaInicio.logger.log(Level.INFO, "Se ha actualizado el azafato ");
+		
+		}
+	public static void actualizarHoraDespegueYAterrizaje(Connection con, String ID, String horaSalida, String horaLlegada) throws SQLException  {
+		Statement statement = con.createStatement();
+		
+			String sent = "update Vuelo set horaSalida='"+horaSalida+"',horaLlegada='"+horaLlegada+"' where ID='"+ID+"'";
+			statement.executeUpdate(sent);
 		
 		}
 	public static void eliminarVuelo(Connection con, String id) throws SQLException {

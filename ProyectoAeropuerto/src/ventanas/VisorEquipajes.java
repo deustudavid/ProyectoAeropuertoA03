@@ -38,7 +38,7 @@ public class VisorEquipajes extends JFrame implements WindowListener {
 	private DefaultTableModel equipajesTableModel; // modelo del JTable de pasajeros
 	private JList<Pasajero> pasajeroJList; // JList de pasajeros
 	private DefaultListModel<Pasajero> modelopasajeroJList;
-	private DatosPasajeroPanel DatosPasajeroPanel; // panel de información
+	private DatosPasajeroPanel DatosPasajeroPanel; // panel de informacion
 	private JTable equipajesTable ;
 	private static ArrayList<Equipaje> t;
 
