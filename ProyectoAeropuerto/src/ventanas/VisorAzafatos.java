@@ -74,7 +74,7 @@ public class VisorAzafatos extends JInternalFrame  {
 		
 		azafatosJTable = new JTable();
 		azafatosJTable.setCellSelectionEnabled(true);
-		azafatosJTable.putClientProperty("terminateEditOnFocusLost", Boolean.TRUE); 
+		 
 
 		getContentPane().add(new JScrollPane(azafatosJTable), BorderLayout.CENTER);
 		
@@ -140,7 +140,7 @@ public class VisorAzafatos extends JInternalFrame  {
 		pNorte.add(btnCancelar);
 		
 		updateUI(azafatosObtenidos);
-		azafatosJTable.putClientProperty("terminateEditOnFocusLost", Boolean.TRUE); 
+		 
 
 				
 		azafatosJTable.getColumnModel().getColumn(0).setMinWidth(60);
@@ -205,44 +205,7 @@ public class VisorAzafatos extends JInternalFrame  {
 		
 		
 
-		azafatosJTable.getModel().addTableModelListener(new TableModelListener() {
-			@Override
-			public void tableChanged(TableModelEvent e) {
-
-				
-				int fil = e.getFirstRow();
-				
-				
-				String usuario = (String) azafatosJTable.getValueAt(fil, 0);
-				String contrasenia = (String) azafatosJTable.getValueAt(fil, 1);
-				int exp = (int) azafatosJTable.getValueAt(fil, 2);
-				String funcion = (String) azafatosJTable.getValueAt(fil, 3);
-
-				
-					try {
-						BD.actualizarAzafato(con, usuario, contrasenia, exp, funcion);
-						JOptionPane.showMessageDialog(null, "Se ha actualizado el azafato");
-
-					} catch (SQLException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-					List<Azafato> azafatosRestantes;
-					try {
-						azafatosRestantes = BD.obtenerAzafatos(con);
-						updateUI(azafatosRestantes);
-						cargarArbol();
-					} catch (SQLException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-					
-					
-			
-			}
-
-			
-		});
+	
 		
 	
 
@@ -321,8 +284,6 @@ public class VisorAzafatos extends JInternalFrame  {
 	
 	private void updateUI(List<Azafato> azafatosObtenidos) {
 		azafatosJTable.setModel(new AzafatosTableModel(azafatosObtenidos));
-		azafatosJTable.putClientProperty("terminateEditOnFocusLost", Boolean.TRUE); 
-
 		infoLabel.setText(String.format("%d azafatos", azafatosObtenidos.size()));
 	}
 	

@@ -18,7 +18,7 @@ import java.awt.Font;
 
 public class VentanaAdministrador extends JFrame {
 
-	private static JDesktopPane panelEscritorio;
+	static JDesktopPane panelEscritorio;
 	public static JLabel lblDeustoFly;
 	private static JMenu menuPasajero;
 	private static JMenu menuTickets;

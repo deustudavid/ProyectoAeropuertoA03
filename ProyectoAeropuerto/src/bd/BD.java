@@ -879,12 +879,13 @@ public static String obtenerHoraLlegadaDeVuelo(Connection con, String ID) throws
     }
 	
 	public static ArrayList<Equipaje> obtenerEquipajesDePasajero(Connection con, String dni) throws DBException {
-		try (PreparedStatement stmt = con.prepareStatement("SELECT descripcion, peso, largo, altura, anchura FROM Equipaje WHERE dniPasajero == '"+dni+"'  ORDER BY peso")) {
+		try (PreparedStatement stmt = con.prepareStatement("SELECT equipajeNum,descripcion, peso, largo, altura, anchura FROM Equipaje WHERE dniPasajero == '"+dni+"'  ORDER BY peso")) {
 			
 			ArrayList<Equipaje> equipajes = new ArrayList<>();
 			try (ResultSet rs = stmt.executeQuery()) {
 				while(rs.next()) {
 					Equipaje eq = new Equipaje(
+						rs.getInt("equipajeNum"),
 						rs.getString("descripcion"),
 						rs.getFloat("peso"),
 						rs.getFloat("largo"),
@@ -949,6 +950,16 @@ public static String obtenerHoraLlegadaDeVuelo(Connection con, String ID) throws
 			VentanaInicio.logger.log(Level.INFO, "Se ha actualizado el azafato ");
 		
 		}
+	
+	public static void actualizarEquipaje(Connection con, int num, String descripcion, double peso,  double largo, double altura, double anchura) throws SQLException  {
+		Statement statement = con.createStatement();
+		
+			String sent = "update Equipaje set descripcion='"+descripcion+"',peso="+peso+",largo="+largo+",altura="+altura+",anchura="+anchura+" where equipajeNum="+num+"";
+			statement.executeUpdate(sent);
+			VentanaInicio.logger.log(Level.INFO, "Se ha actualizado la maleta ");
+		
+		}
+	
 	public static void actualizarHoraDespegueYAterrizaje(Connection con, String ID, String horaSalida, String horaLlegada) throws SQLException  {
 		Statement statement = con.createStatement();
 		

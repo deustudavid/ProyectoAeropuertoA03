@@ -15,7 +15,7 @@ public class VentanaAzafato extends JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 7025051843001903322L;
-	private JDesktopPane panelEscritorio;
+	static JDesktopPane panelEscritorio;
 	private static JMenu menuPasajero;
 	private static JMenu menuTickets;
 	private static JMenu menuVuelo;

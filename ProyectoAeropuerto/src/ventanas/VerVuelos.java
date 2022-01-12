@@ -12,6 +12,7 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumn;
 
 import bd.BD;
 import bd.DBException;
@@ -32,14 +33,15 @@ public class VerVuelos extends JInternalFrame {
 	private static Connection con;
 	private ImageIcon imagenBorrar;
 	private ImageIcon imagenCancelar;
-	private static int horaSalidaInt,horaLlegadaInt,minutoSalidaInt,minutoLlegadaInt;
+	private ImageIcon imagenReloj;
 	private static final String PATTERN =
 			"([01]?[0-9]|2[0-3]):[0-5][0-9]";
 	
-	private static String valorLlegadaAnterior;
-	private static String valorSalidaAnterior;
 	private static String valorLlegadaNueva;
 	private static String valorSalidaNueva;
+	private JLabel lblSeEsperanRetrasos;
+	private static String llegadaObtenidaDeBBDD;
+	private static String salidaObtenidaDeBBDD;
 	public VerVuelos() {
 		
 		v = null;
@@ -47,6 +49,7 @@ public class VerVuelos extends JInternalFrame {
 		panelScroll = new JScrollPane();
 		imagenBorrar = new ImageIcon("img/papelera.png");
 		imagenCancelar = new ImageIcon("img/Cancelar.png");
+		imagenReloj = new ImageIcon("img/clock.png");
 		btnCancelar = new JButton();
 
 		modeloTablaVuelos = new DefaultTableModel() {
@@ -60,7 +63,7 @@ public class VerVuelos extends JInternalFrame {
 		String[] nombreColumnas = { "ID", "origen", "destino", "fecha", "horaSalida", "horaLlegada", "AsientosTotales",
 				"AsientosDisponibles" };
 		modeloTablaVuelos.setColumnIdentifiers(nombreColumnas);
-
+	
 		try {
 			con = BD.initBD("Aeropuerto.db");
 			v = BD.obtenerVuelos(con);
@@ -76,13 +79,6 @@ public class VerVuelos extends JInternalFrame {
 			e.printStackTrace();
 		}
 		cargarVuelosRecursivamente(v, 0);
-		/*
-		 * for (Vuelo vuelo : v) { String[] fila = { vuelo.getID(), vuelo.getOrigen(),
-		 * vuelo.getDestino(), vuelo.getFecha(), vuelo.getHoraSalida(),
-		 * vuelo.getHoraLlegada()
-		 * ,String.valueOf(vuelo.getAsientosMax()),String.valueOf(vuelo.
-		 * getAsientosRestantes()) }; modeloTablaVuelos.addRow(fila); }
-		 */
 
 		tabla = new JTable(modeloTablaVuelos);
 		tabla.getModel().addTableModelListener(new TableModelListener() {
@@ -95,26 +91,27 @@ public class VerVuelos extends JInternalFrame {
 			
 			 try {
 				 con=BD.initBD("Aeropuerto.db");
-				valorLlegadaAnterior= BD.obtenerHoraLlegadaDeVuelo(con, (String) modeloTablaVuelos.getValueAt(fil, 0));
-				valorSalidaAnterior= BD.obtenerHoraSalidaDeVuelo(con, (String) modeloTablaVuelos.getValueAt(fil, 0));
-
+				llegadaObtenidaDeBBDD=BD.obtenerHoraLlegadaDeVuelo(con, (String) modeloTablaVuelos.getValueAt(fil, 0));
+				 salidaObtenidaDeBBDD=BD.obtenerHoraSalidaDeVuelo(con, (String) modeloTablaVuelos.getValueAt(fil, 0));
+				 BD.closeBD(con);
 			} catch (DBException e2) {
 				// TODO Auto-generated catch block
 				e2.printStackTrace();
 			}
-			//while(sePermiteCambiarDeCelda) {
-				
-				String id = (String) modeloTablaVuelos.getValueAt(fil, 0);
+			
 				 valorSalidaNueva = (String) modeloTablaVuelos.getValueAt(fil, 4);
 				 valorLlegadaNueva = (String) modeloTablaVuelos.getValueAt(fil, 5);
 				
 				if (col==4) {
-					boolean salidaCorrecta=ComprobarHoraInsertada(valorSalidaNueva, fil,4);
 					
+					boolean salidaCorrecta=ComprobarHoraInsertada(valorSalidaNueva);
+					// si el dato es correcto, se queda en la tabla
 					if(salidaCorrecta) {
 						try {
 							con=BD.initBD("Aeropuerto.db");
-							BD.actualizarHoraDespegueYAterrizaje(con, id, valorSalidaNueva, valorLlegadaNueva);
+							String id = (String) modeloTablaVuelos.getValueAt(fil, 0);
+							BD.actualizarHoraDespegueYAterrizaje(con, id, valorSalidaNueva, llegadaObtenidaDeBBDD);
+							
 							BD.closeBD(con);
 						} catch (SQLException e1) {
 							// TODO Auto-generated catch block
@@ -124,14 +121,57 @@ public class VerVuelos extends JInternalFrame {
 							e1.printStackTrace();
 						}
 					}
+					// si el dato es incorrecto, se carga el dato que se encontraba antes del cambio
+					else {
+						/* Queriamos eliminar las filas de la tabla, pero nada funcionaba.
+						 * 
+						 *  
+						 *  Hemos probado:
+						 *  
+						 *  modeloTablaVuelos.setRowCount(0);
+						 *  
+						 *  DefaultTableModel dtm = (DefaultTableModel) tabla.getModel();
+								dtm.setRowCount(0);
+						 *  
+						*  DefaultTableModel dm = (DefaultTableModel) tabla.getModel();
+									int filas = dm.getRowCount();
+								
+									for (int i = filas - 1; i >= 0; i--) {
+									    dm.removeRow(i);
+									}
+							 *  
+							 *  
+							 *  
+						 *  Asi que optamos por cerrar la ventana y abrirla de nuevo, cargandola asi con todos sus datos anteriores*/
+						dispose();
+						VerVuelos v = new VerVuelos();
+						boolean resultadoAdministradorActivo = VentanaAdministrador.VentanaAdminEstaActiva();
+						boolean resultadoAzafatoActivo = VentanaAzafato.VentanaAzafatoEstaActiva();
+
+						if (resultadoAdministradorActivo == true && resultadoAzafatoActivo == false) {
+							VentanaAdministrador.panelEscritorio.add(v);
+							v.setVisible(true);
+
+						} else {
+							VentanaAzafato.panelEscritorio.add(v);
+							v.setVisible(true);
+						}
+						
+						
+						
+					}
 				}
 				if (col==5) {
-					boolean llegadaCorrecta=ComprobarHoraInsertada(valorLlegadaNueva, fil ,5);
+					
+					boolean llegadaCorrecta=ComprobarHoraInsertada(valorLlegadaNueva);
 					
 					if(llegadaCorrecta) {
 						try {
 							con=BD.initBD("Aeropuerto.db");
-							BD.actualizarHoraDespegueYAterrizaje(con, id, valorSalidaNueva, valorLlegadaNueva);
+							String id4 = (String) modeloTablaVuelos.getValueAt(fil, 0);
+
+							BD.actualizarHoraDespegueYAterrizaje(con, id4, salidaObtenidaDeBBDD, valorLlegadaNueva);
+						
 							BD.closeBD(con);
 						} catch (SQLException e1) {
 							// TODO Auto-generated catch block
@@ -140,10 +180,25 @@ public class VerVuelos extends JInternalFrame {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
-					}
+					}else {
+						
+						dispose();
+						VerVuelos v = new VerVuelos();
+						boolean resultadoAdministradorActivo = VentanaAdministrador.VentanaAdminEstaActiva();
+						boolean resultadoAzafatoActivo = VentanaAzafato.VentanaAzafatoEstaActiva();
+
+						if (resultadoAdministradorActivo == true && resultadoAzafatoActivo == false) {
+							VentanaAdministrador.panelEscritorio.add(v);
+							v.setVisible(true);
+
+						} else {
+							VentanaAzafato.panelEscritorio.add(v);
+							v.setVisible(true);
+						}
 				}
+		}
 				
-		//}
+		
 		}
 	});
 		tabla.getColumnModel().getColumn(0).setMinWidth(110);
@@ -258,24 +313,48 @@ public class VerVuelos extends JInternalFrame {
 			if (VentanaAzafato.VentanaAzafatoEstaActiva()) {
 				btnEliminarVuelo.setEnabled(false);
 		}
+		
+		JLabel lblReloj = new JLabel();
+		lblReloj.setIcon(imagenReloj);
+		
+		lblSeEsperanRetrasos = new JLabel("Se esperan retrasos? Modifica las horas de salida y llegada.");
 		GroupLayout layout = new GroupLayout(getContentPane());
-		layout.setHorizontalGroup(layout.createParallelGroup(Alignment.LEADING).addGroup(layout.createSequentialGroup()
-				.addContainerGap()
-				.addGroup(layout.createParallelGroup(Alignment.TRAILING).addGroup(layout.createSequentialGroup()
-						.addComponent(panelScroll, GroupLayout.DEFAULT_SIZE, 811, Short.MAX_VALUE).addContainerGap())
+		layout.setHorizontalGroup(
+			layout.createParallelGroup(Alignment.LEADING)
+				.addGroup(layout.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(layout.createParallelGroup(Alignment.LEADING)
+						.addComponent(panelScroll, GroupLayout.PREFERRED_SIZE, 812, GroupLayout.PREFERRED_SIZE)
 						.addGroup(layout.createSequentialGroup()
-								.addComponent(btnEliminarVuelo, GroupLayout.PREFERRED_SIZE, 155,
-										GroupLayout.PREFERRED_SIZE)
-								.addGap(56)
-								.addComponent(btnCancelar, GroupLayout.PREFERRED_SIZE, 155, GroupLayout.PREFERRED_SIZE)
-								.addGap(229)))));
-		layout.setVerticalGroup(layout.createParallelGroup(Alignment.LEADING).addGroup(layout.createSequentialGroup()
-				.addGap(29).addComponent(panelScroll, GroupLayout.PREFERRED_SIZE, 259, GroupLayout.PREFERRED_SIZE)
-				.addGap(33)
-				.addGroup(layout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnCancelar, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnEliminarVuelo, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE))
-				.addContainerGap()));
+							.addGroup(layout.createParallelGroup(Alignment.TRAILING)
+								.addComponent(lblSeEsperanRetrasos, GroupLayout.PREFERRED_SIZE, 431, GroupLayout.PREFERRED_SIZE)
+								.addGroup(Alignment.LEADING, layout.createSequentialGroup()
+									.addGap(67)
+									.addComponent(lblReloj, GroupLayout.PREFERRED_SIZE, 138, GroupLayout.PREFERRED_SIZE)))
+							.addGap(12)
+							.addComponent(btnEliminarVuelo, GroupLayout.PREFERRED_SIZE, 155, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(btnCancelar, GroupLayout.PREFERRED_SIZE, 155, GroupLayout.PREFERRED_SIZE)))
+					.addGap(111))
+		);
+		layout.setVerticalGroup(
+			layout.createParallelGroup(Alignment.LEADING)
+				.addGroup(layout.createSequentialGroup()
+					.addGap(29)
+					.addComponent(panelScroll, GroupLayout.PREFERRED_SIZE, 259, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGroup(layout.createParallelGroup(Alignment.LEADING)
+						.addGroup(layout.createSequentialGroup()
+							.addComponent(lblSeEsperanRetrasos, GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
+							.addGap(1)
+							.addComponent(lblReloj, GroupLayout.PREFERRED_SIZE, 57, GroupLayout.PREFERRED_SIZE)
+							.addContainerGap(33, Short.MAX_VALUE))
+						.addGroup(Alignment.TRAILING, layout.createSequentialGroup()
+							.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+								.addComponent(btnCancelar, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE)
+								.addComponent(btnEliminarVuelo, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE))
+							.addGap(30))))
+		);
 		getContentPane().setLayout(layout);
 
 		pack();
@@ -290,31 +369,17 @@ public class VerVuelos extends JInternalFrame {
 			cargarVuelosRecursivamente(v, i + 1);
 		}
 	}
-	private boolean ComprobarHoraInsertada(String str, int fila, int columna) {
+	private boolean ComprobarHoraInsertada(String str) {
 		Pattern pattern = Pattern.compile(PATTERN);
 		Matcher matcher = pattern.matcher(str);
 		if(matcher.matches()){
-			JOptionPane.showMessageDialog(null, "Formato correcto, vuelo actualizado", "Error",
-			        JOptionPane.WARNING_MESSAGE);
-			System.out.println("Time "+ str +" is valid 24Hours Format");
 			return true;
 	
 		}else{
-			
-			modeloTablaVuelos.setValueAt(valorSalidaAnterior,fila,4);
-			modeloTablaVuelos.setValueAt(valorLlegadaAnterior,fila,5);
-			JOptionPane.showMessageDialog(null, "Formato de la hora de llegada incorrecto", "Error",
-			        JOptionPane.WARNING_MESSAGE);
-			System.out.println("Time "+ str +" is invalid 24Hours Format");
-			
-			
-			
-			
 			return false;
 		
 		}
 		
 	}
-	
 	
 }

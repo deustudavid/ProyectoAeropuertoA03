@@ -1,6 +1,7 @@
 package ventanas;
 import bd.BD;
 import bd.DBException;
+import clases.Azafato;
 import clases.Equipaje;
 import clases.Pasajero;
 
@@ -9,7 +10,9 @@ import java.awt.GridBagLayout;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.DefaultListModel;
 
@@ -22,7 +25,11 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 
 
@@ -54,13 +61,11 @@ public class VisorEquipajes extends JFrame implements WindowListener {
 		
 		equipajesTableModel = new DefaultTableModel() {
 			public boolean isCellEditable(int row, int column) {
-				if (column == 0) {
-					return false;
-				}
-				return true;
+				
+				return false;
 			}
 		};
-		String[] nombreColumnas = { "Descripcion", "Peso", "Largo", "Altura", "Anchura"};
+		String[] nombreColumnas = { "NumEquipaje" ,"Descripcion", "Peso", "Largo", "Altura", "Anchura"};
 		equipajesTableModel.setColumnIdentifiers(nombreColumnas);
 
 		
@@ -78,6 +83,7 @@ public class VisorEquipajes extends JFrame implements WindowListener {
 		mainPanel.add(DatosPasajeroPanel, BorderLayout.NORTH);
 		
 		equipajesTable = new JTable(equipajesTableModel);
+		
 		
 		panelScroll.setViewportView(equipajesTable);
 		mainPanel.add(panelScroll, BorderLayout.CENTER);
@@ -129,17 +135,18 @@ public class VisorEquipajes extends JFrame implements WindowListener {
 			Pasajero Pasajero = pasajeroJList.getSelectedValue();
 			DatosPasajeroPanel.setpasajero(Pasajero);
 			
-				
+
 				try {
 					con = BD.initBD("Aeropuerto.db");
 					t = BD.obtenerEquipajesDePasajero(con,Pasajero.getDni());
 					
 					equipajesTableModel.setRowCount(0);
 					for (Equipaje maleta : t) {
-						equipajesTableModel.addRow(new Object[] { maleta.getDescripcion(), maleta.getPeso(),
+						equipajesTableModel.addRow(new Object[] { maleta.getEquipajeNum(), maleta.getDescripcion(), maleta.getPeso(),
 								maleta.getLargo(), maleta.getAltura(), maleta.getAnchura()});
 					}
 					equipajesTable.setModel(equipajesTableModel);
+				
 					
 					panelScroll.setViewportView(equipajesTable);
 					
@@ -158,10 +165,14 @@ public class VisorEquipajes extends JFrame implements WindowListener {
 				}
 			
 		} else {
+
 			DatosPasajeroPanel.clear();
 			equipajesTable.setModel(equipajesTableModel);
+			
 		}
 	}
+	
+	
 	
 	private void cargarListaPasajeros() {
 		
@@ -186,6 +197,13 @@ public class VisorEquipajes extends JFrame implements WindowListener {
 			e.printStackTrace();
 		}
 	
+	}
+	
+	private boolean comprobarDouble(double d) {
+		if(d>0) {
+			return true;
+		}
+		return false;
 	}
 	
 
