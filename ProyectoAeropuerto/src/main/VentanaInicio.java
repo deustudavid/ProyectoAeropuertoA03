@@ -23,6 +23,7 @@ import java.util.logging.LogManager;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -37,6 +38,7 @@ import ventanas.VentanaAzafato;
 
 import java.awt.Color;
 import java.awt.HeadlessException;
+import java.awt.Image;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -44,6 +46,7 @@ import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JProgressBar;
 import javax.swing.SwingConstants;
+import java.awt.FlowLayout;
 
 public class VentanaInicio extends JFrame {
 
@@ -77,6 +80,7 @@ public class VentanaInicio extends JFrame {
 	private static final String NOMBRE_FICHERO_LOG = "logBaseDatos";
 	private static final String EXT_FICHERO_LOG = ".log"; // extension del fichero log
 	private static Handler handler ;
+	private JPanel panelSur;
 	
 	private static Logger initLogger() {
 		if (logger==null) {  // Logger por defecto local:
@@ -231,7 +235,7 @@ public class VentanaInicio extends JFrame {
 		setTitle("VENTANA INICIO");
 		ventanaActual = this;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 522, 261);
+		setBounds(100, 100, 522, 361);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.BLACK);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -286,6 +290,17 @@ public class VentanaInicio extends JFrame {
 		textUsuario.setColumns(10);
 		textUsuario.setBounds(281, 22, 157, 28);
 		panelCentral.add(textUsuario);
+		
+		JLabel lblAvioncito = new JLabel("AVI\u00D3N");
+		lblAvioncito.setBounds(10, 220, 248, 90);
+		ImageIcon im = new ImageIcon("img/avioncito.png");
+		
+		ImageIcon imagenConDimensiones = new ImageIcon(im.getImage().getScaledInstance(lblAvioncito.getWidth(),lblAvioncito.getHeight(),Image.SCALE_DEFAULT));
+		lblAvioncito.setIcon(imagenConDimensiones);
+		panelCentral.add(lblAvioncito);
+		
+		panelSur = new JPanel(null);
+		contentPane.add(panelSur, BorderLayout.SOUTH);
 
 		labelCerrar = new JLabel("Cerrando ventana...");
 		labelCerrar.setBounds(200, 300, 200, 10);
@@ -457,6 +472,43 @@ public class VentanaInicio extends JFrame {
 		
 
 		setVisible(true);
+		
+		Runnable r = new Runnable() {
+			
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				int inicial = lblAvioncito.getX();
+				while(true) {
+					while(inicial < 250
+							){
+						inicial = inicial + 10;
+						try {
+							Thread.sleep(200);
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						lblAvioncito.setBounds(inicial,lblAvioncito.getY(),lblAvioncito.getWidth(),lblAvioncito.getHeight());
+						panelSur.updateUI();
+					}
+					while(inicial>=10){
+						inicial = inicial - 10;
+						try {
+							Thread.sleep(200);
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						lblAvioncito.setBounds(inicial,lblAvioncito.getY(),lblAvioncito.getWidth(),lblAvioncito.getHeight());
+						panelSur.updateUI();
+					
+					}
+				}		
+			}
+		};
+		
+		Thread t = new Thread(r);
+		t.start();
 	}
-
 }
