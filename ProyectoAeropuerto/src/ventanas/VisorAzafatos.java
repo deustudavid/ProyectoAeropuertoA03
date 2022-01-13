@@ -99,6 +99,7 @@ public class VisorAzafatos extends JInternalFrame  {
 		
 		txtFiltro = new JTextField("Caracteres a buscar:");
 		JButton btnFiltro = new JButton("FILTRAR FUNCIONES");
+		btnFiltro.setBackground(Color.CYAN);
 		JPanel pNorte = new JPanel();
 		pNorte.setLayout(new GridLayout(0, 2, 0, 0));
 		pNorte.add(txtFiltro);
@@ -111,6 +112,7 @@ public class VisorAzafatos extends JInternalFrame  {
 		pNorte.add(lblInfo);
 		
 		btnCancelar = new JButton("Cancelar");
+		btnCancelar.setBackground(Color.ORANGE);
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				

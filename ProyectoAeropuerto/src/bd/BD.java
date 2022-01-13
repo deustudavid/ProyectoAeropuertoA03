@@ -712,7 +712,7 @@ public class BD {
 		
 		return azafatosObtenidos;
 	}
-	
+	/*
 	public static boolean esAptoNuevoUsuarioAzafato (Connection con, String usuarioNuevo) throws SQLException{
 		boolean esAptoNuevoUsuario=true;
 		String sent = "SELECT usuario FROM Azafato";
@@ -734,7 +734,7 @@ public class BD {
 		
 		return esAptoNuevoUsuario;
 		
-	}
+	}*/
 	public static ArrayList<Vuelo> obtenerVuelos(Connection con) {
         try (Statement statement = con.createStatement()) {
             ArrayList<Vuelo> ret = new ArrayList<>();
@@ -879,13 +879,14 @@ public static String obtenerHoraLlegadaDeVuelo(Connection con, String ID) throws
     }
 	
 	public static ArrayList<Equipaje> obtenerEquipajesDePasajero(Connection con, String dni) throws DBException {
-		try (PreparedStatement stmt = con.prepareStatement("SELECT equipajeNum,descripcion, peso, largo, altura, anchura FROM Equipaje WHERE dniPasajero == '"+dni+"'  ORDER BY peso")) {
+		try (PreparedStatement stmt = con.prepareStatement("SELECT equipajeNum, dniPasajero, descripcion, peso, largo, altura, anchura FROM Equipaje WHERE dniPasajero == '"+dni+"'  ORDER BY peso")) {
 			
 			ArrayList<Equipaje> equipajes = new ArrayList<>();
 			try (ResultSet rs = stmt.executeQuery()) {
 				while(rs.next()) {
 					Equipaje eq = new Equipaje(
 						rs.getInt("equipajeNum"),
+						rs.getString("dniPasajero"),
 						rs.getString("descripcion"),
 						rs.getFloat("peso"),
 						rs.getFloat("largo"),
@@ -906,6 +907,7 @@ public static String obtenerHoraLlegadaDeVuelo(Connection con, String ID) throws
             throw new DBException("No se pudo conseguir el listado de equipajes asociados al pasajero", e);
 		}
 	}
+	
 	public static String obtenerFotoPasajero(Connection con, String dni) throws DBException {
 		try (PreparedStatement stmt = con.prepareStatement("SELECT rutaFoto FROM Pasajero WHERE dni== '"+dni+"' ")) {
 			String ruta="fotos/empty.png";
@@ -941,7 +943,7 @@ public static String obtenerHoraLlegadaDeVuelo(Connection con, String ID) throws
 			VentanaInicio.logger.log(Level.INFO, "Se ha actualizado la fotografia del pasajero: " + dni);
 		
 		}
-	
+	/*
 	public static void actualizarAzafato(Connection con, String Usuario, String contrasenya, int experiencia, String funcion) throws SQLException  {
 		Statement statement = con.createStatement();
 		
@@ -950,7 +952,8 @@ public static String obtenerHoraLlegadaDeVuelo(Connection con, String ID) throws
 			VentanaInicio.logger.log(Level.INFO, "Se ha actualizado el azafato ");
 		
 		}
-	
+	*/
+	/*
 	public static void actualizarEquipaje(Connection con, int num, String descripcion, double peso,  double largo, double altura, double anchura) throws SQLException  {
 		Statement statement = con.createStatement();
 		
@@ -959,6 +962,7 @@ public static String obtenerHoraLlegadaDeVuelo(Connection con, String ID) throws
 			VentanaInicio.logger.log(Level.INFO, "Se ha actualizado la maleta ");
 		
 		}
+	*/
 	
 	public static void actualizarHoraDespegueYAterrizaje(Connection con, String ID, String horaSalida, String horaLlegada) throws SQLException  {
 		Statement statement = con.createStatement();

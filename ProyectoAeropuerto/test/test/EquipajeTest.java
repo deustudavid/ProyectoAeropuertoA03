@@ -12,7 +12,7 @@ public class EquipajeTest {
 
 	Equipaje e = new Equipaje(2, "00000000Q","Descripcion", 22.0, 10.4, 40.3, 30.2);
 	Equipaje b = new Equipaje();
-	Equipaje e2 = new Equipaje("Descripcion", 22.0, 10.4, 40.3, 30.2);
+	
 	
 
 	@Test
@@ -52,27 +52,27 @@ public class EquipajeTest {
 	
 	@Test
 	public void testGetDescripcion2() {
-		assertEquals("Descripcion", e2.getDescripcion());
+		assertEquals("Descripcion", e.getDescripcion());
 	}
 
 	@Test
 	public void testGetPeso2() {
-		assertEquals(22.0 ,e2.getPeso(),0.00f);
+		assertEquals(22.0 ,e.getPeso(),0.00f);
 	}
 
 	@Test
 	public void testGetLargo2() {
-		assertEquals(10.4 , e2.getLargo(),0.00f);
+		assertEquals(10.4 , e.getLargo(),0.00f);
 	}
 
 	@Test
 	public void testGetAltura2() {
-		assertEquals(40.3,e2.getAltura(),0.00f);
+		assertEquals(40.3,e.getAltura(),0.00f);
 	}
 
 	@Test
 	public void testGetAnchura2() {
-		assertEquals(30.2 ,e2.getAnchura(),0.00f);
+		assertEquals(30.2 ,e.getAnchura(),0.00f);
 	}
 
 	@Test

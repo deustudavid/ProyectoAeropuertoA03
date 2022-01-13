@@ -31,14 +31,7 @@ public class Equipaje {
 		this.anchura = 0.0;
 	}
 
-	public Equipaje(int equipajeNum,String descripcion, double peso, double largo, double altura, double anchura) {
-		this.equipajeNum = equipajeNum;
-		this.descripcion = descripcion;
-		this.peso = peso;
-		this.largo = largo;
-		this.altura = altura;
-		this.anchura = anchura;	
-		}
+	
 
 	public int getEquipajeNum() {
 		return equipajeNum;

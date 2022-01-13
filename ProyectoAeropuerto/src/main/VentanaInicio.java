@@ -31,6 +31,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
+import com.formdev.flatlaf.FlatLightLaf;
+
 import bd.BD;
 import bd.DBException;
 import ventanas.VentanaAdministrador;
@@ -46,6 +48,9 @@ import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JProgressBar;
 import javax.swing.SwingConstants;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+
 import java.awt.FlowLayout;
 
 public class VentanaInicio extends JFrame {
@@ -116,6 +121,12 @@ public class VentanaInicio extends JFrame {
 	
 	/* MAIN */
 	public static void main(String[] args) {
+		try {
+			UIManager.setLookAndFeel(new FlatLightLaf());
+		} catch (UnsupportedLookAndFeelException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		File directory = new File("");
 
 		directory = new File("logs");

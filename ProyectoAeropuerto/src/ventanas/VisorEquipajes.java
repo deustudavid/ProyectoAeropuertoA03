@@ -199,15 +199,6 @@ public class VisorEquipajes extends JFrame implements WindowListener {
 	
 	}
 	
-	private boolean comprobarDouble(double d) {
-		if(d>0) {
-			return true;
-		}
-		return false;
-	}
-	
-
-	
 	@Override
 	public void windowClosing(WindowEvent arg0) {
 		exit();		

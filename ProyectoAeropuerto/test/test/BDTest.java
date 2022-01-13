@@ -8,11 +8,15 @@ import static org.junit.Assert.assertTrue;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.TreeSet;
+
+import javax.swing.tree.DefaultMutableTreeNode;
 
 import org.junit.Test;
 
 import bd.BD;
 import bd.DBException;
+import clases.Azafato;
 import clases.Clase;
 import clases.Equipaje;
 import clases.Pasajero;
@@ -343,6 +347,7 @@ public class BDTest {
 			
 		
 	}
+	
 	@Test
 	public void testModificarPasajero() {
 		
@@ -447,6 +452,33 @@ public class BDTest {
 			
 		
 	}
+	
+	@Test
+	public void testActualizarHoraDespegueYAterrizaje() {
+		try {
+			con=BD.initBD("Aeropuerto.db");
+			Vuelo v=new Vuelo("bbb", "Italia", "Canada", "24-12-2021", "6:00", "15:00", 45, 30 );
+			BD.insertarVuelo(con, v.getID(),v.getOrigen(),v.getDestino(),v.getFecha(),v.getHoraSalida(),v.getHoraLlegada(),v.getAsientosMax(),v.getAsientosRestantes());
+			con=BD.initBD("Aeropuerto.db");
+
+			BD.actualizarHoraDespegueYAterrizaje(con, v.getID(), "0:00","03:00");
+
+			ArrayList<Vuelo> vuelosBD=BD.obtenerVuelos(con);
+			String horaSalidaDevueloActualizado=vuelosBD.get(vuelosBD.size()-1).getHoraSalida();
+			String horaLlegadaDevueloActualizado=vuelosBD.get(vuelosBD.size()-1).getHoraLlegada();
+			assertEquals("0:00", horaSalidaDevueloActualizado);
+			assertEquals("03:00", horaLlegadaDevueloActualizado);
+			BD.closeBD(con);
+		} catch (DBException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+			
+		
+	}
 	@Test
 	public void testEliminarTickets() {
 		int contDespuesDeEliminar = 0;
@@ -462,6 +494,43 @@ public class BDTest {
 
 				contDespuesDeEliminar = BD.contarTickets(con);
 				assertEquals(contAntesDeIEliminar , contDespuesDeEliminar+1);
+				BD.closeBD(con);
+
+			} catch (DBException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
+			
+		
+	}
+	@Test
+	public void testEliminarAzafato() {
+		int contDespuesDeEliminar = 0;
+		int contAntesDeEliminar = 0;
+
+			try {
+				con=BD.initBD("Aeropuerto.db");
+			
+				
+				
+				BD.insertarAzafato(con, "JUNIT", null,999,null);
+				con=BD.initBD("Aeropuerto.db");
+
+				ArrayList<Azafato>al=(ArrayList<Azafato>) BD.obtenerAzafatos(con);
+				for (Azafato azafato : al) {
+					contAntesDeEliminar++;
+				}
+				System.out.println(contAntesDeEliminar);
+				
+				BD.eliminarAzafato(con, "JUNIT");
+
+				contDespuesDeEliminar = BD.contarAzafatos(con);
+				System.out.println(contDespuesDeEliminar);
+				assertEquals(contAntesDeEliminar , contDespuesDeEliminar+1);
 				BD.closeBD(con);
 
 			} catch (DBException e) {
@@ -544,6 +613,38 @@ public class BDTest {
 			
 		
 	}
+	@Test
+	public void testObtenerTodosLosAnyosDeExperiencia() {
+		int anyoCorrecto = 0;
+			try {
+				con=BD.initBD("Aeropuerto.db");
+				BD.insertarAzafato(con, null, null, 22, null);
+
+				con=BD.initBD("Aeropuerto.db");
+				TreeSet<Integer> anyos= BD.obtenerTodosLosAnyosDeExperiencia(con);
+				
+				for(Integer n: anyos) {
+					if (n==22) {
+						 anyoCorrecto=n;
+					}
+					
+				}
+				
+				
+				assertEquals(22, anyoCorrecto);
+				
+				BD.closeBD(con);
+			} catch (DBException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} 
+		
+			
+		
+	}
 	
 	@Test
 	public void testObtenerTickets() {
@@ -587,6 +688,86 @@ public class BDTest {
 				e.printStackTrace();
 			} 
 		
+			
+		
+	}
+	@Test
+	public void testObtenerFuncionAzafatoSegunTexto() {
+			try {
+				con=BD.initBD("Aeropuerto.db");
+				ArrayList<Azafato> al= (ArrayList<Azafato>) BD.obtenerFuncionAzafatoSegunTexto(con, "de");
+				Azafato e=al.get((0));
+				assertTrue(e.getFuncion().contains("de"));
+				
+				BD.closeBD(con);
+			} catch (DBException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} 
+		
+			
+		
+	}
+	@Test
+	public void testObtenerAzafatosSegunExperiencia() {
+			try {
+				con=BD.initBD("Aeropuerto.db");
+				ArrayList<Azafato> al= (ArrayList<Azafato>) BD.ObtenerAzafatosSegunExperiencia(con, 32);
+				Azafato e=al.get((0));
+				assertEquals(32, e.getAnyosExperiencia());
+				
+				BD.closeBD(con);
+			} catch (DBException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} 
+		
+			
+		
+	}
+	@Test
+	public void testObtenerHoraSalidaDeVuelo() {
+		try {
+			con=BD.initBD("Aeropuerto.db");
+			Vuelo v=new Vuelo("ddd", "Italia", "Canada", "24-12-2021", "6:00", "15:00", 45, 30 );
+			BD.insertarVuelo(con, v.getID(),v.getOrigen(),v.getDestino(),v.getFecha(),v.getHoraSalida(),v.getHoraLlegada(),v.getAsientosMax(),v.getAsientosRestantes());
+			con=BD.initBD("Aeropuerto.db");
+
+			String hllegada=BD.obtenerHoraSalidaDeVuelo(con, "ddd");
+
+			
+			assertEquals("6:00", hllegada);
+			BD.closeBD(con);
+		} catch (DBException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+			
+		
+	}
+	@Test
+	public void testObtenerHoraLlegadaDeVuelo() {
+		try {
+			con=BD.initBD("Aeropuerto.db");
+			Vuelo v=new Vuelo("ccc", "Italia", "Canada", "24-12-2021", "6:00", "15:00", 45, 30 );
+			BD.insertarVuelo(con, v.getID(),v.getOrigen(),v.getDestino(),v.getFecha(),v.getHoraSalida(),v.getHoraLlegada(),v.getAsientosMax(),v.getAsientosRestantes());
+			con=BD.initBD("Aeropuerto.db");
+
+			String hllegada=BD.obtenerHoraLlegadaDeVuelo(con, "ccc");
+
+			
+			assertEquals("15:00", hllegada);
+			BD.closeBD(con);
+		} catch (DBException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
 			
 		
 	}
