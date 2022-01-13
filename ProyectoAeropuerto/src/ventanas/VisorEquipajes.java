@@ -1,19 +1,19 @@
 package ventanas;
 import bd.BD;
 import bd.DBException;
-import clases.Azafato;
 import clases.Equipaje;
 import clases.Pasajero;
 
+
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Font;
 import java.awt.GridBagLayout;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
-
 import javax.swing.DefaultListModel;
 
 import javax.swing.JFrame;
@@ -25,11 +25,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import javax.swing.event.TableModelEvent;
-import javax.swing.event.TableModelListener;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 
 
@@ -87,6 +84,27 @@ public class VisorEquipajes extends JFrame implements WindowListener {
 		mainPanel.add(DatosPasajeroPanel, BorderLayout.NORTH);
 		
 		equipajesTable = new JTable(equipajesTableModel);
+		equipajesTable.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
+			
+			@Override
+			public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus,
+					int row, int column) {
+				Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+				DefaultTableModel df = (DefaultTableModel) equipajesTable.getModel();
+				
+				/*Solo la celda en la que el peso < 10 */
+				if(column==2 && (double)df.getValueAt(row, 2)<10) {
+					c.setBackground(Color.GREEN);
+					c.setFont(new Font("Arial", Font.BOLD, 15));
+				}else {
+					c.setBackground(Color.WHITE);
+				
+				}
+				
+			
+				return c;
+			}
+		});
 		
 		
 		panelScroll.setViewportView(equipajesTable);
@@ -159,7 +177,7 @@ public class VisorEquipajes extends JFrame implements WindowListener {
 								maleta.getLargo(), maleta.getAltura(), maleta.getAnchura()});
 					}
 					equipajesTable.setModel(equipajesTableModel);
-				
+					
 					
 					panelScroll.setViewportView(equipajesTable);
 					
@@ -213,6 +231,8 @@ public class VisorEquipajes extends JFrame implements WindowListener {
 		}
 	
 	}
+	
+	
 	
 	@Override
 	public void windowClosing(WindowEvent arg0) {

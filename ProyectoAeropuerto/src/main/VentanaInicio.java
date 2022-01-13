@@ -465,10 +465,10 @@ public class VentanaInicio extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				ventanaActual.getContentPane().add(labelCerrar);
 				ventanaActual.getContentPane().add(progressBarCerrar);
+				
 				/**
 				 * creacion del hilo que hace la progressbar de cuando le das a cerrar
 				 */
-
 				Thread hiloCerrar = new Thread(new Runnable() {
 
 					@Override

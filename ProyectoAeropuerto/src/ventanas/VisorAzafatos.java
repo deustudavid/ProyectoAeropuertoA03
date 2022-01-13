@@ -32,6 +32,8 @@ import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellEditor;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
@@ -46,6 +48,10 @@ import java.awt.GridLayout;
 import java.awt.HeadlessException;
 import java.awt.Font;
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionListener;
 
 public class VisorAzafatos extends JInternalFrame  {
 
@@ -71,10 +77,29 @@ public class VisorAzafatos extends JInternalFrame  {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
 		con=null;
+		JPanel pNorte = new JPanel();
+		pNorte.setLayout(new GridLayout(0, 2, 0, 0));
 		
 		azafatosJTable = new JTable();
+		azafatosJTable.addMouseMotionListener(new MouseMotionListener() {
+			
+			@Override
+			public void mouseMoved(MouseEvent e) {
+			
+				int fila = ((JTable)e.getSource()).rowAtPoint(e.getPoint());
+				String usuario=(String) azafatosJTable.getModel().getValueAt(fila, 0);
+				
+				lblInfo.setText("Gestor de azafatos. Usuario :"+usuario);
+			}
+			
+			@Override
+			public void mouseDragged(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 		azafatosJTable.setCellSelectionEnabled(true);
-		 
+	
 
 		getContentPane().add(new JScrollPane(azafatosJTable), BorderLayout.CENTER);
 		
@@ -100,16 +125,12 @@ public class VisorAzafatos extends JInternalFrame  {
 		txtFiltro = new JTextField("Caracteres a buscar:");
 		JButton btnFiltro = new JButton("FILTRAR FUNCIONES");
 		btnFiltro.setBackground(Color.CYAN);
-		JPanel pNorte = new JPanel();
-		pNorte.setLayout(new GridLayout(0, 2, 0, 0));
+		
 		pNorte.add(txtFiltro);
 		pNorte.add(btnFiltro);
 		getContentPane().add(pNorte, BorderLayout.NORTH);
 		
-		lblInfo = new JLabel("Gestor de azafatos");
-		lblInfo.setForeground(Color.BLUE);
-		lblInfo.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
-		pNorte.add(lblInfo);
+		
 		
 		btnCancelar = new JButton("Cancelar");
 		btnCancelar.setBackground(Color.ORANGE);
@@ -139,6 +160,11 @@ public class VisorAzafatos extends JInternalFrame  {
 				dispose();
 			}
 		});
+		
+		lblInfo = new JLabel("Gestor de azafatos. Usuario :");
+		lblInfo.setForeground(Color.BLUE);
+		lblInfo.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
+		pNorte.add(lblInfo);
 		pNorte.add(btnCancelar);
 		
 		updateUI(azafatosObtenidos);
@@ -151,6 +177,26 @@ public class VisorAzafatos extends JInternalFrame  {
 		azafatosJTable.getColumnModel().getColumn(2).setMaxWidth(110);
 		azafatosJTable.getColumnModel().getColumn(3).setMinWidth(130);
 		azafatosJTable.getColumnModel().getColumn(3).setMinWidth(130);
+		
+		azafatosJTable.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
+			
+			@Override
+			public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus,
+					int row, int column) {
+				Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+				
+				//Toda la fila en gris para aquellos cuya experiencia sea menor a 15 años
+				int num=(int) azafatosJTable.getModel().getValueAt(row, 2);
+				if(num<=15) {
+					c.setBackground(Color.LIGHT_GRAY);
+				}else {
+					c.setBackground(Color.WHITE);
+				}
+				
+				
+				return c;
+			}
+		});
 
 		azafatosJTable.addKeyListener(new KeyListener() {
 
@@ -290,7 +336,7 @@ public class VisorAzafatos extends JInternalFrame  {
 	 */
 	private void updateUI(List<Azafato> azafatosObtenidos) {
 		azafatosJTable.setModel(new AzafatosTableModel(azafatosObtenidos));
-		infoLabel.setText(String.format("%d azafatos", azafatosObtenidos.size()));
+		infoLabel.setText(String.format("%d azafatos. ", azafatosObtenidos.size()) );
 	}
 	
 	
