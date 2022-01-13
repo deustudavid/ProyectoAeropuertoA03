@@ -465,6 +465,9 @@ public class VentanaInicio extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				ventanaActual.getContentPane().add(labelCerrar);
 				ventanaActual.getContentPane().add(progressBarCerrar);
+				/**
+				 * creacion del hilo que hace la progressbar de cuando le das a cerrar
+				 */
 
 				Thread hiloCerrar = new Thread(new Runnable() {
 
@@ -499,6 +502,10 @@ public class VentanaInicio extends JFrame {
 
 		setVisible(true);
 		
+		/**
+		 * hilo para crear el movimiento de la imagen del avion por la parte baja de la ventana
+		 * hace que se mueva la imagen de manera horizontal
+		 */
 		Runnable r = new Runnable() {
 			
 			@Override
