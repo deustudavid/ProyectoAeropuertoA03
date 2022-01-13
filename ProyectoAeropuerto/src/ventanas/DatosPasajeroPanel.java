@@ -74,6 +74,10 @@ public class DatosPasajeroPanel extends JPanel {
 		add(direccionPanel);
 	}
 	
+	/**
+	 * Se insertan los datos del pasajero recibido por parametro en sus campos correspondientes
+	 * @param pasajero
+	 */
 	public void setpasajero(Pasajero pasajero) {
 		infoNombre.setText(pasajero.getNombre());
 		infoApellido.setText(pasajero.getApellido());
@@ -82,6 +86,9 @@ public class DatosPasajeroPanel extends JPanel {
 		infoTelefono.setText(String.valueOf(pasajero.getTelefono()));
 	}
 	
+	/**
+	 * Se borra el texto de los campos
+	 */
 	public void clear() {
 		infoNombre.setText("");
 		infoApellido.setText("");

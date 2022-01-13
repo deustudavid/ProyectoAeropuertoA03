@@ -118,6 +118,17 @@ public class Vuelo {
 	}
 
 
+	/**
+	 * Calcula los asientos restantes que quedarian tras reservar x numero de asientos en el vuelo
+	 * 
+	 * @param Vuelo v
+	 * @param int asientosAreservar
+	 * @return v.getAsientos restantes, si la cantidad de asientos que se quiere resevar es igual o menor a la
+	 * cantidad de asientos disponibles en el vuelo.
+	 * 
+	 * -1 si se quiere reservar mas asientos de los que hay disponibles
+	 * 
+	 */
 	public static int CalcularAsientosRestantes(Vuelo v, int asientosAreservar) {
 		int asientosRestantesActualmente=v.getAsientosRestantes();
 	 if(v.getAsientosRestantes()>=asientosAreservar) {

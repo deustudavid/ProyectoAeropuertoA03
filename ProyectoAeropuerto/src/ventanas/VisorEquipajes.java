@@ -73,6 +73,10 @@ public class VisorEquipajes extends JFrame implements WindowListener {
 		prepararPanelInfoPasajero();
 	}
 
+	/**
+	 * Prepara el panel sobre la tabla en el que se muestran los datos del usuario correspondiente
+	 * al dni seleccionado en la JList de la izquierda
+	 */
 	private void prepararPanelInfoPasajero() {
 		JPanel mainPanel = new JPanel(new BorderLayout());
 		
@@ -91,7 +95,9 @@ public class VisorEquipajes extends JFrame implements WindowListener {
 	}
 
 
-	
+	/**
+	 * cierra la conexion con la BBDD y la ventana
+	 */
 	private void exit() {
 		try {
 			BD.closeBD(con);
@@ -101,6 +107,9 @@ public class VisorEquipajes extends JFrame implements WindowListener {
 		}
 	}
 	
+	/**
+	 * prepara la JList con los dni de cada pasajero en la BBDD
+	 */
 	private void prepararListaPasajeros() {
 		modelopasajeroJList = new DefaultListModel<>();
 		pasajeroJList = new JList<Pasajero>(modelopasajeroJList);
@@ -130,6 +139,10 @@ public class VisorEquipajes extends JFrame implements WindowListener {
 		});
 	}
 	
+	/**
+	 * Actualiza la tabla con la informacion de los equipajes correspondientes
+	 * al dni del pasajero que se haya seleccionado en la JList
+	 */
 	private void actualizarDatos() {
 		if (pasajeroJList.getSelectedIndex() != -1) {
 			Pasajero Pasajero = pasajeroJList.getSelectedValue();
@@ -173,7 +186,9 @@ public class VisorEquipajes extends JFrame implements WindowListener {
 	}
 	
 	
-	
+	/**
+	 * se insertan en la JList todos los dni de los pasajeros en la BBDD
+	 */
 	private void cargarListaPasajeros() {
 		
 		

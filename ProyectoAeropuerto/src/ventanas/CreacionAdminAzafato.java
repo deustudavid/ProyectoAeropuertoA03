@@ -290,6 +290,10 @@ public class CreacionAdminAzafato extends JInternalFrame {
 		Thread t2 = new Thread(hiloEnabled);
 		t2.start();
 	}
+	
+	/**
+	 * Inhabilita y habilita campos concretos de azafatos o administradores dependiendo de si se quiere registrar un azafato o un administrador
+	 */
 	public static void comprobarCampos() {
 		
 		if (admin) {

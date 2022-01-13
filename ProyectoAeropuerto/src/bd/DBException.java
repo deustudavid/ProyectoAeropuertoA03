@@ -5,13 +5,13 @@ package bd;
  *
  */
 public class DBException extends Exception {
+	
 	private String mensaje;
+	
 	/**
 	 * Construye la excepción con le mensaje indicado
 	 * @param message mensaje contenido en la excepción
 	 */
-
-	
 	public DBException(String message) throws DBException{
 		super(message);
 		mensaje = message;
@@ -33,4 +33,3 @@ public class DBException extends Exception {
 	}
 }
 
-//

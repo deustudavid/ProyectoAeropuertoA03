@@ -311,6 +311,9 @@ public class VentanaAdministrador extends JFrame {
 		pack();
 	}
 
+	/**
+	 * deshabilita el menu
+	 */
 	public static void bloquearBotones() {
 
 		menuPasajero.setEnabled(false);
@@ -320,6 +323,9 @@ public class VentanaAdministrador extends JFrame {
 
 	}
 
+	/**
+	 * habilita el menu
+	 */
 	public static void desbloquearBotones() {
 
 		menuPasajero.setEnabled(true);
@@ -330,10 +336,10 @@ public class VentanaAdministrador extends JFrame {
 	}
 
 	/**
-	 * Metodo que sirve para saber si la ventana que est� abierta es la de
+	 * Metodo que sirve para saber si la ventana en uso es la de
 	 * administrador o la de azafato
 	 * 
-	 * @return true si la ventana es la VentanaAdministrador false si es la ventana
+	 * @return boolean true si la ventana es la VentanaAdministrador,false si es la ventana
 	 *         VentanaAzafato
 	 */
 	public static boolean VentanaAdminEstaActiva() {

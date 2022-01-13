@@ -32,7 +32,21 @@ public class CoordenadasAeropuerto {
 		this.longitud = longitud;
 	}
 
-///////////calcular distancia entre dos continentes de la tierra
+	/**
+	 * Calcula distancia entre dos puntos de la tierra
+	 * @param double latitudPunto1 (latitud del punto A)
+	 * @param double longitudPunto1 (longitud del punto A)
+	 * @param double latitudPunto2 (latitud del punto B)
+	 * @param double longitudPunto2 (longitud del punto B)
+	 * 
+	 * Nota: al reservar un vuelo en su correspondiente ventana, si tanto el punto A como el punto B pertenecen al mismo pais,
+	 * no se cobran tarifas extra
+	 * 
+	 * En caso contrario, se llama a esta funcion para que calcule la distancia entre el pais de origen y destino,
+	 * y se calcula una comision.
+	 * 
+	 * @return double distancia
+	 */
 	public static double calcularDistanciaPuntosSuperficieTierra(double latitudPunto1, double longitudPunto1,
 			double latitudPunto2, double longitudPunto2) {
 		latitudPunto1 = Math.toRadians(latitudPunto1);

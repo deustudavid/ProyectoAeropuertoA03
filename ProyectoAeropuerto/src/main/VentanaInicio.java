@@ -87,6 +87,11 @@ public class VentanaInicio extends JFrame {
 	private static Handler handler ;
 	private JPanel panelSur;
 	
+	
+	/**
+	 * Crea el logger y ciertas cualidades del mismo
+	 * @return Logger logger
+	 */
 	private static Logger initLogger() {
 		if (logger==null) {  // Logger por defecto local:
 			// Reinicio de fichero de logger si ya muy grande
@@ -119,7 +124,17 @@ public class VentanaInicio extends JFrame {
 
 	
 	
-	/* MAIN */
+	
+	/**
+	 * 
+	 * MAIN DEL PROGRAMA, ABRE VENTANAINICIO PARA INICIAR SESION
+	 * 
+	 * implementa una nueva interfaz gracias al jar flatlaf-2.0.jar
+	 * genera un directorio logs en el que van los .log
+	 * genera un directorio config
+	 * genera los ficheros config.properties y logger.properties dentro del directorio config
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		try {
 			UIManager.setLookAndFeel(new FlatLightLaf());

@@ -359,7 +359,12 @@ public class VerVuelos extends JInternalFrame {
 
 		pack();
 	}
-
+	
+	/**
+	 * carga en la tabla los datos de todos los vuelos recursivamente sacandolos de un ArrayList 
+	 * @param ArrayList<Vuelo> v
+	 * @param inti
+	 */
 	private static void cargarVuelosRecursivamente(ArrayList<Vuelo> v, int i) {
 		if (i < v.size()) {
 			String[] fila = { v.get(i).getID(), v.get(i).getOrigen(), v.get(i).getDestino(), v.get(i).getFecha(),
@@ -369,6 +374,12 @@ public class VerVuelos extends JInternalFrame {
 			cargarVuelosRecursivamente(v, i + 1);
 		}
 	}
+	
+	/**
+	 * comprueba que el formato de la hora insertada a mano en la celda es correcto
+	 * @param String str, corresponde a la hora que el usuario introduce
+	 * @return true si el formato de la hora es correcto, false en caso contrario
+	 */
 	private boolean ComprobarHoraInsertada(String str) {
 		Pattern pattern = Pattern.compile(PATTERN);
 		Matcher matcher = pattern.matcher(str);

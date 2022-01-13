@@ -284,6 +284,10 @@ public class VisorAzafatos extends JInternalFrame  {
 		
 	}
 	
+	/**
+	 * actualiza los datos de la tabla
+	 * @param List<Azafato> azafatosObtenidos
+	 */
 	private void updateUI(List<Azafato> azafatosObtenidos) {
 		azafatosJTable.setModel(new AzafatosTableModel(azafatosObtenidos));
 		infoLabel.setText(String.format("%d azafatos", azafatosObtenidos.size()));
@@ -291,7 +295,9 @@ public class VisorAzafatos extends JInternalFrame  {
 	
 	
 
-	
+	/**
+	 * Carga en el tree de la parte izquierda todos los diferentes anyos de experiencia de los azafatos de la BBDD
+	 */
 	private void cargarArbol() {
 		try {
 			TreeSet<Integer> aniosDeExperiencia = BD.obtenerTodosLosAnyosDeExperiencia(con);

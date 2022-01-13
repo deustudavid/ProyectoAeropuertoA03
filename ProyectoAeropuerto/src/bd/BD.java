@@ -35,9 +35,9 @@ public class BD {
 	private static Connection con;
 	
 	/**
-	 * Método que crea la conexión con la BBD
-	 * @param nombreBD El nombre de la BBDD
-	 * @return El objeto Conexión
+	 * Método que crea la conexion con la BBD
+	 * @param String nombreBD El nombre de la BBDD
+	 * @return El objeto Conexión con
 	 * @throws DBException 
 	 */
 	public static Connection initBD(String nombreBD) throws DBException {
@@ -59,7 +59,7 @@ public class BD {
 		return con;
 	}
 	/**
-	 * Método que cierra la conexi�n con la BBDD
+	 * Método que cierra la conexion con la BBDD
 	 * @param con Objeto Connection
 	 * @throws DBException 
 	 */
@@ -79,11 +79,11 @@ public class BD {
 	
 	/**
 	 * Método que recibe los datos de un Azafato y comprueba que est� registrado en la BBDD
-	 * @param usuario Nombre de usuario del azafato
-	 * @param contras contrase�a del azafato
-	 * @return 0 si el nombre de usuario del azafato no est� registrado
-	 * 		   1 si el nombre de usuario del azafato est� registrado pero la contrase�a no es correcta
-	 * 		   2 si el nombre de usuario del azafato est� registrado y la contrase�a es correcta
+	 * @param String usuario Nombre de usuario del azafato
+	 * @param String contra contrasenia del azafato
+	 * @return 0 si el nombre de usuario del azafato no esta registrado
+	 * 		   1 si el nombre de usuario del azafato esta  registrado pero la contrasenia no es correcta
+	 * 		   2 si el nombre de usuario del azafato esta  registrado y la contrasenia es correcta
 	 * @throws DBException 
 	 */
 	public static int obtenerAzafato(Connection con, String usuario, String contra) throws DBException {
@@ -121,11 +121,11 @@ public class BD {
 	
 	/**
 	 * Método que recibe los datos de un Administrador y comprueba que est� registrado en la BBDD
-	 * @param usuario Nombre de usuario del administrador
-	 * @param contras contrase�a del administrador
-	 * @return 0 si el administrador no est� registrado
-	 * 		   1 si el administrador est� registrado pero la contrase�a no es correcta
-	 * 		   2 si el administrador est� registrado y la contrase�a es correcta
+	 * @param String usuario Nombre de usuario del administrador
+	 * @param String contra contrasenia del administrador
+	 * @return 0 si el administrador no esta registrado
+	 * 		   1 si el administrador esta registrado pero la contrasenia no es correcta
+	 * 		   2 si el administrador esta  registrado y la contrasenia es correcta
 	 * @throws DBException 
 	 */
 	public static int obtenerAdministrador(Connection con, String usuario, String contra) throws DBException {
@@ -163,8 +163,9 @@ public class BD {
 	}
 	
 	/**
-	 * Método que crea la tabla Azafato y Administrador si no existen
-
+	 * Método que crea las tablas en la BBDD si no existen
+	 * @param Connection con
+	 * @throws DBException
 	 */
 	public static void crearTablas(Connection con) throws DBException {
 		String sentencia1 = "CREATE TABLE IF NOT EXISTS Azafato (usuario String, contrasenya String, anyosExperiencia int, funcion String)";
@@ -214,10 +215,10 @@ public class BD {
 	
 	
 	/**
-	 * M�todo que inserta los datos de un Azafato (si no est� repetido) en la BBDD 
-	 * @param con Conexión con la BBDD
-	 * @param usuario Nombre de usuario del azafato
-	 * @param contra Contraseña del azafato
+	 * Metodo que inserta los datos de un Azafato (si no est� repetido) en la BBDD 
+	 * @param Connection con Conexión con la BBDD
+	 * @param String usuario Nombre de usuario del azafato
+	 * @param String contra Contraseña del azafato
 	 * @throws DBException 
 	 */
 	public static void insertarAzafato(Connection con, String usuario, String contra, int anyosExperiencia , String funcion ) throws DBException {
@@ -256,10 +257,10 @@ public class BD {
 
 	
 	/**
-	 * M�todo que inserta los datos de un Administrador (si no esta  repetido) en la BBDD 
-	 * @param con Conexión con la BBDD
-	 * @param usuario Nombre de usuario del administrador
-	 * @param contra Contraseña del administrador
+	 * Metodo que inserta los datos de un Administrador (si no esta  repetido) en la BBDD 
+	 * @param Connection con Conexión con la BBDD
+	 * @param String usuario Nombre de usuario del administrador
+	 * @param String contra Contraseña del administrador
 	 * @throws DBException 
 	 */
 	public static void insertarAdministrador(Connection con, String usuario, String contra, String cargo) throws DBException {
@@ -292,7 +293,18 @@ public class BD {
 			}
 		}
 	}
-	
+	/**
+	 * Inserta un Pasajero en la tabla Pasajero de la BBDD
+	 * @param Connection con
+	 * @param String dni
+	 * @param String nombre
+	 * @param String apellido
+	 * @param int edad
+	 * @param int telefono
+	 * @param String direccion
+	 * @param String rutaFoto
+	 * @throws DBException
+	 */
 	public static void insertarPasajero(Connection con,String dni, String nombre, String apellido, int edad, int telefono, String direccion, String rutaFoto) throws DBException {
 		
 		try (PreparedStatement stmt = con.prepareStatement("INSERT INTO Pasajero (dni, nombre ,apellido , edad , telefono , direccion, rutaFoto ) VALUES (?, ?, ?, ?, ?, ?, ?)"); 
@@ -327,7 +339,18 @@ public class BD {
 			}
 		}
 	}
-	
+	/**
+	 * Inserta un nuevo equipaje en la tabla Equipaje de la BBDD
+	 * @param Connection con
+	 * @param int equipajeNum
+	 * @param String dniPasajero
+	 * @param String descripcion
+	 * @param double peso
+	 * @param double largo
+	 * @param double altura
+	 * @param double anchura
+	 * @throws DBException
+	 */
 	public static void insertarEquipaje(Connection con , int equipajeNum, String dniPasajero , String descripcion ,double peso , double largo ,double altura , double anchura ) throws DBException {
 		int numeroEquipajeAInsertar= getMaxEquipajeNum(con);
 		
@@ -364,7 +387,19 @@ public class BD {
 			}
 		}
 	}
-	
+	/**
+	 * inserta un Vuelo nuevo en la BBDD
+	 * @param Connection con
+	 * @param String id
+	 * @param String origen
+	 * @param String destino
+	 * @param String fecha
+	 * @param String horaSalida
+	 * @param String horaLlegada
+	 * @param int asientosMax
+	 * @param int asientosDisponibles
+	 * @throws DBException
+	 */
 	public static void insertarVuelo(Connection con,String id, String origen, String destino, String fecha, String horaSalida, String horaLlegada, int asientosMax, int asientosDisponibles) throws DBException {
 		
 		try (PreparedStatement stmt = con.prepareStatement("INSERT INTO vuelo (id, origen, destino, fecha, horaSalida, horaLlegada, asientosMax, asientosDisponibles) VALUES (?, ?, ?, ?, ?, ?, ?, ?)"); 
@@ -401,7 +436,18 @@ public class BD {
 	}
 	
 	
-
+	/**
+	 * Inserta un nuevo ticket en la BBDD
+	 * @param Connection con
+	 * @param ticketNum
+	 * @param String dniPasajero
+	 * @param String idVuelo
+	 * @param Clase clase
+	 * @param double precio
+	 * @param int numAsientos
+	 * @param String fecha
+	 * @throws DBException
+	 */
 	public static void insertarTicket(Connection con , int ticketNum, String dniPasajero  ,String idVuelo  ,Clase clase , double precio , int numAsientos ,String fecha ) throws DBException {
 		int numeroTicketAInsertar= getMaxTicketNum(con);
 		
@@ -438,7 +484,11 @@ public class BD {
 			}
 		}
 	}
-	
+	/**
+	 * Obtiene el numero de ticket mas alto que haya en la BBDD.Se usa para calcular en otro metodo el numero siguiente, y autoincrementarlo de forma manual
+	 * @param Connection con
+	 * @return int ultimoTicketNum 
+	 */
 	public static int getMaxTicketNum(Connection con) {
 		String sent = "select MAX(ticketNum) from Ticket";
 		Statement st = null;
@@ -459,7 +509,12 @@ public class BD {
 
 		
 	}
-	
+	/**
+	 * Obtiene el numero de quipaje mas alto que haya en la BBDD.Se usa para calcular en otro metodo el numero siguiente, y autoincrementarlo de forma manual
+
+	 * @param Connection con
+	 * @return int ultimoEquipajeNum
+	 */
 	public static int getMaxEquipajeNum(Connection con) {
 		String sent = "select MAX(equipajeNum) from Equipaje";
 		Statement st = null;
@@ -481,7 +536,14 @@ public class BD {
 		
 	}
 	
-	 //Comprueba si existe un pasajero de un determinado dni
+	 
+	/**
+	 * Comprueba si existe un pasajero de un determinado dni
+	 * @param Connection con
+	 * @param String dni
+	 * @return boolean existe
+	 * @throws SQLException
+	 */
 	public static boolean existePasajero(Connection con, String dni) throws SQLException {
 		
 		String sent = "select * from Pasajero where dni='"+dni+"'";
@@ -496,7 +558,13 @@ public class BD {
 		return existe;
 	}
 	
-	 //Comprueba si existe un vuelo de un determinado id
+	/**
+	 * Comprueba si existe un vuelo de un determinado id
+	 * @param Connection con
+	 * @param String ID
+	 * @return boolean existe
+	 * @throws SQLException
+	 */
 	public static boolean existeVuelo(Connection con, String ID) throws SQLException {
 		
 		String sent = "select * from Vuelo where ID='"+ID+"'";
@@ -511,6 +579,12 @@ public class BD {
 		return existe;
 	}
 	
+	/**
+	 * carga unos pasajeros de muestra del fichero "pasajerosIberia.txt" en la BBDD
+	 * @param Connection con
+	 * @throws DBException
+	 * @throws SQLException
+	 */
 	public static void cargarPasajerosdeFichero(Connection con) throws DBException, SQLException {
 			initBD("Aeropuerto.db");
 			Statement st=null;
@@ -566,7 +640,19 @@ public class BD {
 			
 			
 	
-	}	
+	}
+	
+	/**
+	 * Inserta en el fichero de texto un pasajero con los atributos recibidos, separando los campos con tabuladores
+	 * @param Connection con
+	 * @param String dni
+	 * @param String nombre
+	 * @param String apellido
+	 * @param int edad
+	 * @param int telefono
+	 * @param String direccion
+	 * @param String rutaFoto
+	 */
 	public static void InsertarPasajeroEnFichero(Connection con,String dni, String nombre, String apellido, int edad, int telefono, String direccion, String rutaFoto) {
 		
 		
@@ -600,6 +686,17 @@ public class BD {
 			
 		}
 	}
+	/**
+	 * actualiza los datos del pasajero con el dni pasado por parametro con los nuevos datos introducidos
+	 * @param Connection con
+	 * @param String dni
+	 * @param String nombre
+	 * @param String apellido
+	 * @param int edad
+	 * @param int telefono
+	 * @param String direccion
+	 * @throws SQLException
+	 */
 	public static void modificarPasajero(Connection con,String dni, String nombre, String apellido, int edad, int telefono, String direccion) throws SQLException  {
 		Statement statement = con.createStatement();
 		String sent = "update Pasajero set  nombre='"+nombre+"',apellido='"+apellido+"',edad="+edad+",telefono="+telefono+",direccion='"+direccion+"' where dni='"+dni+"'";
@@ -607,6 +704,13 @@ public class BD {
 		VentanaInicio.logger.log(Level.INFO, "Se ha modificado el pasajero de dni: " + dni);
 	}
 	
+	/**
+	 * busca el pasajero en la BBDD mediante su dni y crea un objeto Pasajero
+	 * @param Connection con
+	 * @param String dni
+	 * @return Pasajero p
+	 * @throws SQLException
+	 */
 	public static Pasajero buscarPasajero(Connection con,String dni) throws SQLException {
 		String sentencia = "SELECT * FROM Pasajero WHERE dni = '"+dni+"'";
 		Statement st = null;
@@ -634,7 +738,12 @@ public class BD {
 			rs.close();
 			return p;
 	}
-	
+	/**
+	 * obtiene todos los azafatos de la bbdd y los mete en una List
+	 * @param Connection con
+	 * @return List<Azafato> listaAzafatos
+	 * @throws SQLException
+	 */
 	public static List<Azafato> obtenerAzafatos(Connection con) throws SQLException {
 		List<Azafato> listaAzafatos = new ArrayList<>();
 		try (Statement stmt = con.createStatement()) {
@@ -655,6 +764,12 @@ public class BD {
 		return listaAzafatos;
 	}
 	
+	/**
+	 * obtiene todos los diferentes anios de experiencia de los azafatos de la BBDD y los ordena ascendentemente
+	 * @param Connection con
+	 * @return TreeSet<Integer> anyos
+	 * @throws SQLException
+	 */
 	public static TreeSet<Integer> obtenerTodosLosAnyosDeExperiencia(Connection con) throws SQLException{
 		String sent = "SELECT anyosExperiencia FROM Azafato ORDER BY anyosExperiencia ASC";
 		Statement st = con.createStatement();
@@ -672,7 +787,13 @@ public class BD {
 		return anyos;
 		
 	}
-	
+	/**
+	 * devuelve todos los azafatos cuyos anyos de experiencia coincidan con los anyos pasados por parametro
+	 * @param Connection con
+	 * @param int anyos
+	 * @return List<Azafato> azafatosObtenidos
+	 * @throws SQLException
+	 */
 	public static List<Azafato> ObtenerAzafatosSegunExperiencia(Connection con, int anyos) throws SQLException {
 		List<Azafato> azafatosObtenidos = new ArrayList<>();
 		try (Statement stmt = con.createStatement()) {
@@ -692,7 +813,13 @@ public class BD {
 		
 		return azafatosObtenidos;
 	}
-	
+	/**
+	 * devuelve los azafatos de la BBD cuya funcion incluya los caracteres del String pasado por parametro
+	 * @param Connection con
+	 * @param String funcion
+	 * @return List<Azafato> azafatosObtenidos
+	 * @throws SQLException
+	 */
 	public static List<Azafato> obtenerFuncionAzafatoSegunTexto(Connection con, String funcion) throws SQLException {
 		List<Azafato> azafatosObtenidos = new ArrayList<>();
 		try (Statement stmt = con.createStatement()) {
@@ -712,7 +839,8 @@ public class BD {
 		
 		return azafatosObtenidos;
 	}
-	/*
+	/* METODOS QUE NO LLEGAMOS A USAR
+	 * 
 	public static boolean esAptoNuevoUsuarioAzafato (Connection con, String usuarioNuevo) throws SQLException{
 		boolean esAptoNuevoUsuario=true;
 		String sent = "SELECT usuario FROM Azafato";
@@ -735,6 +863,12 @@ public class BD {
 		return esAptoNuevoUsuario;
 		
 	}*/
+	
+	/**
+	 * Obtiene todos los vuelos de la BBDD
+	 * @param Connection con
+	 * @return ArrayList<Vuelo> ret
+	 */
 	public static ArrayList<Vuelo> obtenerVuelos(Connection con) {
         try (Statement statement = con.createStatement()) {
             ArrayList<Vuelo> ret = new ArrayList<>();
@@ -760,7 +894,11 @@ public class BD {
     }
 	
 	
-	
+	/**
+	 * Obtiene todos los pasajeros de la BBDD
+	 * @param Connection con
+	 * @return ArrayList<Pasajero> ret
+	 */
 	public static ArrayList<Pasajero> obtenerPasajeros(Connection con) {
 	
         try (Statement statement = con.createStatement()) {
@@ -785,7 +923,14 @@ public class BD {
             return null;
         }
     }
-
+	
+	/**
+	 * Obtiene la hora de salida de un vuelo mediante su identificativo ID
+	 * @param Connection con
+	 * @param String ID
+	 * @return String salida
+	 * @throws DBException
+	 */
 	public static String obtenerHoraSalidaDeVuelo(Connection con, String ID) throws DBException {
 		
 		try (PreparedStatement stmt = con.prepareStatement("SELECT horaSalida FROM Vuelo WHERE ID= '"+ID+"' ")) {
@@ -804,7 +949,14 @@ public class BD {
             throw new DBException("No se pudo conseguir la hora de salida del vuelo", e);
 		}
 	}
-	
+
+	/**
+	 * Obtiene la hora de llegada de un vuelo mediante su identificativo ID
+	 * @param Connection con
+	 * @param String ID
+	 * @return String llegada
+	 * @throws DBException
+	 */
 public static String obtenerHoraLlegadaDeVuelo(Connection con, String ID) throws DBException {
 		
 		try (PreparedStatement stmt = con.prepareStatement("SELECT horaLlegada FROM Vuelo WHERE ID= '"+ID+"' ")) {
@@ -824,6 +976,11 @@ public static String obtenerHoraLlegadaDeVuelo(Connection con, String ID) throws
 		}
 	}
 	
+/**
+ * Obtiene todos los tickets de la BBDD
+ * @param Connection con
+ * @return  ArrayList<Ticket> ret
+ */
 	public static ArrayList<Ticket> obtenerTickets(Connection con) {
         try (Statement statement = con.createStatement()) {
             ArrayList<Ticket> ret = new ArrayList<>();
@@ -851,6 +1008,13 @@ public static String obtenerHoraLlegadaDeVuelo(Connection con, String ID) throws
         }
     }
 	
+	/**
+	 * Devuelve todos los vuelos con un determinado origen y destino
+	 * @param Connection con
+	 * @param String origen
+	 * @param String destino
+	 * @return ArrayList<Vuelo> ret
+	 */
 	public static ArrayList<Vuelo> obtenerVuelosSegunOrigenDestino(Connection con, String origen, String destino) {
         try (Statement statement = con.createStatement()) {
             ArrayList<Vuelo> ret = new ArrayList<>();
@@ -878,6 +1042,13 @@ public static String obtenerHoraLlegadaDeVuelo(Connection con, String ID) throws
         }
     }
 	
+	/**
+	 * Obtiene los equipajes a nombre de un pasajero concreto mediante su dni
+	 * @param Connection con
+	 * @param String dni
+	 * @return ArrayList<Equipaje> equipajes
+	 * @throws DBException
+	 */
 	public static ArrayList<Equipaje> obtenerEquipajesDePasajero(Connection con, String dni) throws DBException {
 		try (PreparedStatement stmt = con.prepareStatement("SELECT equipajeNum, dniPasajero, descripcion, peso, largo, altura, anchura FROM Equipaje WHERE dniPasajero == '"+dni+"'  ORDER BY peso")) {
 			
@@ -908,6 +1079,13 @@ public static String obtenerHoraLlegadaDeVuelo(Connection con, String ID) throws
 		}
 	}
 	
+	/**
+	 * Obtiene la ruta de la foto del pasajero mediante su dni
+	 * @param Connection con
+	 * @param String dni
+	 * @return String ruta
+	 * @throws DBException
+	 */
 	public static String obtenerFotoPasajero(Connection con, String dni) throws DBException {
 		try (PreparedStatement stmt = con.prepareStatement("SELECT rutaFoto FROM Pasajero WHERE dni== '"+dni+"' ")) {
 			String ruta="fotos/empty.png";
@@ -927,6 +1105,13 @@ public static String obtenerHoraLlegadaDeVuelo(Connection con, String ID) throws
 		}
 	}
 	
+	/**
+	 * Actualiza los asientos disponibles de un vuelo
+	 * @param Connection con
+	 * @param Vuelo v
+	 * @param int asientosAreservar
+	 * @throws SQLException
+	 */
 	public static void actualizarAsientosDeVuelo(Connection con,Vuelo v, int asientosAreservar) throws SQLException  {
 		Statement statement = con.createStatement();
 		
@@ -935,6 +1120,14 @@ public static String obtenerHoraLlegadaDeVuelo(Connection con, String ID) throws
 			VentanaInicio.logger.log(Level.INFO, "Se ha actualizado el numero de asientos restantes en el vuelo: " + v.getID());
 		
 		}
+	
+	/**
+	 * Actualiza la foto de un pasajero en la BBDD
+	 * @param Connection con
+	 * @param String dni
+	 * @param String rutaNuevaFoto
+	 * @throws SQLException
+	 */
 	public static void actualizarFotoDePasajero(Connection con, String dni, String rutaNuevaFoto) throws SQLException  {
 		Statement statement = con.createStatement();
 		
@@ -944,6 +1137,8 @@ public static String obtenerHoraLlegadaDeVuelo(Connection con, String ID) throws
 		
 		}
 	/*
+	 *  METODOS FINALMENTE NO USADOS
+	 *  
 	public static void actualizarAzafato(Connection con, String Usuario, String contrasenya, int experiencia, String funcion) throws SQLException  {
 		Statement statement = con.createStatement();
 		
@@ -964,6 +1159,14 @@ public static String obtenerHoraLlegadaDeVuelo(Connection con, String ID) throws
 		}
 	*/
 	
+	/**
+	 * Actualiza la hora de salida/despegue y llegada/aterrizaje de un vuelo mediante el ID del vuelo
+	 * @param Connection con
+	 * @param String ID
+	 * @param String horaSalida
+	 * @param String horaLlegada
+	 * @throws SQLException
+	 */
 	public static void actualizarHoraDespegueYAterrizaje(Connection con, String ID, String horaSalida, String horaLlegada) throws SQLException  {
 		Statement statement = con.createStatement();
 		
@@ -971,6 +1174,13 @@ public static String obtenerHoraLlegadaDeVuelo(Connection con, String ID) throws
 			statement.executeUpdate(sent);
 		
 		}
+	
+	/**
+	 * Elimina el vuelo de la BBDD mediante su id
+	 * @param Connection con
+	 * @param String id
+	 * @throws SQLException
+	 */
 	public static void eliminarVuelo(Connection con, String id) throws SQLException {
 		Statement stm = con.createStatement();
 		String sent = "delete from Vuelo where id ='" + id+"'";
@@ -978,6 +1188,12 @@ public static String obtenerHoraLlegadaDeVuelo(Connection con, String ID) throws
 		VentanaInicio.logger.log(Level.INFO, "Se ha eliminado de la BD el vuelo: " + id);
 		
 	}
+	/**
+	 * Elimina el azafato de la BBDD mediante su usuario
+	 * @param Connection con
+	 * @param String usuario
+	 * @throws SQLException
+	 */
 	public static void eliminarAzafato(Connection con, String usuario) throws SQLException {
 		Statement stm = con.createStatement();
 		String sent = "delete from Azafato where usuario ='" + usuario+"'";
@@ -985,7 +1201,12 @@ public static String obtenerHoraLlegadaDeVuelo(Connection con, String ID) throws
 		VentanaInicio.logger.log(Level.INFO, "Se ha eliminado de la BD el azafato: " + usuario);
 		
 	}
-	
+	/**
+	 * Elimina el ticket de la BBDD mediante su ticketNum
+	 * @param Connection con
+	 * @param int ticketNum
+	 * @throws SQLException
+	 */
 	public static void eliminarTickets(Connection con, int ticketNum) throws SQLException {
 		Statement stm = con.createStatement();
 		String sent = "delete from Ticket where ticketNum = "+ticketNum+"";
@@ -994,7 +1215,12 @@ public static String obtenerHoraLlegadaDeVuelo(Connection con, String ID) throws
 
 	}
 	
-	//Contar el número de azafatos
+	/**
+	 * Cuenta el numero de azafatos que hay en la BBDD
+	 * @param Connection con
+	 * @return int resul
+	 * @throws SQLException
+	 */
 	public static int contarAzafatos(Connection con) throws SQLException {
 		Statement statement = con.createStatement();
 		String sent = "select count(*) from Azafato";
@@ -1003,7 +1229,13 @@ public static String obtenerHoraLlegadaDeVuelo(Connection con, String ID) throws
 		rs.close();
 		return resul;
 	}
-	//Contar el número de administradores
+	
+	/**
+	 * Cuenta el numero de administradores que hay en la BBDD
+	 * @param Connection con
+	 * @return int resul
+	 * @throws SQLException
+	 */
 	public static int contarAdministradores(Connection con) throws SQLException {
 		Statement statement = con.createStatement();
 		String sent = "select count(*) from Administrador";
@@ -1012,7 +1244,13 @@ public static String obtenerHoraLlegadaDeVuelo(Connection con, String ID) throws
 		rs.close();
 		return resul;
 	}
-	//Contar el número de vuelos
+	
+	/**
+	 * Cuenta el numero de vuelos en la BBDD
+	 * @param Connection con
+	 * @return int resul
+	 * @throws SQLException
+	 */
 	public static int contarVuelos(Connection con) throws SQLException {
 		Statement statement = con.createStatement();
 		String sent = "select count(*) from Vuelo";
@@ -1021,7 +1259,13 @@ public static String obtenerHoraLlegadaDeVuelo(Connection con, String ID) throws
 		rs.close();
 		return resul;
 	}
-	//Contar el número de pasajeros
+	
+	/**
+	 * Cuenta el numero de pasajeros en la BBDD
+	 * @param Connection con
+	 * @return int resul
+	 * @throws SQLException
+	 */
 	public static int contarPasajeros(Connection con) throws SQLException {
 		Statement statement = con.createStatement();
 		String sent = "select count(*) from Pasajero";
@@ -1030,7 +1274,12 @@ public static String obtenerHoraLlegadaDeVuelo(Connection con, String ID) throws
 		rs.close();
 		return resul;
 	}
-	//Contar el número de tickets
+	/**
+	 * Cuenta el numero de tickets en la BBDD
+	 * @param Connection con
+	 * @return int resul
+	 * @throws SQLException
+	 */
 	public static int contarTickets(Connection con) throws SQLException {
 		Statement statement = con.createStatement();
 		String sent = "select count(*) from Ticket";
@@ -1039,7 +1288,13 @@ public static String obtenerHoraLlegadaDeVuelo(Connection con, String ID) throws
 		rs.close();
 		return resul;
 	}
-	//Contar el número de equipajes 
+
+	/**
+	 * Cuenta el numero de equipajes en la BBDD
+	 * @param Connection con
+	 * @return int resul
+	 * @throws SQLException
+	 */
 	public static int contarEquipajes(Connection con) throws SQLException {
 		Statement statement = con.createStatement();
 		String sent = "select count(*) from Equipaje";

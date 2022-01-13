@@ -1117,6 +1117,10 @@ public class ReservarTicket extends JInternalFrame {
 		setVisible(true);
 		
 	}
+	
+	/**
+	 * genera un archivo PDF y un csv con los datos del ticket como un justificante
+	 */
 	public static void generarPDF(){
 		String dniImpreso=txtDni.getText();
 		String nombreImpreso = txtNombre.getText();
