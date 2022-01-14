@@ -13,9 +13,7 @@ import javax.swing.table.DefaultTableModel;
 import bd.BD;
 import bd.DBException;
 import clases.Ticket;
-import clases.Vuelo;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class VerTickets extends JInternalFrame {
 
@@ -76,7 +74,7 @@ public class VerTickets extends JInternalFrame {
 		tabla.setBackground(SystemColor.info);
 		panelScroll.setViewportView(tabla);
 		
-		//Añadimos el Renderer a la tabla
+		
 		tabla.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
 			
 			@Override

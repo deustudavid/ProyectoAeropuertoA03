@@ -9,16 +9,12 @@ import com.toedter.calendar.JTextFieldDateEditor;
 
 import bd.BD;
 import bd.DBException;
-import clases.Vuelo;
-import main.VentanaInicio;
-
 import java.awt.*;
 import java.awt.event.*;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Date;
 import java.text.SimpleDateFormat;
-import java.util.logging.Level;
 
 
 

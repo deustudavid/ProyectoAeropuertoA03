@@ -23,7 +23,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.event.*;
 
 public class BuscarPasajero extends javax.swing.JInternalFrame {
-//
+
 	private JButton btnBuscarFoto;
 	private JButton btnActualizar;
 	private JButton btnCancelar;
@@ -412,7 +412,7 @@ public class BuscarPasajero extends javax.swing.JInternalFrame {
 					Integer.parseInt(txtEdad.getText());
 				} else {
 					correctoEdad = false;
-					lblMensajeEdad.setText("No comienza en 0; 3 dígitos; Edad max=130.");
+					lblMensajeEdad.setText("No comienza en 0; 3 digitos; Edad max=130.");
 				}
 			}
 		});
@@ -466,7 +466,7 @@ public class BuscarPasajero extends javax.swing.JInternalFrame {
 					}
 
 				} else {
-					JOptionPane.showMessageDialog(null, "Quedan campos vacíos o incorrectos.", "Error",
+					JOptionPane.showMessageDialog(null, "Quedan campos vacios o incorrectos.", "Error",
 							JOptionPane.WARNING_MESSAGE);
 				}
 

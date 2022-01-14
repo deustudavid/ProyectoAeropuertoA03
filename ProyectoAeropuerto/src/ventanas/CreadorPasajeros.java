@@ -8,20 +8,15 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.regex.Pattern;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import bd.BD;
 import bd.DBException;
-import clases.Pasajero;
-
 import javax.swing.GroupLayout.Alignment;
 
 import javax.swing.LayoutStyle.ComponentPlacement;
-import java.util.regex.*;
 public class CreadorPasajeros extends JInternalFrame {
 
 	private JButton btnBuscarFoto;

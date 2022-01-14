@@ -92,7 +92,7 @@ public class VisorEquipajes extends JFrame implements WindowListener {
 			public void actionPerformed(ActionEvent e) {
 				
 				String resp = JOptionPane.showInputDialog(null,"Introduce el numero del equipaje a borrar");
-				if (resp==null) return; // No definida cantidad
+				if (resp==null) return; 
 				int cantidad = Integer.parseInt( resp );
 				
 					try {

@@ -1,10 +1,5 @@
 package clases;
 
-import java.util.ArrayList;
-import java.util.Date;
-
-import ventanas.VerTickets;
-
 public class Vuelo {
 	String ID;
 	String origen;
@@ -15,7 +10,7 @@ public class Vuelo {
 	int asientosMax;
 	int asientosRestantes;
 
-	ArrayList<Pasajero> Maleta = new ArrayList<>();
+	
 
 	public Vuelo(String ID, String origen, String destino, String fecha, String horaSalida, String horaLlegada,
 			int asientosMax , int asientosRestantes) {

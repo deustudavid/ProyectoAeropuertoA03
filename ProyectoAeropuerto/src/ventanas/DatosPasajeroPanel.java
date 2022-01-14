@@ -12,9 +12,7 @@ import clases.Pasajero;
 
 public class DatosPasajeroPanel extends JPanel {
 
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 	private JLabel infoApellido;
 	private JLabel infoNombre;

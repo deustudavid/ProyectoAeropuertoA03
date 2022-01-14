@@ -51,8 +51,6 @@ import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
-import java.awt.FlowLayout;
-
 public class VentanaInicio extends JFrame {
 
 	private JPanel contentPane;
