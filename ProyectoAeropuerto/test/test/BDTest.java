@@ -508,6 +508,34 @@ public class BDTest {
 		
 	}
 	@Test
+	public void testEliminarEquipaje() {
+		int contDespuesDeEliminar = 0;
+		int contAntesDeIEliminar = 0;
+
+			try {
+				con=BD.initBD("Aeropuerto.db");
+				contAntesDeIEliminar = BD.contarEquipajes(con);
+				
+				ArrayList<Equipaje>al=BD.obtenerEquipajesDePasajero(con,"00000000Q");
+				int ultimoNum=al.get(al.size()-1).getEquipajeNum();
+				BD.eliminarEquipaje(con, ultimoNum);
+
+				contDespuesDeEliminar = BD.contarEquipajes(con);
+				assertEquals(contAntesDeIEliminar , contDespuesDeEliminar+1);
+				BD.closeBD(con);
+
+			} catch (DBException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
+			
+		
+	}
+	@Test
 	public void testEliminarAzafato() {
 		int contDespuesDeEliminar = 0;
 		int contAntesDeEliminar = 0;
@@ -715,9 +743,9 @@ public class BDTest {
 	public void testObtenerAzafatosSegunExperiencia() {
 			try {
 				con=BD.initBD("Aeropuerto.db");
-				ArrayList<Azafato> al= (ArrayList<Azafato>) BD.ObtenerAzafatosSegunExperiencia(con, 32);
+				ArrayList<Azafato> al= (ArrayList<Azafato>) BD.ObtenerAzafatosSegunExperiencia(con, 12);
 				Azafato e=al.get((0));
-				assertEquals(32, e.getAnyosExperiencia());
+				assertEquals(12, e.getAnyosExperiencia());
 				
 				BD.closeBD(con);
 			} catch (DBException e) {

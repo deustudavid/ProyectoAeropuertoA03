@@ -460,43 +460,6 @@ public class VentanaInicio extends JFrame {
 
 		
 
-		btnCerrar.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				ventanaActual.getContentPane().add(labelCerrar);
-				ventanaActual.getContentPane().add(progressBarCerrar);
-				
-				/**
-				 * creacion del hilo que hace la progressbar de cuando le das a cerrar
-				 */
-				Thread hiloCerrar = new Thread(new Runnable() {
-
-					@Override
-					public void run() {
-						labelCerrar.setVisible(true);
-						progressBarCerrar.setVisible(true);
-
-						for (int i = 0; i <= 100; i++) {
-							progressBarCerrar.setValue(i);
-							try {
-								Thread.sleep(7);
-							} catch (InterruptedException el) {
-								el.printStackTrace();
-							}
-						}
-
-						labelCerrar.setVisible(false);
-						progressBarCerrar.setVisible(false);
-						ventanaActual.dispose();
-						JOptionPane.showMessageDialog(null, "Se ha cerrado correctamente");
-
-					}
-				});
-
-				hiloCerrar.start();
-			}
-
-		});
 		
 		
 

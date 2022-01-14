@@ -13,6 +13,7 @@ import java.awt.GridBagLayout;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 
@@ -27,6 +28,11 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import java.awt.GridBagConstraints;
+import javax.swing.JButton;
+import java.awt.Insets;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 
 
@@ -80,10 +86,49 @@ public class VisorEquipajes extends JFrame implements WindowListener {
 		JPanel exportPanel = new JPanel();
 		mainPanel.add(exportPanel, BorderLayout.SOUTH);
 		
+		JButton btnBorrarMaleta = new JButton("Borrar maleta");
+		exportPanel.add(btnBorrarMaleta);
+		btnBorrarMaleta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				String resp = JOptionPane.showInputDialog(null,"Introduce el numero del equipaje a borrar");
+				if (resp==null) return; // No definida cantidad
+				int cantidad = Integer.parseInt( resp );
+				
+					try {
+						con=BD.initBD("Aeropuerto.db");
+						int cantAntesBorrar=BD.contarEquipajes(con);
+						BD.eliminarEquipaje(con, cantidad);
+						int cantDespuesBorrar=BD.contarEquipajes(con);
+						actualizarDatos();
+						if (cantDespuesBorrar+1==cantAntesBorrar) {
+							JOptionPane.showMessageDialog(null, "Maleta borrada");
+						}else{
+							JOptionPane.showMessageDialog(null, "Numero incorrecto");
+						}
+						
+					} catch (SQLException e1) {
+						
+						
+					} catch (DBException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					try {
+						BD.closeBD(con);
+					} catch (DBException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					
+			}
+				});
+		
 		DatosPasajeroPanel = new DatosPasajeroPanel();
 		mainPanel.add(DatosPasajeroPanel, BorderLayout.NORTH);
 		
 		equipajesTable = new JTable(equipajesTableModel);
+		equipajesTable.setEnabled(false);
 		equipajesTable.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
 			
 			@Override
@@ -140,8 +185,13 @@ public class VisorEquipajes extends JFrame implements WindowListener {
 		JPanel pasajerosPanel = new JPanel();
 		pasajerosPanel.setLayout(new BorderLayout());
 		JPanel centeringPanel = new JPanel(new GridBagLayout());
-		centeringPanel.add(new JLabel("Pasajeros"));
 		pasajerosPanel.add(centeringPanel, BorderLayout.NORTH);
+		GridBagConstraints gbc = new GridBagConstraints();
+		gbc.insets = new Insets(0, 0, 0, 5);
+		gbc.gridx = 2;
+		gbc.gridy = 0;
+		JLabel label = new JLabel("Pasajeros");
+		centeringPanel.add(label, gbc);
 		pasajerosPanel.add(scrollLista, BorderLayout.CENTER);
 		
 	

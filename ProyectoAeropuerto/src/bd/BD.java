@@ -1214,6 +1214,19 @@ public static String obtenerHoraLlegadaDeVuelo(Connection con, String ID) throws
 		VentanaInicio.logger.log(Level.INFO, "Se ha eliminado de la BD el ticket: " + ticketNum);
 
 	}
+	/**
+	 * 
+	 * @param Connection con
+	 * @param int num  El numEquipaje del equipaje a borrar
+	 * @throws SQLException
+	 */
+	public static void eliminarEquipaje(Connection con, int num) throws SQLException {
+		Statement stm = con.createStatement();
+		String sent = "delete from Equipaje where equipajeNum = "+num+"";
+		stm.executeUpdate(sent);
+		
+
+	}
 	
 	/**
 	 * Cuenta el numero de azafatos que hay en la BBDD
